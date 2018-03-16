@@ -9,17 +9,30 @@ const figlet = require("figlet");
 const chalk = require("chalk");
 const googleHelper = require("./google");
 
-module.exports = new BaseKonnector(start);
+module.exports = new BaseKonnector(withFakeFields(start));
 
+function withFakeFields(callback) {
+  return function(fields) {
+    // googleHelper.resetConfigStore();
+    return googleHelper.getTokens().then(callback);
+  };
+}
+
+/**
+ * @param  {} fields:
+ * @param {} fields.access_token: a google access token
+ * @param {} fields.refresh_token: a google refresh token
+ */
 async function start(fields) {
-  // googleHelper.resetConfigStore();
-  const tokens = await googleHelper.getTokens();
   const oAuth2Client = googleHelper.oAuth2Client;
   oAuth2Client.setCredentials({
-    access_token: tokens.access_token,
-    refresh_token: tokens.refresh_token
+    access_token: fields.access_token,
+    refresh_token: fields.refresh_token
   });
   const contacts = await googleHelper.getConnectionsList(["names"]);
+  // TODO: clean up, filter, and add information to contacts
+  // TODO: add data with [addData](https://github.com/cozy/cozy-konnector-libs/blob/master/packages/cozy-konnector-libs/docs/api.md#adddata)
+  // addData(contacts, 'io.cozy.contacts')
   if (contacts) {
     clear();
     console.log(
