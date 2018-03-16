@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "name": "konnector Google Contacts",
+  "type": "node",
+  "slug": "googlecontactskonnector",
+  "description": "description",
+  "source": "git://github.com/cozy/cozy-konnector-google-contacts.git",
+  "permissions": {
+    "files": {
+      "description": "Required to save the covers",
+      "type": "io.cozy.contacts"
+    },
+    "accounts": {
+      "description": "Required to get the account's data",
+      "type": "io.cozy.accounts",
+      "verbs": ["GET"]
+    }
+  },
+  "developer": {
+    "name": "cozy",
+    "url": "cozy.io"
+  }
+}
