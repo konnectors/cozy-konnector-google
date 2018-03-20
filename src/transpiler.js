@@ -9,11 +9,11 @@ const transpiler = {
       email: getEmail(source),
       birthday: getBirthday(source),
       address: getAddress(source)
-    };
+    }
   }
-};
+}
 
-module.exports = transpiler;
+module.exports = transpiler
 
 function getAddress({ addresses = [] }) {
   return addresses.map(address => ({
@@ -22,35 +22,35 @@ function getAddress({ addresses = [] }) {
     postcode: address.postalCode,
     street: address.streetAddress,
     primary: address.metadata.primary || false
-  }));
+  }))
 }
 
 function getBirthday({ birthdays = [] }) {
   return birthdays
     .filter(birthday => birthday.metadata.primary)
-    .map(birthday => birthday.text)[0];
+    .map(birthday => birthday.text)[0]
 }
 
 function getEmail({ emailAddresses = [] }) {
   return emailAddresses.map(email => ({
     address: email.value,
     primary: email.metadata.primary || false
-  }));
+  }))
 }
 
 function getPhone({ phoneNumbers = [] }) {
   return phoneNumbers.map(phone => ({
     number: phone.value,
     primary: phone.metadata.primary || false
-  }));
+  }))
 }
 
 function getGivenName({ names = [] }) {
-  return names[0].givenName || "";
+  return names[0].givenName || ''
 }
 
 function getFamilyName({ names = [] }) {
   return names
     ? names[0].familyName ? names[0].familyName : names[0].displayName
-    : "";
+    : ''
 }
