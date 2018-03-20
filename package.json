@@ -29,7 +29,7 @@
     "googleapis": "27.0.0"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "4.4.1",
+    "copy-webpack-plugin": "4.4.3",
     "cozy-jobs-cli": "1.0.5",
     "eslint-config-cozy-app": "0.4.0",
     "git-directory-deploy": "1.5.1",
