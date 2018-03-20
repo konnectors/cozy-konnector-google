@@ -8,6 +8,7 @@ const clear = require("clear");
 const figlet = require("figlet");
 const chalk = require("chalk");
 const googleHelper = require("./google");
+const transpile = require("./transpiler");
 
 module.exports = new BaseKonnector(withFakeFields(start));
 
@@ -66,7 +67,7 @@ async function start(fields) {
     const contacts = await googleHelper.getAllContacts({
       personFields: FIELDS.join(",")
     });
-    addData(contacts, "io.cozy.raw-google-contacts");
+    addData(contacts.map(transpile.toCozy), "io.cozy.contacts");
   } catch (err) {
     throw new Error("a global konnector error", err);
   }

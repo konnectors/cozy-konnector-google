@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transpile from google-contacts to io.cozy-contacts Simple test 1`] = `
+Object {
+  "doc": Object {
+    "_id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
+    "_rev": "1-4229b791f9a8b897937ffdece8cdee4d",
+    "address": Array [
+      Object {
+        "city": "Greenville",
+        "country": "États-Unis",
+        "postcode": "29601",
+        "primary": true,
+        "street": "46-198 E Elford St",
+      },
+    ],
+    "birthday": "1987-10-05",
+    "email": Array [
+      Object {
+        "address": "michelle.seabury@keysoft.me",
+        "primary": true,
+      },
+      Object {
+        "address": "mitch.neal@opticast.info",
+        "primary": false,
+      },
+    ],
+    "name": Object {
+      "familyName": "Seabury",
+      "givenName": "Michelle",
+    },
+    "phone": Array [
+      Object {
+        "number": "+33 (6)0 80 49 75 59",
+        "primary": true,
+      },
+      Object {
+        "number": "+33 (6)5 59 99 73 12",
+        "primary": false,
+      },
+    ],
+  },
+  "id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
+  "key": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
+  "value": Object {
+    "rev": "1-4229b791f9a8b897937ffdece8cdee4d",
+  },
+}
+`;
+
+exports[`Transpile from google-contacts to io.cozy-contacts complete tests with \`sample/*.json 1`] = `
+Array [
+  Object {
+    "doc": Object {
+      "address": Array [
+        Object {
+          "city": undefined,
+          "country": undefined,
+          "postcode": undefined,
+          "primary": true,
+          "street": "House Stark",
+        },
+      ],
+      "birthday": "01/01/298",
+      "email": Array [
+        Object {
+          "address": "jon.snow@nightswatch.com",
+          "primary": true,
+        },
+      ],
+      "name": Object {
+        "familyName": "Snow",
+        "givenName": "Jon",
+      },
+      "phone": Array [],
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [
+        Object {
+          "city": undefined,
+          "country": undefined,
+          "postcode": undefined,
+          "primary": true,
+          "street": "Winterfell",
+        },
+        Object {
+          "city": undefined,
+          "country": undefined,
+          "postcode": undefined,
+          "primary": false,
+          "street": "Winterfell",
+        },
+      ],
+      "birthday": "01/01/263",
+      "email": Array [
+        Object {
+          "address": "eddard.stark@stark.com",
+          "primary": true,
+        },
+      ],
+      "name": Object {
+        "familyName": "Stark",
+        "givenName": "Eddard",
+      },
+      "phone": Array [
+        Object {
+          "number": "12 34 56 78 90",
+          "primary": true,
+        },
+      ],
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [
+        Object {
+          "city": undefined,
+          "country": undefined,
+          "postcode": undefined,
+          "primary": true,
+          "street": "94 Crawford Street, 35599 Fairfield Kenya",
+        },
+      ],
+      "birthday": undefined,
+      "email": Array [
+        Object {
+          "address": "russell.bourquin@protheon.org",
+          "primary": true,
+        },
+      ],
+      "name": Object {
+        "familyName": "Protheon",
+        "givenName": "Protheon",
+      },
+      "phone": Array [
+        Object {
+          "number": "+33  (8)2 06 92 96 57",
+          "primary": true,
+        },
+      ],
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [
+        Object {
+          "city": "Greenville",
+          "country": "États-Unis",
+          "postcode": "29601",
+          "primary": true,
+          "street": "46-198 E Elford St",
+        },
+      ],
+      "birthday": "1987-10-05",
+      "email": Array [
+        Object {
+          "address": "michelle.seabury@keysoft.me",
+          "primary": true,
+        },
+        Object {
+          "address": "mitch.neal@opticast.info",
+          "primary": false,
+        },
+      ],
+      "name": Object {
+        "familyName": "Seabury",
+        "givenName": "Michelle",
+      },
+      "phone": Array [
+        Object {
+          "number": "+33 (6)0 80 49 75 59",
+          "primary": true,
+        },
+        Object {
+          "number": "+33 (6)5 59 99 73 12",
+          "primary": false,
+        },
+      ],
+    },
+  },
+]
+`;
