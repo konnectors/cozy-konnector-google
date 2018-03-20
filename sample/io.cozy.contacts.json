@@ -1,0 +1,94 @@
+{
+  "total_rows": 4,
+  "offset": 0,
+  "rows": [
+    {
+      "id": "01b165da-e6d1-4a35-8f7e-9fe4e6a34b23",
+      "key": "01b165da-e6d1-4a35-8f7e-9fe4e6a34b23",
+      "value": { "rev": "1-2f1f558a4cc7787209c447b70c97cb9b" },
+      "doc": {
+        "_id": "01b165da-e6d1-4a35-8f7e-9fe4e6a34b23",
+        "_rev": "1-2f1f558a4cc7787209c447b70c97cb9b",
+        "address": [
+          {
+            "city": "Fairfield",
+            "country": "Kenya",
+            "postcode": "35599",
+            "primary": true,
+            "street": "94 Crawford Street"
+          }
+        ],
+        "email": [
+          { "address": "russell.bourquin@protheon.org", "primary": true }
+        ],
+        "name": { "familyName": "Protheon" },
+        "phone": [{ "number": "+33 (8)2 06 92 96 57", "primary": true }]
+      }
+    },
+    {
+      "id": "07a274139dc812cfbccb9fac0c3897ce",
+      "key": "07a274139dc812cfbccb9fac0c3897ce",
+      "value": { "rev": "1-3ba3c5ad12c2c4e8b16c8a29f7d141bd" },
+      "doc": {
+        "_id": "07a274139dc812cfbccb9fac0c3897ce",
+        "_rev": "1-3ba3c5ad12c2c4e8b16c8a29f7d141bd",
+        "birthday": "2018-02-16",
+        "email": [{ "address": "donatello@pizza.com", "primary": true }],
+        "fullname": "Tom Von Der Bruck",
+        "name": { "familyName": "Von Der Bruck", "givenName": "Tom" }
+      }
+    },
+    {
+      "id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
+      "key": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
+      "value": { "rev": "1-4229b791f9a8b897937ffdece8cdee4d" },
+      "doc": {
+        "_id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
+        "_rev": "1-4229b791f9a8b897937ffdece8cdee4d",
+        "address": [
+          {
+            "city": "Greenville",
+            "country": "Montenegro",
+            "postcode": " ",
+            "primary": true,
+            "street": "9 Crockett Street"
+          }
+        ],
+        "birthday": "1987-10-05",
+        "email": [
+          { "address": "michelle.seabury@keysoft.me", "primary": true },
+          { "address": "mitch.neal@opticast.info", "primary": false }
+        ],
+        "name": { "familyName": "Seabury", "givenName": "Michelle" },
+        "phone": [
+          { "number": "+33 (6)0 80 49 75 59", "primary": true },
+          { "number": "+33 (6)5 59 99 73 12", "primary": false }
+        ]
+      }
+    },
+    {
+      "id": "0f36f57f-f09d-46be-a60e-f516ef935aff",
+      "key": "0f36f57f-f09d-46be-a60e-f516ef935aff",
+      "value": { "rev": "1-3a247816b747e1a1cc7f56df5455cad0" },
+      "doc": {
+        "_id": "0f36f57f-f09d-46be-a60e-f516ef935aff",
+        "_rev": "1-3a247816b747e1a1cc7f56df5455cad0",
+        "address": [
+          {
+            "city": "Spokane",
+            "country": "Virgin Islands, U.S.",
+            "postcode": "58555",
+            "primary": true,
+            "street": "66 Mulholland Drive"
+          }
+        ],
+        "birthday": "1991-03-17",
+        "email": [
+          { "address": "isabelle.milligan@cirpria.name", "primary": true }
+        ],
+        "name": { "familyName": "Milligan", "givenName": "Isabelle" },
+        "phone": [{ "number": "+33 (0)7 56 74 51 43", "primary": true }]
+      }
+    }
+  ]
+}

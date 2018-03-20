@@ -7,9 +7,36 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Launch Jest",
+      "program": "${workspaceFolder}/node_modules/.bin/jest"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Standalone",
+      "program":
+        "${workspaceFolder}/node_modules/cozy-konnector-libs/commands/standalone.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Dev (with stack)",
       "program":
         "${workspaceFolder}/node_modules/cozy-konnector-libs/commands/dev.js"
+    },
+    {
+      "name": "Jest",
+      "type": "node",
+      "request": "launch",
+      "env": { "NODE_ENV": "test" },
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/node_modules/.bin/jest",
+      "stopOnEntry": false,
+      "args": ["--config=config/packages/jest.client.config.json"],
+      "runtimeArgs": ["--nolazy"],
+      "console": "internalConsole",
+      "sourceMaps": false,
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }
