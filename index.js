@@ -18,6 +18,38 @@ function withFakeFields(callback) {
   };
 }
 
+// see https://developers.google.com/apis-explorer/#search/people/people/v1/people.people.connections.list
+// for the personFields's valid values
+const FIELDS = [
+  "addresses",
+  "ageRanges",
+  "biographies",
+  "birthdays",
+  "braggingRights",
+  "coverPhotos",
+  "emailAddresses",
+  "events",
+  "genders",
+  "imClients",
+  "interests",
+  "locales",
+  "memberships",
+  "metadata",
+  "names",
+  "nicknames",
+  "occupations",
+  "organizations",
+  "phoneNumbers",
+  "photos",
+  "relations",
+  "relationshipInterests",
+  "relationshipStatuses",
+  "residences",
+  "skills",
+  "taglines",
+  "urls"
+];
+
 /**
  * @param  {} fields:
  * @param {} fields.access_token: a google access token
@@ -29,27 +61,13 @@ async function start(fields) {
     access_token: fields.access_token,
     refresh_token: fields.refresh_token
   });
-  const contacts = await googleHelper.getConnectionsList(["names"]);
-  // TODO: clean up, filter, and add information to contacts
-  // TODO: add data with [addData](https://github.com/cozy/cozy-konnector-libs/blob/master/packages/cozy-konnector-libs/docs/api.md#adddata)
-  // addData(contacts, 'io.cozy.contacts')
-  if (contacts) {
-    clear();
-    console.log(
-      chalk.yellow(
-        figlet.textSync("Google Contacts", { horizontalLayout: "full" })
-      )
-    );
-    if (contacts.totalPeople !== 1) {
-      console.log(
-        chalk`Found {green ${
-          contacts.totalPeople
-        } contacts} in your contacts list`
-      );
-      console.log(
-        chalk`{gray Here is the first one:
-          \n${JSON.stringify(contacts.connections[0], null, 2)}}`
-      );
-    }
+
+  try {
+    const contacts = await googleHelper.getAllContacts({
+      personFields: FIELDS.join(",")
+    });
+    addData(contacts, "io.cozy.raw-google-contacts");
+  } catch (err) {
+    throw new Error("a global konnector error", err);
   }
 }

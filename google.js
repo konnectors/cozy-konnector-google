@@ -70,20 +70,45 @@ const googleHelper = (() => {
       const conf = new ConfigStore(pkg.name);
       conf.delete("google.tokens");
     },
-    getConnectionsList: function(personFields = ["names"]) {
+    getConnectionsList: function({ personFields = ["names"], ...options }) {
       const peopleAPI = google.people({
         version: "v1",
         auth: this.oAuth2Client
       });
       return new Promise((resolve, reject) => {
         peopleAPI.people.connections.list(
-          { resourceName: "people/me", personFields: personFields },
+          { resourceName: "people/me", personFields, ...options },
           (err, res) => {
-            if (err) reject(err);
-            resolve(res.data);
+            if (err) {
+              reject(err);
+            } else {
+              resolve(res.data);
+            }
           }
         );
       });
+    },
+    getAllContacts: async function({
+      personFields = ["names"],
+      pageToken = null
+    }) {
+      try {
+        const call = await this.getConnectionsList({
+          personFields,
+          pageToken
+        });
+        if (call.nextPageToken) {
+          const nextPageResult = await this.getAllContacts({
+            personFields,
+            pageToken: call.nextPageToken
+          });
+          return [...call.connections, ...nextPageResult];
+        } else {
+          return [...call.connections];
+        }
+      } catch (err) {
+        throw new Error("Unable to get all contacts", err);
+      }
     }
   };
 })();
