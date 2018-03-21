@@ -1,0 +1,33 @@
+{
+  "version": "0.1.0",
+  "name": "Google",
+  "type": "node",
+  "slug": "google",
+  "source": "git://github.com/konnectors/cozy-konnector-google.git",
+  "locales": {
+    "fr": {
+      "description":
+        "Reprend la main sur vos données que vous avez données à Google : contacts.",
+      "permissions": {
+        "contacts": {
+          "description": "Exigée pour sauvegarder les contacts"
+        }
+      }
+    }
+  },
+  "permissions": {
+    "contacts": {
+      "description": "Required to save contacts",
+      "type": "io.cozy.contacts"
+    },
+    "accounts": {
+      "description": "Required to get the account's data",
+      "type": "io.cozy.accounts",
+      "verbs": ["GET"]
+    }
+  },
+  "developer": {
+    "name": "cozy",
+    "url": "cozy.io"
+  }
+}
