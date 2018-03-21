@@ -3,7 +3,7 @@ node_js:
 - '8'
 env:
   global:
-  - secure: "generate a secure github token with `travis encrypt GITHUB_TOKEN=<GITHUB_TOKEN>`"
+  - secure: DzQ27b213EBmtEFuquJO6RO4m/6izI0b9KVZb00OXfjLcyrCxe89kkR3sdQlHBBJkNrNLEGV4DgSdtFWxtyzIyOvZ4WSi3kdyvKHsl/f5r4dwL/tTBqu2aMAYQF6Pz/gbnlkbFawfrksXc20XUNA+SdbiVEsJBFEoiOmaDiZ2SVQBe+XDT6nfZdGAJ1ebjHMyya5Pn4CS4+aWa46PdCXHyR/vQO4BLzeCk/+Zu6mtCPt3TMqG3RxmqlSkFttp07+84K70+1cmx6Ellz2p+Tsueg7W8VLuvJNT3ZeR0RLHH2Yq2EEyjf1UMGqwZ84c7M5u+7Bo7P3UHzDnmApRpg1HHlQcsPMD+EJhSO5P3gR+ajaFYRLyorpQrSHKZaGGbci95eCLpUMu5VtjvckErjv8Bq8dK0aKMmULRM6DMpC49g2E61o2VBlEWxbjiLHR0/CgNuKr2/RqTKgs3oSWZxmIYhcewhtcH/q5Yemu3STUez4jSf+eE/0MigRENdDb+VsN4KK5wrAT+OwD41GVz3KV4cHaTQTmjIFuHDLtK6VKWYFNj/zUQMS6XwT39lTO5++zjvW3vKZP/BN3y01Fwg8e0F+CzpV29rPmetqM34OjPrRHkewTlm/InDK9dN/3VAnxjrFn9PHLvwujc+HR3b5XEdnmCEphZl11Smg/uZbdzE=
 cache:
   yarn: true
   directories:
