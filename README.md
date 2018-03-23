@@ -37,6 +37,22 @@ find more documentation about it there.
 As we need to generate a Google OAuth2 token, we need a `CLIENT_ID` and `CLIENT_SECRET`. You can find these pieces of information by going to the [Google Developer Console](https://console.developer.google.com/), clicking your project --> APIs & auth --> credentials. For more information about OAuth2, [see here](https://github.com/google/google-api-nodejs-client/#oauth2-client).
 Once acquired, fill the [keys.json](./keys.json) file.
 
+To configure the konnector, you can edit `./konnector-dev-config.json` with the following:
+
+```
+{
+  "COZY_URL": "http://cozy.tools:8080",
+  "fields": {
+    "access_token": <ACCESS_TOKEN>,
+    "refresh_token": <REFRESH_TOKEN>
+  }
+}
+```
+
+To help you fill this file, you can run `yarn token`, it will help you generate a new `access_token`.
+(This token will be stored in `~/.config/configStore/cozy-konnector-google.json`, and you can reset a new token with
+`yarn token --reset`).
+
 ### Test the connector without an accessible cozy-stack
 
 If you just want to test this connector without any cozy available.
