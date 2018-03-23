@@ -45,11 +45,11 @@ function getPhone({ phoneNumbers = [] }) {
   }))
 }
 
-function getGivenName({ names = [] }) {
-  return names[0].givenName || ''
+function getGivenName({ names = undefined }) {
+  return names ? names[0].givenName : ''
 }
 
-function getFamilyName({ names = [] }) {
+function getFamilyName({ names = undefined }) {
   return names
     ? names[0].familyName ? names[0].familyName : names[0].displayName
     : ''

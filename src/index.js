@@ -1,15 +1,9 @@
-const { BaseKonnector, addData } = require('cozy-konnector-libs')
+const { BaseKonnector, addData, filterData } = require('cozy-konnector-libs')
 const googleHelper = require('./google')
 const transpile = require('./transpiler')
 
-module.exports = new BaseKonnector(withFakeFields(start))
-
-function withFakeFields(callback) {
-  return function(fields) {
-    // googleHelper.resetConfigStore();
-    return googleHelper.getTokens().then(callback)
-  }
-}
+// module.exports = new BaseKonnector(withFakeFields(start))
+module.exports = new BaseKonnector(start)
 
 // see https://developers.google.com/apis-explorer/#search/people/people/v1/people.people.connections.list
 // for the personFields's valid values
@@ -49,8 +43,7 @@ const FIELDS = [
  * @param {} fields.refresh_token: a google refresh token
  */
 async function start(fields) {
-  const oAuth2Client = googleHelper.oAuth2Client
-  oAuth2Client.setCredentials({
+  googleHelper.oAuth2Client.setCredentials({
     access_token: fields.access_token,
     refresh_token: fields.refresh_token
   })
@@ -59,7 +52,15 @@ async function start(fields) {
     const contacts = await googleHelper.getAllContacts({
       personFields: FIELDS.join(',')
     })
-    addData(contacts.map(transpile.toCozy), 'io.cozy.contacts')
+    const ioCozyContacts = contacts.map(transpile.toCozy)
+    const newIoCozyContacts = await filterData(
+      ioCozyContacts,
+      'io.cozy.contacts',
+      {
+        keys: ['email']
+      }
+    )
+    addData(newIoCozyContacts, 'io.cozy.contacts')
   } catch (err) {
     throw new Error('a global konnector error', err)
   }

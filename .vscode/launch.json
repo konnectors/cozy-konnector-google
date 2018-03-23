@@ -15,14 +15,15 @@
       "request": "launch",
       "name": "Launch Standalone",
       "program":
-        "${workspaceFolder}/node_modules/cozy-konnector-libs/commands/standalone.js"
+        "${workspaceFolder}/node_modules/cozy-jobs-cli/src/standalone.js",
+      "args": ["src/index.js"]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Launch Dev (with stack)",
-      "program":
-        "${workspaceFolder}/node_modules/cozy-konnector-libs/commands/dev.js"
+      "program": "${workspaceFolder}/node_modules/cozy-jobs-cli/src/dev.js",
+      "args": ["src/index.js"]
     },
     {
       "name": "Jest",
