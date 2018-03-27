@@ -16,9 +16,8 @@
     "dev": "cozy-run-dev",
     "standalone": "cozy-run-standalone",
     "build": "webpack",
-    "format": "prettier --write 'src/**/*.{js,json}'",
     "precommit": "yarn lint",
-    "lint": "eslint .",
+    "lint": "eslint --fix .",
     "deploy": "git-directory-deploy --directory build/ --branch build --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-google.git}",
     "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-google.git}"
   },
@@ -32,12 +31,11 @@
     "configstore": "3.1.2",
     "copy-webpack-plugin": "4.5.1",
     "cozy-jobs-cli": "1.0.6",
-    "eslint-config-cozy-app": "0.4.0",
+    "eslint-config-cozy-app": "0.5.1",
     "figlet": "1.2.0",
     "git-directory-deploy": "1.5.1",
     "husky": "0.14.3",
     "minimist": "1.2.0",
-    "prettier": "1.11.1",
     "webpack": "4.3.0",
     "webpack-cli": "2.0.13"
   },
@@ -48,9 +46,5 @@
   },
   "eslintIgnore": [
     "build"
-  ],
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  }
+  ]
 }
