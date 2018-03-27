@@ -62,6 +62,6 @@ async function start(fields) {
     )
     addData(newIoCozyContacts, 'io.cozy.contacts')
   } catch (err) {
-    throw new Error('a global konnector error', err)
+    throw new Error(`a global konnector error: ${err.message}`)
   }
 }

@@ -40,7 +40,7 @@ module.exports = (() => ({
         return [...call.connections]
       }
     } catch (err) {
-      throw new Error('Unable to get all contacts', err)
+      throw new Error(`Unable to get all contacts: ${err.message}`)
     }
   }
 }))()
