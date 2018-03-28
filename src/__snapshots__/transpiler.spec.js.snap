@@ -39,6 +39,7 @@ Object {
           ],
         },
       },
+      "vendorId": "people/c3745049716692310153",
       "version": 1,
     },
     "name": Object {
@@ -55,7 +56,6 @@ Object {
         "primary": false,
       },
     ],
-    "vendorId": "people/c3745049716692310153",
   },
   "id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
   "key": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
@@ -99,6 +99,7 @@ Array [
             ],
           },
         },
+        "vendorId": "people/c6437718916715038152",
         "version": 1,
       },
       "name": Object {
@@ -106,7 +107,6 @@ Array [
         "givenName": "Jon",
       },
       "phone": Array [],
-      "vendorId": "people/c6437718916715038152",
     },
   },
   Object {
@@ -148,6 +148,7 @@ Array [
             ],
           },
         },
+        "vendorId": "people/c2701561889201335426",
         "version": 1,
       },
       "name": Object {
@@ -160,7 +161,6 @@ Array [
           "primary": true,
         },
       ],
-      "vendorId": "people/c2701561889201335426",
     },
   },
   Object {
@@ -195,6 +195,7 @@ Array [
             ],
           },
         },
+        "vendorId": "people/c2584501361615515329",
         "version": 1,
       },
       "name": Object {
@@ -207,7 +208,6 @@ Array [
           "primary": true,
         },
       ],
-      "vendorId": "people/c2584501361615515329",
     },
   },
   Object {
@@ -246,6 +246,7 @@ Array [
             ],
           },
         },
+        "vendorId": "people/c3745049716692310153",
         "version": 1,
       },
       "name": Object {
@@ -262,7 +263,6 @@ Array [
           "primary": false,
         },
       ],
-      "vendorId": "people/c3745049716692310153",
     },
   },
 ]

@@ -13,9 +13,9 @@ const transpiler = {
       address: getAddress(source),
       metadata: {
         version: SCHEMA_VERSION,
-        google: { metadata: source.metadata }
-      },
-      vendorId: source.resourceName
+        google: { metadata: source.metadata },
+        vendorId: source.resourceName
+      }
     }
   }
 }
