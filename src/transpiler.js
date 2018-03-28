@@ -9,7 +9,7 @@ const transpiler = {
       email: getEmail(source),
       birthday: getBirthday(source),
       address: getAddress(source),
-      metadata: { google: source.metadata },
+      metadata: { google: { metadata: source.metadata } },
       resourceName: source.resourceName
     }
   }

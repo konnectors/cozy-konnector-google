@@ -27,15 +27,17 @@ Object {
     ],
     "metadata": Object {
       "google": Object {
-        "objectType": "PERSON",
-        "sources": Array [
-          Object {
-            "etag": "#bjdPJ35K9fo=",
-            "id": "33f916e00d9f5889",
-            "type": "CONTACT",
-            "updateTime": "2018-03-20T10:18:37.332001Z",
-          },
-        ],
+        "metadata": Object {
+          "objectType": "PERSON",
+          "sources": Array [
+            Object {
+              "etag": "#bjdPJ35K9fo=",
+              "id": "33f916e00d9f5889",
+              "type": "CONTACT",
+              "updateTime": "2018-03-20T10:18:37.332001Z",
+            },
+          ],
+        },
       },
     },
     "name": Object {
@@ -84,15 +86,17 @@ Array [
       ],
       "metadata": Object {
         "google": Object {
-          "objectType": "PERSON",
-          "sources": Array [
-            Object {
-              "etag": "#VX0fx6Lp0cw=",
-              "id": "59575f3f0a9cc5c8",
-              "type": "CONTACT",
-              "updateTime": "2018-03-19T17:53:48.327Z",
-            },
-          ],
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#VX0fx6Lp0cw=",
+                "id": "59575f3f0a9cc5c8",
+                "type": "CONTACT",
+                "updateTime": "2018-03-19T17:53:48.327Z",
+              },
+            ],
+          },
         },
       },
       "name": Object {
@@ -130,15 +134,17 @@ Array [
       ],
       "metadata": Object {
         "google": Object {
-          "objectType": "PERSON",
-          "sources": Array [
-            Object {
-              "etag": "#PQlOlGEHd/4=",
-              "id": "257de03988942c82",
-              "type": "CONTACT",
-              "updateTime": "2018-03-19T17:56:55.359002Z",
-            },
-          ],
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#PQlOlGEHd/4=",
+                "id": "257de03988942c82",
+                "type": "CONTACT",
+                "updateTime": "2018-03-19T17:56:55.359002Z",
+              },
+            ],
+          },
         },
       },
       "name": Object {
@@ -174,15 +180,17 @@ Array [
       ],
       "metadata": Object {
         "google": Object {
-          "objectType": "PERSON",
-          "sources": Array [
-            Object {
-              "etag": "#n26kPNzsKTI=",
-              "id": "23ddfe4b8c9b2ec1",
-              "type": "CONTACT",
-              "updateTime": "2018-03-20T10:16:52.748Z",
-            },
-          ],
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#n26kPNzsKTI=",
+                "id": "23ddfe4b8c9b2ec1",
+                "type": "CONTACT",
+                "updateTime": "2018-03-20T10:16:52.748Z",
+              },
+            ],
+          },
         },
       },
       "name": Object {
@@ -222,15 +230,17 @@ Array [
       ],
       "metadata": Object {
         "google": Object {
-          "objectType": "PERSON",
-          "sources": Array [
-            Object {
-              "etag": "#bjdPJ35K9fo=",
-              "id": "33f916e00d9f5889",
-              "type": "CONTACT",
-              "updateTime": "2018-03-20T10:18:37.332001Z",
-            },
-          ],
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#bjdPJ35K9fo=",
+                "id": "33f916e00d9f5889",
+                "type": "CONTACT",
+                "updateTime": "2018-03-20T10:18:37.332001Z",
+              },
+            ],
+          },
         },
       },
       "name": Object {

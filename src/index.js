@@ -49,10 +49,19 @@ async function start(fields) {
   })
 
   try {
+    const accountInfo = await googleHelper.getAccountInfo()
     const contacts = await googleHelper.getAllContacts({
       personFields: FIELDS.join(',')
     })
-    const ioCozyContacts = contacts.map(transpile.toCozy)
+    const ioCozyContacts = contacts.map(transpile.toCozy).map(contact => ({
+      ...contact,
+      metadata: {
+        google: {
+          ...contact.metadata['google'],
+          from: accountInfo.emails[0].value
+        }
+      }
+    }))
     return updateOrCreate(ioCozyContacts, 'io.cozy.contacts', ['resourceName'])
   } catch (err) {
     throw new Error(`a global konnector error: ${err.message}`)

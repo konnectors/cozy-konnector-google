@@ -12,6 +12,11 @@ const chalk = require('chalk')
 const clear = require('clear')
 const figlet = require('figlet')
 
+const SCOPES = [
+  'https://www.googleapis.com/auth/contacts.readonly',
+  'https://www.googleapis.com/auth/userinfo.email'
+]
+
 function getGoogleCode(oAuth2Client) {
   return new Promise((resolve, reject) => {
     // Open an http server to accept the oauth callback. In this simple example, the
@@ -34,7 +39,7 @@ function getGoogleCode(oAuth2Client) {
         // Generate the url that will be used for the consent dialog.
         const authorizeUrl = oAuth2Client.generateAuthUrl({
           access_type: 'offline',
-          scope: ['https://www.googleapis.com/auth/contacts.readonly']
+          scope: SCOPES
         })
         opn(authorizeUrl)
       })
@@ -98,6 +103,24 @@ function getKeys() {
   }
 }
 
+function getAccountInfo(oAuthClient) {
+  const plus = google.plus('v1')
+  return new Promise((resolve, reject) => {
+    plus.people.get(
+      {
+        userId: 'me',
+        auth: oAuthClient
+      },
+      (err, res) => {
+        if (err) {
+          reject(err)
+        }
+        resolve(res.data)
+      }
+    )
+  })
+}
+
 clear()
 console.log(
   chalk.yellow(
@@ -126,7 +149,15 @@ const run = async () => {
       2
     )
   )
-  console.log(chalk.green(`Find your credentials in ${configFilename}`))
+  oAuthClient.setCredentials(tokens)
+  const accountInfo = await getAccountInfo(oAuthClient)
+  console.log(
+    chalk.green(
+      `Find your credentials in ${configFilename} for ${
+        accountInfo['emails'][0]['value']
+      }`
+    )
+  )
 }
 
 run()
