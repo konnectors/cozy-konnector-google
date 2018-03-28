@@ -10,7 +10,7 @@ const transpiler = {
       birthday: getBirthday(source),
       address: getAddress(source),
       metadata: { google: { metadata: source.metadata } },
-      resourceName: source.resourceName
+      vendorId: source.resourceName
     }
   }
 }

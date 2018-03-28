@@ -54,7 +54,7 @@ Object {
         "primary": false,
       },
     ],
-    "resourceName": "people/c3745049716692310153",
+    "vendorId": "people/c3745049716692310153",
   },
   "id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
   "key": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
@@ -104,7 +104,7 @@ Array [
         "givenName": "Jon",
       },
       "phone": Array [],
-      "resourceName": "people/c6437718916715038152",
+      "vendorId": "people/c6437718916715038152",
     },
   },
   Object {
@@ -157,7 +157,7 @@ Array [
           "primary": true,
         },
       ],
-      "resourceName": "people/c2701561889201335426",
+      "vendorId": "people/c2701561889201335426",
     },
   },
   Object {
@@ -203,7 +203,7 @@ Array [
           "primary": true,
         },
       ],
-      "resourceName": "people/c2584501361615515329",
+      "vendorId": "people/c2584501361615515329",
     },
   },
   Object {
@@ -257,7 +257,7 @@ Array [
           "primary": false,
         },
       ],
-      "resourceName": "people/c3745049716692310153",
+      "vendorId": "people/c3745049716692310153",
     },
   },
 ]
