@@ -25,6 +25,19 @@ Object {
         "primary": false,
       },
     ],
+    "metadata": Object {
+      "google": Object {
+        "objectType": "PERSON",
+        "sources": Array [
+          Object {
+            "etag": "#bjdPJ35K9fo=",
+            "id": "33f916e00d9f5889",
+            "type": "CONTACT",
+            "updateTime": "2018-03-20T10:18:37.332001Z",
+          },
+        ],
+      },
+    },
     "name": Object {
       "familyName": "Seabury",
       "givenName": "Michelle",
@@ -39,6 +52,7 @@ Object {
         "primary": false,
       },
     ],
+    "resourceName": "people/c3745049716692310153",
   },
   "id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
   "key": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
@@ -68,11 +82,25 @@ Array [
           "primary": true,
         },
       ],
+      "metadata": Object {
+        "google": Object {
+          "objectType": "PERSON",
+          "sources": Array [
+            Object {
+              "etag": "#VX0fx6Lp0cw=",
+              "id": "59575f3f0a9cc5c8",
+              "type": "CONTACT",
+              "updateTime": "2018-03-19T17:53:48.327Z",
+            },
+          ],
+        },
+      },
       "name": Object {
         "familyName": "Snow",
         "givenName": "Jon",
       },
       "phone": Array [],
+      "resourceName": "people/c6437718916715038152",
     },
   },
   Object {
@@ -100,6 +128,19 @@ Array [
           "primary": true,
         },
       ],
+      "metadata": Object {
+        "google": Object {
+          "objectType": "PERSON",
+          "sources": Array [
+            Object {
+              "etag": "#PQlOlGEHd/4=",
+              "id": "257de03988942c82",
+              "type": "CONTACT",
+              "updateTime": "2018-03-19T17:56:55.359002Z",
+            },
+          ],
+        },
+      },
       "name": Object {
         "familyName": "Stark",
         "givenName": "Eddard",
@@ -110,6 +151,7 @@ Array [
           "primary": true,
         },
       ],
+      "resourceName": "people/c2701561889201335426",
     },
   },
   Object {
@@ -130,6 +172,19 @@ Array [
           "primary": true,
         },
       ],
+      "metadata": Object {
+        "google": Object {
+          "objectType": "PERSON",
+          "sources": Array [
+            Object {
+              "etag": "#n26kPNzsKTI=",
+              "id": "23ddfe4b8c9b2ec1",
+              "type": "CONTACT",
+              "updateTime": "2018-03-20T10:16:52.748Z",
+            },
+          ],
+        },
+      },
       "name": Object {
         "familyName": "Protheon",
         "givenName": "Protheon",
@@ -140,6 +195,7 @@ Array [
           "primary": true,
         },
       ],
+      "resourceName": "people/c2584501361615515329",
     },
   },
   Object {
@@ -164,6 +220,19 @@ Array [
           "primary": false,
         },
       ],
+      "metadata": Object {
+        "google": Object {
+          "objectType": "PERSON",
+          "sources": Array [
+            Object {
+              "etag": "#bjdPJ35K9fo=",
+              "id": "33f916e00d9f5889",
+              "type": "CONTACT",
+              "updateTime": "2018-03-20T10:18:37.332001Z",
+            },
+          ],
+        },
+      },
       "name": Object {
         "familyName": "Seabury",
         "givenName": "Michelle",
@@ -178,6 +247,7 @@ Array [
           "primary": false,
         },
       ],
+      "resourceName": "people/c3745049716692310153",
     },
   },
 ]

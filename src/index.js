@@ -1,4 +1,4 @@
-const { BaseKonnector, addData, filterData } = require('cozy-konnector-libs')
+const { BaseKonnector, updateOrCreate } = require('cozy-konnector-libs')
 const googleHelper = require('./google')
 const transpile = require('./transpiler')
 
@@ -53,14 +53,7 @@ async function start(fields) {
       personFields: FIELDS.join(',')
     })
     const ioCozyContacts = contacts.map(transpile.toCozy)
-    const newIoCozyContacts = await filterData(
-      ioCozyContacts,
-      'io.cozy.contacts',
-      {
-        keys: ['email']
-      }
-    )
-    addData(newIoCozyContacts, 'io.cozy.contacts')
+    return updateOrCreate(ioCozyContacts, 'io.cozy.contacts', ['resourceName'])
   } catch (err) {
     throw new Error(`a global konnector error: ${err.message}`)
   }
