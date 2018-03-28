@@ -39,6 +39,7 @@ Object {
           ],
         },
       },
+      "version": 1,
     },
     "name": Object {
       "familyName": "Seabury",
@@ -98,6 +99,7 @@ Array [
             ],
           },
         },
+        "version": 1,
       },
       "name": Object {
         "familyName": "Snow",
@@ -146,6 +148,7 @@ Array [
             ],
           },
         },
+        "version": 1,
       },
       "name": Object {
         "familyName": "Stark",
@@ -192,6 +195,7 @@ Array [
             ],
           },
         },
+        "version": 1,
       },
       "name": Object {
         "familyName": "Protheon",
@@ -242,6 +246,7 @@ Array [
             ],
           },
         },
+        "version": 1,
       },
       "name": Object {
         "familyName": "Seabury",

@@ -1,3 +1,5 @@
+const SCHEMA_VERSION = 1
+
 const transpiler = {
   toCozy: source => {
     return {
@@ -9,7 +11,10 @@ const transpiler = {
       email: getEmail(source),
       birthday: getBirthday(source),
       address: getAddress(source),
-      metadata: { google: { metadata: source.metadata } },
+      metadata: {
+        version: SCHEMA_VERSION,
+        google: { metadata: source.metadata }
+      },
       vendorId: source.resourceName
     }
   }
