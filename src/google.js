@@ -3,6 +3,22 @@ const OAuth2Client = google.auth.OAuth2
 
 module.exports = (() => ({
   oAuth2Client: this.oAuth2Client || new OAuth2Client(),
+  getAccountInfo: function() {
+    const plusAPI = google.plus({ version: 'v1', auth: this.oAuth2Client })
+    return new Promise((resolve, reject) => {
+      plusAPI.people.get(
+        {
+          userId: 'me'
+        },
+        (err, res) => {
+          if (err) {
+            reject(err)
+          }
+          resolve(res.data)
+        }
+      )
+    })
+  },
   getConnectionsList: function({ personFields = ['names'], ...options }) {
     const peopleAPI = google.people({
       version: 'v1',
@@ -40,7 +56,7 @@ module.exports = (() => ({
         return [...call.connections]
       }
     } catch (err) {
-      throw new Error('Unable to get all contacts', err)
+      throw new Error(`Unable to get all contacts: ${err.message}`)
     }
   }
 }))()
