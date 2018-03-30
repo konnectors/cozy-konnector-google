@@ -22,7 +22,7 @@
     "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-google.git}"
   },
   "dependencies": {
-    "cozy-konnector-libs": "3.8.1",
+    "cozy-konnector-libs": "3.8.2",
     "googleapis": "27.0.0"
   },
   "devDependencies": {
