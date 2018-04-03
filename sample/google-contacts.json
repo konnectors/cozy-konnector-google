@@ -1,274 +1,15 @@
 [
   {
-    "resourceName": "people/c6437718916715038152",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxWWDBmeDZMcDBjdz0=",
-    "metadata": {
-      "sources": [
-        {
-          "type": "CONTACT",
-          "id": "59575f3f0a9cc5c8",
-          "etag": "#VX0fx6Lp0cw=",
-          "updateTime": "2018-03-19T17:53:48.327Z"
-        }
-      ],
-      "objectType": "PERSON"
-    },
-    "names": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "59575f3f0a9cc5c8"
-          }
-        },
-        "displayName": "Jon Snow",
-        "familyName": "Snow",
-        "givenName": "Jon",
-        "displayNameLastFirst": "Snow, Jon"
-      }
-    ],
-    "photos": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "59575f3f0a9cc5c8"
-          }
-        },
-        "url":
-          "https://lh5.googleusercontent.com/-yfLDaekVjCc/WcKNt1u7H5I/AAAAAAAAAAA/iRxI6sgfoJU53vNa9IejGqmVx7HGmvqTgCOQCEAE/s100/photo.jpg"
-      }
-    ],
-    "birthdays": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "59575f3f0a9cc5c8"
-          }
-        },
-        "text": "01/01/298"
-      }
-    ],
-    "addresses": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "59575f3f0a9cc5c8"
-          }
-        },
-        "formattedValue": "House Stark",
-        "streetAddress": "House Stark"
-      }
-    ],
-    "emailAddresses": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "59575f3f0a9cc5c8"
-          }
-        },
-        "value": "jon.snow@nightswatch.com",
-        "type": "Coordonnées professionnelles",
-        "formattedType": "Coordonnées professionnelles"
-      }
-    ],
-    "organizations": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "59575f3f0a9cc5c8"
-          }
-        },
-        "name": "Night's Watch",
-        "title": "Lord Commander"
-      }
-    ],
-    "memberships": [
-      {
-        "metadata": {
-          "source": {
-            "type": "CONTACT",
-            "id": "59575f3f0a9cc5c8"
-          }
-        },
-        "contactGroupMembership": {
-          "contactGroupId": "myContacts"
-        }
-      }
-    ]
-  },
-  {
-    "resourceName": "people/c2701561889201335426",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxQUWxPbEdFSGQvND0=",
-    "metadata": {
-      "sources": [
-        {
-          "type": "CONTACT",
-          "id": "257de03988942c82",
-          "etag": "#PQlOlGEHd/4=",
-          "updateTime": "2018-03-19T17:56:55.359002Z"
-        }
-      ],
-      "objectType": "PERSON"
-    },
-    "names": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "displayName": "Eddard Stark",
-        "familyName": "Stark",
-        "givenName": "Eddard",
-        "displayNameLastFirst": "Stark, Eddard"
-      }
-    ],
-    "nicknames": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "value": "Ned"
-      }
-    ],
-    "photos": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "url":
-          "https://lh6.googleusercontent.com/-VPSCtkd2NJY/Wq_5589njHI/AAAAAAAAAAA/aPwqFQQZ5uIROLYjux-ehTVpAZkZw_tFwCOQCEAE/s100/photo.jpg"
-      }
-    ],
-    "birthdays": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "text": "01/01/263"
-      }
-    ],
-    "addresses": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "formattedValue": "Winterfell",
-        "type": "home",
-        "formattedType": "Home",
-        "streetAddress": "Winterfell"
-      },
-      {
-        "metadata": {
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "formattedValue": "Winterfell",
-        "type": "work",
-        "formattedType": "Work",
-        "streetAddress": "Winterfell"
-      }
-    ],
-    "emailAddresses": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "value": "eddard.stark@stark.com",
-        "type": "home",
-        "formattedType": "Home"
-      }
-    ],
-    "phoneNumbers": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "value": "12 34 56 78 90",
-        "canonicalForm": "+33123456789",
-        "type": "mobile",
-        "formattedType": "Mobile"
-      }
-    ],
-    "organizations": [
-      {
-        "metadata": {
-          "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "name": "Winterfell",
-        "title": "Lord"
-      }
-    ],
-    "memberships": [
-      {
-        "metadata": {
-          "source": {
-            "type": "CONTACT",
-            "id": "257de03988942c82"
-          }
-        },
-        "contactGroupMembership": {
-          "contactGroupId": "myContacts"
-        }
-      }
-    ]
-  },
-  {
     "resourceName": "people/c2584501361615515329",
     "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxuMjZrUE56c0tUST0=",
+      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxkSXQwekVHWE5Wcz0=",
     "metadata": {
       "sources": [
         {
           "type": "CONTACT",
           "id": "23ddfe4b8c9b2ec1",
-          "etag": "#n26kPNzsKTI=",
-          "updateTime": "2018-03-20T10:16:52.748Z"
+          "etag": "#dIt0zEGXNVs=",
+          "updateTime": "2018-03-20T11:03:08.585001Z"
         }
       ],
       "objectType": "PERSON"
@@ -277,10 +18,7 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "23ddfe4b8c9b2ec1"
-          }
+          "source": { "type": "CONTACT", "id": "23ddfe4b8c9b2ec1" }
         },
         "displayName": "Protheon",
         "givenName": "Protheon",
@@ -291,10 +29,7 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "23ddfe4b8c9b2ec1"
-          }
+          "source": { "type": "CONTACT", "id": "23ddfe4b8c9b2ec1" }
         },
         "url":
           "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MXH4-jMZjHPvvA0thkY0HZgIhkKAVAQ____________ARjj3LX8______8B/s100/photo.jpg",
@@ -305,10 +40,7 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "23ddfe4b8c9b2ec1"
-          }
+          "source": { "type": "CONTACT", "id": "23ddfe4b8c9b2ec1" }
         },
         "formattedValue": "94 Crawford Street, 35599 Fairfield Kenya",
         "streetAddress": "94 Crawford Street, 35599 Fairfield Kenya"
@@ -318,10 +50,7 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "23ddfe4b8c9b2ec1"
-          }
+          "source": { "type": "CONTACT", "id": "23ddfe4b8c9b2ec1" }
         },
         "value": "russell.bourquin@protheon.org"
       }
@@ -330,10 +59,7 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "23ddfe4b8c9b2ec1"
-          }
+          "source": { "type": "CONTACT", "id": "23ddfe4b8c9b2ec1" }
         },
         "value": "+33  (8)2 06 92 96 57",
         "canonicalForm": "+33820692965"
@@ -342,28 +68,23 @@
     "memberships": [
       {
         "metadata": {
-          "source": {
-            "type": "CONTACT",
-            "id": "23ddfe4b8c9b2ec1"
-          }
+          "source": { "type": "CONTACT", "id": "23ddfe4b8c9b2ec1" }
         },
-        "contactGroupMembership": {
-          "contactGroupId": "myContacts"
-        }
+        "contactGroupMembership": { "contactGroupId": "myContacts" }
       }
     ]
   },
   {
     "resourceName": "people/c3745049716692310153",
     "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxiamRQSjM1Szlmbz0=",
+      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxPekY3U3ZnS09XVT0=",
     "metadata": {
       "sources": [
         {
           "type": "CONTACT",
           "id": "33f916e00d9f5889",
-          "etag": "#bjdPJ35K9fo=",
-          "updateTime": "2018-03-20T10:18:37.332001Z"
+          "etag": "#OzF7SvgKOWU=",
+          "updateTime": "2018-03-20T11:47:42.473001Z"
         }
       ],
       "objectType": "PERSON"
@@ -372,10 +93,7 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
         "displayName": "Michelle Seabury",
         "familyName": "Seabury",
@@ -387,10 +105,7 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
         "url":
           "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MrelSgWD1bjXDv9XX6A51FQIhkKAU0Q____________ARinr4L4______8B/s100/photo.jpg",
@@ -401,16 +116,9 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
-        "date": {
-          "year": 1987,
-          "month": 10,
-          "day": 5
-        },
+        "date": { "year": 1987, "month": 10, "day": 5 },
         "text": "1987-10-05"
       }
     ],
@@ -418,10 +126,7 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
         "formattedValue":
           "46-198 E Elford St\nGreenville, SC 29601\nÉtats-Unis ",
@@ -437,19 +142,13 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
         "value": "michelle.seabury@keysoft.me"
       },
       {
         "metadata": {
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
         "value": "mitch.neal@opticast.info"
       }
@@ -458,20 +157,14 @@
       {
         "metadata": {
           "primary": true,
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
         "value": "+33 (6)0 80 49 75 59",
         "canonicalForm": "+33608049755"
       },
       {
         "metadata": {
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
         "value": "+33 (6)5 59 99 73 12",
         "canonicalForm": "+33655999731"
@@ -480,14 +173,550 @@
     "memberships": [
       {
         "metadata": {
-          "source": {
-            "type": "CONTACT",
-            "id": "33f916e00d9f5889"
-          }
+          "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
-        "contactGroupMembership": {
-          "contactGroupId": "myContacts"
+        "contactGroupMembership": { "contactGroupId": "myContacts" }
+      }
+    ]
+  },
+  {
+    "resourceName": "people/c8396630372093629671",
+    "etag":
+      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxINlFBN3lXUEFIRT0=",
+    "metadata": {
+      "sources": [
+        {
+          "type": "CONTACT",
+          "id": "7486d2d60ee594e7",
+          "etag": "#H6QA7yWPAHE=",
+          "updateTime": "2018-04-03T15:16:02.276Z"
         }
+      ],
+      "objectType": "PERSON"
+    },
+    "names": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "displayName": "Alan Turing",
+        "familyName": "Turing",
+        "givenName": "Alan",
+        "displayNameLastFirst": "Turing, Alan"
+      }
+    ],
+    "photos": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "url":
+          "https://lh6.googleusercontent.com/-Kp9JJWzzpo8/WsOash2ktSI/AAAAAAAAAAA/uPQPfCOheoo61xBuVwMXa_DzuTZU1oNigCOQCEAE/s100/photo.jpg"
+      }
+    ],
+    "birthdays": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "date": { "year": 1912, "month": 6, "day": 23 },
+        "text": "23/06/1912"
+      }
+    ],
+    "addresses": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "formattedValue": "78 High Street, Hampton, UK",
+        "type": "work",
+        "formattedType": "Work",
+        "streetAddress": "78 High Street",
+        "city": "Hampton",
+        "country": "UK",
+        "countryCode": "GB"
+      }
+    ],
+    "emailAddresses": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "value": "alan.turing@npl.com",
+        "type": "work",
+        "formattedType": "Work"
+      },
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "value": "alan.turing@wanadoo.fr",
+        "type": "home",
+        "formattedType": "Home"
+      }
+    ],
+    "phoneNumbers": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "value": "+44000555000",
+        "type": "home",
+        "formattedType": "Home"
+      },
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "value": "+44 55 5000 555",
+        "type": "work",
+        "formattedType": "Work"
+      }
+    ],
+    "urls": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "value": "https://en.wikipedia.org/wiki/Alan_Turing",
+        "type": "profile",
+        "formattedType": "Profile"
+      }
+    ],
+    "organizations": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "name": "National Physical Laboratory",
+        "title": "Researcher"
+      }
+    ],
+    "memberships": [
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+        },
+        "contactGroupMembership": { "contactGroupId": "myContacts" }
+      }
+    ]
+  },
+  {
+    "resourceName": "people/c2701561889201335426",
+    "etag":
+      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "metadata": {
+      "sources": [
+        {
+          "type": "CONTACT",
+          "id": "257de03988942c82",
+          "etag": "#jzax3Z1MggE=",
+          "updateTime": "2018-04-03T15:22:30.530001Z"
+        }
+      ],
+      "objectType": "PERSON"
+    },
+    "names": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "displayName": "Eddard Stark",
+        "familyName": "Stark",
+        "givenName": "Eddard",
+        "displayNameLastFirst": "Stark, Eddard"
+      }
+    ],
+    "nicknames": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "value": "Ned"
+      }
+    ],
+    "photos": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "url":
+          "https://lh6.googleusercontent.com/-VPSCtkd2NJY/Wq_5589njHI/AAAAAAAAAAA/aPwqFQQZ5uIROLYjux-ehTVpAZkZw_tFwCOQCEAE/s100/photo.jpg"
+      }
+    ],
+    "birthdays": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "text": "01/01/263"
+      }
+    ],
+    "emailAddresses": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "value": "eddard.stark@stark.com",
+        "type": "Domicile",
+        "formattedType": "Domicile"
+      }
+    ],
+    "phoneNumbers": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "value": "12 34 56 78 90",
+        "canonicalForm": "+33123456789",
+        "type": "mobile",
+        "formattedType": "Mobile"
+      }
+    ],
+    "organizations": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "name": "Winterfell",
+        "title": "Lord"
+      }
+    ],
+    "memberships": [
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "contactGroupMembership": { "contactGroupId": "26a5e0280916516b" }
+      },
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "257de03988942c82" }
+        },
+        "contactGroupMembership": { "contactGroupId": "myContacts" }
+      }
+    ]
+  },
+  {
+    "resourceName": "people/c6437718916715038152",
+    "etag":
+      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "metadata": {
+      "sources": [
+        {
+          "type": "CONTACT",
+          "id": "59575f3f0a9cc5c8",
+          "etag": "#jzax3Z1MggE=",
+          "updateTime": "2018-04-03T15:22:30.530001Z"
+        }
+      ],
+      "objectType": "PERSON"
+    },
+    "names": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
+        },
+        "displayName": "Jon Snow",
+        "familyName": "Snow",
+        "givenName": "Jon",
+        "displayNameLastFirst": "Snow, Jon"
+      }
+    ],
+    "photos": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
+        },
+        "url":
+          "https://lh5.googleusercontent.com/-yfLDaekVjCc/WcKNt1u7H5I/AAAAAAAAAAA/iRxI6sgfoJU53vNa9IejGqmVx7HGmvqTgCOQCEAE/s100/photo.jpg"
+      }
+    ],
+    "birthdays": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
+        },
+        "date": { "year": 298, "month": 1, "day": 1 },
+        "text": "01/01/298"
+      }
+    ],
+    "addresses": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
+        },
+        "formattedValue": "House Stark",
+        "streetAddress": "House Stark"
+      }
+    ],
+    "emailAddresses": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
+        },
+        "value": "jon.snow@nightswatch.com",
+        "type": "work",
+        "formattedType": "Work"
+      }
+    ],
+    "organizations": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
+        },
+        "name": "Night's Watch",
+        "title": "Lord Commander"
+      }
+    ],
+    "memberships": [
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
+        },
+        "contactGroupMembership": { "contactGroupId": "26a5e0280916516b" }
+      },
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
+        },
+        "contactGroupMembership": { "contactGroupId": "myContacts" }
+      }
+    ]
+  },
+  {
+    "resourceName": "people/c2315637590020431536",
+    "etag":
+      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "metadata": {
+      "sources": [
+        {
+          "type": "CONTACT",
+          "id": "2022cc1e8db59eb0",
+          "etag": "#jzax3Z1MggE=",
+          "updateTime": "2018-04-03T15:22:30.530001Z"
+        }
+      ],
+      "objectType": "PERSON"
+    },
+    "names": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "2022cc1e8db59eb0" }
+        },
+        "displayName": "Arya Stark",
+        "familyName": "Stark",
+        "givenName": "Arya",
+        "displayNameLastFirst": "Stark, Arya"
+      }
+    ],
+    "photos": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "2022cc1e8db59eb0" }
+        },
+        "url":
+          "https://lh6.googleusercontent.com/-bVicCwiU0eU/Wrs40oqwwQI/AAAAAAAAAAA/E9fWw_wTkkowY5dlgkIxHEeJ-nfIYsy8ACOQCEAE/s100/photo.jpg"
+      }
+    ],
+    "emailAddresses": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "2022cc1e8db59eb0" }
+        },
+        "value": "arya.stark@stark.com",
+        "type": "Domicile",
+        "formattedType": "Domicile"
+      },
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "2022cc1e8db59eb0" }
+        },
+        "value": "agirl@noname.com",
+        "type": "work",
+        "formattedType": "Work"
+      }
+    ],
+    "organizations": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "2022cc1e8db59eb0" }
+        },
+        "name": "Faceless Men",
+        "title": "Assassin"
+      }
+    ],
+    "memberships": [
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "2022cc1e8db59eb0" }
+        },
+        "contactGroupMembership": { "contactGroupId": "26a5e0280916516b" }
+      },
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "2022cc1e8db59eb0" }
+        },
+        "contactGroupMembership": { "contactGroupId": "myContacts" }
+      }
+    ]
+  },
+  {
+    "resourceName": "people/c1639879180286560138",
+    "etag":
+      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "metadata": {
+      "sources": [
+        {
+          "type": "CONTACT",
+          "id": "16c2056d0f8a078a",
+          "etag": "#jzax3Z1MggE=",
+          "updateTime": "2018-04-03T15:22:30.530001Z"
+        }
+      ],
+      "objectType": "PERSON"
+    },
+    "names": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "16c2056d0f8a078a" }
+        },
+        "displayName": "Samwel Tarly",
+        "familyName": "Tarly",
+        "givenName": "Samwel",
+        "displayNameLastFirst": "Tarly, Samwel"
+      }
+    ],
+    "photos": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "16c2056d0f8a078a" }
+        },
+        "url":
+          "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MrafIV54K0PYYd93SrWl_qQIhkKAVMQ____________ARibr4X4______8B/s100/photo.jpg",
+        "default": true
+      }
+    ],
+    "emailAddresses": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "16c2056d0f8a078a" }
+        },
+        "value": "samwel.tarly@nightswatch.com",
+        "type": "work",
+        "formattedType": "Work"
+      }
+    ],
+    "organizations": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "16c2056d0f8a078a" }
+        },
+        "name": "Night's Watch"
+      }
+    ],
+    "memberships": [
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "16c2056d0f8a078a" }
+        },
+        "contactGroupMembership": { "contactGroupId": "26a5e0280916516b" }
+      },
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "16c2056d0f8a078a" }
+        },
+        "contactGroupMembership": { "contactGroupId": "myContacts" }
+      }
+    ]
+  },
+  {
+    "resourceName": "people/c7575342359908918582",
+    "etag":
+      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "metadata": {
+      "sources": [
+        {
+          "type": "CONTACT",
+          "id": "692105bd8e572536",
+          "etag": "#jzax3Z1MggE=",
+          "updateTime": "2018-04-03T15:22:30.530001Z"
+        }
+      ],
+      "objectType": "PERSON"
+    },
+    "photos": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "692105bd8e572536" }
+        },
+        "url":
+          "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5Mj2xJGVtq-hLbcSsYnmu1twIhkKAW4Q____________ARi8j639______8B/s100/photo.jpg",
+        "default": true
+      }
+    ],
+    "emailAddresses": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "692105bd8e572536" }
+        },
+        "value": "noname@faceless.com",
+        "type": "Coordonnées professionnelles",
+        "formattedType": "Coordonnées professionnelles"
+      }
+    ],
+    "phoneNumbers": [
+      {
+        "metadata": {
+          "primary": true,
+          "source": { "type": "CONTACT", "id": "692105bd8e572536" }
+        },
+        "value": "00 0-555-000"
+      }
+    ],
+    "memberships": [
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "692105bd8e572536" }
+        },
+        "contactGroupMembership": { "contactGroupId": "26a5e0280916516b" }
+      },
+      {
+        "metadata": {
+          "source": { "type": "CONTACT", "id": "692105bd8e572536" }
+        },
+        "contactGroupMembership": { "contactGroupId": "myContacts" }
       }
     ]
   }
