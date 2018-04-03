@@ -98,7 +98,7 @@ Now run `yarn dev` one more time, it should be ok.
 
 The files are saved in the root directory of your cozy by default.
 
-:warning: To register the `client_id`, `client_secret`, `authh_endpoint`, `token_endpoint`, `grant_mode` and `redirect_uri` to your stack, see https://github.com/cozy/cozy-stack/blob/master/docs/account_types.md#google
+:warning: To register the `client_id`, `client_secret`, `auth_endpoint`, `token_endpoint`, `grant_mode` and `redirect_uri` to your stack, see https://github.com/cozy/cozy-stack/blob/master/docs/account_types.md#google
 
 ### Use the konnector with cozy-collect
 

@@ -1,0 +1,124 @@
+{
+  "resourceName": "people/c8396630372093629671",
+  "etag":
+    "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxINlFBN3lXUEFIRT0=",
+  "metadata": {
+    "sources": [
+      {
+        "type": "CONTACT",
+        "id": "7486d2d60ee594e7",
+        "etag": "#H6QA7yWPAHE=",
+        "updateTime": "2018-04-03T15:16:02.276Z"
+      }
+    ],
+    "objectType": "PERSON"
+  },
+  "names": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+      },
+      "displayName": "Alan Turing",
+      "familyName": "Turing",
+      "givenName": "Alan",
+      "displayNameLastFirst": "Turing, Alan"
+    }
+  ],
+  "photos": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+      },
+      "url":
+        "https://lh6.googleusercontent.com/-Kp9JJWzzpo8/WsOash2ktSI/AAAAAAAAAAA/uPQPfCOheoo61xBuVwMXa_DzuTZU1oNigCOQCEAE/s100/photo.jpg"
+    }
+  ],
+  "birthdays": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+      },
+      "date": { "year": 1912, "month": 6, "day": 23 },
+      "text": "23/06/1912"
+    }
+  ],
+  "addresses": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+      },
+      "formattedValue": "78 High Street, Hampton, UK",
+      "type": "work",
+      "formattedType": "Work",
+      "streetAddress": "78 High Street",
+      "city": "Hampton",
+      "country": "UK",
+      "countryCode": "GB"
+    }
+  ],
+  "emailAddresses": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+      },
+      "value": "alan.turing@npl.com",
+      "type": "work",
+      "formattedType": "Work"
+    },
+    {
+      "metadata": { "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" } },
+      "value": "alan.turing@wanadoo.fr",
+      "type": "home",
+      "formattedType": "Home"
+    }
+  ],
+  "phoneNumbers": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+      },
+      "value": "+44000555000",
+      "type": "home",
+      "formattedType": "Home"
+    },
+    {
+      "metadata": { "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" } },
+      "value": "+44 55 5000 555",
+      "type": "work",
+      "formattedType": "Work"
+    }
+  ],
+  "urls": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+      },
+      "value": "https://en.wikipedia.org/wiki/Alan_Turing",
+      "type": "profile",
+      "formattedType": "Profile"
+    }
+  ],
+  "organizations": [
+    {
+      "metadata": {
+        "primary": true,
+        "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
+      },
+      "name": "National Physical Laboratory",
+      "title": "Researcher"
+    }
+  ],
+  "memberships": [
+    {
+      "metadata": { "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" } },
+      "contactGroupMembership": { "contactGroupId": "myContacts" }
+    }
+  ]
+}

@@ -2,66 +2,67 @@
 
 exports[`Transpile from google-contacts to io.cozy-contacts Simple test 1`] = `
 Object {
-  "doc": Object {
-    "_id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
-    "_rev": "1-4229b791f9a8b897937ffdece8cdee4d",
-    "address": Array [
-      Object {
-        "city": "Greenville",
-        "country": "États-Unis",
-        "postcode": "29601",
-        "primary": true,
-        "street": "46-198 E Elford St",
-      },
-    ],
-    "birthday": "1987-10-05",
-    "email": Array [
-      Object {
-        "address": "michelle.seabury@keysoft.me",
-        "primary": true,
-      },
-      Object {
-        "address": "mitch.neal@opticast.info",
-        "primary": false,
-      },
-    ],
-    "metadata": Object {
-      "google": Object {
-        "metadata": Object {
-          "objectType": "PERSON",
-          "sources": Array [
-            Object {
-              "etag": "#bjdPJ35K9fo=",
-              "id": "33f916e00d9f5889",
-              "type": "CONTACT",
-              "updateTime": "2018-03-20T10:18:37.332001Z",
-            },
-          ],
-        },
-      },
-      "vendorId": "people/c3745049716692310153",
-      "version": 1,
+  "address": Array [
+    Object {
+      "city": "Hampton",
+      "country": "UK",
+      "label": "Work",
+      "postcode": undefined,
+      "primary": true,
+      "street": "78 High Street",
+      "type": "work",
     },
-    "name": Object {
-      "familyName": "Seabury",
-      "givenName": "Michelle",
+  ],
+  "birthday": "1912-06-22",
+  "email": Array [
+    Object {
+      "address": "alan.turing@npl.com",
+      "label": "Work",
+      "primary": true,
+      "type": "work",
     },
-    "phone": Array [
-      Object {
-        "number": "+33 (6)0 80 49 75 59",
-        "primary": true,
+    Object {
+      "address": "alan.turing@wanadoo.fr",
+      "label": "Home",
+      "primary": false,
+      "type": "home",
+    },
+  ],
+  "metadata": Object {
+    "google": Object {
+      "metadata": Object {
+        "objectType": "PERSON",
+        "sources": Array [
+          Object {
+            "etag": "#H6QA7yWPAHE=",
+            "id": "7486d2d60ee594e7",
+            "type": "CONTACT",
+            "updateTime": "2018-04-03T15:16:02.276Z",
+          },
+        ],
       },
-      Object {
-        "number": "+33 (6)5 59 99 73 12",
-        "primary": false,
-      },
-    ],
+    },
+    "version": 1,
   },
-  "id": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
-  "key": "0b8e8901-fa22-4b1b-bb04-2446f0a29d13",
-  "value": Object {
-    "rev": "1-4229b791f9a8b897937ffdece8cdee4d",
+  "name": Object {
+    "familyName": "Turing",
+    "givenName": "Alan",
   },
+  "phone": Array [
+    Object {
+      "label": "Home",
+      "number": "+44000555000",
+      "primary": true,
+      "type": "home",
+    },
+    Object {
+      "label": "Work",
+      "number": "+44 55 5000 555",
+      "primary": false,
+      "type": "work",
+    },
+  ],
+  "vendorId": "people/c8396630372093629671",
 }
 `;
 
@@ -73,112 +74,20 @@ Array [
         Object {
           "city": undefined,
           "country": undefined,
-          "postcode": undefined,
-          "primary": true,
-          "street": "House Stark",
-        },
-      ],
-      "birthday": "01/01/298",
-      "email": Array [
-        Object {
-          "address": "jon.snow@nightswatch.com",
-          "primary": true,
-        },
-      ],
-      "metadata": Object {
-        "google": Object {
-          "metadata": Object {
-            "objectType": "PERSON",
-            "sources": Array [
-              Object {
-                "etag": "#VX0fx6Lp0cw=",
-                "id": "59575f3f0a9cc5c8",
-                "type": "CONTACT",
-                "updateTime": "2018-03-19T17:53:48.327Z",
-              },
-            ],
-          },
-        },
-        "vendorId": "people/c6437718916715038152",
-        "version": 1,
-      },
-      "name": Object {
-        "familyName": "Snow",
-        "givenName": "Jon",
-      },
-      "phone": Array [],
-    },
-  },
-  Object {
-    "doc": Object {
-      "address": Array [
-        Object {
-          "city": undefined,
-          "country": undefined,
-          "postcode": undefined,
-          "primary": true,
-          "street": "Winterfell",
-        },
-        Object {
-          "city": undefined,
-          "country": undefined,
-          "postcode": undefined,
-          "primary": false,
-          "street": "Winterfell",
-        },
-      ],
-      "birthday": "01/01/263",
-      "email": Array [
-        Object {
-          "address": "eddard.stark@stark.com",
-          "primary": true,
-        },
-      ],
-      "metadata": Object {
-        "google": Object {
-          "metadata": Object {
-            "objectType": "PERSON",
-            "sources": Array [
-              Object {
-                "etag": "#PQlOlGEHd/4=",
-                "id": "257de03988942c82",
-                "type": "CONTACT",
-                "updateTime": "2018-03-19T17:56:55.359002Z",
-              },
-            ],
-          },
-        },
-        "vendorId": "people/c2701561889201335426",
-        "version": 1,
-      },
-      "name": Object {
-        "familyName": "Stark",
-        "givenName": "Eddard",
-      },
-      "phone": Array [
-        Object {
-          "number": "12 34 56 78 90",
-          "primary": true,
-        },
-      ],
-    },
-  },
-  Object {
-    "doc": Object {
-      "address": Array [
-        Object {
-          "city": undefined,
-          "country": undefined,
+          "label": undefined,
           "postcode": undefined,
           "primary": true,
           "street": "94 Crawford Street, 35599 Fairfield Kenya",
+          "type": undefined,
         },
       ],
       "birthday": undefined,
       "email": Array [
         Object {
           "address": "russell.bourquin@protheon.org",
+          "label": undefined,
           "primary": true,
+          "type": undefined,
         },
       ],
       "metadata": Object {
@@ -187,27 +96,29 @@ Array [
             "objectType": "PERSON",
             "sources": Array [
               Object {
-                "etag": "#n26kPNzsKTI=",
+                "etag": "#dIt0zEGXNVs=",
                 "id": "23ddfe4b8c9b2ec1",
                 "type": "CONTACT",
-                "updateTime": "2018-03-20T10:16:52.748Z",
+                "updateTime": "2018-03-20T11:03:08.585001Z",
               },
             ],
           },
         },
-        "vendorId": "people/c2584501361615515329",
         "version": 1,
       },
       "name": Object {
-        "familyName": "Protheon",
+        "familyName": undefined,
         "givenName": "Protheon",
       },
       "phone": Array [
         Object {
+          "label": undefined,
           "number": "+33  (8)2 06 92 96 57",
           "primary": true,
+          "type": undefined,
         },
       ],
+      "vendorId": "people/c2584501361615515329",
     },
   },
   Object {
@@ -216,20 +127,26 @@ Array [
         Object {
           "city": "Greenville",
           "country": "États-Unis",
+          "label": undefined,
           "postcode": "29601",
           "primary": true,
           "street": "46-198 E Elford St",
+          "type": undefined,
         },
       ],
-      "birthday": "1987-10-05",
+      "birthday": "1987-10-04",
       "email": Array [
         Object {
           "address": "michelle.seabury@keysoft.me",
+          "label": undefined,
           "primary": true,
+          "type": undefined,
         },
         Object {
           "address": "mitch.neal@opticast.info",
+          "label": undefined,
           "primary": false,
+          "type": undefined,
         },
       ],
       "metadata": Object {
@@ -238,15 +155,14 @@ Array [
             "objectType": "PERSON",
             "sources": Array [
               Object {
-                "etag": "#bjdPJ35K9fo=",
+                "etag": "#OzF7SvgKOWU=",
                 "id": "33f916e00d9f5889",
                 "type": "CONTACT",
-                "updateTime": "2018-03-20T10:18:37.332001Z",
+                "updateTime": "2018-03-20T11:47:42.473001Z",
               },
             ],
           },
         },
-        "vendorId": "people/c3745049716692310153",
         "version": 1,
       },
       "name": Object {
@@ -255,14 +171,294 @@ Array [
       },
       "phone": Array [
         Object {
+          "label": undefined,
           "number": "+33 (6)0 80 49 75 59",
           "primary": true,
+          "type": undefined,
         },
         Object {
+          "label": undefined,
           "number": "+33 (6)5 59 99 73 12",
           "primary": false,
+          "type": undefined,
         },
       ],
+      "vendorId": "people/c3745049716692310153",
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [
+        Object {
+          "city": "Hampton",
+          "country": "UK",
+          "label": "Work",
+          "postcode": undefined,
+          "primary": true,
+          "street": "78 High Street",
+          "type": "work",
+        },
+      ],
+      "birthday": "1912-06-22",
+      "email": Array [
+        Object {
+          "address": "alan.turing@npl.com",
+          "label": "Work",
+          "primary": true,
+          "type": "work",
+        },
+        Object {
+          "address": "alan.turing@wanadoo.fr",
+          "label": "Home",
+          "primary": false,
+          "type": "home",
+        },
+      ],
+      "metadata": Object {
+        "google": Object {
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#H6QA7yWPAHE=",
+                "id": "7486d2d60ee594e7",
+                "type": "CONTACT",
+                "updateTime": "2018-04-03T15:16:02.276Z",
+              },
+            ],
+          },
+        },
+        "version": 1,
+      },
+      "name": Object {
+        "familyName": "Turing",
+        "givenName": "Alan",
+      },
+      "phone": Array [
+        Object {
+          "label": "Home",
+          "number": "+44000555000",
+          "primary": true,
+          "type": "home",
+        },
+        Object {
+          "label": "Work",
+          "number": "+44 55 5000 555",
+          "primary": false,
+          "type": "work",
+        },
+      ],
+      "vendorId": "people/c8396630372093629671",
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [],
+      "birthday": undefined,
+      "email": Array [
+        Object {
+          "address": "eddard.stark@stark.com",
+          "label": "Domicile",
+          "primary": true,
+          "type": "Domicile",
+        },
+      ],
+      "metadata": Object {
+        "google": Object {
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#jzax3Z1MggE=",
+                "id": "257de03988942c82",
+                "type": "CONTACT",
+                "updateTime": "2018-04-03T15:22:30.530001Z",
+              },
+            ],
+          },
+        },
+        "version": 1,
+      },
+      "name": Object {
+        "familyName": "Stark",
+        "givenName": "Eddard",
+      },
+      "phone": Array [
+        Object {
+          "label": "Mobile",
+          "number": "12 34 56 78 90",
+          "primary": true,
+          "type": "mobile",
+        },
+      ],
+      "vendorId": "people/c2701561889201335426",
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [
+        Object {
+          "city": undefined,
+          "country": undefined,
+          "label": undefined,
+          "postcode": undefined,
+          "primary": true,
+          "street": "House Stark",
+          "type": undefined,
+        },
+      ],
+      "birthday": "0297-12-31",
+      "email": Array [
+        Object {
+          "address": "jon.snow@nightswatch.com",
+          "label": "Work",
+          "primary": true,
+          "type": "work",
+        },
+      ],
+      "metadata": Object {
+        "google": Object {
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#jzax3Z1MggE=",
+                "id": "59575f3f0a9cc5c8",
+                "type": "CONTACT",
+                "updateTime": "2018-04-03T15:22:30.530001Z",
+              },
+            ],
+          },
+        },
+        "version": 1,
+      },
+      "name": Object {
+        "familyName": "Snow",
+        "givenName": "Jon",
+      },
+      "phone": Array [],
+      "vendorId": "people/c6437718916715038152",
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [],
+      "birthday": undefined,
+      "email": Array [
+        Object {
+          "address": "arya.stark@stark.com",
+          "label": "Domicile",
+          "primary": true,
+          "type": "Domicile",
+        },
+        Object {
+          "address": "agirl@noname.com",
+          "label": "Work",
+          "primary": false,
+          "type": "work",
+        },
+      ],
+      "metadata": Object {
+        "google": Object {
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#jzax3Z1MggE=",
+                "id": "2022cc1e8db59eb0",
+                "type": "CONTACT",
+                "updateTime": "2018-04-03T15:22:30.530001Z",
+              },
+            ],
+          },
+        },
+        "version": 1,
+      },
+      "name": Object {
+        "familyName": "Stark",
+        "givenName": "Arya",
+      },
+      "phone": Array [],
+      "vendorId": "people/c2315637590020431536",
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [],
+      "birthday": undefined,
+      "email": Array [
+        Object {
+          "address": "samwel.tarly@nightswatch.com",
+          "label": "Work",
+          "primary": true,
+          "type": "work",
+        },
+      ],
+      "metadata": Object {
+        "google": Object {
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#jzax3Z1MggE=",
+                "id": "16c2056d0f8a078a",
+                "type": "CONTACT",
+                "updateTime": "2018-04-03T15:22:30.530001Z",
+              },
+            ],
+          },
+        },
+        "version": 1,
+      },
+      "name": Object {
+        "familyName": "Tarly",
+        "givenName": "Samwel",
+      },
+      "phone": Array [],
+      "vendorId": "people/c1639879180286560138",
+    },
+  },
+  Object {
+    "doc": Object {
+      "address": Array [],
+      "birthday": undefined,
+      "email": Array [
+        Object {
+          "address": "noname@faceless.com",
+          "label": "Coordonnées professionnelles",
+          "primary": true,
+          "type": "Coordonnées professionnelles",
+        },
+      ],
+      "metadata": Object {
+        "google": Object {
+          "metadata": Object {
+            "objectType": "PERSON",
+            "sources": Array [
+              Object {
+                "etag": "#jzax3Z1MggE=",
+                "id": "692105bd8e572536",
+                "type": "CONTACT",
+                "updateTime": "2018-04-03T15:22:30.530001Z",
+              },
+            ],
+          },
+        },
+        "version": 1,
+      },
+      "name": Object {
+        "familyName": undefined,
+        "givenName": undefined,
+      },
+      "phone": Array [
+        Object {
+          "label": undefined,
+          "number": "00 0-555-000",
+          "primary": true,
+          "type": undefined,
+        },
+      ],
+      "vendorId": "people/c7575342359908918582",
     },
   },
 ]

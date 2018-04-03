@@ -1,5 +1,5 @@
 const { BaseKonnector, updateOrCreate } = require('cozy-konnector-libs')
-const googleHelper = require('./google')
+const google = require('./google')
 const transpile = require('./transpiler')
 
 // module.exports = new BaseKonnector(withFakeFields(start))
@@ -43,14 +43,14 @@ const FIELDS = [
  * @param {} fields.refresh_token: a google refresh token
  */
 async function start(fields) {
-  googleHelper.oAuth2Client.setCredentials({
+  google.oAuth2Client.setCredentials({
     access_token: fields.access_token,
     refresh_token: fields.refresh_token
   })
 
   try {
-    const accountInfo = await googleHelper.getAccountInfo()
-    const contacts = await googleHelper.getAllContacts({
+    const accountInfo = await google.getAccountInfo()
+    const contacts = await google.getAllContacts({
       personFields: FIELDS.join(',')
     })
     const ioCozyContacts = contacts.map(transpile.toCozy).map(contact => {
