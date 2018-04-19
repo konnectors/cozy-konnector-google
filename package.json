@@ -18,8 +18,8 @@
     "build": "webpack",
     "precommit": "yarn lint",
     "lint": "eslint --fix .",
-    "deploy": "git-directory-deploy --directory build/ --branch build --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-google.git}",
-    "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-google.git}"
+    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-google.git}",
+    "cozyPublish": "cozy-app-publish --token $REGISTRY_TOKEN --build-commit $(git rev-parse ${DEPLOY_BRANCH:-build})"
   },
   "dependencies": {
     "cozy-konnector-libs": "3.8.1",
@@ -30,6 +30,7 @@
     "clear": "0.1.0",
     "configstore": "3.1.2",
     "copy-webpack-plugin": "4.5.1",
+    "cozy-app-publish": "0.3.5",
     "cozy-jobs-cli": "1.0.14",
     "eslint-config-cozy-app": "0.5.1",
     "figlet": "1.2.0",

@@ -3,7 +3,10 @@ node_js:
 - '8'
 env:
   global:
+  # enguerran GITHUB_TOKEN
   - secure: DzQ27b213EBmtEFuquJO6RO4m/6izI0b9KVZb00OXfjLcyrCxe89kkR3sdQlHBBJkNrNLEGV4DgSdtFWxtyzIyOvZ4WSi3kdyvKHsl/f5r4dwL/tTBqu2aMAYQF6Pz/gbnlkbFawfrksXc20XUNA+SdbiVEsJBFEoiOmaDiZ2SVQBe+XDT6nfZdGAJ1ebjHMyya5Pn4CS4+aWa46PdCXHyR/vQO4BLzeCk/+Zu6mtCPt3TMqG3RxmqlSkFttp07+84K70+1cmx6Ellz2p+Tsueg7W8VLuvJNT3ZeR0RLHH2Yq2EEyjf1UMGqwZ84c7M5u+7Bo7P3UHzDnmApRpg1HHlQcsPMD+EJhSO5P3gR+ajaFYRLyorpQrSHKZaGGbci95eCLpUMu5VtjvckErjv8Bq8dK0aKMmULRM6DMpC49g2E61o2VBlEWxbjiLHR0/CgNuKr2/RqTKgs3oSWZxmIYhcewhtcH/q5Yemu3STUez4jSf+eE/0MigRENdDb+VsN4KK5wrAT+OwD41GVz3KV4cHaTQTmjIFuHDLtK6VKWYFNj/zUQMS6XwT39lTO5++zjvW3vKZP/BN3y01Fwg8e0F+CzpV29rPmetqM34OjPrRHkewTlm/InDK9dN/3VAnxjrFn9PHLvwujc+HR3b5XEdnmCEphZl11Smg/uZbdzE=
+  # REGISTRY_TOKEN
+  - secure: CJVDg6gVPcWR0ZsSuEd0dGOK2Vofi1zCO8H7mhvHqgJRbSKcudHMkaPHvg9V82DxxxquzT925EJ6a8Hlfs9LgXN+YrMzOXpJWqGBLRrVfE0NpSAidujfpkjdHeGwwb+k2tfvSdVvvFK2/hntuc4wTXtxVRtKdNAoLI8ikr6YJDF4vGjoRyPOCRkgeo2xAd28DmQ0+P5hrn4iQ8G4k6SsVDboZwE7KBeGvTKsGi/eYn+fk2DpXol16b45+89llwIZRs863XTlE83cbCwPJE3v2scJEBIuZZK9F2dcw3lfnPCq6vOWGpC3tLf8Wejk3j6kujx2YrqnoOG2ehauCRkBMFf5Ti+27MS3yl1g/M58CTuRGFa5TjHWXQRGY/IsjnBMHkxFeEE7CiZQb/hsA6ru6w8g5ozHJx4tt2laYbXqGqdCzyCdZClPZ62/HmNds9/uRsjvybEqrdyKNUYkATv3nYfGCivWQptM6YFT5XfErOoClAvK7BW7RP/O8qvzzB2Sjxhl0GpDWZdSUihG7XHNflHH23Wf127qquIk33LYF9aWOvQvcxxoapAlCGvfxGdXNwBHT4TsazuctcnOF7C+2qnorhkW0z0YmIbwD6Evth/yP+NiCseeKj0WU1NZEwCzS3O2aN59Xd5xrvFOss6mqJPPOccVoihYV7/Ic0qa2eQ=
 cache:
   yarn: true
   directories:
@@ -12,15 +15,15 @@ script:
 - yarn lint
 - yarn build
 deploy:
-  - provider: script
-    repo: $TRAVIS_REPO_SLUG
-    skip-cleanup: true
-    script: yarn deploy
-    on:
-      branch: master
-  - provider: script
-    repo: $TRAVIS_REPO_SLUG
-    skip-cleanup: true
-    script: yarn deploy:prod
-    on:
-branch: prod
+- provider: script
+  repo: konnectors/cozy-konnector-google
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
+  on:
+    branch: master
+- provider: script
+  repo: konnectors/cozy-konnector-google
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
+  on:
+    tags: true

@@ -1,20 +1,28 @@
 {
   "version": "0.1.0",
   "name": "Google",
-  "type": "node",
-  "slug": "google",
-  "source": "git://github.com/konnectors/cozy-konnector-google.git",
-  "locales": {
-    "fr": {
-      "description":
-        "Reprend la main sur vos données que vous avez données à Google : contacts.",
-      "permissions": {
-        "contacts": {
-          "description": "Exigée pour sauvegarder les contacts"
-        }
-      }
+  "type": "konnector",
+  "language": "node",
+  "icon": "google.svg",
+  "slug": "google-contacts",
+  "source": "git://github.com/konnectors/cozy-konnector-google.git#build",
+  "editor": "Cozy",
+  "vendor_link": "google.com",
+  "categories": ["other"],
+  "screenshots": [],
+  "oauth": true,
+  "oauth_scope": "https://www.googleapis.com/auth/contacts.readonly+https://www.googleapis.com/auth/userinfo.email",
+  "fields": {
+    "access_token": {
+      "type": "hidden"
+    },
+    "refresh_token": {
+      "type": "hidden"
     }
   },
+  "data_types": [
+    "contact"
+  ],
   "permissions": {
     "contacts": {
       "description": "Required to save contacts",
@@ -27,7 +35,18 @@
     }
   },
   "developer": {
-    "name": "cozy",
-    "url": "cozy.io"
+    "name": "Cozy Cloud",
+    "url": "https://cozy.io"
+  },
+  "langs": ["fr", "en"],
+  "locales": {
+    "fr": {
+      "short_description": "Récupérer vos données Google dans votre Cozy",
+      "long_description": "Ce fournisseur vous permettra de récupérer l'ensemble de vos contacts Google dans votre Cozy."
+    },
+    "en": {
+      "short_description": "Fetch your Google data in your Cozy",
+      "long_description": "This provider will allow you to fetch all your Google contacts in your Cozy."
+    }
   }
 }
