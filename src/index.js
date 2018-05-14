@@ -2,6 +2,10 @@ const { BaseKonnector, updateOrCreate } = require('cozy-konnector-libs')
 const google = require('./google')
 const transpile = require('./transpiler')
 
+process.env.SENTRY_DSN =
+  process.env.SENTRY_DSN ||
+  'https://9dc00d3182b045f896fadac8ffc97089:7568fbfd62304a69bdb29705b3ea8d04@sentry.cozycloud.cc/45'
+
 // module.exports = new BaseKonnector(withFakeFields(start))
 module.exports = new BaseKonnector(start)
 
