@@ -63,6 +63,9 @@ async function start(fields) {
     })
     return updateOrCreate(ioCozyContacts, 'io.cozy.contacts', ['vendorId'])
   } catch (err) {
+    if (!fields.refresh_token) {
+      throw new Error('USER_ACTION_NEEDED.OAUTH_OUTDATED')
+    }
     throw new Error(`a global konnector error: ${err.message}`)
   }
 }
