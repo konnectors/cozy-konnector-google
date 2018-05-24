@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0",
   "name": "Google",
   "type": "konnector",
   "language": "node",
@@ -9,9 +9,6 @@
   "editor": "Cozy",
   "vendor_link": "google.com",
   "categories": ["other"],
-  "screenshots": [],
-  "oauth": true,
-  "oauth_scope": "https://www.googleapis.com/auth/contacts.readonly+https://www.googleapis.com/auth/userinfo.email",
   "fields": {
     "access_token": {
       "type": "hidden"
@@ -20,9 +17,12 @@
       "type": "hidden"
     }
   },
+  "oauth": true,
+  "oauth_scope": "https://www.googleapis.com/auth/contacts.readonly+https://www.googleapis.com/auth/userinfo.email",
   "data_types": [
     "contact"
   ],
+  "screenshots": [],
   "permissions": {
     "contacts": {
       "description": "Required to save contacts",
