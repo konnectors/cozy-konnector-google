@@ -4,7 +4,7 @@
   "type": "konnector",
   "language": "node",
   "icon": "google.svg",
-  "slug": "google-contacts",
+  "slug": "google",
   "source": "git://github.com/konnectors/cozy-konnector-google.git#build",
   "editor": "Cozy",
   "vendor_link": "google.com",
