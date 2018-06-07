@@ -8,7 +8,7 @@
   "source": "git://github.com/konnectors/cozy-konnector-google.git#build",
   "editor": "Cozy",
   "vendor_link": "google.com",
-  "categories": ["other"],
+  "categories": ["online_services"],
   "fields": {
     "access_token": {
       "type": "hidden"
