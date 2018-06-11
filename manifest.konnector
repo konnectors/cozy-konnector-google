@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Google",
   "type": "konnector",
   "language": "node",
@@ -8,7 +8,7 @@
   "source": "git://github.com/konnectors/cozy-konnector-google.git#build",
   "editor": "Cozy",
   "vendor_link": "google.com",
-  "categories": ["other"],
+  "categories": ["online_services"],
   "fields": {
     "access_token": {
       "type": "hidden"
