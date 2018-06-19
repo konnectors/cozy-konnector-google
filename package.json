@@ -33,7 +33,7 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-konnector-libs": "4.5.2",
+    "cozy-konnector-libs": "4.5.3",
     "googleapis": "31.0.2"
   },
   "devDependencies": {
