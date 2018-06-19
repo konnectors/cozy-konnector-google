@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "cozy-konnector-libs": "4.5.3",
-    "googleapis": "31.0.2"
+    "googleapis": "32.0.0"
   },
   "devDependencies": {
     "chalk": "2.4.1",
