@@ -13,8 +13,9 @@ module.exports = (() => ({
         (err, res) => {
           if (err) {
             reject(err)
+          } else {
+            resolve(res.data)
           }
-          resolve(res.data)
         }
       )
     })
