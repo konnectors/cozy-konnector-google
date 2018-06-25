@@ -47,6 +47,7 @@ module.exports = (() => ({
         personFields,
         pageToken
       })
+      if (call.connections == null || call.connections.length === 0) return []
       if (call.nextPageToken) {
         const nextPageResult = await this.getAllContacts({
           personFields,
