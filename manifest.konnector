@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "name": "Google",
   "type": "konnector",
   "language": "node",
@@ -18,7 +18,7 @@
     }
   },
   "oauth": {
-    "scope": "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcontacts.readonly%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email"
+    "scope": "https://www.googleapis.com/auth/contacts.readonly+https://www.googleapis.com/auth/userinfo.email"
   },
   "data_types": [
     "contact"
