@@ -5,7 +5,7 @@
   "language": "node",
   "icon": "google.svg",
   "slug": "google",
-  "source": "git://github.com/konnectors/cozy-konnector-google.git#build",
+  "source": "git://github.com/konnectors/cozy-konnector-google.git",
   "editor": "Cozy",
   "vendor_link": "google.com",
   "categories": ["online_services"],
@@ -49,5 +49,6 @@
       "short_description": "Fetch your Google data in your Cozy",
       "long_description": "This provider will allow you to fetch all your Google contacts in your Cozy."
     }
-  }
+  },
+  "manifest_version": "2"
 }

@@ -15,21 +15,17 @@ cache:
 branches:
   except:
   - build
-  - latest
+  - build-debug
 script:
 - yarn lint
 - yarn build
+# - yarn run check
 deploy:
 - provider: script
   skip-cleanup: true
   script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
   on:
     branch: master
-- provider: script
-  skip-cleanup: true
-  script: DEPLOY_BRANCH=latest yarn deploy
-  on:
-    branch: prod
 - provider: script
   skip-cleanup: true
   script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
@@ -41,3 +37,6 @@ before_install:
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/github_deploy_key
 - ssh-add /tmp/github_deploy_key
+after_deploy:
+- rm /tmp/github_deploy_key
+- ssh-add -D
