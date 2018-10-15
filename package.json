@@ -23,8 +23,10 @@
     "token": "node ./googleHelper.js",
     "dev": "cozy-run-dev",
     "standalone": "cozy-run-standalone",
+    "pretest": "npm run clean",
     "test": "konitor testit .",
     "check": "konitor check .",
+    "clean": "rm -rf ./data",
     "build": "webpack",
     "precommit": "yarn lint",
     "lint": "eslint --fix .",
@@ -50,6 +52,7 @@
     "husky": "1.1.2",
     "konitor": "0.9.0",
     "minimist": "1.2.0",
+    "svgo": "1.1.1",
     "webpack": "4.20.2",
     "webpack-cli": "3.1.2"
   }
