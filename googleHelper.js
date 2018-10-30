@@ -113,7 +113,7 @@ function getAccountInfo(oAuthClient) {
       },
       (err, res) => {
         if (err) {
-          reject(err)
+          return reject(err)
         }
         resolve(res.data)
       }
