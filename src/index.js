@@ -5,7 +5,9 @@ process.env.SENTRY_DSN =
 const {
   BaseKonnector,
   updateOrCreate,
-  cozyClient
+  cozyClient,
+  log,
+  errors
 } = require('cozy-konnector-libs')
 const google = require('./google')
 const transpile = require('./transpiler')
@@ -50,12 +52,15 @@ const FIELDS = [
  * @param {} fields.refresh_token: a google refresh token
  */
 async function start(fields, doRetry = true) {
+  log('info', 'Starting the google connector')
   try {
     google.oAuth2Client.setCredentials({
       access_token: fields.access_token
     })
 
+    log('info', 'Getting accounts infos')
     const accountInfo = await google.getAccountInfo()
+    log('info', 'Getting all the contacts')
     const contacts = await google.getAllContacts({
       personFields: FIELDS.join(',')
     })
@@ -65,19 +70,29 @@ async function start(fields, doRetry = true) {
     })
     return updateOrCreate(ioCozyContacts, 'io.cozy.contacts', ['vendorId'])
   } catch (err) {
-    if (err.message === 'No refresh token is set.') {
+    if (
+      err.message === 'No refresh token is set.' ||
+      err.message === 'Invalid Credentials'
+    ) {
       if (!fields.refresh_token) {
+        log('info', 'no refresh token found')
         throw new Error('USER_ACTION_NEEDED.OAUTH_OUTDATED')
       } else if (doRetry) {
         const accountID = JSON.parse(process.env.COZY_FIELDS).account
+        log('info', 'asking refresh from the stack')
         const body = await cozyClient.fetchJSON(
           'POST',
           `/accounts/google/${accountID}/refresh`
         )
+        log('info', 'refresh response')
+        log('info', JSON.stringify(body))
         fields.access_token = body.attributes.oauth.access_token
         return start(fields, false)
       }
+    } else {
+      log('error', 'caught an unexpected error')
+      log('error', err.message)
+      throw errors.VENDOR_DOWN
     }
-    throw err
   }
 }
