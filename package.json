@@ -53,7 +53,7 @@
     "konitor": "0.10.0",
     "minimist": "1.2.0",
     "svgo": "1.1.1",
-    "webpack": "4.23.1",
+    "webpack": "4.25.0",
     "webpack-cli": "3.1.2"
   }
 }
