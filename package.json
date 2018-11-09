@@ -1,6 +1,6 @@
 {
   "name": "cozy-konnector-google",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
     "configstore": "4.0.0",
     "copy-webpack-plugin": "4.6.0",
     "cozy-app-publish": "0.9.0",
-    "cozy-jobs-cli": "1.5.3",
+    "cozy-jobs-cli": "1.5.4",
     "eslint": "5.8.0",
     "eslint-config-cozy-app": "1.1.4",
     "figlet": "1.2.1",
