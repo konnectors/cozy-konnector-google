@@ -1,0 +1,12 @@
+
+Title: User create a contact and Google Konnector is "On"
+
+User->Appcontact: Create a contact
+Appcontact->Stack: Save(contact, edited_at:now())
+Stack-->Stack: dispatch @event
+Stack->KonnectorGoogle: Run
+KonnectorGoogle-->KonnectorGoogle: I'm On
+KonnectorGoogle->PeopleAPI: CreateContact(localContact) 
+PeopleAPI->KonnectorGoogle: Return remoteContact
+KonnectorGoogle-->KonnectorGoogle: Merge Strategy(localContact / remoteContact) = etag
+KonnectorGoogle->Stack: Save(contact)

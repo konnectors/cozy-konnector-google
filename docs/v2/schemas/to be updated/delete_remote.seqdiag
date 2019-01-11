@@ -1,0 +1,16 @@
+
+Title: User delete a Remote Contact 
+
+User->PeopleAPI: Delete a contact
+KonnectorGoogle->Stack: Get my latest_sync_token
+Stack->KonnectorGoogle: return latest_sync_token for the account
+KonnectorGoogle->PeopleAPI: listWithToken(latest_sync_token)
+PeopleAPI->KonnectorGoogle: Return [RemoteContacts] + new_sync_token 
+KonnectorGoogle->Stack: Get all localContact edited since latest_remote_sync
+Stack->KonnectorGoogle: return []: localContacts
+KonnectorGoogle-->KonnectorGoogle:  map on localContact & get remoteContact[localContact.sync.id]
+KonnectorGoogle-->KonnectorGoogle: merge strategy(remoteContact, localContact)
+Note over KonnectorGoogle: If remoteContact.metadata.deleted
+KonnectorGoogle->Stack: delete(contact) 
+
+KonnectorGoogle->Stack: set last_remote_sync = now() 
