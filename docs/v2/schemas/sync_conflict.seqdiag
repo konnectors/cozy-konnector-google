@@ -1,0 +1,42 @@
+
+Title: User edit a contact imported from KonnectorGoogle case with conflicts
+
+User->Appcontact: Edit a contact
+Appcontact->Stack: Save(contact, edited_at:now())
+Stack-->Stack: dispatch @event
+Stack->KonnectorGoogle: Run
+KonnectorGoogle->PeopleAPI: whoiam
+PeopleAPI->KonnectorGoogle: return me account
+KonnectorGoogle->Stack: Get my latest_sync_token(account.id)
+Note over Stack, KonnectorGoogle: If No sync date => error 
+Stack->KonnectorGoogle: error no db found 
+KonnectorGoogle->Stack: put on contact.accounts with latest_sync_token = null & account = me.email 
+Stack->KonnectorGoogle: return latest_sync_token
+Note over Stack, KonnectorGoogle: Else
+Stack->KonnectorGoogle: return latest_sync_token for the account
+Note over Stack, KonnectorGoogle: endif
+KonnectorGoogle->PeopleAPI: listWithToken(latest_sync_token)
+PeopleAPI->KonnectorGoogle: Return [RemoteContacts] + new_sync_token 
+KonnectorGoogle->Stack: Get contacts edited since last_sync() and accountId=account.id
+Stack->KonnectorGoogle: return []: localContacts
+Note over KonnectorGoogle: Loop on  localContacts & RemoteContacts
+Note over KonnectorGoogle: conflict case localEtag != remoteContact.etag
+KonnectorGoogle-->KonnectorGoogle: Merge Strategy (remote / local) => mergedContact
+Note over KonnectorGoogle: If nothing changed except (cozyMetata). Do nothing
+Note over KonnectorGoogle: Else
+KonnectorGoogle->PeopleAPI: update(mergedContact) 
+PeopleAPI->KonnectorGoogle: return contact with new etag 
+KonnectorGoogle->Stack: update contact set etag = etag & last_sync = now()
+Note over KonnectorGoogle: Endif
+Note over Stack, KonnectorGoogle: If stack return conflict 
+KonnectorGoogle->Stack: get contact(mergedContact.id) 
+Stack->KonnectorGoogle: return currentLocalContact
+KonnectorGoogle-->KonnectorGoogle: local merge Strategy(currentLocalContact, mergedContact)
+KonnectorGoogle->Stack: update(mergedContact) 
+Note over Stack, KonnectorGoogle: end if
+Note over KonnectorGoogle: end loop
+KonnectorGoogle->Stack: set account last_sync = now() & new_sync_token
+
+
+
+Note over Stack,Appcontact: How to refresh ?  ? 

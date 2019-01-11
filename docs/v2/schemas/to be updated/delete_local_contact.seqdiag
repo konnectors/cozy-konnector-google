@@ -1,0 +1,19 @@
+
+Title: User delete a Local Contact 
+
+User->Appcontact: Delete a contact
+Appcontact->Stack: prepare_delete(contact, edited_at:now())
+Stack-->Stack: dispatch @event UPDATE 
+Stack->KonnectorGoogle: Run
+KonnectorGoogle->PeopleAPI: whoiam
+PeopleAPI->KonnectorGoogle: return me account
+KonnectorGoogle->Stack: Get contacts edited since last Synchro() and accountId=account.id
+KonnectorGoogle-->KonnectorGoogle:  map on localContact 
+KonnectorGoogle->PeopleAPI: get RemoteContact(localContact.sync.id) 
+PeopleAPI->KonnectorGoogle: return remoteContact
+Note over KonnectorGoogle: localEtag == remoteContact.etag
+KonnectorGoogle-->KonnectorGoogle: Merge Strategy (localContact.deleted = true)
+KonnectorGoogle->PeopleAPI: delete(localContact) 
+PeopleAPI->KonnectorGoogle: return 200
+KonnectorGoogle->Stack: delete(localContact)
+Note over Stack,Appcontact: How to refresh ?  ? 

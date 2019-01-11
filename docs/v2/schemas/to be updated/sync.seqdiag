@@ -1,0 +1,18 @@
+
+Title: User edit a contact imported from KonnectorGoogle case with no conflit
+
+User->Appcontact: Edit a contact
+Appcontact->Stack: Save(contact, edited_at:now())
+Stack-->Stack: dispatch @event
+Stack->KonnectorGoogle: Run
+KonnectorGoogle->Stack: Get contacts edited since last Synchro() and account = ???
+Stack->KonnectorGoogle: return []: localContacts
+KonnectorGoogle-->KonnectorGoogle:  map on localContact 
+KonnectorGoogle->PeopleAPI: get RemoteContact(localContact.sync.id) 
+PeopleAPI->KonnectorGoogle: return remoteContact
+KonnectorGoogle-->KonnectorGoogle: check if localEtag = remoteContact.etag
+KonnectorGoogle->PeopleAPI: update(contact) 
+PeopleAPI->KonnectorGoogle: return contact with new etag 
+KonnectorGoogle->Stack: update contact set etag = etag & last_sync = now()
+KonnectorGoogle->Stack: set last_sync = now() 
+Note over Stack,Appcontact: How to refresh ? RealTime ? 
