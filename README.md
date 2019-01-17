@@ -10,17 +10,6 @@
 
 This konnector let you import or synchronize your google contacts with your cozy.
 
-___Note: here is the TODO list for this konnector to be complete:___
-
-- [X] use the Google people API
-- [X] get a Google OAuth2 token
-- [X] remove the Google OAuth2 form sight (and use cozy-collect instead)
-- [X] use cozy-collect to setup a Google OAuth2 token
-- [X] save Google contacts into Cozy
-- [ ] indicate the source of the contacts (for synchronization purpose with multiple Google accounts)
-
-If something is missing, we'll add it later.
-
 ## Open a Pull-Request
 
 If you want to work on this konnector and submit code modifications, feel free to open pull-requests! See the [contributing guide][contribute] for more information about how to properly open pull-requests.
