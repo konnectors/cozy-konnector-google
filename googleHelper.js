@@ -158,6 +158,7 @@ const run = async () => {
       }`
     )
   )
+  process.exit()
 }
 
 run()
