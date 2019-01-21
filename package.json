@@ -21,7 +21,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "token": "node ./googleHelper.js",
-    "dev": "cozy-run-dev",
+    "dev": "cozy-konnector-dev",
     "standalone": "cozy-run-standalone",
     "pretest": "npm run clean",
     "test": "konitor testit .",

@@ -10,98 +10,100 @@
 
 This konnector let you import or synchronize your google contacts with your cozy.
 
-___Note: here is the TODO list for this konnector to be complete:___
-
-- [X] use the Google people API
-- [X] get a Google OAuth2 token
-- [X] remove the Google OAuth2 form sight (and use cozy-collect instead)
-- [X] use cozy-collect to setup a Google OAuth2 token
-- [X] save Google contacts into Cozy
-- [ ] indicate the source of the contacts (for synchronization purpose with multiple Google accounts)
-
-If something is missing, we'll add it later.
-
 ## Open a Pull-Request
 
 If you want to work on this konnector and submit code modifications, feel free to open pull-requests! See the [contributing guide][contribute] for more information about how to properly open pull-requests.
 
 ## How to use
 
-### Cozy-konnector-libs
+To do anything in this repo, you will need to install [nodejs] (LTS version is fine).
 
-This connector uses [cozy-konnector-libs](https://github.com/konnectors/libs). You can
-find more documentation about it there.
-
-### Google OAuth2
-
-As we need to generate a Google OAuth2 token, we need a `CLIENT_ID` and `CLIENT_SECRET`. You can find these pieces of information by going to the [Google Developer Console](https://console.developer.google.com/), clicking your project --> APIs & auth --> credentials. For more information about OAuth2, [see here](https://github.com/google/google-api-nodejs-client/#oauth2-client).
-Once acquired, fill the [keys.json](./keys.json) file.
-
-To configure the konnector, you can edit `./konnector-dev-config.json` with the following:
-
-```
-{
-  "COZY_URL": "http://cozy.tools:8080",
-  "fields": {
-    "access_token": <ACCESS_TOKEN>,
-    "refresh_token": <REFRESH_TOKEN>
-  }
-}
-```
-
-To help you fill this file, you can run `yarn token`, it will help you generate a new `access_token`.
-(This token will be stored in `~/.config/configStore/cozy-konnector-google.json`, and you can reset a new token with
-`yarn token --reset`).
-
-### Test the connector without an accessible cozy-stack
-
-If you just want to test this connector without any cozy available.
-
-You first need an installed [nodejs] (LTS version is fine).
-
-And the last version of yarn :
+You'll also need the latest version of yarn :
 
 ```sh
 npm install --global yarn
 ```
 
-Then just run :
+Eventually, install the dependencies by runnign this in the repos folder:
 
 ```sh
 yarn
+```
+
+### Cozy-konnector-libs
+
+This connector uses [cozy-konnector-libs](https://github.com/konnectors/libs). You can find more documentation about it there.
+
+### Google OAuth2
+
+As we need to generate a Google OAuth2 token, we need a `CLIENT_ID` and `CLIENT_SECRET`.
+
+To do that, we need to set up a project in the [Google Developer Console](https://console.developer.google.com/). Since the UI of the console evolves and has a localized UI, it's hard to be precise, but follow this general direction:
+
+- Create a new project.
+- Add new APIs to the project — we will need the Google+ API and the People API.
+- Go to the credentials screen.
+- Generate a new set of OAuth identifiers.
+- Choose "web application" as a type, and add `http://localhost:3000/oauth2callback` as authorized callback URL.
+
+You will then receive a client id and secret that you can paste in the [keys.json](./keys.json) file. To avoid commiting this file to source control, run `git update-index --assume-unchanged keys.json`.
+
+### Getting an access token for development
+
+Next, run `yarn token` to retrieve an access token we can use to talk to the Google APIs. This token, along with more information, will be inserted in the `./konnector-dev-config.json` file and provided to our connector in development mode.
+
+This access token will eventually expire and the connector will no longer work. To renew it, run `yarn token --reset`.  
+
+Information required to renew the token is kept in `~/.config/configStore/cozy-konnector-google.json`. This includes the `refresh_token`, which you can ony receive the *first* time you autorize the app. You can find more details about this [here](https://github.com/googleapis/google-api-nodejs-client/issues/750#issuecomment-304521450).
+
+### Test the connector without a cozy-stack
+
+Run the following command:
+
+```sh
 yarn standalone
 ```
 
-The requests to the cozy-stack will be stubbed using the [./data/importedData.json] file as source of data
-and when cozy-client-js is asked to create or update data, this [./data/importedData.json] file
-will be updated
+The requests to the cozy-stack will be stubbed using the [./data/importedData.json] file as source of data and when cozy-client-js is asked to create or update data, this [./data/importedData.json] file will be updated.
 The bills (or any file) will be saved in the [./dataj directory.
 
 ### Run the connector linked to a cozy-stack
 
-If you do not want to have to install the konnector on a cozy to test it, you can register the
-konnector as an OAuth application with the following commands :
+First, specify the URL of your cozy-stack in the `./konnector-dev-config.json` file:
+
+```
+{
+  "COZY_URL": "http://cozy.tools:8080",
+  "fields": {
+    …
+  }
+}
+```
+
+As a [temporary workaround](https://github.com/konnectors/libs/issues/400), we will also need to request a new permission. Add this to the `manifest.konnector` file in the permissions section:
+
+```
+"files": {
+  "description": "Required to save files",
+  "type": "io.cozy.files"
+},
+```
+
+Next, run the following command
 
 ```sh
-yarn
 yarn dev
 ```
 
-This command will register your konnector as an OAuth application to the cozy-stack. By default,
-the cozy-stack is supposed to be located in http://cozy.tools:8080. If this is not your case, just
-update the COZY_URL field in [./konnector-dev-config.json].
+This command will register your konnector as an OAuth application to the cozy-stack.
 
-After that, your konnector is running but should not work since you did not specify any credentials to
-the target service. You can do this also in [./konnector-dev-config.json] in the "fields"
-attribute.
-
-Now run `yarn dev` one more time, it should be ok.
+If you want to connect to a different stack or renew the token used by the cozy OAuth client, simply delete the `./.token.json` file and run `yarn dev` again.
 
 The files are saved in the [cozy-konnector-dev-root] directory of your cozy by default.
 
-:warning: To register the `client_id`, `client_secret`, `auth_endpoint`, `token_endpoint`, `grant_mode` and `redirect_uri` to your stack, see https://github.com/cozy/cozy-stack/blob/master/docs/account_types.md#google
-
 ### Use the konnector with cozy-collect
+
+**:warning: the following information is outdated since cozy-collect no longer exists.**
 
 To setup and run a konnector, Cozy provides a web application called `cozy-collect`.
 
@@ -114,7 +116,7 @@ cozy-stack konnectors install google file://$PWD/build
 ```
 
 
-Then you'll have to register the konnector's oauth system into the cozy-stack's server with the following (see it on [cozy/cozy-stack](https://github.com/cozy/cozy-stack/blob/master/docs/account_types.md#google)):
+Then you'll have to register the konnector's oauth system into the cozy-stack's server with the following (see it on [cozy/cozy-stack](https://github.com/cozy/cozy-stack/blob/master/docs/konnectors-workflow.md#example-google)):
 
 ```
 curl -X PUT 'localhost:5984/secrets%2Fio-cozy-account_types'
@@ -130,11 +132,9 @@ http://cozy.tools:8080/accounts/google/redirect
 
 Where `cozy.tools:8080` is the url to join the cozy-stack's server.
 
-To debug or try the konnector with a local build, you'll need to update
-the konnector with:
+To debug or try the konnector with a local build, you'll need to update the konnector with:
 
-:warning: If you do not have [nsjail](https://github.com/google/nsjail) installed on your system, you'll
-have to configure the cozy-stack's server to run konnectors directly with nodejs: if you don't already have a config file, create one in `~/.cozy/cozy.yaml` and add the following configuration:
+:warning: If you do not have [nsjail](https://github.com/google/nsjail) installed on your system, you'll have to configure the cozy-stack's server to run konnectors directly with nodejs: if you don't already have a config file, create one in `~/.cozy/cozy.yaml` and add the following configuration:
 
 ```
 konnectors:
@@ -164,13 +164,11 @@ The connector is run by calling yarn start with the following envrionment variab
 }
 ```
 
-The "account" field is the id of the record with doctype "io.cozy.accounts" which will be used as
-parameters for your konnector.
+The "account" field is the id of the record with doctype "io.cozy.accounts" which will be used as parameters for your konnector.
 
 ### Build (without Travis)
 
-To be able to run the connector, the cozy stack needs a connector which is built into only one
-file, without needing to install its dependencies, this will be a lot faster to install.
+To be able to run the connector, the cozy stack needs a connector which is built into only one file, without needing to install its dependencies, this will be a lot faster to install.
 
 There is a command in package.json to help you to do that : `yarn build`
 
@@ -188,8 +186,7 @@ git://github.com/konnectors/cozy-konnector-google.git#build
 
 ### Build using Travis CI
 
-This project contains a `.travis.yml` config file which allows you to build your connector
-automatically using [Travis-CI][travis].
+This project contains a `.travis.yml` config file which allows you to build your connector automatically using [Travis-CI][travis].
 
 You can follow these steps to enable building using Travis:
 
@@ -206,13 +203,6 @@ Now Travis is ready to build your project, it should build it each time your pus
 
 > __Note:__ Travis will push your build to your `build` branch ONLY for commits made on your master branch (included PR merge commits). You can see the related Travis statement [here](https://github.com/cozy/cozy-konnector-template/blob/master/.travis.yml#L27).
 
-### Add your new connector to [Cozy Collect](https://github.com/cozy/cozy-collect)
-
-The Cozy Collect application will soon use an application store as source of connectors. But for
-now, if you want to add your new connector to Cozy Collect, you can submit a message in the forum
-in the [collect section](https://forum.cozy.io/c/francais/collect-fr), and we will handle this for
-you.
-
 ### Standard
 
 We use [standard] to format the `index.js` file. You can run it with:
@@ -220,10 +210,6 @@ We use [standard] to format the `index.js` file. You can run it with:
 ```sh
 yarn lint
 ```
-
-### Maintainer
-
-The lead maintainers for this konnector is <YOUR NAME>
 
 
 ### Get in touch
@@ -239,7 +225,7 @@ You can reach the Cozy Community by:
 License
 -------
 
-<YOUR KONNECTOR NAME> is developed by <your name> and distributed under the [AGPL v3 license][agpl-3.0].
+cozy-konnector-google is developed by Cozy Cloud and distributed under the [AGPL v3 license][agpl-3.0].
 
 [cozy]: https://cozy.io "Cozy Cloud"
 [agpl-3.0]: https://www.gnu.org/licenses/agpl-3.0.html
