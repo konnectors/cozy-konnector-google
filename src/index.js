@@ -59,13 +59,15 @@ async function start(fields, doRetry = true) {
     })
 
     log('info', 'Getting accounts infos')
-    const accountInfo = await google.getAccountInfo()
+    const accountInfo = await google.getAccountInfo({
+      personFields: 'emailAddresses'
+    })
     log('info', 'Getting all the contacts')
     const contacts = await google.getAllContacts({
       personFields: FIELDS.join(',')
     })
     const ioCozyContacts = contacts.map(transpile.toCozy).map(contact => {
-      contact.metadata.google.from = accountInfo.emails[0].value
+      contact.metadata.google.from = accountInfo.emailAddresses[0].value
       return contact
     })
     return updateOrCreate(ioCozyContacts, 'io.cozy.contacts', ['vendorId'])
