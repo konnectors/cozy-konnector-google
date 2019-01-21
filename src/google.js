@@ -3,12 +3,17 @@ const OAuth2Client = google.auth.OAuth2
 
 module.exports = (() => ({
   oAuth2Client: this.oAuth2Client || new OAuth2Client(),
-  getAccountInfo: function() {
-    const plusAPI = google.plus({ version: 'v1', auth: this.oAuth2Client })
+  getAccountInfo: function({ personFields = ['names'] }) {
+    const peopleAPI = google.people({
+      version: 'v1',
+      auth: this.oAuth2Client
+    })
+
     return new Promise((resolve, reject) => {
-      plusAPI.people.get(
+      peopleAPI.people.get(
         {
-          userId: 'me'
+          resourceName: 'people/me',
+          personFields
         },
         (err, res) => {
           if (err) {

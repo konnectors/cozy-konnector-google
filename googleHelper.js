@@ -14,7 +14,8 @@ const figlet = require('figlet')
 
 const SCOPES = [
   'https://www.googleapis.com/auth/contacts.readonly',
-  'https://www.googleapis.com/auth/userinfo.email'
+  'https://www.googleapis.com/auth/userinfo.email',
+  'profile'
 ]
 
 function getGoogleCode(oAuth2Client) {
@@ -104,12 +105,16 @@ function getKeys() {
 }
 
 function getAccountInfo(oAuthClient) {
-  const plus = google.plus('v1')
+  const peopleAPI = google.people({
+    version: 'v1',
+    auth: oAuthClient
+  })
+
   return new Promise((resolve, reject) => {
-    plus.people.get(
+    peopleAPI.people.get(
       {
-        userId: 'me',
-        auth: oAuthClient
+        resourceName: 'people/me',
+        personFields: 'emailAddresses'
       },
       (err, res) => {
         if (err) {
@@ -154,7 +159,7 @@ const run = async () => {
   console.log(
     chalk.green(
       `Find your credentials in ${configFilename} for ${
-        accountInfo['emails'][0]['value']
+        accountInfo['emailAddresses'][0]['value']
       }`
     )
   )
