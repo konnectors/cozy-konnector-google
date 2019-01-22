@@ -65,5 +65,20 @@ module.exports = (() => ({
     } catch (err) {
       throw new Error(`Unable to get all contacts: ${err.message}`)
     }
+  },
+  createContact: function(person) {
+    const peopleAPI = google.people({
+      version: 'v1',
+      auth: this.oAuth2Client
+    })
+
+    try {
+      return peopleAPI.people.createContact({
+        parent: 'people/me',
+        requestBody: person
+      })
+    } catch (err) {
+      throw new Error(`Unable to create contact ${err.message}`)
+    }
   }
 }))()

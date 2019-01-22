@@ -4,13 +4,15 @@ process.env.SENTRY_DSN =
 
 const {
   BaseKonnector,
-  updateOrCreate,
   cozyClient,
   log,
   errors
 } = require('cozy-konnector-libs')
+const CozyClient = require('cozy-client').default
+
+const getCozyToGoogleStrategy = require('./getCozyToGoogleStrategy')
 const google = require('./google')
-const transpile = require('./transpiler')
+const synchronizeContacts = require('./synchronizeContacts')
 
 module.exports = new BaseKonnector(start)
 
@@ -46,6 +48,28 @@ const FIELDS = [
   'urls'
 ]
 
+function initCozyClient() {
+  const cozyCredentials = JSON.parse(process.env.COZY_CREDENTIALS)
+  return new CozyClient({
+    uri: process.env.COZY_URL,
+    token: cozyCredentials.token.accessToken
+  })
+}
+
+async function getAllContacts(client) {
+  let allContacts = []
+  const DOCTYPE_CONTACTS = 'io.cozy.contacts'
+  const contactsCollection = client.collection(DOCTYPE_CONTACTS)
+  let hasMore = true
+  while (hasMore) {
+    const resp = await contactsCollection.all()
+    allContacts = [...allContacts, ...resp.data]
+    hasMore = resp.next
+  }
+
+  return allContacts
+}
+
 /**
  * @param  {} fields:
  * @param {} fields.access_token: a google access token
@@ -63,14 +87,27 @@ async function start(fields, doRetry = true) {
       personFields: 'emailAddresses'
     })
     log('info', 'Getting all the contacts')
-    const contacts = await google.getAllContacts({
+    const googleContacts = await google.getAllContacts({
       personFields: FIELDS.join(',')
     })
-    const ioCozyContacts = contacts.map(transpile.toCozy).map(contact => {
-      contact.metadata.google.from = accountInfo.emailAddresses[0].value
-      return contact
-    })
-    return updateOrCreate(ioCozyContacts, 'io.cozy.contacts', ['vendorId'])
+
+    const client = initCozyClient()
+    const cozyContacts = await getAllContacts(client)
+
+    // sync cozy -> google
+    const strategy = getCozyToGoogleStrategy(client, google)
+    const syncResponse = await synchronizeContacts(
+      cozyContacts,
+      googleContacts,
+      strategy
+    )
+
+    if (syncResponse.some(result => result && result.created)) {
+      log(
+        'info',
+        `Created Google contacts for ${accountInfo.emailAddresses[0].value}`
+      )
+    }
   } catch (err) {
     if (
       err.message === 'No refresh token is set.' ||
