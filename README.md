@@ -24,7 +24,7 @@ You'll also need the latest version of yarn :
 npm install --global yarn
 ```
 
-Eventually, install the dependencies by runnign this in the repos folder:
+Eventually, install the dependencies by running this in the repos folder:
 
 ```sh
 yarn
