@@ -17,6 +17,17 @@ const transpiler = {
       },
       vendorId: source.resourceName
     }
+  },
+  toGoogle: source => {
+    return {
+      names: getNames(source),
+      emailAddresses: getEmailAddresses(source),
+      phoneNumbers: getPhoneNumbers(source),
+      addresses: getAddresses(source),
+      birthdays: getBirthdays(source),
+      organizations: getOrganizations(source),
+      userDefined: getUserDefined(source)
+    }
   }
 }
 
@@ -82,4 +93,92 @@ function getGivenName({ names = undefined }) {
 
 function getFamilyName({ names = undefined }) {
   return names && names[0] && names[0].familyName
+}
+
+// cozy -> google
+function getNames({ name = undefined }) {
+  return [name]
+}
+
+function getEmailAddresses({ email = [] }) {
+  return email.map(email => ({
+    metadata: {
+      primary: email.primary
+    },
+    type: email.type,
+    value: email.address
+  }))
+}
+
+function getPhoneNumbers({ phone = [] }) {
+  return phone.map(
+    phoneItem =>
+      phoneItem && {
+        value: phoneItem.number,
+        metadata: {
+          primary: phoneItem.primary || false
+        },
+        type: phoneItem.type,
+        formattedType: phoneItem.label
+      }
+  )
+}
+
+function getAddresses({ address = [] }) {
+  return address.map(
+    addressItem =>
+      addressItem && {
+        city: addressItem.city,
+        country: addressItem.country,
+        postalCode: addressItem.postcode,
+        streetAddress: addressItem.street,
+        metadata: {
+          primary: addressItem.primary || false
+        },
+        type: addressItem.type,
+        formattedType: addressItem.label,
+        formattedValue: addressItem.formattedAddress
+      }
+  )
+}
+
+function getBirthdays({ birthday = null }) {
+  if (!birthday) {
+    return []
+  }
+
+  const [year, month, day] = birthday.split('-')
+  return [
+    {
+      date: {
+        year,
+        month,
+        day
+      },
+      metadata: {
+        primary: true
+      }
+    }
+  ]
+}
+
+function getOrganizations({ company = undefined }) {
+  return (
+    company && [
+      {
+        name: company
+      }
+    ]
+  )
+}
+
+function getUserDefined({ note = undefined }) {
+  return (
+    note && [
+      {
+        key: 'note',
+        value: note
+      }
+    ]
+  )
 }
