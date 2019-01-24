@@ -15,7 +15,7 @@ const figlet = require('figlet')
 const SCOPES = [
   'https://www.googleapis.com/auth/contacts.readonly',
   'https://www.googleapis.com/auth/userinfo.email',
-  'profile'
+  'https://www.googleapis.com/auth/userinfo.profile'
 ]
 
 function getGoogleCode(oAuth2Client) {
