@@ -45,22 +45,37 @@ module.exports = (() => ({
   },
   getAllContacts: async function({
     personFields = ['names'],
-    pageToken = null
+    pageToken = null,
+    syncToken = null
   }) {
     try {
       const call = await this.getConnectionsList({
         personFields,
-        pageToken
+        pageToken,
+        requestSyncToken: true,
+        syncToken
       })
-      if (call.connections == null || call.connections.length === 0) return []
+      if (call.connections == null || call.connections.length === 0)
+        return {
+          contacts: [],
+          nextSyncToken: call.nextSyncToken
+        }
       if (call.nextPageToken) {
         const nextPageResult = await this.getAllContacts({
           personFields,
-          pageToken: call.nextPageToken
+          pageToken: call.nextPageToken,
+          requestSyncToken: true,
+          syncToken
         })
-        return [...call.connections, ...nextPageResult]
+        return {
+          contacts: [...call.connections, ...nextPageResult.contacts],
+          nextSyncToken: nextPageResult.nextSyncToken
+        }
       } else {
-        return [...call.connections]
+        return {
+          contacts: call.connections,
+          nextSyncToken: call.nextSyncToken
+        }
       }
     } catch (err) {
       throw new Error(`Unable to get all contacts: ${err.message}`)
