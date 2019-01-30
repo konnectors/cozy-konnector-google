@@ -1,10 +1,17 @@
-const { ADD_COZY_METADATA } = require('./constants')
+const get = require('lodash/get')
+const union = require('lodash/union')
+
+const { ADD_COZY_METADATA, APP_NAME } = require('./constants')
 const transpiler = require('./transpiler')
 
-const getCozyToGoogleStrategy = (cozyClient, googleUtils) => ({
+const getCozyToGoogleStrategy = (cozyClient, googleUtils, sourceAccountId) => ({
   findRemoteDocument: (cozyContact, googleContacts) => {
-    const resourceName =
-      (cozyContact.cozyMetadata && cozyContact.cozyMetadata.sync.id) || null
+    const resourceName = get(
+      cozyContact,
+      ['cozyMetadata', 'sync', sourceAccountId, 'id'],
+      null
+    )
+
     if (resourceName) {
       return googleContacts.find(
         googleContact => googleContact.resourceName === resourceName
@@ -13,19 +20,30 @@ const getCozyToGoogleStrategy = (cozyClient, googleUtils) => ({
 
     return undefined
   },
-  shouldSave: googleContact => !googleContact,
+  shouldSave: cozyContact =>
+    !cozyContact.cozyMetadata.sync ||
+    cozyContact.cozyMetadata.sync[sourceAccountId] === undefined,
   save: cozyContact =>
     googleUtils.createContact(transpiler.toGoogle(cozyContact)),
   afterSave: (cozyContact, googleContact) => {
     let additionalData = {}
     if (ADD_COZY_METADATA) {
+      const updatedByApps = union(cozyContact.cozyMetadata.updatedByApps, [
+        APP_NAME
+      ])
+      const now = Date.now()
       additionalData = {
         cozyMetadata: {
+          updatedAt: now,
+          updatedByApps,
           sync: {
-            konnector: 'google',
-            lastSync: Date.now(),
-            remoteRev: googleContact.etag,
-            id: googleContact.resourceName
+            [sourceAccountId]: {
+              konnector: APP_NAME,
+              lastSync: now,
+              remoteRev: googleContact.etag,
+              id: googleContact.resourceName,
+              contactsAccountsId: sourceAccountId
+            }
           }
         }
       }

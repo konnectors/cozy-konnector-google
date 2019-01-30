@@ -8,9 +8,9 @@ const {
   log,
   errors
 } = require('cozy-konnector-libs')
-const CozyClient = require('cozy-client').default
 
 const getCozyToGoogleStrategy = require('./getCozyToGoogleStrategy')
+const cozyUtils = require('./cozy')
 const google = require('./google')
 const synchronizeContacts = require('./synchronizeContacts')
 
@@ -48,28 +48,6 @@ const FIELDS = [
   'urls'
 ]
 
-function initCozyClient() {
-  const cozyCredentials = JSON.parse(process.env.COZY_CREDENTIALS)
-  return new CozyClient({
-    uri: process.env.COZY_URL,
-    token: cozyCredentials.token.accessToken
-  })
-}
-
-async function getAllContacts(client) {
-  let allContacts = []
-  const DOCTYPE_CONTACTS = 'io.cozy.contacts'
-  const contactsCollection = client.collection(DOCTYPE_CONTACTS)
-  let hasMore = true
-  while (hasMore) {
-    const resp = await contactsCollection.all()
-    allContacts = [...allContacts, ...resp.data]
-    hasMore = resp.next
-  }
-
-  return allContacts
-}
-
 /**
  * @param  {} fields:
  * @param {} fields.access_token: a google access token
@@ -77,25 +55,46 @@ async function getAllContacts(client) {
  */
 async function start(fields, doRetry = true) {
   log('info', 'Starting the google connector')
+  const accountID =
+    process.env.NODE_ENV === 'production'
+      ? JSON.parse(process.env.COZY_FIELDS).account
+      : 'fakeAccountId'
   try {
     google.oAuth2Client.setCredentials({
       access_token: fields.access_token
     })
 
-    log('info', 'Getting accounts infos')
+    log('info', 'Getting account infos')
     const accountInfo = await google.getAccountInfo({
       personFields: 'emailAddresses'
     })
-    log('info', 'Getting all the contacts')
-    const googleContacts = await google.getAllContacts({
-      personFields: FIELDS.join(',')
-    })
+    const accountEmail = accountInfo.emailAddresses[0].value
 
-    const client = initCozyClient()
-    const cozyContacts = await getAllContacts(client)
+    log('info', 'Getting cozy contact account')
+    const contactAccount = await cozyUtils.findOrCreateContactAccount(
+      accountID,
+      accountEmail
+    )
+
+    log('info', 'Getting all the contacts')
+    const [
+      { contacts: googleContacts, nextSyncToken },
+      cozyContacts
+    ] = await Promise.all([
+      google.getAllContacts({
+        personFields: FIELDS.join(','),
+        syncToken: contactAccount.syncToken // only contacts that have been modified since last sync
+      }),
+      cozyUtils.getUpdatedContacts(contactAccount.lastSync)
+    ])
+    const lastGoogleSync = Date.now()
 
     // sync cozy -> google
-    const strategy = getCozyToGoogleStrategy(client, google)
+    const strategy = getCozyToGoogleStrategy(
+      cozyUtils.client,
+      google,
+      contactAccount.id
+    )
     const syncResponse = await synchronizeContacts(
       cozyContacts,
       googleContacts,
@@ -103,11 +102,15 @@ async function start(fields, doRetry = true) {
     )
 
     if (syncResponse.some(result => result && result.created)) {
-      log(
-        'info',
-        `Created Google contacts for ${accountInfo.emailAddresses[0].value}`
-      )
+      log('info', `Created Google contacts for ${accountEmail}`)
     }
+
+    await cozyUtils.save({
+      ...contactAccount,
+      lastSync: lastGoogleSync,
+      syncToken: nextSyncToken
+    })
+    log('info', 'Sync has completed successfully')
   } catch (err) {
     if (
       err.message === 'No refresh token is set.' ||
@@ -117,7 +120,6 @@ async function start(fields, doRetry = true) {
         log('info', 'no refresh token found')
         throw new Error('USER_ACTION_NEEDED.OAUTH_OUTDATED')
       } else if (doRetry) {
-        const accountID = JSON.parse(process.env.COZY_FIELDS).account
         log('info', 'asking refresh from the stack')
         const body = await cozyClient.fetchJSON(
           'POST',

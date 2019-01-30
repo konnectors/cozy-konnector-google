@@ -29,11 +29,14 @@ describe('synchronizeContacts function', () => {
     }
 
     synchronizeContacts(local, remote, dumbStrategy)
-    expect(findRemoteDocument).toHaveBeenCalledWith({ id: 'foo' }, [
-      { id: 'bar' }
-    ])
-    expect(findRemoteDocument).toHaveBeenCalledWith({ id: 'bar' }, [
-      { id: 'bar' }
-    ])
+    // expect(findRemoteDocument).toHaveBeenCalledWith({ id: 'foo' }, [
+    //   { id: 'bar' }
+    // ])
+    // expect(findRemoteDocument).toHaveBeenCalledWith({ id: 'bar' }, [
+    //   { id: 'bar' }
+    // ])
+
+    expect(shouldSave).toHaveBeenCalledWith({ id: 'foo' })
+    expect(shouldSave).toHaveBeenCalledWith({ id: 'bar' })
   })
 })
