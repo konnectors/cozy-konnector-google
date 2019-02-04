@@ -1,7 +1,6 @@
 {
   "resourceName": "people/c8396630372093629671",
-  "etag":
-    "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxINlFBN3lXUEFIRT0=",
+  "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxINlFBN3lXUEFIRT0=",
   "metadata": {
     "sources": [
       {
@@ -31,8 +30,7 @@
         "primary": true,
         "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
       },
-      "url":
-        "https://lh6.googleusercontent.com/-Kp9JJWzzpo8/WsOash2ktSI/AAAAAAAAAAA/uPQPfCOheoo61xBuVwMXa_DzuTZU1oNigCOQCEAE/s100/photo.jpg"
+      "url": "https://lh6.googleusercontent.com/-Kp9JJWzzpo8/WsOash2ktSI/AAAAAAAAAAA/uPQPfCOheoo61xBuVwMXa_DzuTZU1oNigCOQCEAE/s100/photo.jpg"
     }
   ],
   "birthdays": [
@@ -119,6 +117,12 @@
     {
       "metadata": { "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" } },
       "contactGroupMembership": { "contactGroupId": "myContacts" }
+    }
+  ],
+  "userDefined": [
+    {
+      "key": "note",
+      "value": "Doloribus animi corporis et qui error cumque culpa autem velit."
     }
   ]
 }

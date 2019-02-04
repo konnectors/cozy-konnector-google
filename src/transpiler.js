@@ -15,6 +15,8 @@ const transpiler = {
         version: SCHEMA_VERSION,
         google: { metadata: source.metadata }
       },
+      company: getCompany(source),
+      note: getNote(source),
       vendorId: source.resourceName
     }
   },
@@ -93,6 +95,17 @@ function getGivenName({ names = undefined }) {
 
 function getFamilyName({ names = undefined }) {
   return names && names[0] && names[0].familyName
+}
+
+function getCompany({ organizations = undefined }) {
+  return organizations && organizations[0].name
+}
+
+function getNote({ userDefined = undefined }) {
+  return (
+    (userDefined && userDefined.find(ud => ud.key === 'note').value) ||
+    undefined
+  )
 }
 
 // cozy -> google
