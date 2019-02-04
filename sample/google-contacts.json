@@ -1,8 +1,7 @@
 [
   {
     "resourceName": "people/c2584501361615515329",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxkSXQwekVHWE5Wcz0=",
+    "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxkSXQwekVHWE5Wcz0=",
     "metadata": {
       "sources": [
         {
@@ -31,8 +30,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "23ddfe4b8c9b2ec1" }
         },
-        "url":
-          "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MXH4-jMZjHPvvA0thkY0HZgIhkKAVAQ____________ARjj3LX8______8B/s100/photo.jpg",
+        "url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MXH4-jMZjHPvvA0thkY0HZgIhkKAVAQ____________ARjj3LX8______8B/s100/photo.jpg",
         "default": true
       }
     ],
@@ -76,8 +74,7 @@
   },
   {
     "resourceName": "people/c3745049716692310153",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxPekY3U3ZnS09XVT0=",
+    "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxPekY3U3ZnS09XVT0=",
     "metadata": {
       "sources": [
         {
@@ -107,8 +104,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
-        "url":
-          "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MrelSgWD1bjXDv9XX6A51FQIhkKAU0Q____________ARinr4L4______8B/s100/photo.jpg",
+        "url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MrelSgWD1bjXDv9XX6A51FQIhkKAU0Q____________ARinr4L4______8B/s100/photo.jpg",
         "default": true
       }
     ],
@@ -128,8 +124,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "33f916e00d9f5889" }
         },
-        "formattedValue":
-          "46-198 E Elford St\nGreenville, SC 29601\nÉtats-Unis ",
+        "formattedValue": "46-198 E Elford St\nGreenville, SC 29601\nÉtats-Unis ",
         "streetAddress": "46-198 E Elford St",
         "city": "Greenville",
         "region": "SC",
@@ -181,8 +176,7 @@
   },
   {
     "resourceName": "people/c8396630372093629671",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxINlFBN3lXUEFIRT0=",
+    "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxINlFBN3lXUEFIRT0=",
     "metadata": {
       "sources": [
         {
@@ -212,8 +206,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "7486d2d60ee594e7" }
         },
-        "url":
-          "https://lh6.googleusercontent.com/-Kp9JJWzzpo8/WsOash2ktSI/AAAAAAAAAAA/uPQPfCOheoo61xBuVwMXa_DzuTZU1oNigCOQCEAE/s100/photo.jpg"
+        "url": "https://lh6.googleusercontent.com/-Kp9JJWzzpo8/WsOash2ktSI/AAAAAAAAAAA/uPQPfCOheoo61xBuVwMXa_DzuTZU1oNigCOQCEAE/s100/photo.jpg"
       }
     ],
     "birthdays": [
@@ -311,8 +304,7 @@
   },
   {
     "resourceName": "people/c2701561889201335426",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
     "metadata": {
       "sources": [
         {
@@ -351,8 +343,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "257de03988942c82" }
         },
-        "url":
-          "https://lh6.googleusercontent.com/-VPSCtkd2NJY/Wq_5589njHI/AAAAAAAAAAA/aPwqFQQZ5uIROLYjux-ehTVpAZkZw_tFwCOQCEAE/s100/photo.jpg"
+        "url": "https://lh6.googleusercontent.com/-VPSCtkd2NJY/Wq_5589njHI/AAAAAAAAAAA/aPwqFQQZ5uIROLYjux-ehTVpAZkZw_tFwCOQCEAE/s100/photo.jpg"
       }
     ],
     "birthdays": [
@@ -414,8 +405,7 @@
   },
   {
     "resourceName": "people/c6437718916715038152",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
     "metadata": {
       "sources": [
         {
@@ -445,8 +435,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "59575f3f0a9cc5c8" }
         },
-        "url":
-          "https://lh5.googleusercontent.com/-yfLDaekVjCc/WcKNt1u7H5I/AAAAAAAAAAA/iRxI6sgfoJU53vNa9IejGqmVx7HGmvqTgCOQCEAE/s100/photo.jpg"
+        "url": "https://lh5.googleusercontent.com/-yfLDaekVjCc/WcKNt1u7H5I/AAAAAAAAAAA/iRxI6sgfoJU53vNa9IejGqmVx7HGmvqTgCOQCEAE/s100/photo.jpg"
       }
     ],
     "birthdays": [
@@ -507,8 +496,7 @@
   },
   {
     "resourceName": "people/c2315637590020431536",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
     "metadata": {
       "sources": [
         {
@@ -538,8 +526,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "2022cc1e8db59eb0" }
         },
-        "url":
-          "https://lh6.googleusercontent.com/-bVicCwiU0eU/Wrs40oqwwQI/AAAAAAAAAAA/E9fWw_wTkkowY5dlgkIxHEeJ-nfIYsy8ACOQCEAE/s100/photo.jpg"
+        "url": "https://lh6.googleusercontent.com/-bVicCwiU0eU/Wrs40oqwwQI/AAAAAAAAAAA/E9fWw_wTkkowY5dlgkIxHEeJ-nfIYsy8ACOQCEAE/s100/photo.jpg"
       }
     ],
     "emailAddresses": [
@@ -584,12 +571,21 @@
         },
         "contactGroupMembership": { "contactGroupId": "myContacts" }
       }
+    ],
+    "userDefined": [
+      {
+        "key": "note",
+        "value": "Beatae atque omnis nostrum eum. Quia sint ea a consequatur tempore et et animi. Ad quae perferendis sit qui aut fugiat deserunt."
+      },
+      {
+        "key": "whatever",
+        "value": "connecting the interface won't do anything, we need to calculate the digital PNG panel!"
+      }
     ]
   },
   {
     "resourceName": "people/c1639879180286560138",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
     "metadata": {
       "sources": [
         {
@@ -619,8 +615,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "16c2056d0f8a078a" }
         },
-        "url":
-          "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MrafIV54K0PYYd93SrWl_qQIhkKAVMQ____________ARibr4X4______8B/s100/photo.jpg",
+        "url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5MrafIV54K0PYYd93SrWl_qQIhkKAVMQ____________ARibr4X4______8B/s100/photo.jpg",
         "default": true
       }
     ],
@@ -661,8 +656,7 @@
   },
   {
     "resourceName": "people/c7575342359908918582",
-    "etag":
-      "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
+    "etag": "%Eh0BAgMEBQYHCAkKCwwNDg8QERITFBUXNRk0NyIlLhoMAQIDBAUGBwgJCgsMIgxqemF4M1oxTWdnRT0=",
     "metadata": {
       "sources": [
         {
@@ -680,8 +674,7 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "692105bd8e572536" }
         },
-        "url":
-          "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5Mj2xJGVtq-hLbcSsYnmu1twIhkKAW4Q____________ARi8j639______8B/s100/photo.jpg",
+        "url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5Mj2xJGVtq-hLbcSsYnmu1twIhkKAW4Q____________ARi8j639______8B/s100/photo.jpg",
         "default": true
       }
     ],
@@ -717,6 +710,12 @@
           "source": { "type": "CONTACT", "id": "692105bd8e572536" }
         },
         "contactGroupMembership": { "contactGroupId": "myContacts" }
+      }
+    ],
+    "userDefined": [
+      {
+        "key": "note",
+        "value": "Beatae atque omnis nostrum eum. Quia sint ea a consequatur tempore et et animi. Ad quae perferendis sit qui aut fugiat deserunt."
       }
     ]
   }

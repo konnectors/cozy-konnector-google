@@ -14,6 +14,7 @@ Object {
     },
   ],
   "birthday": "1912-06-22",
+  "company": "National Physical Laboratory",
   "email": Array [
     Object {
       "address": "alan.turing@npl.com",
@@ -48,6 +49,7 @@ Object {
     "familyName": "Turing",
     "givenName": "Alan",
   },
+  "note": "Doloribus animi corporis et qui error cumque culpa autem velit.",
   "phone": Array [
     Object {
       "label": "Home",
@@ -82,6 +84,7 @@ Array [
         },
       ],
       "birthday": undefined,
+      "company": undefined,
       "email": Array [
         Object {
           "address": "russell.bourquin@protheon.org",
@@ -110,6 +113,7 @@ Array [
         "familyName": undefined,
         "givenName": "Protheon",
       },
+      "note": undefined,
       "phone": Array [
         Object {
           "label": undefined,
@@ -135,6 +139,7 @@ Array [
         },
       ],
       "birthday": "1987-10-04",
+      "company": undefined,
       "email": Array [
         Object {
           "address": "michelle.seabury@keysoft.me",
@@ -169,6 +174,7 @@ Array [
         "familyName": "Seabury",
         "givenName": "Michelle",
       },
+      "note": undefined,
       "phone": Array [
         Object {
           "label": undefined,
@@ -200,6 +206,7 @@ Array [
         },
       ],
       "birthday": "1912-06-22",
+      "company": "National Physical Laboratory",
       "email": Array [
         Object {
           "address": "alan.turing@npl.com",
@@ -234,6 +241,7 @@ Array [
         "familyName": "Turing",
         "givenName": "Alan",
       },
+      "note": undefined,
       "phone": Array [
         Object {
           "label": "Home",
@@ -255,6 +263,7 @@ Array [
     "doc": Object {
       "address": Array [],
       "birthday": undefined,
+      "company": "Winterfell",
       "email": Array [
         Object {
           "address": "eddard.stark@stark.com",
@@ -283,6 +292,7 @@ Array [
         "familyName": "Stark",
         "givenName": "Eddard",
       },
+      "note": undefined,
       "phone": Array [
         Object {
           "label": "Mobile",
@@ -308,6 +318,7 @@ Array [
         },
       ],
       "birthday": "0297-12-31",
+      "company": "Night's Watch",
       "email": Array [
         Object {
           "address": "jon.snow@nightswatch.com",
@@ -336,6 +347,7 @@ Array [
         "familyName": "Snow",
         "givenName": "Jon",
       },
+      "note": undefined,
       "phone": Array [],
       "vendorId": "people/c6437718916715038152",
     },
@@ -344,6 +356,7 @@ Array [
     "doc": Object {
       "address": Array [],
       "birthday": undefined,
+      "company": "Faceless Men",
       "email": Array [
         Object {
           "address": "arya.stark@stark.com",
@@ -378,6 +391,7 @@ Array [
         "familyName": "Stark",
         "givenName": "Arya",
       },
+      "note": "Beatae atque omnis nostrum eum. Quia sint ea a consequatur tempore et et animi. Ad quae perferendis sit qui aut fugiat deserunt.",
       "phone": Array [],
       "vendorId": "people/c2315637590020431536",
     },
@@ -386,6 +400,7 @@ Array [
     "doc": Object {
       "address": Array [],
       "birthday": undefined,
+      "company": "Night's Watch",
       "email": Array [
         Object {
           "address": "samwel.tarly@nightswatch.com",
@@ -414,6 +429,7 @@ Array [
         "familyName": "Tarly",
         "givenName": "Samwel",
       },
+      "note": undefined,
       "phone": Array [],
       "vendorId": "people/c1639879180286560138",
     },
@@ -422,6 +438,7 @@ Array [
     "doc": Object {
       "address": Array [],
       "birthday": undefined,
+      "company": undefined,
       "email": Array [
         Object {
           "address": "noname@faceless.com",
@@ -450,6 +467,7 @@ Array [
         "familyName": undefined,
         "givenName": undefined,
       },
+      "note": "Beatae atque omnis nostrum eum. Quia sint ea a consequatur tempore et et animi. Ad quae perferendis sit qui aut fugiat deserunt.",
       "phone": Array [
         Object {
           "label": undefined,
