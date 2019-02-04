@@ -39,6 +39,10 @@
       "verbs": [
         "GET"
       ]
+    },
+    "contactsAccounts": {
+      "description": "Required to get the contacts account's data",
+      "type": "io.cozy.contacts.accounts"
     }
   },
   "developer": {
