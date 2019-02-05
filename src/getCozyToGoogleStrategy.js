@@ -31,7 +31,7 @@ const getCozyToGoogleStrategy = (cozyClient, googleUtils, sourceAccountId) => ({
       const updatedByApps = union(cozyContact.cozyMetadata.updatedByApps, [
         APP_NAME
       ])
-      const now = Date.now()
+      const now = new Date().toISOString()
       additionalData = {
         cozyMetadata: {
           updatedAt: now,

@@ -1,9 +1,8 @@
 const getCozyToGoogleStrategy = require('./getCozyToGoogleStrategy')
 const google = require('./google')
+const { mockDate, restoreDate } = require('../jestHelpers/mockDate')
 
 jest.mock('./google')
-
-Date.now = () => 1548944302000
 
 const fakeClient = {
   save: jest.fn()
@@ -18,8 +17,13 @@ describe('getCozyToGoogleStrategy', () => {
   )
   const { findRemoteDocument, save, shouldSave, afterSave } = strategy
 
+  beforeEach(() => {
+    mockDate('2018-01-01T12:00:00.210Z')
+  })
+
   afterEach(() => {
     jest.clearAllMocks()
+    restoreDate()
   })
 
   describe('findRemoteDocument', () => {
@@ -143,11 +147,11 @@ describe('getCozyToGoogleStrategy', () => {
               contactsAccountsId: '119a16a8-9a07-4a05-b06c-849b223e1f97',
               id: 'people/424242',
               konnector: 'konnector-google',
-              lastSync: 1548944302000,
+              lastSync: '2018-01-01T12:00:00.210Z',
               remoteRev: '34f2ee51-5721-46a9-b856-fff6294076f6'
             }
           },
-          updatedAt: 1548944302000,
+          updatedAt: '2018-01-01T12:00:00.210Z',
           updatedByApps: ['Contacts', 'konnector-google']
         },
         name: { givenName: 'John', familyName: 'Doe' }
