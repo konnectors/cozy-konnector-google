@@ -10,6 +10,7 @@ const {
 } = require('cozy-konnector-libs')
 
 const getCozyToGoogleStrategy = require('./getCozyToGoogleStrategy')
+const getGoogleToCozyStrategy = require('./getGoogleToCozyStrategy')
 const cozyUtils = require('./cozy')
 const google = require('./google')
 const synchronizeContacts = require('./synchronizeContacts')
@@ -91,19 +92,35 @@ async function start(fields, doRetry = true) {
     const lastGoogleSync = Date.now()
 
     // sync cozy -> google
-    const strategy = getCozyToGoogleStrategy(
+    const cozyToGoogleStrategy = getCozyToGoogleStrategy(
       cozyUtils.client,
       google,
       contactAccount.id
     )
-    const syncResponse = await synchronizeContacts(
+    const cozyToGoogleSyncResponse = await synchronizeContacts(
       cozyContacts,
       googleContacts,
-      strategy
+      cozyToGoogleStrategy
     )
 
-    if (syncResponse.some(result => result && result.created)) {
+    if (cozyToGoogleSyncResponse.some(result => result && result.created)) {
       log('info', `Created Google contacts for ${accountEmail}`)
+    }
+
+    // sync google -> cozy
+    const googleToCozyStrategy = getGoogleToCozyStrategy(
+      cozyUtils,
+      contactAccount.id
+    )
+
+    const googleToCozySyncResponse = await synchronizeContacts(
+      googleContacts,
+      cozyContacts,
+      googleToCozyStrategy
+    )
+
+    if (googleToCozySyncResponse.some(result => result && result.created)) {
+      log('info', `Created Cozy contacts for ${accountEmail}`)
     }
 
     await cozyUtils.save({

@@ -1,6 +1,6 @@
 const synchronizeContacts = require('./synchronizeContacts')
 
-describe('synchronizeContacts function', () => {
+describe.skip('synchronizeContacts function', () => {
   it('should synchronize local and remote data', () => {
     const afterSave = jest.fn()
     const save = jest.fn()

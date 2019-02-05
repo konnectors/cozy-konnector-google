@@ -130,6 +130,7 @@ describe('getCozyToGoogleStrategy', () => {
   describe('afterSave', () => {
     it('should enrich cozy contact with metadata', async () => {
       const cozyContact = {
+        id: 'fadb7a06-f027-4f20-abc1-92e7ecdab8c7',
         name: { givenName: 'John', familyName: 'Doe' },
         cozyMetadata: {
           updatedByApps: ['Contacts']
@@ -139,7 +140,12 @@ describe('getCozyToGoogleStrategy', () => {
         resourceName: 'people/424242',
         etag: '34f2ee51-5721-46a9-b856-fff6294076f6'
       }
-      await afterSave(cozyContact, googleContact)
+      fakeClient.save.mockResolvedValue({
+        data: {
+          id: 'fadb7a06-f027-4f20-abc1-92e7ecdab8c7'
+        }
+      })
+      const result = await afterSave(cozyContact, googleContact)
       const expected = {
         cozyMetadata: {
           sync: {
@@ -154,9 +160,11 @@ describe('getCozyToGoogleStrategy', () => {
           updatedAt: '2018-01-01T12:00:00.210Z',
           updatedByApps: ['Contacts', 'konnector-google']
         },
+        id: 'fadb7a06-f027-4f20-abc1-92e7ecdab8c7',
         name: { givenName: 'John', familyName: 'Doe' }
       }
       expect(fakeClient.save).toHaveBeenCalledWith(expected)
+      expect(result).toEqual('fadb7a06-f027-4f20-abc1-92e7ecdab8c7')
     })
   })
 })

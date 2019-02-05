@@ -5,20 +5,20 @@ const synchronizeContacts = (
 ) => {
   const {
     afterSave,
-    // findRemoteDocument,
+    findRemoteDocument,
     save,
     shouldSave
   } = synchronizationStrategy
   try {
     return Promise.all(
       localContacts.map(async localContact => {
-        // const remoteContact = findRemoteDocument(localContact, remoteContacts)
-        if (shouldSave(localContact)) {
+        const remoteContact = findRemoteDocument(localContact, remoteContacts)
+        if (shouldSave(localContact, remoteContact)) {
           const resp = await save(localContact)
-          const afterSaveResp = await afterSave(localContact, resp.data)
+          const createdId = await afterSave(localContact, resp.data)
           return {
             created: true,
-            id: afterSaveResp.data.id
+            id: createdId
           }
         }
 
