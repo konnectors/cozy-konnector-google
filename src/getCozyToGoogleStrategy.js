@@ -24,11 +24,13 @@ const getCozyToGoogleStrategy = (cozyClient, googleUtils, sourceAccountId) => ({
     cozyContact.cozyMetadata.sync[sourceAccountId] === undefined,
   save: cozyContact =>
     googleUtils.createContact(transpiler.toGoogle(cozyContact)),
-  afterSave: (cozyContact, googleContact) => {
-    return cozyClient.save({
+  afterSave: async (cozyContact, googleContact) => {
+    const response = await cozyClient.save({
       ...cozyContact,
       ...getCozyMetadata(cozyContact, googleContact, sourceAccountId)
     })
+
+    return Promise.resolve(response.data.id)
   }
 })
 
