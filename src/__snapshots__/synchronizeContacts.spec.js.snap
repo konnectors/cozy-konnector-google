@@ -54,3 +54,43 @@ Array [
   },
 ]
 `;
+
+exports[`synchronizeContacts synchronize contacts with google to cozy strategy should synchronize cozy contacts from google contacts 1`] = `
+Array [
+  Object {
+    "_type": "io.cozy.contacts",
+    "address": Array [],
+    "birthday": undefined,
+    "company": undefined,
+    "cozyMetadata": Object {
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/111",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "etag-958e26de-80d2-4051-8ba9-ae954dffd9f6",
+        },
+      },
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "konnector-google",
+      ],
+    },
+    "email": Array [],
+    "metadata": Object {
+      "google": Object {
+        "metadata": undefined,
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Yundt",
+      "givenName": "Kayleigh",
+    },
+    "note": undefined,
+    "phone": Array [],
+    "vendorId": "people/111",
+  },
+]
+`;
