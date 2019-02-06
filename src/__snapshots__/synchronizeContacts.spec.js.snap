@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`synchronizeContacts synchronize contacts with cozy to google strategy should synchronize cozy contacts to google 1`] = `
+Array [
+  Object {
+    "cozyMetadata": Object {
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/96508",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "etag-963fd240-d568-4b24-9f26-6e658d4e4958",
+        },
+      },
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "id": "reinhold-jenkins-no-source",
+    "name": Object {
+      "familyName": "Jenkins",
+      "givenName": "Reinhold",
+    },
+  },
+]
+`;
+
+exports[`synchronizeContacts synchronize contacts with cozy to google strategy should synchronize cozy contacts to google 2`] = `
+Array [
+  Object {
+    "cozyMetadata": Object {
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/78485",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "etag-6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd",
+        },
+      },
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "konnector-google",
+      ],
+    },
+    "id": "larue-cremin-attached-to-another-source",
+    "name": Object {
+      "familyName": "Cremin",
+      "givenName": "Larue",
+    },
+  },
+]
+`;
