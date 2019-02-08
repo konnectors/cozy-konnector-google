@@ -56,9 +56,10 @@ const FIELDS = [
 async function start(fields, doRetry = true) {
   log('info', 'Starting the google connector')
   const accountID =
-    process.env.NODE_ENV === 'production'
-      ? JSON.parse(process.env.COZY_FIELDS).account
-      : 'fakeAccountId'
+    process.env.NODE_ENV === 'development'
+      ? 'fakeAccountId'
+      : JSON.parse(process.env.COZY_FIELDS).account
+
   try {
     google.oAuth2Client.setCredentials({
       access_token: fields.access_token
