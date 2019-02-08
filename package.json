@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "cozy-client": "5.7.7",
-    "cozy-konnector-libs": "4.13.1",
+    "cozy-konnector-libs": "4.14.3",
     "googleapis": "36.0.0"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "configstore": "4.0.0",
     "copy-webpack-plugin": "4.6.0",
     "cozy-app-publish": "0.10.5",
-    "cozy-jobs-cli": "1.7.1",
+    "cozy-jobs-cli": "1.7.5",
     "eslint": "5.13.0",
     "eslint-config-cozy-app": "1.1.4",
     "figlet": "1.2.1",
@@ -56,7 +56,7 @@
     "konitor": "0.10.1",
     "minimist": "1.2.0",
     "svgo": "1.1.1",
-    "webpack": "4.29.2",
+    "webpack": "4.29.3",
     "webpack-cli": "3.2.3"
   }
 }
