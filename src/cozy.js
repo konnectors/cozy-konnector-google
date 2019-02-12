@@ -86,6 +86,9 @@ module.exports = (() => ({
     } else {
       const resp = await this.client.save({
         canLinkContacts: true,
+        shouldSyncOrphan: true,
+        lastSync: null,
+        lastLocalSync: null,
         name: accountEmail,
         _type: DOCTYPE_CONTACTS_ACCOUNT,
         type: APP_NAME,
