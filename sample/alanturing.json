@@ -119,9 +119,9 @@
       "contactGroupMembership": { "contactGroupId": "myContacts" }
     }
   ],
-  "userDefined": [
+  "biographies": [
     {
-      "key": "note",
+      "contentType": "TEXT_PLAIN",
       "value": "Doloribus animi corporis et qui error cumque culpa autem velit."
     }
   ]

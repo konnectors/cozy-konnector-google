@@ -572,9 +572,9 @@
         "contactGroupMembership": { "contactGroupId": "myContacts" }
       }
     ],
-    "userDefined": [
+    "biographies": [
       {
-        "key": "note",
+        "contentType": "TEXT_PLAIN",
         "value": "Beatae atque omnis nostrum eum. Quia sint ea a consequatur tempore et et animi. Ad quae perferendis sit qui aut fugiat deserunt."
       },
       {
@@ -712,9 +712,9 @@
         "contactGroupMembership": { "contactGroupId": "myContacts" }
       }
     ],
-    "userDefined": [
+    "biographies": [
       {
-        "key": "note",
+        "contentType": "TEXT_PLAIN",
         "value": "Beatae atque omnis nostrum eum. Quia sint ea a consequatur tempore et et animi. Ad quae perferendis sit qui aut fugiat deserunt."
       }
     ]
