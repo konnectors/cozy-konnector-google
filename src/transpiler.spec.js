@@ -158,9 +158,9 @@ describe('Transpile from io.cozy.contacts to google-contacts', () => {
           name: 'Cozy cloud'
         }
       ],
-      userDefined: [
+      biographies: [
         {
-          key: 'note',
+          contentType: 'TEXT_PLAIN',
           value:
             'Atque cupiditate saepe omnis quos ut molestiae labore voluptates omnis.'
         }

@@ -28,7 +28,7 @@ const transpiler = {
       addresses: getAddresses(source),
       birthdays: getBirthdays(source),
       organizations: getOrganizations(source),
-      userDefined: getUserDefined(source)
+      biographies: getBiographies(source)
     }
   }
 }
@@ -101,11 +101,8 @@ function getCompany({ organizations = undefined }) {
   return organizations && organizations[0].name
 }
 
-function getNote({ userDefined = undefined }) {
-  return (
-    (userDefined && userDefined.find(ud => ud.key === 'note').value) ||
-    undefined
-  )
+function getNote({ biographies = undefined }) {
+  return (biographies && biographies[0] && biographies[0].value) || undefined
 }
 
 // cozy -> google
@@ -185,11 +182,11 @@ function getOrganizations({ company = undefined }) {
   )
 }
 
-function getUserDefined({ note = undefined }) {
+function getBiographies({ note = undefined }) {
   return (
     note && [
       {
-        key: 'note',
+        contentType: 'TEXT_PLAIN',
         value: note
       }
     ]
