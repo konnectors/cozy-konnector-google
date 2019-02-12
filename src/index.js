@@ -133,13 +133,13 @@ async function start(fields, doRetry = true) {
     })
     log('info', 'Sync has completed successfully')
   } catch (err) {
-    if (
-      err.message === 'No refresh token is set.' ||
-      err.message === 'Invalid Credentials'
-    ) {
-      if (!fields.refresh_token) {
+    if (err.code === 401 || err.code === 403) {
+      if (err.message === 'Request had insufficient authentication scopes.') {
+        log('info', 'insufficient scopes')
+        throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
+      } else if (!fields.refresh_token) {
         log('info', 'no refresh token found')
-        throw new Error('USER_ACTION_NEEDED.OAUTH_OUTDATED')
+        throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
       } else if (doRetry) {
         log('info', 'asking refresh from the stack')
         const body = await cozyClient.fetchJSON(
