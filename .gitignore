@@ -5,6 +5,7 @@ konnector-dev-config.json*
 fixtures/*
 data/*
 keys.json*
+importedData.json
 
 # NPM
 node_modules/
