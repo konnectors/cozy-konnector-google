@@ -89,7 +89,7 @@ async function start(fields, doRetry = true) {
       }),
       cozyUtils.getUpdatedContacts(contactAccount.lastSync)
     ])
-    const lastGoogleSync = Date.now()
+    const lastGoogleSync = new Date().toISOString()
 
     // sync cozy -> google
     const cozyToGoogleStrategy = getCozyToGoogleStrategy(
@@ -119,6 +119,8 @@ async function start(fields, doRetry = true) {
       googleToCozyStrategy
     )
 
+    const lastLocalSync = new Date().toISOString()
+
     if (googleToCozySyncResponse.some(result => result && result.created)) {
       log('info', `Created Cozy contacts for ${accountEmail}`)
     }
@@ -126,6 +128,7 @@ async function start(fields, doRetry = true) {
     await cozyUtils.save({
       ...contactAccount,
       lastSync: lastGoogleSync,
+      lastLocalSync: lastLocalSync,
       syncToken: nextSyncToken
     })
     log('info', 'Sync has completed successfully')
