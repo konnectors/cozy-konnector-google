@@ -8,9 +8,7 @@
   "source": "git://github.com/konnectors/cozy-konnector-google.git",
   "editor": "Cozy",
   "vendor_link": "https://google.com",
-  "categories": [
-    "online_services"
-  ],
+  "categories": ["online_services"],
   "fields": {
     "access_token": {
       "type": "hidden"
@@ -24,24 +22,17 @@
       "https://www.googleapis.com/auth/contacts+https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile"
     ]
   },
-  "data_types": [
-    "contact"
-  ],
+  "data_types": ["contact"],
   "screenshots": [],
   "permissions": {
     "contacts": {
-      "description": "Required to save contacts",
       "type": "io.cozy.contacts"
     },
     "accounts": {
-      "description": "Required to get the account's data",
       "type": "io.cozy.accounts",
-      "verbs": [
-        "GET"
-      ]
+      "verbs": ["GET"]
     },
     "contactsAccounts": {
-      "description": "Required to get the contacts account's data",
       "type": "io.cozy.contacts.accounts"
     }
   },
@@ -49,18 +40,37 @@
     "name": "Cozy Cloud",
     "url": "https://cozy.io"
   },
-  "langs": [
-    "fr",
-    "en"
-  ],
+  "langs": ["fr", "en"],
   "locales": {
     "fr": {
-      "short_description": "Récupérer vos données Google dans votre Cozy",
-      "long_description": "Ce fournisseur vous permettra de récupérer l'ensemble de vos contacts Google dans votre Cozy."
+      "short_description": "Synchronise votre carnet d'adresse de contacts Google avec votre Cozy.",
+      "long_description": "Votre carnet d'adresse de contacts Google [contacts.google.com](https://contacts.google.com/) sera synchronisé avec votre Cozy.\nChaque modification, ajout ou suppression de contacts depuis votre Cozy sera transmise à votre carnet d'adresse Google. De même pour toutes les actions sur vos contacts depuis Google, elles seront rapatriées dans votre Cozy.\n\n&nbsp;\n\nSi vous souhaitez importer vos contacts Google dans votre Cozy sans synchronisation continue, il vous suffit d'installer cette application, la connecter à votre compte Google et effectuer le premier import. Une fois cet import effectué, déconnectez votre compte Google de cette application.",
+      "permissions": {
+        "accounts": {
+          "description": "Utilisé pour se connecter au carnet d'adresse Google."
+        },
+        "contacts": {
+          "description": "Utilisé pour accéder aux contacts de votre Cozy."
+        },
+        "contactsAccounts": {
+          "description": "Utilisé pour faire les associations entre vos contacts et vos comptes distants Google."
+        }
+      }
     },
     "en": {
-      "short_description": "Fetch your Google data in your Cozy",
-      "long_description": "This provider will allow you to fetch all your Google contacts in your Cozy."
+      "short_description": "Synchronise your Google address book with your Cozy",
+      "long_description": "Your Google address book [contacts.google.com](https://contacts.google.com/) will be synchronised with your Cozy.\nEvery changes on your contacts from your Cozy will be sent to your Google address book. Similarly for all actions on your contacts from Google, they will be brought back to your Cozy.\n\n&nbsp;\n\nIf you want to import your Google contacts into your Cozy without synchronisation, you just need to install this application, connect it to your Google account and make the first import. Once it's done, sign out of your Google account from this app.",
+      "permissions": {
+        "accounts": {
+          "description": "Required to sign in to your Google address book"
+        },
+        "contacts": {
+          "description": "Required to access your contacts in your Cozy."
+        },
+        "contactsAccounts": {
+          "description": "Required to link your contacts with your Google remote accounts."
+        }
+      }
     }
   },
   "manifest_version": "2"
