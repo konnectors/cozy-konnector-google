@@ -4,11 +4,17 @@ exports[`synchronizeContacts synchronize contacts with cozy to google strategy s
 Array [
   Object {
     "cozyMetadata": Object {
+      "createdAt": "2018-05-05T09:09:00.115Z",
+      "createdByApp": "cozy-konnector-google",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2018-05-05T09:09:00.115Z",
+      "importedFrom": "cozy-konnector-google",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
           "id": "people/96508",
-          "konnector": "konnector-google",
+          "konnector": "cozy-konnector-google",
           "lastSync": "2018-05-05T09:09:00.115Z",
           "remoteRev": "etag-963fd240-d568-4b24-9f26-6e658d4e4958",
         },
@@ -16,7 +22,7 @@ Array [
       "updatedAt": "2018-05-05T09:09:00.115Z",
       "updatedByApps": Array [
         "Contacts",
-        "konnector-google",
+        "cozy-konnector-google",
       ],
     },
     "id": "reinhold-jenkins-no-source",
@@ -32,18 +38,24 @@ exports[`synchronizeContacts synchronize contacts with cozy to google strategy s
 Array [
   Object {
     "cozyMetadata": Object {
+      "createdAt": "2018-05-05T09:09:00.115Z",
+      "createdByApp": "cozy-konnector-google",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2018-05-05T09:09:00.115Z",
+      "importedFrom": "cozy-konnector-google",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
           "id": "people/78485",
-          "konnector": "konnector-google",
+          "konnector": "cozy-konnector-google",
           "lastSync": "2018-05-05T09:09:00.115Z",
           "remoteRev": "etag-6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd",
         },
       },
       "updatedAt": "2018-05-05T09:09:00.115Z",
       "updatedByApps": Array [
-        "konnector-google",
+        "cozy-konnector-google",
       ],
     },
     "id": "larue-cremin-attached-to-another-source",
@@ -63,18 +75,24 @@ Array [
     "birthday": undefined,
     "company": undefined,
     "cozyMetadata": Object {
+      "createdAt": "2018-05-05T09:09:00.115Z",
+      "createdByApp": "cozy-konnector-google",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2018-05-05T09:09:00.115Z",
+      "importedFrom": "cozy-konnector-google",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
           "id": "people/111",
-          "konnector": "konnector-google",
+          "konnector": "cozy-konnector-google",
           "lastSync": "2018-05-05T09:09:00.115Z",
           "remoteRev": "etag-958e26de-80d2-4051-8ba9-ae954dffd9f6",
         },
       },
       "updatedAt": "2018-05-05T09:09:00.115Z",
       "updatedByApps": Array [
-        "konnector-google",
+        "cozy-konnector-google",
       ],
     },
     "email": Array [],

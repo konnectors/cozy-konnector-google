@@ -166,17 +166,23 @@ describe('getGoogleToCozyStrategy', () => {
         phone: [],
         vendorId: 'people/123456',
         cozyMetadata: {
+          createdAt: '2017-01-30T15:00:00.210Z',
+          createdByApp: 'cozy-konnector-google',
+          createdByAppVersion: '2.0.0',
+          doctypeVersion: 2,
+          importedAt: '2017-01-30T15:00:00.210Z',
+          importedFrom: 'cozy-konnector-google',
           sync: {
             [SOURCE_ACCOUNT_ID]: {
               contactsAccountsId: SOURCE_ACCOUNT_ID,
               id: 'people/123456',
-              konnector: 'konnector-google',
+              konnector: 'cozy-konnector-google',
               lastSync: '2017-01-30T15:00:00.210Z',
               remoteRev: 'a3f48ca6-6f6c-440e-b7e2-7ab4aa64e45e'
             }
           },
           updatedAt: '2017-01-30T15:00:00.210Z',
-          updatedByApps: ['konnector-google']
+          updatedByApps: ['cozy-konnector-google']
         }
       }
       expect(cozyUtils.client.save).toHaveBeenCalledWith(expected)

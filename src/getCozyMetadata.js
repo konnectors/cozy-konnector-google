@@ -1,7 +1,12 @@
 const get = require('lodash/get')
 const union = require('lodash/union')
 
-const { APP_NAME, ADD_COZY_METADATA } = require('./constants')
+const {
+  APP_NAME,
+  APP_VERSION,
+  DOCTYPE_CONTACTS_VERSION,
+  ADD_COZY_METADATA
+} = require('./constants')
 
 module.exports = (cozyContact, googleContact, sourceAccountId) => {
   let additionalData = {}
@@ -14,6 +19,12 @@ module.exports = (cozyContact, googleContact, sourceAccountId) => {
     const now = new Date().toISOString()
     additionalData = {
       cozyMetadata: {
+        doctypeVersion: DOCTYPE_CONTACTS_VERSION,
+        createdAt: now,
+        createdByApp: APP_NAME,
+        createdByAppVersion: APP_VERSION,
+        importedFrom: APP_NAME,
+        importedAt: now,
         updatedAt: now,
         updatedByApps,
         sync: {

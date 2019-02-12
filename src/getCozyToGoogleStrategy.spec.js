@@ -148,17 +148,23 @@ describe('getCozyToGoogleStrategy', () => {
       const result = await afterSave(cozyContact, googleContact)
       const expected = {
         cozyMetadata: {
+          createdAt: '2018-01-01T12:00:00.210Z',
+          createdByApp: 'cozy-konnector-google',
+          createdByAppVersion: '2.0.0',
+          doctypeVersion: 2,
+          importedAt: '2018-01-01T12:00:00.210Z',
+          importedFrom: 'cozy-konnector-google',
           sync: {
             '119a16a8-9a07-4a05-b06c-849b223e1f97': {
               contactsAccountsId: '119a16a8-9a07-4a05-b06c-849b223e1f97',
               id: 'people/424242',
-              konnector: 'konnector-google',
+              konnector: 'cozy-konnector-google',
               lastSync: '2018-01-01T12:00:00.210Z',
               remoteRev: '34f2ee51-5721-46a9-b856-fff6294076f6'
             }
           },
           updatedAt: '2018-01-01T12:00:00.210Z',
-          updatedByApps: ['Contacts', 'konnector-google']
+          updatedByApps: ['Contacts', 'cozy-konnector-google']
         },
         id: 'fadb7a06-f027-4f20-abc1-92e7ecdab8c7',
         name: { givenName: 'John', familyName: 'Doe' }
