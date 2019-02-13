@@ -60,7 +60,7 @@
     },
     "en": {
       "short_description": "Synchronise your Google address book with your Cozy",
-      "long_description": "Your Google address book [contacts.google.com](https://contacts.google.com/) will be synchronised with your Cozy.\nEvery changes on your contacts from your Cozy will be sent to your Google address book. Similarly for all actions on your contacts from Google, they will be brought back to your Cozy.\n\n&nbsp;\n\nIf you want to import your Google contacts into your Cozy without synchronisation, you just need to install this application, connect it to your Google account and make the first import. Once it's done, sign out of your Google account from this app.",
+      "long_description": "Your Google address book [contacts.google.com](https://contacts.google.com/) will be synchronised with your Cozy.\nEvery changes on your contacts from your Cozy will be sent to your Google address book. Same for all actions on your contacts from Google, they will be brought back to your Cozy.\n\n&nbsp;\n\nIf you want to import your Google contacts into your Cozy without synchronisation, you just need to install this application, connect it to your Google account and make the first import. Once it's done, sign out of your Google account from this app.",
       "permissions": {
         "accounts": {
           "description": "Required to sign in to your Google address book"
