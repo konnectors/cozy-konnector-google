@@ -101,20 +101,33 @@ If you want to connect to a different stack or renew the token used by the cozy 
 
 The files are saved in the [cozy-konnector-dev-root] directory of your cozy by default.
 
-### Use the konnector with cozy-collect
+### Use the connector with local apps
 
-**:warning: the following information is outdated since cozy-collect no longer exists.**
+For development purposes, you may need to run your connector from the home app or to check that the changes you made to `manifest.konnector` are correctly displayed in the store.
 
-To setup and run a konnector, Cozy provides a web application called `cozy-collect`.
+:warning: If you do not have [nsjail](https://github.com/google/nsjail) installed on your system, you'll have to configure the cozy-stack's server to run connectors directly with nodejs: if you don't already have a config file, copy example config from cozy-stack repository to create one in `~/.cozy/cozy.yaml`.
+
+```
+cp cozy-stack/cozy.example.yaml $HOME/.cozy/cozy.yaml
+```
+
+In this file, change the konnectors command to run connectors with node (you may need to use the absolute path):
+
+```
+konnectors:
+  cmd: <path_to_your_cozy-stack>/cozy-stack/scripts/konnector-node-run.sh
+```
+
+Then, remove/comment lines about vault and mail service (SMTP).
+
+Restart the `cozy-stack`.
 
 To have the google connector available in the list of connectors, build it and install it :
-
 
 ```
 yarn build
 cozy-stack konnectors install google file://$PWD/build
 ```
-
 
 Then you'll have to register the konnector's oauth system into the cozy-stack's server with the following (see it on [cozy/cozy-stack](https://github.com/cozy/cozy-stack/blob/master/docs/konnectors-workflow.md#example-google)):
 
@@ -132,13 +145,20 @@ http://cozy.tools:8080/accounts/google/redirect
 
 Where `cozy.tools:8080` is the url to join the cozy-stack's server.
 
-To debug or try the konnector with a local build, you'll need to update the konnector with:
+Then, you can install the app you want to use with the connector, it should use your local build of the connector.
+For example, you can install `cozy-home`, connect your Google account and run synchronization from the Home.
 
-:warning: If you do not have [nsjail](https://github.com/google/nsjail) installed on your system, you'll have to configure the cozy-stack's server to run konnectors directly with nodejs: if you don't already have a config file, create one in `~/.cozy/cozy.yaml` and add the following configuration:
+Note that each time you change something in the connector's code, you will need to rebuild it and update it on the stack side:
 
 ```
-konnectors:
-  cmd: <path_to_your_cozy-stack>/cozy-stack/scripts/konnector-node-run.sh
+yarn build
+cozy-stack konnectors update google file://$PWD/build
+```
+
+To have a better understanding of what happens, you may also need to activate debug mode on the stack (be aware that if you restart the stack you will need to re-enable debug mode):
+
+```
+cozy-stack instances debug cozy.tools:8080 true
 ```
 
 ### How does the cozy-stack run the connector ?
