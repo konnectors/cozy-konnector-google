@@ -1,5 +1,3 @@
-const getCozyToGoogleStrategy = require('./getCozyToGoogleStrategy')
-const getGoogleToCozyStrategy = require('./getGoogleToCozyStrategy')
 const synchronizeContacts = require('./synchronizeContacts')
 const cozyUtils = require('./cozy')
 const googleUtils = require('./google')
@@ -17,9 +15,19 @@ const cozyContacts = [
     id: 'jane-doe-attached-to-the-source',
     name: { givenName: 'Jane', familyName: 'Doe' },
     cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2018-02-22T11:11:11.222Z',
+      createdByApp: 'konnector-google',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2018-03-22T12:09:00.222Z',
+      updatedByApps: ['konnector-google'],
+      importedAt: '2018-02-22T11:11:11.222Z',
+      importedFrom: 'konnector-google',
+      sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
-          id: 'people/123456'
+          id: 'people/123456',
+          remoteRev: '5b84b076-a2bd-4a98-af08-46d6db21660e'
         }
       }
     }
@@ -28,9 +36,19 @@ const cozyContacts = [
     id: 'john-doe-attached-to-the-source',
     name: { givenName: 'John', familyName: 'Doe' },
     cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2016-06-30T09:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2019-01-22T18:18:00.222Z',
+      updatedByApps: ['Contacts'],
+      importedAt: '2016-06-30T09:33:00.123Z',
+      importedFrom: 'konnector-google',
+      sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
-          id: 'people/987654'
+          id: 'people/987654',
+          remoteRev: '9659474d-f3ce-47a5-a9f1-01b55e6b0987'
         }
       }
     }
@@ -40,16 +58,34 @@ const cozyContacts = [
     id: 'reinhold-jenkins-no-source',
     name: { givenName: 'Reinhold', familyName: 'Jenkins' },
     cozyMetadata: {
-      updatedByApps: ['Contacts']
+      doctypeVersion: 2,
+      createdAt: '2016-05-11T09:09:00.222Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '3.3.0',
+      updatedAt: '2018-11-11T09:09:00.222Z',
+      updatedByApps: ['Contacts'],
+      importedAt: undefined,
+      importedFrom: undefined,
+      sourceAccount: undefined
     }
   },
   {
     id: 'larue-cremin-attached-to-another-source',
     name: { givenName: 'Larue', familyName: 'Cremin' },
     cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2014-02-22T09:55:00.222Z',
+      createdByApp: 'konnector-google',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2018-03-22T12:09:00.222Z',
+      updatedByApps: ['Contacts'],
+      importedAt: '2014-02-22T09:55:00.222Z',
+      importedFrom: 'konnector-google',
+      sourceAccount: OTHER_SOURCE_ACCOUNT_ID,
       sync: {
         [OTHER_SOURCE_ACCOUNT_ID]: {
-          id: 'people/987654'
+          id: 'people/987654',
+          remoteRev: '55c10151-8085-4bcf-b7b6-6314bcc9665f'
         }
       }
     }
@@ -64,180 +100,170 @@ afterAll(() => {
   restoreDate()
 })
 
-describe('synchronizeContacts', () => {
+describe('synchronizeContacts function', () => {
   const fakeCozyClient = {}
 
   beforeEach(() => {
+    googleUtils.createContact.mockName('googleCreateContact')
     googleUtils.createContact.mockResolvedValueOnce({
       data: {
-        etag: 'etag-963fd240-d568-4b24-9f26-6e658d4e4958',
+        etag: '963fd240-d568-4b24-9f26-6e658d4e4958',
         resourceName: 'people/96508'
       }
     })
     googleUtils.createContact.mockResolvedValueOnce({
       data: {
-        etag: 'etag-6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd',
+        etag: '6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd',
         resourceName: 'people/78485'
       }
     })
-    fakeCozyClient.save = jest.fn(contact =>
-      Promise.resolve({
-        data: { id: contact.id }
-      })
-    )
+    fakeCozyClient.save = jest
+      .fn(contact =>
+        Promise.resolve({
+          data: { id: contact.id }
+        })
+      )
+      .mockName('cozySave')
+
+    cozyUtils.client = fakeCozyClient
   })
 
   afterEach(() => {
     jest.clearAllMocks()
   })
 
-  describe('synchronize contacts with cozy to google strategy', () => {
-    it('should synchronize cozy contacts to google', async () => {
-      const googleContacts = [] // we don't care about google contacts here
-      const strategy = getCozyToGoogleStrategy(
-        fakeCozyClient,
-        googleUtils,
-        SOURCE_ACCOUNT_ID
-      )
-      const result = await synchronizeContacts(
-        cozyContacts,
-        googleContacts,
-        strategy
-      )
-      expect(result).toEqual([
-        null,
-        null,
-        { created: true, id: 'reinhold-jenkins-no-source' },
-        { created: true, id: 'larue-cremin-attached-to-another-source' }
-      ])
+  it('should synchronize contacts', async () => {
+    const googleContacts = [
+      {
+        // contact to create
+        etag: '958e26de-80d2-4051-8ba9-ae954dffd9f6',
+        resourceName: 'people/751021',
+        names: [{ givenName: 'Kayleigh', familyName: 'Yundt' }],
+        metadata: { deleted: false }
+      },
+      {
+        // contact that already exists in cozy contacts
+        resourceName: 'people/944070',
+        etag: '6092c3ca-c9f8-4abb-a27b-3add4158bfc2',
+        names: [{ givenName: 'Adan', familyName: 'Mueller' }],
+        metadata: { deleted: false }
+      },
+      {
+        // contact that already exists in cozy contacts
+        resourceName: 'people/123456',
+        etag: '5b84b076-a2bd-4a98-af08-46d6db21660e',
+        names: [{ givenName: 'Jane', familyName: 'Doe' }],
+        metadata: { deleted: false }
+      },
+      {
+        // contact that already exists in cozy contacts
+        resourceName: 'people/987654',
+        etag: '9659474d-f3ce-47a5-a9f1-01b55e6b0987',
+        names: [{ givenName: 'John', familyName: 'Doe' }],
+        metadata: { deleted: false }
+      },
+      {
+        // contact that has been deleted on Google
+        resourceName: 'people/672617',
+        etag: 'ea79ad60-8c9f-4143-830f-07dfb260630b',
+        names: [{ givenName: 'Aurelia', familyName: 'Hayes' }],
+        metadata: { deleted: true }
+      }
+    ]
 
-      expect(fakeCozyClient.save).toHaveBeenCalledTimes(2)
-      expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot()
-      expect(fakeCozyClient.save.mock.calls[1]).toMatchSnapshot()
-    })
-
-    it('should do nothing if there are no contacts to sync', async () => {
-      const cozyContacts = []
-      const googleContacts = []
-      const strategy = getCozyToGoogleStrategy(
-        fakeCozyClient,
-        googleUtils,
-        SOURCE_ACCOUNT_ID
-      )
-      const result = await synchronizeContacts(
-        cozyContacts,
-        googleContacts,
-        strategy
-      )
-      expect(result).toEqual([])
-    })
-
-    it('should fail nicely on google error', async () => {
-      const googleContacts = []
-      googleUtils.createContact.mockRejectedValue(
-        'Unable to create google contact'
-      )
-      const strategy = getCozyToGoogleStrategy(
-        fakeCozyClient,
-        googleUtils,
-        SOURCE_ACCOUNT_ID
-      )
-      try {
-        await synchronizeContacts(cozyContacts, googleContacts, strategy)
-      } catch (err) {
-        expect(err).toMatch('Unable to create google contact')
+    const result = await synchronizeContacts(
+      SOURCE_ACCOUNT_ID,
+      cozyContacts,
+      googleContacts,
+      cozyUtils,
+      googleUtils
+    )
+    expect(result).toEqual({
+      cozy: {
+        created: 2,
+        deleted: 0,
+        updated: 0
+      },
+      google: {
+        created: 2,
+        deleted: 0,
+        updated: 0
       }
     })
 
-    it('should fail nicely on cozy client error', async () => {
-      const googleContacts = []
-      fakeCozyClient.save.mockRejectedValue('Unable to save contact in cozy')
-      const strategy = getCozyToGoogleStrategy(
-        fakeCozyClient,
-        googleUtils,
-        SOURCE_ACCOUNT_ID
-      )
-      try {
-        await synchronizeContacts(cozyContacts, googleContacts, strategy)
-      } catch (err) {
-        expect(err).toMatch('Unable to save contact in cozy')
+    expect(fakeCozyClient.save).toHaveBeenCalledTimes(4)
+    expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot()
+    expect(fakeCozyClient.save.mock.calls[1]).toMatchSnapshot()
+    expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot()
+    expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot()
+
+    expect(googleUtils.createContact).toHaveBeenCalledTimes(2)
+    expect(googleUtils.createContact.mock.calls[0]).toMatchSnapshot()
+    expect(googleUtils.createContact.mock.calls[1]).toMatchSnapshot()
+  })
+
+  it('should do nothing if there are no contacts to sync', async () => {
+    const cozyContacts = []
+    const googleContacts = []
+    const result = await synchronizeContacts(
+      SOURCE_ACCOUNT_ID,
+      cozyContacts,
+      googleContacts,
+      cozyUtils,
+      googleUtils
+    )
+    expect(result).toEqual({
+      cozy: {
+        created: 0,
+        deleted: 0,
+        updated: 0
+      },
+      google: {
+        created: 0,
+        deleted: 0,
+        updated: 0
       }
     })
   })
 
-  describe('synchronize contacts with google to cozy strategy', () => {
-    it('should synchronize cozy contacts from google contacts', async () => {
-      fakeCozyClient.save.mockResolvedValueOnce({
-        data: { id: 'kayleigh-yundt-created-in-cozy' }
-      })
-      const cozyContacts = [
-        {
-          id: 'e233286e-7852-4ce2-9d0b-3bc024364edf',
-          cozyMetadata: {
-            sync: {
-              [SOURCE_ACCOUNT_ID]: {
-                id: 'people/999'
-              }
-            }
-          }
-        }
-      ]
-      const googleContacts = [
-        {
-          // contact to create
-          etag: 'etag-958e26de-80d2-4051-8ba9-ae954dffd9f6',
-          resourceName: 'people/111',
-          names: [{ givenName: 'Kayleigh', familyName: 'Yundt' }]
-        },
-        {
-          // contact that already exists in cozy contacts
-          resourceName: 'people/999',
-          names: [{ givenName: 'Adan', familyName: 'Mueller' }]
-        }
-      ]
-      cozyUtils.client = fakeCozyClient
-      const strategy = getGoogleToCozyStrategy(cozyUtils, SOURCE_ACCOUNT_ID)
-      const result = await synchronizeContacts(
-        googleContacts,
-        cozyContacts,
-        strategy
-      )
-      expect(fakeCozyClient.save).toHaveBeenCalledTimes(1)
-      expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot()
-      expect(result).toEqual([
-        { created: true, id: 'kayleigh-yundt-created-in-cozy' },
-        null
-      ])
-    })
+  it('should fail nicely on google error', async () => {
+    const googleContacts = []
+    googleUtils.createContact.mockRejectedValue(
+      'Unable to create google contact'
+    )
 
-    it('should do nothing if there are no contacts to sync', async () => {
-      const cozyContacts = []
-      const googleContacts = []
-      const strategy = getGoogleToCozyStrategy(cozyUtils, SOURCE_ACCOUNT_ID)
-      const result = await synchronizeContacts(
-        googleContacts,
+    try {
+      await synchronizeContacts(
+        SOURCE_ACCOUNT_ID,
         cozyContacts,
-        strategy
+        googleContacts,
+        cozyUtils,
+        googleUtils
       )
-      expect(result).toEqual([])
-    })
+    } catch (err) {
+      expect(err.message).toMatch(
+        'Unable to synchronize contacts: Unable to create google contact'
+      )
+    }
+  })
 
-    it('should fail nicely on cozy client error', async () => {
-      const googleContacts = [
-        {
-          etag: 'etag-958e26de-80d2-4051-8ba9-ae954dffd9f6',
-          resourceName: 'people/111',
-          names: [{ givenName: 'Kayleigh', familyName: 'Yundt' }]
-        }
-      ]
-      const cozyContacts = []
-      fakeCozyClient.save.mockRejectedValue('Unable to save contact in cozy')
-      const strategy = getGoogleToCozyStrategy(cozyUtils, SOURCE_ACCOUNT_ID)
-      try {
-        await synchronizeContacts(googleContacts, cozyContacts, strategy)
-      } catch (err) {
-        expect(err).toMatch('Unable to save contact in cozy')
-      }
-    })
+  it('should fail nicely on cozy client error', async () => {
+    const googleContacts = []
+    fakeCozyClient.save.mockRejectedValue(
+      new Error('Unable to save contact in cozy')
+    )
+    try {
+      await synchronizeContacts(
+        SOURCE_ACCOUNT_ID,
+        cozyContacts,
+        googleContacts,
+        cozyUtils,
+        googleUtils
+      )
+    } catch (err) {
+      expect(err.message).toMatch(
+        'Unable to synchronize contacts: Unable to save contact in cozy'
+      )
+    }
   })
 })

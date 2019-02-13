@@ -1,5 +1,4 @@
-const fs = require('fs')
-const manifestInfos = JSON.parse(fs.readFileSync('./manifest.konnector'))
+const manifestInfos = require('../manifest.konnector')
 
 const ADD_COZY_METADATA = true
 const APP_NAME = `konnector-${manifestInfos.slug}`
