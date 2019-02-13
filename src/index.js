@@ -9,10 +9,8 @@ const {
   errors
 } = require('cozy-konnector-libs')
 
-const getCozyToGoogleStrategy = require('./getCozyToGoogleStrategy')
-const getGoogleToCozyStrategy = require('./getGoogleToCozyStrategy')
 const cozyUtils = require('./cozy')
-const google = require('./google')
+const googleUtils = require('./google')
 const synchronizeContacts = require('./synchronizeContacts')
 
 module.exports = new BaseKonnector(start)
@@ -62,12 +60,12 @@ async function start(fields, doRetry = true) {
       : JSON.parse(process.env.COZY_FIELDS).account
 
   try {
-    google.oAuth2Client.setCredentials({
+    googleUtils.oAuth2Client.setCredentials({
       access_token: fields.access_token
     })
 
     log('info', 'Getting account infos')
-    const accountInfo = await google.getAccountInfo({
+    const accountInfo = await googleUtils.getAccountInfo({
       personFields: 'emailAddresses'
     })
     const accountEmail = accountInfo.emailAddresses[0].value
@@ -83,7 +81,7 @@ async function start(fields, doRetry = true) {
       { contacts: googleContacts, nextSyncToken },
       cozyContacts
     ] = await Promise.all([
-      google.getAllContacts({
+      googleUtils.getAllContacts({
         personFields: FIELDS.join(','),
         syncToken: contactAccount.syncToken // only contacts that have been modified since last sync
       }),
@@ -91,40 +89,25 @@ async function start(fields, doRetry = true) {
     ])
     const lastGoogleSync = new Date().toISOString()
 
-    // sync cozy -> google
-    const cozyToGoogleStrategy = getCozyToGoogleStrategy(
-      cozyUtils.client,
-      google,
-      contactAccount.id
-    )
-    const cozyToGoogleSyncResponse = await synchronizeContacts(
+    const result = await synchronizeContacts(
+      contactAccount.id,
       cozyContacts,
       googleContacts,
-      cozyToGoogleStrategy
-    )
-
-    if (cozyToGoogleSyncResponse.some(result => result && result.created)) {
-      log('info', `Created Google contacts for ${accountEmail}`)
-    }
-
-    // sync google -> cozy
-    const googleToCozyStrategy = getGoogleToCozyStrategy(
       cozyUtils,
-      contactAccount.id
+      googleUtils
     )
 
-    const googleToCozySyncResponse = await synchronizeContacts(
-      googleContacts,
-      cozyContacts,
-      googleToCozyStrategy
+    log(
+      'info',
+      `Created ${result.cozy.created} new Cozy contacts for ${accountEmail}`
+    )
+    log(
+      'info',
+      `Created ${result.google.created} new Google contacts for ${accountEmail}`
     )
 
+    // update the contact account
     const lastLocalSync = new Date().toISOString()
-
-    if (googleToCozySyncResponse.some(result => result && result.created)) {
-      log('info', `Created Cozy contacts for ${accountEmail}`)
-    }
-
     await cozyUtils.save({
       ...contactAccount,
       lastSync: lastGoogleSync,

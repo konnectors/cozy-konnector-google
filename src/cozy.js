@@ -63,6 +63,7 @@ module.exports = (() => ({
             updatedAt: {
               $gt: lastSync
             }
+            //TODO: filter by contact account id / email -> only the second time, otherwise no contacts come up
           }
         },
         { indexedFields: ['cozyMetadata.updatedAt'] }
