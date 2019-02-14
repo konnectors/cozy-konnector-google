@@ -98,7 +98,7 @@ function getFamilyName({ names = undefined }) {
 }
 
 function getCompany({ organizations = undefined }) {
-  return organizations && organizations[0].name
+  return organizations && organizations[0] && organizations[0].name
 }
 
 function getNote({ biographies = undefined }) {
