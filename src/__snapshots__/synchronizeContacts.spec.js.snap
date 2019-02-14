@@ -48,6 +48,117 @@ Array [
 ]
 `;
 
+exports[`synchronizeContacts function should synchronize contacts: johnDoeInCozy 1`] = `
+Array [
+  Object {
+    "_rev": "9a045a8e-8db7-49eb-a0b3-8388566f8a9c",
+    "_type": "io.cozy.contacts",
+    "address": Array [],
+    "birthday": "1955-2-22",
+    "company": "Cozy cloud",
+    "cozyMetadata": Object {
+      "createdAt": "2016-06-30T09:33:00.123Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2016-06-30T09:33:00.123Z",
+      "importedFrom": "konnector-google",
+      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/987654",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "6020dd2f-c9b8-4865-bdbd-078faad65204",
+        },
+      },
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "email": Array [
+      Object {
+        "address": "john.doe@posteo.net",
+        "primary": false,
+        "type": "personal",
+      },
+      Object {
+        "address": "john.doe@cozycloud.cc",
+        "primary": true,
+      },
+    ],
+    "id": "john-doe-edited",
+    "metadata": Object {
+      "google": Object {
+        "metadata": Object {
+          "deleted": false,
+        },
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Doe",
+      "givenName": "John",
+    },
+    "note": undefined,
+    "phone": Array [],
+    "vendorId": "people/987654",
+  },
+]
+`;
+
+exports[`synchronizeContacts function should synchronize contacts: johnDoeInGoogle 1`] = `
+Array [
+  Object {
+    "addresses": Array [],
+    "biographies": undefined,
+    "birthdays": Array [
+      Object {
+        "date": Object {
+          "day": "22",
+          "month": "2",
+          "year": "1955",
+        },
+        "metadata": Object {
+          "primary": true,
+        },
+      },
+    ],
+    "emailAddresses": Array [
+      Object {
+        "metadata": Object {
+          "primary": false,
+        },
+        "type": "personal",
+        "value": "john.doe@posteo.net",
+      },
+      Object {
+        "metadata": Object {
+          "primary": true,
+        },
+        "type": undefined,
+        "value": "john.doe@cozycloud.cc",
+      },
+    ],
+    "names": Array [
+      Object {
+        "familyName": "Doe",
+        "givenName": "John",
+      },
+    ],
+    "organizations": Array [
+      Object {
+        "name": "Cozy cloud",
+      },
+    ],
+    "phoneNumbers": Array [],
+  },
+]
+`;
+
 exports[`synchronizeContacts function should synchronize contacts: kayleighYundtInCozy 1`] = `
 Array [
   Object {
