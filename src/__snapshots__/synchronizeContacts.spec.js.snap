@@ -1,150 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`synchronizeContacts function should synchronize contacts 1`] = `
-Array [
-  Object {
-    "address": Array [],
-    "birthday": undefined,
-    "company": undefined,
-    "cozyMetadata": Object {
-      "createdAt": "2016-05-11T09:09:00.222Z",
-      "createdByApp": "Contacts",
-      "createdByAppVersion": "3.3.0",
-      "doctypeVersion": 2,
-      "importedAt": undefined,
-      "importedFrom": undefined,
-      "sourceAccount": undefined,
-      "sync": Object {
-        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
-          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
-          "id": "people/96508",
-          "konnector": "konnector-google",
-          "lastSync": "2018-05-05T09:09:00.115Z",
-          "remoteRev": "963fd240-d568-4b24-9f26-6e658d4e4958",
-        },
-      },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
-      "updatedByApps": Array [
-        "Contacts",
-        "konnector-google",
-      ],
-    },
-    "email": Array [],
-    "id": "reinhold-jenkins-no-source",
-    "metadata": Object {
-      "google": Object {
-        "metadata": undefined,
-      },
-      "version": 1,
-    },
-    "name": Object {
-      "familyName": "Jenkins",
-      "givenName": "Reinhold",
-    },
-    "note": undefined,
-    "phone": Array [],
-    "vendorId": undefined,
-  },
-]
-`;
-
-exports[`synchronizeContacts function should synchronize contacts 2`] = `
-Array [
-  Object {
-    "address": Array [],
-    "birthday": undefined,
-    "company": undefined,
-    "cozyMetadata": Object {
-      "createdAt": "2014-02-22T09:55:00.222Z",
-      "createdByApp": "konnector-google",
-      "createdByAppVersion": "2.0.0",
-      "doctypeVersion": 2,
-      "importedAt": "2014-02-22T09:55:00.222Z",
-      "importedFrom": "konnector-google",
-      "sourceAccount": "cb31eb3e-989e-4818-8b45-afed904237da",
-      "sync": Object {
-        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
-          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
-          "id": "people/78485",
-          "konnector": "konnector-google",
-          "lastSync": "2018-05-05T09:09:00.115Z",
-          "remoteRev": "6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd",
-        },
-      },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
-      "updatedByApps": Array [
-        "Contacts",
-        "konnector-google",
-      ],
-    },
-    "email": Array [],
-    "id": "larue-cremin-attached-to-another-source",
-    "metadata": Object {
-      "google": Object {
-        "metadata": undefined,
-      },
-      "version": 1,
-    },
-    "name": Object {
-      "familyName": "Cremin",
-      "givenName": "Larue",
-    },
-    "note": undefined,
-    "phone": Array [],
-    "vendorId": undefined,
-  },
-]
-`;
-
-exports[`synchronizeContacts function should synchronize contacts 3`] = `
-Array [
-  Object {
-    "_type": "io.cozy.contacts",
-    "address": Array [],
-    "birthday": undefined,
-    "company": undefined,
-    "cozyMetadata": Object {
-      "createdAt": "2018-05-05T09:09:00.115Z",
-      "createdByApp": "konnector-google",
-      "createdByAppVersion": "2.0.0",
-      "doctypeVersion": 2,
-      "importedAt": "2018-05-05T09:09:00.115Z",
-      "importedFrom": "konnector-google",
-      "sync": Object {
-        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
-          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
-          "id": "people/751021",
-          "konnector": "konnector-google",
-          "lastSync": "2018-05-05T09:09:00.115Z",
-          "remoteRev": "958e26de-80d2-4051-8ba9-ae954dffd9f6",
-        },
-      },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
-      "updatedByApps": Array [
-        "konnector-google",
-      ],
-    },
-    "email": Array [],
-    "metadata": Object {
-      "google": Object {
-        "metadata": Object {
-          "deleted": false,
-        },
-      },
-      "version": 1,
-    },
-    "name": Object {
-      "familyName": "Yundt",
-      "givenName": "Kayleigh",
-    },
-    "note": undefined,
-    "phone": Array [],
-    "vendorId": "people/751021",
-  },
-]
-`;
-
-exports[`synchronizeContacts function should synchronize contacts 4`] = `
+exports[`synchronizeContacts function should synchronize contacts: adanMuellerInCozy 1`] = `
 Array [
   Object {
     "_type": "io.cozy.contacts",
@@ -192,26 +48,103 @@ Array [
 ]
 `;
 
-exports[`synchronizeContacts function should synchronize contacts 5`] = `
+exports[`synchronizeContacts function should synchronize contacts: kayleighYundtInCozy 1`] = `
 Array [
   Object {
-    "addresses": Array [],
-    "biographies": undefined,
-    "birthdays": Array [],
-    "emailAddresses": Array [],
-    "names": Array [
-      Object {
-        "familyName": "Jenkins",
-        "givenName": "Reinhold",
+    "_type": "io.cozy.contacts",
+    "address": Array [],
+    "birthday": undefined,
+    "company": undefined,
+    "cozyMetadata": Object {
+      "createdAt": "2018-05-05T09:09:00.115Z",
+      "createdByApp": "konnector-google",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2018-05-05T09:09:00.115Z",
+      "importedFrom": "konnector-google",
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/751021",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "958e26de-80d2-4051-8ba9-ae954dffd9f6",
+        },
       },
-    ],
-    "organizations": undefined,
-    "phoneNumbers": Array [],
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "konnector-google",
+      ],
+    },
+    "email": Array [],
+    "metadata": Object {
+      "google": Object {
+        "metadata": Object {
+          "deleted": false,
+        },
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Yundt",
+      "givenName": "Kayleigh",
+    },
+    "note": undefined,
+    "phone": Array [],
+    "vendorId": "people/751021",
   },
 ]
 `;
 
-exports[`synchronizeContacts function should synchronize contacts 6`] = `
+exports[`synchronizeContacts function should synchronize contacts: larueCreminInCozy 1`] = `
+Array [
+  Object {
+    "address": Array [],
+    "birthday": undefined,
+    "company": undefined,
+    "cozyMetadata": Object {
+      "createdAt": "2014-02-22T09:55:00.222Z",
+      "createdByApp": "konnector-google",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2014-02-22T09:55:00.222Z",
+      "importedFrom": "konnector-google",
+      "sourceAccount": "cb31eb3e-989e-4818-8b45-afed904237da",
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/78485",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd",
+        },
+      },
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "email": Array [],
+    "id": "larue-cremin-attached-to-another-source",
+    "metadata": Object {
+      "google": Object {
+        "metadata": undefined,
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Cremin",
+      "givenName": "Larue",
+    },
+    "note": undefined,
+    "phone": Array [],
+    "vendorId": undefined,
+  },
+]
+`;
+
+exports[`synchronizeContacts function should synchronize contacts: larueCreminInGoogle 1`] = `
 Array [
   Object {
     "addresses": Array [],
@@ -222,6 +155,73 @@ Array [
       Object {
         "familyName": "Cremin",
         "givenName": "Larue",
+      },
+    ],
+    "organizations": undefined,
+    "phoneNumbers": Array [],
+  },
+]
+`;
+
+exports[`synchronizeContacts function should synchronize contacts: reinholdJenkinsInCozy 1`] = `
+Array [
+  Object {
+    "address": Array [],
+    "birthday": undefined,
+    "company": undefined,
+    "cozyMetadata": Object {
+      "createdAt": "2016-05-11T09:09:00.222Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "3.3.0",
+      "doctypeVersion": 2,
+      "importedAt": undefined,
+      "importedFrom": undefined,
+      "sourceAccount": undefined,
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/96508",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "963fd240-d568-4b24-9f26-6e658d4e4958",
+        },
+      },
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "email": Array [],
+    "id": "reinhold-jenkins-no-source",
+    "metadata": Object {
+      "google": Object {
+        "metadata": undefined,
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Jenkins",
+      "givenName": "Reinhold",
+    },
+    "note": undefined,
+    "phone": Array [],
+    "vendorId": undefined,
+  },
+]
+`;
+
+exports[`synchronizeContacts function should synchronize contacts: reinholdJenkinsInGoogle 1`] = `
+Array [
+  Object {
+    "addresses": Array [],
+    "biographies": undefined,
+    "birthdays": Array [],
+    "emailAddresses": Array [],
+    "names": Array [
+      Object {
+        "familyName": "Jenkins",
+        "givenName": "Reinhold",
       },
     ],
     "organizations": undefined,
