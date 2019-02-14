@@ -154,7 +154,7 @@ describe('synchronizeContacts function', () => {
     jest.clearAllMocks()
   })
 
-  it.only('should synchronize contacts', async () => {
+  it('should synchronize contacts', async () => {
     const googleContacts = [
       {
         // contact to create
