@@ -1,9 +1,23 @@
 const transpiler = require('./transpiler')
-const merge = require('lodash/merge')
+const mergeWith = require('lodash/mergeWith')
+const isArray = require('lodash/isArray')
 
-const mergeContact = (cozyContact = {}, googleContact = {}) => {
+const customizer = (objValue, srcValue) => {
+  if (srcValue === undefined) {
+    return null
+  } else if (isArray(srcValue)) {
+    return srcValue
+  }
+}
+
+const mergeContact = (cozyContact = {}, googleContact = {}, options) => {
+  const { preferGoogle = false } = options
   const transpiledGoogleContact = transpiler.toCozy(googleContact)
-  return merge({}, cozyContact, transpiledGoogleContact)
+  if (preferGoogle) {
+    return mergeWith({}, cozyContact, transpiledGoogleContact, customizer)
+  } else {
+    return mergeWith({}, transpiledGoogleContact, cozyContact, customizer)
+  }
 }
 
 module.exports = mergeContact

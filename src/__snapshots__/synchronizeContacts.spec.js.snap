@@ -5,8 +5,8 @@ Array [
   Object {
     "_type": "io.cozy.contacts",
     "address": Array [],
-    "birthday": undefined,
-    "company": undefined,
+    "birthday": null,
+    "company": null,
     "cozyMetadata": Object {
       "createdAt": "2018-05-05T09:09:00.115Z",
       "createdByApp": "konnector-google",
@@ -41,7 +41,7 @@ Array [
       "familyName": "Mueller",
       "givenName": "Adan",
     },
-    "note": undefined,
+    "note": null,
     "phone": Array [],
     "vendorId": "people/944070",
   },
@@ -103,7 +103,7 @@ Array [
       "familyName": "Doe",
       "givenName": "John",
     },
-    "note": undefined,
+    "note": null,
     "phone": Array [],
     "vendorId": "people/987654",
   },
@@ -114,7 +114,7 @@ exports[`synchronizeContacts function should synchronize contacts: johnDoeInGoog
 Array [
   Object {
     "addresses": Array [],
-    "biographies": undefined,
+    "biographies": null,
     "birthdays": Array [
       Object {
         "date": Object {
@@ -164,8 +164,8 @@ Array [
   Object {
     "_type": "io.cozy.contacts",
     "address": Array [],
-    "birthday": undefined,
-    "company": undefined,
+    "birthday": null,
+    "company": null,
     "cozyMetadata": Object {
       "createdAt": "2018-05-05T09:09:00.115Z",
       "createdByApp": "konnector-google",
@@ -200,7 +200,7 @@ Array [
       "familyName": "Yundt",
       "givenName": "Kayleigh",
     },
-    "note": undefined,
+    "note": null,
     "phone": Array [],
     "vendorId": "people/751021",
   },
@@ -211,8 +211,8 @@ exports[`synchronizeContacts function should synchronize contacts: larueCreminIn
 Array [
   Object {
     "address": Array [],
-    "birthday": undefined,
-    "company": undefined,
+    "birthday": null,
+    "company": null,
     "cozyMetadata": Object {
       "createdAt": "2014-02-22T09:55:00.222Z",
       "createdByApp": "konnector-google",
@@ -240,7 +240,7 @@ Array [
     "id": "larue-cremin-attached-to-another-source",
     "metadata": Object {
       "google": Object {
-        "metadata": undefined,
+        "metadata": null,
       },
       "version": 1,
     },
@@ -248,9 +248,9 @@ Array [
       "familyName": "Cremin",
       "givenName": "Larue",
     },
-    "note": undefined,
+    "note": null,
     "phone": Array [],
-    "vendorId": undefined,
+    "vendorId": null,
   },
 ]
 `;
@@ -259,7 +259,7 @@ exports[`synchronizeContacts function should synchronize contacts: larueCreminIn
 Array [
   Object {
     "addresses": Array [],
-    "biographies": undefined,
+    "biographies": null,
     "birthdays": Array [],
     "emailAddresses": Array [],
     "names": Array [
@@ -268,7 +268,7 @@ Array [
         "givenName": "Larue",
       },
     ],
-    "organizations": undefined,
+    "organizations": null,
     "phoneNumbers": Array [],
   },
 ]
@@ -278,16 +278,16 @@ exports[`synchronizeContacts function should synchronize contacts: reinholdJenki
 Array [
   Object {
     "address": Array [],
-    "birthday": undefined,
-    "company": undefined,
+    "birthday": null,
+    "company": null,
     "cozyMetadata": Object {
       "createdAt": "2016-05-11T09:09:00.222Z",
       "createdByApp": "Contacts",
       "createdByAppVersion": "3.3.0",
       "doctypeVersion": 2,
-      "importedAt": undefined,
-      "importedFrom": undefined,
-      "sourceAccount": undefined,
+      "importedAt": null,
+      "importedFrom": null,
+      "sourceAccount": null,
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
@@ -307,7 +307,7 @@ Array [
     "id": "reinhold-jenkins-no-source",
     "metadata": Object {
       "google": Object {
-        "metadata": undefined,
+        "metadata": null,
       },
       "version": 1,
     },
@@ -315,9 +315,9 @@ Array [
       "familyName": "Jenkins",
       "givenName": "Reinhold",
     },
-    "note": undefined,
+    "note": null,
     "phone": Array [],
-    "vendorId": undefined,
+    "vendorId": null,
   },
 ]
 `;
@@ -326,7 +326,7 @@ exports[`synchronizeContacts function should synchronize contacts: reinholdJenki
 Array [
   Object {
     "addresses": Array [],
-    "biographies": undefined,
+    "biographies": null,
     "birthdays": Array [],
     "emailAddresses": Array [],
     "names": Array [
@@ -335,7 +335,7 @@ Array [
         "givenName": "Reinhold",
       },
     ],
-    "organizations": undefined,
+    "organizations": null,
     "phoneNumbers": Array [],
   },
 ]
