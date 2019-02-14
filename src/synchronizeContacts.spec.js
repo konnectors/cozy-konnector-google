@@ -192,14 +192,26 @@ describe('synchronizeContacts function', () => {
     })
 
     expect(fakeCozyClient.save).toHaveBeenCalledTimes(4)
-    expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot()
-    expect(fakeCozyClient.save.mock.calls[1]).toMatchSnapshot()
-    expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot()
-    expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot()
+    expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot(
+      'reinholdJenkinsInCozy'
+    )
+    expect(fakeCozyClient.save.mock.calls[1]).toMatchSnapshot(
+      'larueCreminInCozy'
+    )
+    expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot(
+      'kayleighYundtInCozy'
+    )
+    expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot(
+      'adanMuellerInCozy'
+    )
 
     expect(googleUtils.createContact).toHaveBeenCalledTimes(2)
-    expect(googleUtils.createContact.mock.calls[0]).toMatchSnapshot()
-    expect(googleUtils.createContact.mock.calls[1]).toMatchSnapshot()
+    expect(googleUtils.createContact.mock.calls[0]).toMatchSnapshot(
+      'reinholdJenkinsInGoogle'
+    )
+    expect(googleUtils.createContact.mock.calls[1]).toMatchSnapshot(
+      'larueCreminInGoogle'
+    )
   })
 
   it('should do nothing if there are no contacts to sync', async () => {
