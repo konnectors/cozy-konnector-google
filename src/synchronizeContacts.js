@@ -141,17 +141,28 @@ const synchronizeContacts = async (
             contactAccountId
           )
           result.google.created++
+        } else {
+          // as we only get contacts that have changed, if it's not a creation or deletion, it's an update
+          const googleResp = await googleUtils.updateContact(
+            transpiler.toGoogle(mergedContact)
+          )
+          const { etag, resourceName } = googleResp.data
+          mergedContact = mergedContact = updateCozyMetadata(
+            mergedContact,
+            etag,
+            resourceName,
+            contactAccountId
+          )
+          result.google.updated++
         }
-        // if (hasEditedContact(mergedContact, googleContact)) {
-        //   googleUtils.updateCOntact(mergedContact)
-        //   mergedContact = updateContactEtag(mergedContact, googleResp.data)
-        // }
+
         // if (hasDeletedContact(mergedContact, cozyContact)) {
         //   googleUtils.deleteContact(mergedContact)
         //   cozyUtils.delete(mergedContact)
         // }
 
         if (hasRevChanged(mergedContact, cozyContact, contactAccountId)) {
+          // we only update the sync metadata here so we don't count it as created/updated
           await cozyUtils.client.save(mergedContact)
         }
       })

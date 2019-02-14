@@ -11,48 +11,28 @@ const OTHER_SOURCE_ACCOUNT_ID = 'cb31eb3e-989e-4818-8b45-afed904237da'
 const MOCKED_DATE = '2018-05-05T09:09:00.115Z'
 
 const cozyContacts = [
-  {
-    id: 'jane-doe-attached-to-the-source',
-    name: { givenName: 'Jane', familyName: 'Doe' },
-    cozyMetadata: {
-      doctypeVersion: 2,
-      createdAt: '2018-02-22T11:11:11.222Z',
-      createdByApp: 'konnector-google',
-      createdByAppVersion: '2.0.0',
-      updatedAt: '2018-03-22T12:09:00.222Z',
-      updatedByApps: ['konnector-google'],
-      importedAt: '2018-02-22T11:11:11.222Z',
-      importedFrom: 'konnector-google',
-      sourceAccount: SOURCE_ACCOUNT_ID,
-      sync: {
-        [SOURCE_ACCOUNT_ID]: {
-          id: 'people/123456',
-          remoteRev: '5b84b076-a2bd-4a98-af08-46d6db21660e'
-        }
-      }
-    }
-  },
-  {
-    id: 'john-doe-attached-to-the-source',
-    name: { givenName: 'John', familyName: 'Doe' },
-    cozyMetadata: {
-      doctypeVersion: 2,
-      createdAt: '2016-06-30T09:33:00.123Z',
-      createdByApp: 'Contacts',
-      createdByAppVersion: '2.0.0',
-      updatedAt: '2019-01-22T18:18:00.222Z',
-      updatedByApps: ['Contacts'],
-      importedAt: '2016-06-30T09:33:00.123Z',
-      importedFrom: 'konnector-google',
-      sourceAccount: SOURCE_ACCOUNT_ID,
-      sync: {
-        [SOURCE_ACCOUNT_ID]: {
-          id: 'people/987654',
-          remoteRev: '9659474d-f3ce-47a5-a9f1-01b55e6b0987'
-        }
-      }
-    }
-  },
+  // If the contact is unchanged, we don't pass it to synchronizeContacts
+  // {
+  //   id: 'jane-doe-unchanged',
+  //   name: { givenName: 'Jane', familyName: 'Doe' },
+  //   cozyMetadata: {
+  //     doctypeVersion: 2,
+  //     createdAt: '2018-02-22T11:11:11.222Z',
+  //     createdByApp: 'konnector-google',
+  //     createdByAppVersion: '2.0.0',
+  //     updatedAt: '2018-03-22T12:09:00.222Z',
+  //     updatedByApps: ['konnector-google'],
+  //     importedAt: '2018-02-22T11:11:11.222Z',
+  //     importedFrom: 'konnector-google',
+  //     sourceAccount: SOURCE_ACCOUNT_ID,
+  //     sync: {
+  //       [SOURCE_ACCOUNT_ID]: {
+  //         id: 'people/123456',
+  //         remoteRev: '5b84b076-a2bd-4a98-af08-46d6db21660e'
+  //       }
+  //     }
+  //   }
+  // },
   {
     // a contact that is not attached to a source
     id: 'reinhold-jenkins-no-source',
@@ -89,6 +69,42 @@ const cozyContacts = [
         }
       }
     }
+  },
+  {
+    id: 'john-doe-edited',
+    _type: 'io.cozy.contacts',
+    _rev: '9a045a8e-8db7-49eb-a0b3-8388566f8a9c',
+    name: { givenName: 'John', familyName: 'Doe' },
+    email: [
+      {
+        address: 'john.doe@posteo.net',
+        type: 'personal',
+        primary: false
+      },
+      {
+        address: 'john.doe@cozycloud.cc',
+        primary: true
+      }
+    ],
+    birthday: '1955-2-22',
+    company: 'Cozy cloud',
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2016-06-30T09:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2019-01-22T18:18:00.222Z',
+      updatedByApps: ['Contacts'],
+      importedAt: '2016-06-30T09:33:00.123Z',
+      importedFrom: 'konnector-google',
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/987654',
+          remoteRev: '9659474d-f3ce-47a5-a9f1-01b55e6b0987'
+        }
+      }
+    }
   }
 ]
 
@@ -117,6 +133,12 @@ describe('synchronizeContacts function', () => {
         resourceName: 'people/78485'
       }
     })
+    googleUtils.updateContact.mockResolvedValueOnce({
+      data: {
+        etag: '6020dd2f-c9b8-4865-bdbd-078faad65204',
+        resourceName: 'people/987654' // john-doe-edited
+      }
+    })
     fakeCozyClient.save = jest
       .fn(contact =>
         Promise.resolve({
@@ -132,7 +154,7 @@ describe('synchronizeContacts function', () => {
     jest.clearAllMocks()
   })
 
-  it('should synchronize contacts', async () => {
+  it.only('should synchronize contacts', async () => {
     const googleContacts = [
       {
         // contact to create
@@ -148,18 +170,25 @@ describe('synchronizeContacts function', () => {
         names: [{ givenName: 'Adan', familyName: 'Mueller' }],
         metadata: { deleted: false }
       },
-      {
-        // contact that already exists in cozy contacts
-        resourceName: 'people/123456',
-        etag: '5b84b076-a2bd-4a98-af08-46d6db21660e',
-        names: [{ givenName: 'Jane', familyName: 'Doe' }],
-        metadata: { deleted: false }
-      },
+      // {
+      //   // contact that already exists in cozy contacts
+      //   resourceName: 'people/123456',
+      //   etag: '5b84b076-a2bd-4a98-af08-46d6db21660e',
+      //   names: [{ givenName: 'Jane', familyName: 'Doe' }],
+      //   metadata: { deleted: false }
+      // },
       {
         // contact that already exists in cozy contacts
         resourceName: 'people/987654',
         etag: '9659474d-f3ce-47a5-a9f1-01b55e6b0987',
         names: [{ givenName: 'John', familyName: 'Doe' }],
+        emails: [
+          {
+            address: 'john.doe@posteo.net',
+            type: 'personal',
+            primary: true
+          }
+        ],
         metadata: { deleted: false }
       },
       {
@@ -187,21 +216,22 @@ describe('synchronizeContacts function', () => {
       google: {
         created: 2,
         deleted: 0,
-        updated: 0
+        updated: 1
       }
     })
 
-    expect(fakeCozyClient.save).toHaveBeenCalledTimes(4)
+    expect(fakeCozyClient.save).toHaveBeenCalledTimes(5)
     expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot(
       'reinholdJenkinsInCozy'
     )
     expect(fakeCozyClient.save.mock.calls[1]).toMatchSnapshot(
       'larueCreminInCozy'
     )
-    expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot(
+    expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot('johnDoeInCozy')
+    expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot(
       'kayleighYundtInCozy'
     )
-    expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot(
+    expect(fakeCozyClient.save.mock.calls[4]).toMatchSnapshot(
       'adanMuellerInCozy'
     )
 
@@ -211,6 +241,11 @@ describe('synchronizeContacts function', () => {
     )
     expect(googleUtils.createContact.mock.calls[1]).toMatchSnapshot(
       'larueCreminInGoogle'
+    )
+
+    expect(googleUtils.updateContact).toHaveBeenCalledTimes(1)
+    expect(googleUtils.updateContact.mock.calls[0]).toMatchSnapshot(
+      'johnDoeInGoogle'
     )
   })
 

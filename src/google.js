@@ -95,5 +95,21 @@ module.exports = (() => ({
     } catch (err) {
       throw new Error(`Unable to create contact ${err.message}`)
     }
+  },
+  updateContact: function(person) {
+    const peopleAPI = google.people({
+      version: 'v1',
+      auth: this.oAuth2Client
+    })
+
+    try {
+      return peopleAPI.people.updateContact({
+        resourceName: person.resourceName,
+        requestBody: person
+        // TODO: updatePersonFields
+      })
+    } catch (err) {
+      throw new Error(`Unable to create contact ${err.message}`)
+    }
   }
 }))()
