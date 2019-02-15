@@ -98,8 +98,7 @@ describe('google API helpers', () => {
       expect(googleUpdateContactSpy).toHaveBeenCalledWith({
         resourceName: 'people/622740',
         requestBody: expectedRequestBody,
-        updatePersonFields:
-          'names,emailAddresses,phoneNumbers,addresses,birthdays,organizations,biographies'
+        updatePersonFields: 'emailAddresses,names'
       })
     })
   })

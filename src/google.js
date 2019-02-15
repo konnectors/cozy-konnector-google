@@ -1,16 +1,6 @@
 const { google } = require('googleapis')
 const OAuth2Client = google.auth.OAuth2
 
-const UPDATE_PERSON_FIELDS = [
-  'names',
-  'emailAddresses',
-  'phoneNumbers',
-  'addresses',
-  'birthdays',
-  'organizations',
-  'biographies'
-]
-
 module.exports = (() => ({
   oAuth2Client: this.oAuth2Client || new OAuth2Client(),
   getAccountInfo: function({ personFields = ['names'] }) {
@@ -119,7 +109,7 @@ module.exports = (() => ({
           ...person,
           etag
         },
-        updatePersonFields: UPDATE_PERSON_FIELDS.join(',')
+        updatePersonFields: Object.keys(person).join(',')
       })
     } catch (err) {
       throw new Error(`Unable to update contact ${err.message}`)
