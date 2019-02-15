@@ -1,6 +1,16 @@
 const { google } = require('googleapis')
 const OAuth2Client = google.auth.OAuth2
 
+const UPDATE_PERSON_FIELDS = [
+  'names',
+  'emailAddresses',
+  'phoneNumbers',
+  'addresses',
+  'birthdays',
+  'organizations',
+  'biographies'
+]
+
 module.exports = (() => ({
   oAuth2Client: this.oAuth2Client || new OAuth2Client(),
   getAccountInfo: function({ personFields = ['names'] }) {
@@ -96,7 +106,7 @@ module.exports = (() => ({
       throw new Error(`Unable to create contact ${err.message}`)
     }
   },
-  updateContact: function(person) {
+  updateContact: function(person, resourceName, etag) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
@@ -104,12 +114,15 @@ module.exports = (() => ({
 
     try {
       return peopleAPI.people.updateContact({
-        resourceName: person.resourceName,
-        requestBody: person
-        // TODO: updatePersonFields
+        resourceName,
+        requestBody: {
+          ...person,
+          etag
+        },
+        updatePersonFields: UPDATE_PERSON_FIELDS.join(',')
       })
     } catch (err) {
-      throw new Error(`Unable to create contact ${err.message}`)
+      throw new Error(`Unable to update contact ${err.message}`)
     }
   }
 }))()
