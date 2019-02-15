@@ -39,7 +39,7 @@
     "cozy-client": "5.7.7",
     "cozy-konnector-libs": "4.14.6",
     "googleapis": "36.0.0",
-    "json-loader": "^0.5.7"
+    "json-loader": "0.5.7"
   },
   "devDependencies": {
     "chalk": "2.4.2",
