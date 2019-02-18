@@ -11,28 +11,6 @@ const OTHER_SOURCE_ACCOUNT_ID = 'cb31eb3e-989e-4818-8b45-afed904237da'
 const MOCKED_DATE = '2018-05-05T09:09:00.115Z'
 
 const cozyContacts = [
-  // If the contact is unchanged, we don't pass it to synchronizeContacts
-  // {
-  //   id: 'jane-doe-unchanged',
-  //   name: { givenName: 'Jane', familyName: 'Doe' },
-  //   cozyMetadata: {
-  //     doctypeVersion: 2,
-  //     createdAt: '2018-02-22T11:11:11.222Z',
-  //     createdByApp: 'konnector-google',
-  //     createdByAppVersion: '2.0.0',
-  //     updatedAt: '2018-03-22T12:09:00.222Z',
-  //     updatedByApps: ['konnector-google'],
-  //     importedAt: '2018-02-22T11:11:11.222Z',
-  //     importedFrom: 'konnector-google',
-  //     sourceAccount: SOURCE_ACCOUNT_ID,
-  //     sync: {
-  //       [SOURCE_ACCOUNT_ID]: {
-  //         id: 'people/123456',
-  //         remoteRev: '5b84b076-a2bd-4a98-af08-46d6db21660e'
-  //       }
-  //     }
-  //   }
-  // },
   {
     // a contact that is not attached to a source
     id: 'reinhold-jenkins-no-source',
@@ -170,13 +148,6 @@ describe('synchronizeContacts function', () => {
         names: [{ givenName: 'Adan', familyName: 'Mueller' }],
         metadata: { deleted: false }
       },
-      // {
-      //   // contact that already exists in cozy contacts
-      //   resourceName: 'people/123456',
-      //   etag: '5b84b076-a2bd-4a98-af08-46d6db21660e',
-      //   names: [{ givenName: 'Jane', familyName: 'Doe' }],
-      //   metadata: { deleted: false }
-      // },
       {
         // contact that already exists in cozy contacts
         resourceName: 'people/987654',

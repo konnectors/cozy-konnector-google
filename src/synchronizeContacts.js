@@ -153,7 +153,7 @@ const synchronizeContacts = async (
             etag
           )
           const { etag: updatedEtag } = googleResp.data
-          mergedContact = mergedContact = updateCozyMetadata(
+          mergedContact = updateCozyMetadata(
             mergedContact,
             updatedEtag,
             resourceName,
