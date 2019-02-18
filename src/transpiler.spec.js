@@ -1,14 +1,14 @@
 const transpile = require('./transpiler')
 
 describe('Transpile from google-contacts to io.cozy-contacts', () => {
-  it('should transpile alan turing', () => {
+  it('Simple test', () => {
     const source = require('../sample/alanturing.json')
 
     const transpiled = transpile.toCozy(source)
     expect(transpiled).toMatchSnapshot()
   })
 
-  it('should transpile all contacts from `sample/*.json', () => {
+  it('complete tests with `sample/*.json', () => {
     const source = require('../sample/google-contacts.json')
 
     const transpiled = source.map(row => ({

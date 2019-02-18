@@ -1,4 +1,5 @@
 const { log } = require('cozy-konnector-libs')
+const get = require('lodash/get')
 const CozyClient = require('cozy-client').default
 
 const {
@@ -52,6 +53,12 @@ function initCozyClient() {
 module.exports = (() => ({
   client: this.client || initCozyClient(),
 
+  prepareIndex: function(contactAccountId) {
+    return this.client
+      .collection(DOCTYPE_CONTACTS)
+      .createIndex([`cozyMetadata.sync.${contactAccountId}.id`])
+  },
+
   getUpdatedContacts: async function(lastSync) {
     let allContacts = []
     const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
@@ -73,6 +80,24 @@ module.exports = (() => ({
     }
 
     return allContacts
+  },
+
+  findContact: async function(accountId, resourceName) {
+    const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
+    const resp = await contactsCollection.find(
+      {
+        cozyMetadata: {
+          sync: {
+            [accountId]: {
+              id: resourceName
+            }
+          }
+        }
+      },
+      { indexedFields: [`cozyMetadata.sync.${accountId}.id`] }
+    )
+
+    return get(resp, 'data.0')
   },
 
   findOrCreateContactAccount: async function(accountID, accountEmail) {
