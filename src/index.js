@@ -85,9 +85,16 @@ async function start(fields, doRetry = true) {
         personFields: FIELDS.join(','),
         syncToken: contactAccount.syncToken // only contacts that have been modified since last sync
       }),
-      cozyUtils.getUpdatedContacts(contactAccount.lastSync)
+      cozyUtils.getUpdatedContacts(contactAccount.lastLocalSync)
     ])
     const lastGoogleSync = new Date().toISOString()
+
+    log(
+      'info',
+      `Try to synchronize ${cozyContacts.length} cozy contacts and ${
+        googleContacts.length
+      } google contacts`
+    )
 
     const result = await synchronizeContacts(
       contactAccount.id,
@@ -104,6 +111,14 @@ async function start(fields, doRetry = true) {
     log(
       'info',
       `Created ${result.google.created} new Google contacts for ${accountEmail}`
+    )
+    log(
+      'info',
+      `Updated ${result.cozy.updated} Cozy contacts for ${accountEmail}`
+    )
+    log(
+      'info',
+      `Updated ${result.google.updated} Google contacts for ${accountEmail}`
     )
 
     // update the contact account

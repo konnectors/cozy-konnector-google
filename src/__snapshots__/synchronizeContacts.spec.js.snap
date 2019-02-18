@@ -342,3 +342,55 @@ Array [
   },
 ]
 `;
+
+exports[`synchronizeContacts function should synchronize contacts: scarlettKundeInCozy 1`] = `
+Array [
+  Object {
+    "_rev": "36bd0782-bda3-4a3b-900a-0d571cc361b6",
+    "_type": "io.cozy.contacts",
+    "address": Array [],
+    "birthday": null,
+    "company": null,
+    "cozyMetadata": Object {
+      "createdAt": "2017-03-22T07:33:00.123Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2016-11-25T19:33:00.123Z",
+      "importedFrom": "konnector-google",
+      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/364391",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "209006ac-a425-426a-906e-3002d56597fa",
+        },
+      },
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "email": Array [],
+    "id": "scarlett-gutkowski-edited-on-google",
+    "metadata": Object {
+      "google": Object {
+        "metadata": Object {
+          "deleted": false,
+        },
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Kunde",
+      "givenName": "Scarlett",
+    },
+    "note": null,
+    "phone": Array [],
+    "vendorId": "people/364391",
+  },
+]
+`;

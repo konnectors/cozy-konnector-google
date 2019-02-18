@@ -10,9 +10,10 @@ const customizer = (objValue, srcValue) => {
   }
 }
 
-const mergeContact = (cozyContact = {}, googleContact = {}, options) => {
-  const { preferGoogle = false } = options
+const mergeContact = (cozyContact = {}, googleContact = {}, options = {}) => {
+  const { preferGoogle = true } = options
   const transpiledGoogleContact = transpiler.toCozy(googleContact)
+
   if (preferGoogle) {
     return mergeWith({}, cozyContact, transpiledGoogleContact, customizer)
   } else {
