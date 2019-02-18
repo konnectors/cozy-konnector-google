@@ -26,16 +26,27 @@ const findGoogleContactForAccount = (
   return undefined
 }
 
-const findCozyContactForAccount = (
+const findCozyContactForAccount = async (
   googleContact,
   cozyContacts,
-  contactAccountId
+  contactAccountId,
+  cozyUtils
 ) => {
-  return cozyContacts.find(
+  // search in edited cozy contacts
+  let cozyContact = cozyContacts.find(
     contact =>
       get(contact, ['cozyMetadata', 'sync', contactAccountId, 'id']) ===
       googleContact.resourceName
   )
+  if (!cozyContact) {
+    // search in non edited cozy contacts
+    cozyContact = await cozyUtils.findContact(
+      contactAccountId,
+      googleContact.resourceName
+    )
+  }
+
+  return cozyContact
 }
 
 const updateCozyMetadata = (
@@ -79,6 +90,10 @@ const shouldCreateOnGoogle = (cozyContact, contactAccountId) => {
 const shouldCreateOnCozy = (cozyContact, googleContact) =>
   !cozyContact && !get(googleContact, ['metadata', 'deleted'], false)
 
+const shouldUpdateOnCozy = (cozyContact, googleContact, contactAccountId) =>
+  get(cozyContact, `cozyMetadata.sync.${contactAccountId}.remoteRev`) !==
+    googleContact.etag && !get(googleContact, ['metadata', 'deleted'])
+
 const hasRevChanged = (mergedContact, cozyContact, contactAccountId) => {
   const cozyRev = get(cozyContact, [
     'cozyMetadata',
@@ -92,6 +107,7 @@ const hasRevChanged = (mergedContact, cozyContact, contactAccountId) => {
     contactAccountId,
     'remoteRev'
   ])
+
   return mergedRev !== cozyRev
 }
 
@@ -115,19 +131,18 @@ const synchronizeContacts = async (
     }
   }
   try {
+    await cozyUtils.prepareIndex(contactAccountId)
     await Promise.all(
       cozyContacts.map(async cozyContact => {
         const googleContact = await findGoogleContactForAccount(
           cozyContact,
           googleContacts,
           contactAccountId
-        ) // TODO also query the remote if not in googleContacts
-
-        let mergedContact = mergeContact(
-          cozyContact,
-          googleContact,
-          contactAccountId
         )
+
+        let mergedContact = mergeContact(cozyContact, googleContact, {
+          preferGoogle: false
+        })
 
         if (shouldCreateOnGoogle(cozyContact, contactAccountId)) {
           const googleResp = await googleUtils.createContact(
@@ -179,14 +194,11 @@ const synchronizeContacts = async (
         let cozyContact = await findCozyContactForAccount(
           googleContact,
           cozyContacts,
-          contactAccountId
-        ) // TODO also query the remote?
-
-        let mergedContact = mergeContact(
-          cozyContact,
-          googleContact,
-          contactAccountId
+          contactAccountId,
+          cozyUtils
         )
+
+        let mergedContact = mergeContact(cozyContact, googleContact)
 
         if (shouldCreateOnCozy(cozyContact, googleContact)) {
           mergedContact = {
@@ -200,10 +212,19 @@ const synchronizeContacts = async (
           }
           await cozyUtils.client.save(mergedContact)
           result.cozy.created++
+        } else if (
+          shouldUpdateOnCozy(cozyContact, googleContact, contactAccountId)
+        ) {
+          result.cozy.updated++
+          mergedContact = updateCozyMetadata(
+            mergedContact,
+            googleContact.etag,
+            googleContact.resourceName,
+            contactAccountId
+          )
+          await cozyUtils.client.save(mergedContact)
         }
-        // else if (hasRevChanged(mergedContact, cozyContact, contactAccountId)) {
-        //   await cozyUtils.client.save(mergedContact)
-        // }
+
         // if (shouldDeleteOnCozy(mergedContact, googleContact)) {
         //   // a voir s'il faut pas mettre le flg deleted
         //   cozyUtils.client.delete(mergedContact)

@@ -86,6 +86,56 @@ const cozyContacts = [
   }
 ]
 
+// this data comes from cozy.findContact
+const scarlettGutkowski = {
+  id: 'scarlett-gutkowski-edited-on-google',
+  _type: 'io.cozy.contacts',
+  _rev: '36bd0782-bda3-4a3b-900a-0d571cc361b6',
+  name: { givenName: 'Scarlett', familyName: 'Gutkowski' },
+  cozyMetadata: {
+    doctypeVersion: 2,
+    createdAt: '2017-03-22T07:33:00.123Z',
+    createdByApp: 'Contacts',
+    createdByAppVersion: '2.0.0',
+    updatedAt: '2018-11-12T18:18:00.222Z',
+    updatedByApps: ['Contacts'],
+    importedAt: '2016-11-25T19:33:00.123Z',
+    importedFrom: 'konnector-google',
+    sourceAccount: SOURCE_ACCOUNT_ID,
+    sync: {
+      [SOURCE_ACCOUNT_ID]: {
+        id: 'people/364391',
+        remoteRev: 'b157df42-792f-4a35-b79b-8309494476be'
+      }
+    }
+  }
+}
+
+// contact that has been deleted on Google
+const aureliaHayesDeletedOnGoogle = {
+  id: 'aurelia-hayes-deleted-on-google',
+  _type: 'io.cozy.contacts',
+  _rev: '1f0eafe5-fa2b-482c-b9b9-ddb39792ae24',
+  name: { givenName: 'Aurelia', familyName: 'Hayes' },
+  cozyMetadata: {
+    doctypeVersion: 2,
+    createdAt: '2017-03-22T07:33:00.123Z',
+    createdByApp: 'Contacts',
+    createdByAppVersion: '2.0.0',
+    updatedAt: '2018-11-12T18:18:00.222Z',
+    updatedByApps: ['Contacts'],
+    importedAt: '2016-11-25T19:33:00.123Z',
+    importedFrom: 'konnector-google',
+    sourceAccount: SOURCE_ACCOUNT_ID,
+    sync: {
+      [SOURCE_ACCOUNT_ID]: {
+        id: 'people/672617',
+        remoteRev: 'ea79ad60-8c9f-4143-830f-07dfb260630b' // TODO: do we really have the same etag here?
+      }
+    }
+  }
+}
+
 beforeAll(() => {
   mockDate(MOCKED_DATE)
 })
@@ -126,6 +176,18 @@ describe('synchronizeContacts function', () => {
       .mockName('cozySave')
 
     cozyUtils.client = fakeCozyClient
+    cozyUtils.prepareIndex = jest.fn()
+
+    const googleContactsNotInCozy = ['people/751021', 'people/944070']
+    cozyUtils.findContact = jest.fn((accountId, resourceName) => {
+      if (googleContactsNotInCozy.includes(resourceName)) {
+        return undefined
+      } else if (resourceName === 'people/364391') {
+        return scarlettGutkowski
+      } else if (resourceName === 'people/672617') {
+        return aureliaHayesDeletedOnGoogle
+      }
+    })
   })
 
   afterEach(() => {
@@ -168,6 +230,13 @@ describe('synchronizeContacts function', () => {
         etag: 'ea79ad60-8c9f-4143-830f-07dfb260630b',
         names: [{ givenName: 'Aurelia', familyName: 'Hayes' }],
         metadata: { deleted: true }
+      },
+      {
+        // contact that has been edited on Google
+        resourceName: 'people/364391',
+        etag: '209006ac-a425-426a-906e-3002d56597fa',
+        names: [{ givenName: 'Scarlett', familyName: 'Kunde' }],
+        metadata: { deleted: false }
       }
     ]
 
@@ -182,7 +251,7 @@ describe('synchronizeContacts function', () => {
       cozy: {
         created: 2,
         deleted: 0,
-        updated: 0
+        updated: 1
       },
       google: {
         created: 2,
@@ -191,7 +260,7 @@ describe('synchronizeContacts function', () => {
       }
     })
 
-    expect(fakeCozyClient.save).toHaveBeenCalledTimes(5)
+    expect(fakeCozyClient.save).toHaveBeenCalledTimes(6)
     expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot(
       'reinholdJenkinsInCozy'
     )
@@ -204,6 +273,10 @@ describe('synchronizeContacts function', () => {
     )
     expect(fakeCozyClient.save.mock.calls[4]).toMatchSnapshot(
       'adanMuellerInCozy'
+    )
+
+    expect(fakeCozyClient.save.mock.calls[5]).toMatchSnapshot(
+      'scarlettKundeInCozy'
     )
 
     expect(googleUtils.createContact).toHaveBeenCalledTimes(2)
