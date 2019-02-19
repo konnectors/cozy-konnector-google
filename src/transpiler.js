@@ -16,8 +16,7 @@ const transpiler = {
         google: { metadata: source.metadata }
       },
       company: getCompany(source),
-      note: getNote(source),
-      vendorId: source.resourceName
+      note: getNote(source)
     }
   },
   toGoogle: source => {

@@ -43,7 +43,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": "people/944070",
   },
 ]
 `;
@@ -105,7 +104,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": "people/987654",
   },
 ]
 `;
@@ -204,7 +202,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": "people/751021",
   },
 ]
 `;
@@ -252,7 +249,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": null,
   },
 ]
 `;
@@ -319,7 +315,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": null,
   },
 ]
 `;
@@ -390,7 +385,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": "people/364391",
   },
 ]
 `;

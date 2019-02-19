@@ -64,7 +64,6 @@ Object {
       "type": "work",
     },
   ],
-  "vendorId": "people/c8396630372093629671",
 }
 `;
 
@@ -122,7 +121,6 @@ Array [
           "type": undefined,
         },
       ],
-      "vendorId": "people/c2584501361615515329",
     },
   },
   Object {
@@ -189,7 +187,6 @@ Array [
           "type": undefined,
         },
       ],
-      "vendorId": "people/c3745049716692310153",
     },
   },
   Object {
@@ -256,7 +253,6 @@ Array [
           "type": "work",
         },
       ],
-      "vendorId": "people/c8396630372093629671",
     },
   },
   Object {
@@ -301,7 +297,6 @@ Array [
           "type": "mobile",
         },
       ],
-      "vendorId": "people/c2701561889201335426",
     },
   },
   Object {
@@ -349,7 +344,6 @@ Array [
       },
       "note": undefined,
       "phone": Array [],
-      "vendorId": "people/c6437718916715038152",
     },
   },
   Object {
@@ -393,7 +387,6 @@ Array [
       },
       "note": "Beatae atque omnis nostrum eum. Quia sint ea a consequatur tempore et et animi. Ad quae perferendis sit qui aut fugiat deserunt.",
       "phone": Array [],
-      "vendorId": "people/c2315637590020431536",
     },
   },
   Object {
@@ -431,7 +424,6 @@ Array [
       },
       "note": undefined,
       "phone": Array [],
-      "vendorId": "people/c1639879180286560138",
     },
   },
   Object {
@@ -476,7 +468,6 @@ Array [
           "type": undefined,
         },
       ],
-      "vendorId": "people/c7575342359908918582",
     },
   },
 ]
