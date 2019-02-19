@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Transpile from google-contacts to io.cozy-contacts Simple test 1`] = `
+exports[`Transpile from google-contacts to io.cozy-contacts should transpile alan turing 1`] = `
 Object {
   "address": Array [
     Object {
@@ -13,7 +13,7 @@ Object {
       "type": "work",
     },
   ],
-  "birthday": "1912-06-22",
+  "birthday": "1912-06-23",
   "company": "National Physical Laboratory",
   "email": Array [
     Object {
@@ -68,7 +68,7 @@ Object {
 }
 `;
 
-exports[`Transpile from google-contacts to io.cozy-contacts complete tests with \`sample/*.json 1`] = `
+exports[`Transpile from google-contacts to io.cozy-contacts should transpile all contacts from \`sample/*.json 1`] = `
 Array [
   Object {
     "doc": Object {
@@ -138,7 +138,7 @@ Array [
           "type": undefined,
         },
       ],
-      "birthday": "1987-10-04",
+      "birthday": "1987-10-05",
       "company": undefined,
       "email": Array [
         Object {
@@ -205,7 +205,7 @@ Array [
           "type": "work",
         },
       ],
-      "birthday": "1912-06-22",
+      "birthday": "1912-06-23",
       "company": "National Physical Laboratory",
       "email": Array [
         Object {
@@ -317,7 +317,7 @@ Array [
           "type": undefined,
         },
       ],
-      "birthday": "0297-12-31",
+      "birthday": "0298-01-01",
       "company": "Night's Watch",
       "email": Array [
         Object {
