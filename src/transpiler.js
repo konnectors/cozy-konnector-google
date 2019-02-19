@@ -51,18 +51,14 @@ function getAddress({ addresses = [] }) {
 }
 
 function getBirthday({ birthdays = [] }) {
-  return birthdays
-    .filter(
-      birthday => birthday && birthday.metadata && birthday.metadata.primary
-    )
-    .map(
-      birthday =>
-        birthday &&
-        birthday.date &&
-        /\d\d\d\d-\d\d-\d\d/.exec(
-          new Date(Object.values(birthday.date).join('-')).toISOString()
-        )[0]
-    )[0]
+  const DATE_AND_TIME_SEPARATOR = 'T'
+  const birthday =
+    birthdays.find(b => b.metadata && b.metadata.primary) || birthdays[0]
+  if (birthday && birthday.date) {
+    const { year, month, day } = birthday.date
+    const isoDate = new Date(Date.UTC(year, month - 1, day)).toISOString()
+    return isoDate.split(DATE_AND_TIME_SEPARATOR)[0]
+  }
 }
 
 function getEmail({ emailAddresses = [] }) {
