@@ -1,7 +1,11 @@
 const get = require('lodash/get')
-const union = require('lodash/union')
+const uniqBy = require('lodash/uniqBy')
 
-const { DOCTYPE_CONTACTS, APP_NAME } = require('./constants')
+const {
+  DOCTYPE_CONTACTS,
+  DOCTYPE_CONTACTS_ACCOUNT,
+  APP_NAME
+} = require('./constants')
 const getInitialMetadata = require('./getInitialMetadata')
 const mergeContact = require('./mergeContact')
 const transpiler = require('./transpiler')
@@ -56,10 +60,10 @@ const updateCozyMetadata = (
   contactAccountId
 ) => {
   const now = new Date().toISOString()
-  const updatedByApps = union(
-    get(cozyContact, 'cozyMetadata.updatedByApps', []),
-    [APP_NAME]
-  )
+  const updatedByApps = uniqBy([
+    ...get(cozyContact, 'cozyMetadata.updatedByApps', []),
+    APP_NAME
+  ])
 
   return {
     ...cozyContact,
@@ -79,6 +83,24 @@ const updateCozyMetadata = (
     }
   }
 }
+
+const updateAccountsRelationship = (contact, contactAccountId) => ({
+  ...contact,
+  relationships: {
+    accounts: {
+      data: uniqBy(
+        [
+          ...get(contact, 'relationships.accounts.data', []),
+          {
+            _id: contactAccountId,
+            _type: DOCTYPE_CONTACTS_ACCOUNT
+          }
+        ],
+        account => account._id
+      )
+    }
+  }
+})
 
 const shouldCreateOnGoogle = (cozyContact, contactAccountId) => {
   return (
@@ -213,6 +235,10 @@ const synchronizeContacts = async (
               contactAccountId
             )
           }
+          mergedContact = updateAccountsRelationship(
+            mergedContact,
+            contactAccountId
+          )
           await cozyUtils.client.save(mergedContact)
           result.cozy.created++
         } else if (
@@ -223,6 +249,10 @@ const synchronizeContacts = async (
             mergedContact,
             googleContact.etag,
             googleContact.resourceName,
+            contactAccountId
+          )
+          mergedContact = updateAccountsRelationship(
+            mergedContact,
             contactAccountId
           )
           await cozyUtils.client.save(mergedContact)
