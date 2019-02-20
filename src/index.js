@@ -117,7 +117,10 @@ async function start(fields, doRetry = true) {
     log('info', 'Sync has completed successfully')
   } catch (err) {
     if (err.code === 401 || err.code === 403) {
-      if (err.message === 'Request had insufficient authentication scopes.') {
+      if (
+        err.message === 'Request had insufficient authentication scopes.' ||
+        err.message.match(/Request requires one of the following scopes/)
+      ) {
         log('info', 'insufficient scopes')
         throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
       } else if (!fields.refresh_token) {
@@ -125,10 +128,17 @@ async function start(fields, doRetry = true) {
         throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
       } else if (doRetry) {
         log('info', 'asking refresh from the stack')
-        const body = await cozyClient.fetchJSON(
-          'POST',
-          `/accounts/google/${accountID}/refresh`
-        )
+        let body
+        try {
+          body = await cozyClient.fetchJSON(
+            'POST',
+            `/accounts/google/${accountID}/refresh`
+          )
+        } catch (err) {
+          log('info', `Error during refresh ${err.message}`)
+          throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
+        }
+
         log('info', 'refresh response')
         log('info', JSON.stringify(body))
         fields.access_token = body.attributes.oauth.access_token
