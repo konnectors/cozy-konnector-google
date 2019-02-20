@@ -94,6 +94,9 @@ const shouldUpdateOnCozy = (cozyContact, googleContact, contactAccountId) =>
   get(cozyContact, `cozyMetadata.sync.${contactAccountId}.remoteRev`) !==
     googleContact.etag && !get(googleContact, ['metadata', 'deleted'])
 
+const shouldDeleteOnCozy = (cozyContact, googleContact) =>
+  cozyContact && get(googleContact, ['metadata', 'deleted'])
+
 const hasRevChanged = (mergedContact, cozyContact, contactAccountId) => {
   const cozyRev = get(cozyContact, [
     'cozyMetadata',
@@ -223,12 +226,10 @@ const synchronizeContacts = async (
             contactAccountId
           )
           await cozyUtils.client.save(mergedContact)
+        } else if (shouldDeleteOnCozy(cozyContact, googleContact)) {
+          await cozyUtils.client.destroy(cozyContact)
+          result.cozy.deleted++
         }
-
-        // if (shouldDeleteOnCozy(mergedContact, googleContact)) {
-        //   // a voir s'il faut pas mettre le flg deleted
-        //   cozyUtils.client.delete(mergedContact)
-        // }
       })
     )
     return result

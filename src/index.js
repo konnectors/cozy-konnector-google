@@ -120,6 +120,10 @@ async function start(fields, doRetry = true) {
       'info',
       `Updated ${result.google.updated} Google contacts for ${accountEmail}`
     )
+    log(
+      'info',
+      `Deleted ${result.cozy.deleted} Cozy contacts for ${accountEmail}`
+    )
 
     // update the contact account
     const lastLocalSync = new Date().toISOString()

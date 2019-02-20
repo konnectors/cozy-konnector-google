@@ -175,6 +175,8 @@ describe('synchronizeContacts function', () => {
       )
       .mockName('cozySave')
 
+    fakeCozyClient.destroy = jest.fn().mockName('cozyDestroy')
+
     cozyUtils.client = fakeCozyClient
     cozyUtils.prepareIndex = jest.fn()
 
@@ -237,6 +239,13 @@ describe('synchronizeContacts function', () => {
         etag: '209006ac-a425-426a-906e-3002d56597fa',
         names: [{ givenName: 'Scarlett', familyName: 'Kunde' }],
         metadata: { deleted: false }
+      },
+      {
+        // contact that has been deleted on Google but does not exist anymore on cozy
+        resourceName: 'people/66701',
+        etag: '14a0de52-d1b2-4ab7-a39f-c686143b2fbd',
+        names: [{ givenName: 'The invisible', familyName: 'Man' }],
+        metadata: { deleted: true }
       }
     ]
 
@@ -250,7 +259,7 @@ describe('synchronizeContacts function', () => {
     expect(result).toEqual({
       cozy: {
         created: 2,
-        deleted: 0,
+        deleted: 1,
         updated: 1
       },
       google: {
@@ -277,6 +286,11 @@ describe('synchronizeContacts function', () => {
 
     expect(fakeCozyClient.save.mock.calls[5]).toMatchSnapshot(
       'scarlettKundeInCozy'
+    )
+
+    expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(1)
+    expect(fakeCozyClient.destroy.mock.calls[0]).toMatchSnapshot(
+      'destroyAureliaHayesInCozy'
     )
 
     expect(googleUtils.createContact).toHaveBeenCalledTimes(2)
