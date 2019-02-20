@@ -218,7 +218,6 @@ const synchronizeContacts = async (
         } else if (
           shouldUpdateOnCozy(cozyContact, googleContact, contactAccountId)
         ) {
-          result.cozy.updated++
           mergedContact = updateCozyMetadata(
             mergedContact,
             googleContact.etag,
@@ -226,6 +225,7 @@ const synchronizeContacts = async (
             contactAccountId
           )
           await cozyUtils.client.save(mergedContact)
+          result.cozy.updated++
         } else if (shouldDeleteOnCozy(cozyContact, googleContact)) {
           await cozyUtils.client.destroy(cozyContact)
           result.cozy.deleted++
