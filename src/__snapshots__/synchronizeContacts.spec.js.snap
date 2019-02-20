@@ -43,6 +43,16 @@ Array [
     },
     "note": null,
     "phone": Array [],
+    "relationships": Object {
+      "accounts": Object {
+        "data": Array [
+          Object {
+            "_id": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+            "_type": "io.cozy.contacts.accounts",
+          },
+        ],
+      },
+    },
     "vendorId": "people/944070",
   },
 ]
@@ -237,6 +247,16 @@ Array [
     },
     "note": null,
     "phone": Array [],
+    "relationships": Object {
+      "accounts": Object {
+        "data": Array [
+          Object {
+            "_id": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+            "_type": "io.cozy.contacts.accounts",
+          },
+        ],
+      },
+    },
     "vendorId": "people/751021",
   },
 ]
@@ -423,6 +443,16 @@ Array [
     },
     "note": null,
     "phone": Array [],
+    "relationships": Object {
+      "accounts": Object {
+        "data": Array [
+          Object {
+            "_id": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+            "_type": "io.cozy.contacts.accounts",
+          },
+        ],
+      },
+    },
     "vendorId": "people/364391",
   },
 ]
