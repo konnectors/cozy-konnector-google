@@ -68,7 +68,7 @@ Object {
 }
 `;
 
-exports[`Transpile from google-contacts to io.cozy-contacts should transpile all contacts from \`sample/*.json 1`] = `
+exports[`Transpile from google-contacts to io.cozy-contacts should transpile all contacts from sample/*.json 1`] = `
 Array [
   Object {
     "doc": Object {
