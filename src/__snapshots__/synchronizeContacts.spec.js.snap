@@ -91,6 +91,60 @@ Array [
 ]
 `;
 
+exports[`synchronizeContacts function should synchronize contacts: destroyFabiolaGrozdanaInCozy 1`] = `
+Array [
+  Object {
+    "_rev": "678aad8-fa2b-482c-b9b9-8768bcfe3",
+    "_type": "io.cozy.contacts",
+    "address": Array [],
+    "birthday": null,
+    "company": null,
+    "cozyMetadata": Object {
+      "createdAt": "2017-03-22T07:33:00.123Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2016-11-25T19:33:00.123Z",
+      "importedFrom": "Contacts",
+      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "id": "people/924609",
+          "remoteRev": "ea79ad60-8c9f-4143-830f-07dfb260630b",
+        },
+      },
+      "updatedAt": "2018-11-12T18:18:00.222Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "email": Array [],
+    "id": "fabiola-grozdana-deleted-on-cozy",
+    "metadata": Object {
+      "google": Object {
+        "metadata": null,
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Grozdana",
+      "givenName": "Fabiola",
+    },
+    "note": null,
+    "phone": Array [],
+    "trashed": true,
+    "vendorId": null,
+  },
+]
+`;
+
+exports[`synchronizeContacts function should synchronize contacts: fabiolaGrozdanaInGoogle 1`] = `
+Array [
+  "people/924609",
+]
+`;
+
 exports[`synchronizeContacts function should synchronize contacts: johnDoeInCozy 1`] = `
 Array [
   Object {

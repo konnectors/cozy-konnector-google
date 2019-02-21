@@ -114,5 +114,19 @@ module.exports = (() => ({
     } catch (err) {
       throw new Error(`Unable to update contact ${err.message}`)
     }
+  },
+  deleteContact: function(resourceName) {
+    const peopleAPI = google.people({
+      version: 'v1',
+      auth: this.oAuth2Client
+    })
+
+    try {
+      return peopleAPI.people.deleteContact({
+        resourceName
+      })
+    } catch (err) {
+      throw new Error(`Unable to delete contact ${err.message}`)
+    }
   }
 }))()

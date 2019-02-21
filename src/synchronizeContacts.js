@@ -109,6 +109,10 @@ const shouldCreateOnGoogle = (cozyContact, contactAccountId) => {
   )
 }
 
+const shouldDeleteOnGoogle = cozyContact => {
+  return cozyContact.trashed
+}
+
 const shouldCreateOnCozy = (cozyContact, googleContact) =>
   !cozyContact && !get(googleContact, ['metadata', 'deleted'], false)
 
@@ -181,6 +185,14 @@ const synchronizeContacts = async (
             contactAccountId
           )
           result.google.created++
+        } else if (shouldDeleteOnGoogle(cozyContact)) {
+          const { id: resourceName } = cozyContact.cozyMetadata.sync[
+            contactAccountId
+          ]
+          await googleUtils.deleteContact(resourceName)
+          result.google.deleted++
+          await cozyUtils.client.destroy(mergedContact)
+          result.cozy.deleted++
         } else {
           // as we only get contacts that have changed, if it's not a creation or deletion, it's an update
           const {
@@ -201,11 +213,6 @@ const synchronizeContacts = async (
           )
           result.google.updated++
         }
-
-        // if (hasDeletedContact(mergedContact, cozyContact)) {
-        //   googleUtils.deleteContact(mergedContact)
-        //   cozyUtils.delete(mergedContact)
-        // }
 
         if (hasRevChanged(mergedContact, cozyContact, contactAccountId)) {
           // we only update the sync metadata here so we don't count it as created/updated
