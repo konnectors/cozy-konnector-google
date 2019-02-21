@@ -8,7 +8,7 @@ describe('Transpile from google-contacts to io.cozy-contacts', () => {
     expect(transpiled).toMatchSnapshot()
   })
 
-  it('should transpile all contacts from `sample/*.json', () => {
+  it('should transpile all contacts from sample/*.json', () => {
     const source = require('../sample/google-contacts.json')
 
     const transpiled = source.map(row => ({
