@@ -72,6 +72,7 @@ const updateCozyMetadata = (
       updatedAt: now,
       updatedByApps,
       sync: {
+        ...cozyContact.cozyMetadata.sync,
         [contactAccountId]: {
           konnector: APP_NAME,
           lastSync: now,
@@ -84,7 +85,7 @@ const updateCozyMetadata = (
   }
 }
 
-const updateAccountsRelationship = (contact, contactAccountId) => ({
+const addAccountsRelationship = (contact, contactAccountId) => ({
   ...contact,
   relationships: {
     accounts: {
@@ -100,6 +101,12 @@ const updateAccountsRelationship = (contact, contactAccountId) => ({
       )
     }
   }
+})
+
+const removeAccountFromContact = (contact, contactAccountId) => ({
+  ...contact,
+  contactAccountId
+  // remove account in cozyMetadata and in relationships
 })
 
 const SHOULD_CREATE = 'create'
@@ -214,8 +221,19 @@ const synchronizeContacts = async (
           ]
           await googleUtils.deleteContact(resourceName)
           result.google.deleted++
-          await cozyUtils.client.destroy(mergedContact)
-          result.cozy.deleted++
+
+          const hasOtherSources =
+            Object.keys(mergedContact.cozyMetadata.sync).length - 1 > 0
+          if (hasOtherSources) {
+            mergedContact = removeAccountFromContact(
+              mergedContact,
+              contactAccountId
+            )
+            // after the account has been removed from the contact, it should trigger hasRevChanged below
+          } else {
+            await cozyUtils.client.destroy(mergedContact)
+            result.cozy.deleted++
+          }
         } else {
           // as we only get contacts that have changed, if it's not a creation or deletion, it's an update
           const {
@@ -270,7 +288,7 @@ const synchronizeContacts = async (
               contactAccountId
             )
           }
-          mergedContact = updateAccountsRelationship(
+          mergedContact = addAccountsRelationship(
             mergedContact,
             contactAccountId
           )
@@ -283,7 +301,7 @@ const synchronizeContacts = async (
             googleContact.resourceName,
             contactAccountId
           )
-          mergedContact = updateAccountsRelationship(
+          mergedContact = addAccountsRelationship(
             mergedContact,
             contactAccountId
           )

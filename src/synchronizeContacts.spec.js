@@ -107,6 +107,34 @@ const cozyContacts = [
         }
       }
     }
+  },
+  {
+    id: 'kristen-hernandez-deleted-on-cozy',
+    _type: 'io.cozy.contacts',
+    _rev: '678aad8-fa2b-482c-b9b9-8768bcfe3',
+    trashed: true,
+    name: { givenName: 'Kristen', familyName: 'Hernandez' },
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2017-03-22T07:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2018-11-12T18:18:00.222Z',
+      updatedByApps: ['Contacts', 'konnector-google'],
+      importedAt: '2016-11-25T19:33:00.123Z',
+      importedFrom: 'Contacts',
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/736099',
+          remoteRev: 'faa673a5-8c9f-4143-830f-0967abbb5644'
+        },
+        [OTHER_SOURCE_ACCOUNT_ID]: {
+          id: 'people/128600',
+          remoteRev: 'ddc65c7872-8c9f-4143-830f-83617ab67fde678'
+        }
+      }
+    }
   }
 ]
 
@@ -195,6 +223,12 @@ describe('synchronizeContacts function', () => {
       data: {
         etag: '440922abef-c9b8-4865-bdbd-85561aa7b',
         resourceName: 'people/924609' // fabiola-grozdana-deleted-in-cozy
+      }
+    })
+    googleUtils.deleteContact.mockResolvedValueOnce({
+      data: {
+        etag: '789798924782874-c9b8-4865-bdbd-aabbd7687678cc',
+        resourceName: 'people/736099' // kristen-hernandez-deleted-in-cozy
       }
     })
     fakeCozyClient.save = jest
@@ -294,12 +328,12 @@ describe('synchronizeContacts function', () => {
       },
       google: {
         created: 2,
-        deleted: 1,
+        deleted: 2,
         updated: 1
       }
     })
 
-    expect(fakeCozyClient.save).toHaveBeenCalledTimes(6)
+    expect(fakeCozyClient.save).toHaveBeenCalledTimes(7)
     expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot(
       'reinholdJenkinsInCozy'
     )
@@ -308,13 +342,16 @@ describe('synchronizeContacts function', () => {
     )
     expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot('johnDoeInCozy')
     expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot(
-      'kayleighYundtInCozy'
+      'kristenHernandezInCozy'
     )
     expect(fakeCozyClient.save.mock.calls[4]).toMatchSnapshot(
+      'kayleighYundtInCozy'
+    )
+    expect(fakeCozyClient.save.mock.calls[5]).toMatchSnapshot(
       'adanMuellerInCozy'
     )
 
-    expect(fakeCozyClient.save.mock.calls[5]).toMatchSnapshot(
+    expect(fakeCozyClient.save.mock.calls[6]).toMatchSnapshot(
       'scarlettKundeInCozy'
     )
 
@@ -339,9 +376,12 @@ describe('synchronizeContacts function', () => {
       'johnDoeInGoogle'
     )
 
-    expect(googleUtils.deleteContact).toHaveBeenCalledTimes(1)
+    expect(googleUtils.deleteContact).toHaveBeenCalledTimes(2)
     expect(googleUtils.deleteContact.mock.calls[0]).toMatchSnapshot(
       'fabiolaGrozdanaInGoogle'
+    )
+    expect(googleUtils.deleteContact.mock.calls[1]).toMatchSnapshot(
+      'kristenHernandezInGoogle'
     )
   })
 
