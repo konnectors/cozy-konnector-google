@@ -106,23 +106,15 @@ async function start(fields, doRetry = true) {
 
     log(
       'info',
-      `Created ${result.cozy.created} new Cozy contacts for ${accountEmail}`
+      `${result.cozy.created} created / ${result.cozy.updated} updated / ${
+        result.cozy.deleted
+      } deleted contacts on Cozy for ${accountEmail}`
     )
     log(
       'info',
-      `Created ${result.google.created} new Google contacts for ${accountEmail}`
-    )
-    log(
-      'info',
-      `Updated ${result.cozy.updated} Cozy contacts for ${accountEmail}`
-    )
-    log(
-      'info',
-      `Updated ${result.google.updated} Google contacts for ${accountEmail}`
-    )
-    log(
-      'info',
-      `Deleted ${result.cozy.deleted} Cozy contacts for ${accountEmail}`
+      `${result.google.created} created / ${result.google.updated} updated / ${
+        result.google.deleted
+      } deleted contacts on Google for ${accountEmail}`
     )
 
     // update the contact account
