@@ -87,14 +87,10 @@ module.exports = (() => ({
       auth: this.oAuth2Client
     })
 
-    try {
-      return peopleAPI.people.createContact({
-        parent: 'people/me',
-        requestBody: person
-      })
-    } catch (err) {
-      throw new Error(`Unable to create contact ${err.message}`)
-    }
+    return peopleAPI.people.createContact({
+      parent: 'people/me',
+      requestBody: person
+    })
   },
   updateContact: function(person, resourceName, etag) {
     const peopleAPI = google.people({
@@ -102,18 +98,14 @@ module.exports = (() => ({
       auth: this.oAuth2Client
     })
 
-    try {
-      return peopleAPI.people.updateContact({
-        resourceName,
-        requestBody: {
-          ...person,
-          etag
-        },
-        updatePersonFields: Object.keys(person).join(',')
-      })
-    } catch (err) {
-      throw new Error(`Unable to update contact ${err.message}`)
-    }
+    return peopleAPI.people.updateContact({
+      resourceName,
+      requestBody: {
+        ...person,
+        etag
+      },
+      updatePersonFields: Object.keys(person).join(',')
+    })
   },
   deleteContact: function(resourceName) {
     const peopleAPI = google.people({
@@ -121,12 +113,8 @@ module.exports = (() => ({
       auth: this.oAuth2Client
     })
 
-    try {
-      return peopleAPI.people.deleteContact({
-        resourceName
-      })
-    } catch (err) {
-      throw new Error(`Unable to delete contact ${err.message}`)
-    }
+    return peopleAPI.people.deleteContact({
+      resourceName
+    })
   }
 }))()
