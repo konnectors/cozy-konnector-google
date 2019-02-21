@@ -102,26 +102,48 @@ const updateAccountsRelationship = (contact, contactAccountId) => ({
   }
 })
 
-const shouldCreateOnGoogle = (cozyContact, contactAccountId) => {
-  return (
-    !cozyContact.cozyMetadata.sync ||
-    cozyContact.cozyMetadata.sync[contactAccountId] === undefined
+const SHOULD_CREATE = 'create'
+const SHOULD_UPDATE = 'update'
+const SHOULD_DELETE = 'delete'
+
+const determineActionOnCozy = (
+  cozyContact,
+  googleContact,
+  contactAccountId
+) => {
+  const isGoogleContactDeleted = get(
+    googleContact,
+    ['metadata', 'deleted'],
+    false
   )
+
+  const cozyEtag = get(
+    cozyContact,
+    `cozyMetadata.sync.${contactAccountId}.remoteRev`
+  )
+  const googleEtag = googleContact.etag
+
+  if (!cozyContact && !isGoogleContactDeleted) {
+    return SHOULD_CREATE
+  } else if (cozyEtag !== googleEtag && !isGoogleContactDeleted) {
+    return SHOULD_UPDATE
+  } else if (cozyContact && isGoogleContactDeleted) {
+    return SHOULD_DELETE
+  }
 }
 
-const shouldDeleteOnGoogle = cozyContact => {
-  return cozyContact.trashed
+const determineActionOnGoogle = (cozyContact, contactAccountId) => {
+  const syncInfo = get(cozyContact, `cozyMetadata.sync.${contactAccountId}`)
+  const isTrashedOnCozy = cozyContact.trashed
+
+  if (!syncInfo) {
+    return SHOULD_CREATE
+  } else if (isTrashedOnCozy) {
+    return SHOULD_DELETE
+  } else {
+    return SHOULD_UPDATE
+  }
 }
-
-const shouldCreateOnCozy = (cozyContact, googleContact) =>
-  !cozyContact && !get(googleContact, ['metadata', 'deleted'], false)
-
-const shouldUpdateOnCozy = (cozyContact, googleContact, contactAccountId) =>
-  get(cozyContact, `cozyMetadata.sync.${contactAccountId}.remoteRev`) !==
-    googleContact.etag && !get(googleContact, ['metadata', 'deleted'])
-
-const shouldDeleteOnCozy = (cozyContact, googleContact) =>
-  cozyContact && get(googleContact, ['metadata', 'deleted'])
 
 const hasRevChanged = (mergedContact, cozyContact, contactAccountId) => {
   const cozyRev = get(cozyContact, [
@@ -172,8 +194,9 @@ const synchronizeContacts = async (
         let mergedContact = mergeContact(cozyContact, googleContact, {
           preferGoogle: false
         })
+        const action = determineActionOnGoogle(cozyContact, contactAccountId)
 
-        if (shouldCreateOnGoogle(cozyContact, contactAccountId)) {
+        if (action === SHOULD_CREATE) {
           const googleResp = await googleUtils.createContact(
             transpiler.toGoogle(mergedContact)
           )
@@ -185,7 +208,7 @@ const synchronizeContacts = async (
             contactAccountId
           )
           result.google.created++
-        } else if (shouldDeleteOnGoogle(cozyContact)) {
+        } else if (action === SHOULD_DELETE) {
           const { id: resourceName } = cozyContact.cozyMetadata.sync[
             contactAccountId
           ]
@@ -231,8 +254,13 @@ const synchronizeContacts = async (
         )
 
         let mergedContact = mergeContact(cozyContact, googleContact)
+        const action = determineActionOnCozy(
+          cozyContact,
+          googleContact,
+          contactAccountId
+        )
 
-        if (shouldCreateOnCozy(cozyContact, googleContact)) {
+        if (action === SHOULD_CREATE) {
           mergedContact = {
             ...mergedContact,
             _type: DOCTYPE_CONTACTS,
@@ -248,9 +276,7 @@ const synchronizeContacts = async (
           )
           await cozyUtils.client.save(mergedContact)
           result.cozy.created++
-        } else if (
-          shouldUpdateOnCozy(cozyContact, googleContact, contactAccountId)
-        ) {
+        } else if (action === SHOULD_UPDATE) {
           mergedContact = updateCozyMetadata(
             mergedContact,
             googleContact.etag,
@@ -263,7 +289,7 @@ const synchronizeContacts = async (
           )
           await cozyUtils.client.save(mergedContact)
           result.cozy.updated++
-        } else if (shouldDeleteOnCozy(cozyContact, googleContact)) {
+        } else if (action === SHOULD_DELETE) {
           await cozyUtils.client.destroy(cozyContact)
           result.cozy.deleted++
         }
