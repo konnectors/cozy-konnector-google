@@ -53,7 +53,6 @@ Array [
         ],
       },
     },
-    "vendorId": "people/944070",
   },
 ]
 `;
@@ -122,7 +121,6 @@ Array [
         ],
       },
     },
-    "vendorId": "people/56863",
   },
 ]
 `;
@@ -203,7 +201,6 @@ Array [
     "note": null,
     "phone": Array [],
     "trashed": true,
-    "vendorId": null,
   },
 ]
 `;
@@ -271,7 +268,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": "people/229876",
   },
 ]
 `;
@@ -380,7 +376,6 @@ Array [
         ],
       },
     },
-    "vendorId": "people/751021",
   },
 ]
 `;
@@ -428,7 +423,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": null,
   },
 ]
 `;
@@ -495,7 +489,6 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": null,
   },
 ]
 `;
@@ -576,7 +569,6 @@ Array [
         ],
       },
     },
-    "vendorId": "people/364391",
   },
 ]
 `;
