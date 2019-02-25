@@ -15,38 +15,6 @@ const synchronizeContacts = require('./synchronizeContacts')
 
 module.exports = new BaseKonnector(start)
 
-// see https://developers.google.com/apis-explorer/#search/people/people/v1/people.people.connections.list
-// for the personFields's valid values
-const FIELDS = [
-  'addresses',
-  'ageRanges',
-  'biographies',
-  'birthdays',
-  'braggingRights',
-  'coverPhotos',
-  'emailAddresses',
-  'events',
-  'genders',
-  'imClients',
-  'interests',
-  'locales',
-  'memberships',
-  'metadata',
-  'names',
-  'nicknames',
-  'occupations',
-  'organizations',
-  'phoneNumbers',
-  'photos',
-  'relations',
-  'relationshipInterests',
-  'relationshipStatuses',
-  'residences',
-  'skills',
-  'taglines',
-  'urls'
-]
-
 /**
  * @param  {} fields:
  * @param {} fields.access_token: a google access token
@@ -82,7 +50,6 @@ async function start(fields, doRetry = true) {
       cozyContacts
     ] = await Promise.all([
       googleUtils.getAllContacts({
-        personFields: FIELDS.join(','),
         syncToken: contactAccount.syncToken // only contacts that have been modified since last sync
       }),
       cozyUtils.getUpdatedContacts(contactAccount.lastLocalSync)

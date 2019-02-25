@@ -1,6 +1,38 @@
 const { google } = require('googleapis')
 const OAuth2Client = google.auth.OAuth2
 
+// see https://developers.google.com/apis-explorer/#search/people/people/v1/people.people.connections.list
+// for the personFields's valid values
+const FIELDS = [
+  'addresses',
+  'ageRanges',
+  'biographies',
+  'birthdays',
+  'braggingRights',
+  'coverPhotos',
+  'emailAddresses',
+  'events',
+  'genders',
+  'imClients',
+  'interests',
+  'locales',
+  'memberships',
+  'metadata',
+  'names',
+  'nicknames',
+  'occupations',
+  'organizations',
+  'phoneNumbers',
+  'photos',
+  'relations',
+  'relationshipInterests',
+  'relationshipStatuses',
+  'residences',
+  'skills',
+  'taglines',
+  'urls'
+]
+
 module.exports = (() => ({
   oAuth2Client: this.oAuth2Client || new OAuth2Client(),
   getAccountInfo: function({ personFields = ['names'] }) {
@@ -25,14 +57,18 @@ module.exports = (() => ({
       )
     })
   },
-  getConnectionsList: function({ personFields = ['names'], ...options }) {
+  getConnectionsList: function(options) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
     })
     return new Promise((resolve, reject) => {
       peopleAPI.people.connections.list(
-        { resourceName: 'people/me', personFields, ...options },
+        {
+          resourceName: 'people/me',
+          personFields: FIELDS.join(','),
+          ...options
+        },
         (err, res) => {
           if (err) {
             reject(err)
@@ -43,14 +79,9 @@ module.exports = (() => ({
       )
     })
   },
-  getAllContacts: async function({
-    personFields = ['names'],
-    pageToken = null,
-    syncToken = null
-  }) {
+  getAllContacts: async function({ pageToken = null, syncToken = null }) {
     try {
       const call = await this.getConnectionsList({
-        personFields,
         pageToken,
         requestSyncToken: true,
         syncToken
@@ -62,7 +93,6 @@ module.exports = (() => ({
         }
       if (call.nextPageToken) {
         const nextPageResult = await this.getAllContacts({
-          personFields,
           pageToken: call.nextPageToken,
           requestSyncToken: true,
           syncToken
