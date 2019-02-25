@@ -294,29 +294,30 @@ describe('synchronizeContacts function', () => {
 
     expect(fakeCozyClient.save).toHaveBeenCalledTimes(6)
     expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot(
-      'reinholdJenkinsInCozy'
-    )
-    expect(fakeCozyClient.save.mock.calls[1]).toMatchSnapshot(
-      'larueCreminInCozy'
-    )
-    expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot('johnDoeInCozy')
-    expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot(
       'kayleighYundtInCozy'
     )
-    expect(fakeCozyClient.save.mock.calls[4]).toMatchSnapshot(
+    expect(fakeCozyClient.save.mock.calls[1]).toMatchSnapshot(
       'adanMuellerInCozy'
     )
 
-    expect(fakeCozyClient.save.mock.calls[5]).toMatchSnapshot(
+    expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot(
       'scarlettKundeInCozy'
     )
+    expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot(
+      'reinholdJenkinsInCozy'
+    )
+    expect(fakeCozyClient.save.mock.calls[4]).toMatchSnapshot(
+      'larueCreminInCozy'
+    )
+    expect(fakeCozyClient.save.mock.calls[5]).toMatchSnapshot('johnDoeInCozy')
 
     expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(2)
+
     expect(fakeCozyClient.destroy.mock.calls[0]).toMatchSnapshot(
-      'destroyFabiolaGrozdanaInCozy'
+      'destroyAureliaHayesInCozy'
     )
     expect(fakeCozyClient.destroy.mock.calls[1]).toMatchSnapshot(
-      'destroyAureliaHayesInCozy'
+      'destroyFabiolaGrozdanaInCozy'
     )
 
     expect(googleUtils.createContact).toHaveBeenCalledTimes(2)
