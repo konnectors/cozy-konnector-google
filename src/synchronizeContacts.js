@@ -10,10 +10,11 @@ const getInitialMetadata = require('./getInitialMetadata')
 const mergeContact = require('./mergeContact')
 const transpiler = require('./transpiler')
 
-const findGoogleContactForAccount = (
+const findGoogleContactForAccount = async (
   cozyContact,
   googleContacts,
-  contactAccountId
+  contactAccountId,
+  googleUtils
 ) => {
   const resourceName = get(
     cozyContact,
@@ -21,13 +22,18 @@ const findGoogleContactForAccount = (
     null
   )
 
-  if (resourceName) {
-    return googleContacts.find(
-      googleContact => googleContact.resourceName === resourceName
-    )
-  }
+  if (!resourceName) return undefined
 
-  return undefined
+  const contact = googleContacts.find(
+    googleContact => googleContact.resourceName === resourceName
+  )
+
+  if (contact) {
+    return contact
+  } else {
+    const remoteContact = await googleUtils.findContact(resourceName)
+    return remoteContact ? remoteContact.data : undefined
+  }
 }
 
 const findCozyContactForAccount = async (
@@ -188,7 +194,8 @@ const synchronizeContacts = async (
         const googleContact = await findGoogleContactForAccount(
           cozyContact,
           googleContacts,
-          contactAccountId
+          contactAccountId,
+          googleUtils
         )
 
         let mergedContact = mergeContact(cozyContact, googleContact, {

@@ -78,7 +78,7 @@ const cozyContacts = [
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
-          id: 'people/987654',
+          id: 'people/229876',
           remoteRev: '9659474d-f3ce-47a5-a9f1-01b55e6b0987'
         }
       }
@@ -188,7 +188,7 @@ describe('synchronizeContacts function', () => {
     googleUtils.updateContact.mockResolvedValueOnce({
       data: {
         etag: '6020dd2f-c9b8-4865-bdbd-078faad65204',
-        resourceName: 'people/987654' // john-doe-edited
+        resourceName: 'people/229876' // john-doe-edited
       }
     })
     googleUtils.deleteContact.mockResolvedValueOnce({
@@ -197,6 +197,23 @@ describe('synchronizeContacts function', () => {
         resourceName: 'people/924609' // fabiola-grozdana-deleted-in-cozy
       }
     })
+    googleUtils.findContact = jest.fn(resourceName => {
+      if (resourceName === 'people/229876') {
+        // john-doe-edited
+        return {
+          data: {
+            etag: '9659474d-f3ce-47a5-a9f1-01b55e6b0987',
+            resourceName: 'people/229876',
+            metadata: {
+              deleted: false
+            }
+          }
+        }
+      } else {
+        return undefined
+      }
+    })
+
     fakeCozyClient.save = jest
       .fn(contact =>
         Promise.resolve({
@@ -240,20 +257,6 @@ describe('synchronizeContacts function', () => {
         resourceName: 'people/944070',
         etag: '6092c3ca-c9f8-4abb-a27b-3add4158bfc2',
         names: [{ givenName: 'Adan', familyName: 'Mueller' }],
-        metadata: { deleted: false }
-      },
-      {
-        // contact that already exists in cozy contacts
-        resourceName: 'people/987654',
-        etag: '9659474d-f3ce-47a5-a9f1-01b55e6b0987',
-        names: [{ givenName: 'John', familyName: 'Doe' }],
-        emails: [
-          {
-            address: 'john.doe@posteo.net',
-            type: 'personal',
-            primary: true
-          }
-        ],
         metadata: { deleted: false }
       },
       {

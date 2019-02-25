@@ -164,7 +164,7 @@ Array [
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
-          "id": "people/987654",
+          "id": "people/229876",
           "konnector": "konnector-google",
           "lastSync": "2018-05-05T09:09:00.115Z",
           "remoteRev": "6020dd2f-c9b8-4865-bdbd-078faad65204",
@@ -202,7 +202,7 @@ Array [
     },
     "note": null,
     "phone": Array [],
-    "vendorId": "people/987654",
+    "vendorId": "people/229876",
   },
 ]
 `;
@@ -253,7 +253,7 @@ Array [
     ],
     "phoneNumbers": Array [],
   },
-  "people/987654",
+  "people/229876",
   "9659474d-f3ce-47a5-a9f1-01b55e6b0987",
 ]
 `;
