@@ -84,6 +84,38 @@ const cozyContacts = [
       }
     }
   },
+  // contact that has been edited on both sides (conflict)
+  {
+    id: 'clemens-romaguera-edit-conflicts',
+    _type: 'io.cozy.contacts',
+    _rev: '9a045a8e-8db7-49eb-a0b3-8388566f8a9c',
+    name: { givenName: 'Clemens', familyName: 'Romaguera' },
+    email: [
+      {
+        address: 'clemens@google.com',
+        type: 'personal',
+        primary: false
+      }
+    ],
+    company: 'Google',
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2017-11-20T19:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2019-02-12T12:18:00.222Z',
+      updatedByApps: ['Contacts'],
+      importedAt: '2017-11-20T19:33:00.123Z',
+      importedFrom: 'konnector-google',
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/56863',
+          remoteRev: '5c3435d9-86cb-413f-b38a-fd941fa3ec8d'
+        }
+      }
+    }
+  },
   {
     id: 'fabiola-grozdana-deleted-on-cozy',
     _type: 'io.cozy.contacts',
@@ -160,6 +192,69 @@ const aureliaHayesDeletedOnGoogle = {
   }
 }
 
+const googleContacts = [
+  {
+    // contact to create
+    etag: '958e26de-80d2-4051-8ba9-ae954dffd9f6',
+    resourceName: 'people/751021',
+    names: [{ givenName: 'Kayleigh', familyName: 'Yundt' }],
+    metadata: { deleted: false }
+  },
+  {
+    // contact that already exists in cozy contacts
+    resourceName: 'people/944070',
+    etag: '6092c3ca-c9f8-4abb-a27b-3add4158bfc2',
+    names: [{ givenName: 'Adan', familyName: 'Mueller' }],
+    metadata: { deleted: false }
+  },
+  {
+    // contact that has been deleted on Google
+    resourceName: 'people/672617',
+    etag: 'ea79ad60-8c9f-4143-830f-07dfb260630b',
+    names: [{ givenName: 'Aurelia', familyName: 'Hayes' }],
+    metadata: { deleted: true }
+  },
+  {
+    // contact that has been edited on Google
+    resourceName: 'people/364391',
+    etag: '209006ac-a425-426a-906e-3002d56597fa',
+    names: [{ givenName: 'Scarlett', familyName: 'Kunde' }],
+    metadata: { deleted: false }
+  },
+  {
+    // contact that has been edited on both sides (conflict)
+    resourceName: 'people/56863',
+    etag: 'da455898-cffa-4ba5-988f-606243226509',
+    names: [{ givenName: 'Clemens', familyName: 'Romaguera' }],
+    emailAddresses: [
+      {
+        value: 'clemens@cozycloud.cc',
+        formattedType: 'Personal',
+        type: 'personal',
+        metadata: {
+          primary: true
+        }
+      }
+    ],
+    organizations: [
+      {
+        metadata: {
+          primary: true
+        },
+        name: 'Cozy cloud'
+      }
+    ],
+    metadata: { deleted: false }
+  },
+  {
+    // contact that has been deleted on Google but does not exist anymore on cozy
+    resourceName: 'people/66701',
+    etag: '14a0de52-d1b2-4ab7-a39f-c686143b2fbd',
+    names: [{ givenName: 'The invisible', familyName: 'Man' }],
+    metadata: { deleted: true }
+  }
+]
+
 beforeAll(() => {
   mockDate(MOCKED_DATE)
 })
@@ -234,44 +329,6 @@ describe('synchronizeContacts function', () => {
   })
 
   it('should synchronize contacts', async () => {
-    const googleContacts = [
-      {
-        // contact to create
-        etag: '958e26de-80d2-4051-8ba9-ae954dffd9f6',
-        resourceName: 'people/751021',
-        names: [{ givenName: 'Kayleigh', familyName: 'Yundt' }],
-        metadata: { deleted: false }
-      },
-      {
-        // contact that already exists in cozy contacts
-        resourceName: 'people/944070',
-        etag: '6092c3ca-c9f8-4abb-a27b-3add4158bfc2',
-        names: [{ givenName: 'Adan', familyName: 'Mueller' }],
-        metadata: { deleted: false }
-      },
-      {
-        // contact that has been deleted on Google
-        resourceName: 'people/672617',
-        etag: 'ea79ad60-8c9f-4143-830f-07dfb260630b',
-        names: [{ givenName: 'Aurelia', familyName: 'Hayes' }],
-        metadata: { deleted: true }
-      },
-      {
-        // contact that has been edited on Google
-        resourceName: 'people/364391',
-        etag: '209006ac-a425-426a-906e-3002d56597fa',
-        names: [{ givenName: 'Scarlett', familyName: 'Kunde' }],
-        metadata: { deleted: false }
-      },
-      {
-        // contact that has been deleted on Google but does not exist anymore on cozy
-        resourceName: 'people/66701',
-        etag: '14a0de52-d1b2-4ab7-a39f-c686143b2fbd',
-        names: [{ givenName: 'The invisible', familyName: 'Man' }],
-        metadata: { deleted: true }
-      }
-    ]
-
     const result = await synchronizeContacts(
       SOURCE_ACCOUNT_ID,
       cozyContacts,
@@ -283,7 +340,7 @@ describe('synchronizeContacts function', () => {
       cozy: {
         created: 2,
         deleted: 2,
-        updated: 1
+        updated: 2
       },
       google: {
         created: 2,
@@ -292,7 +349,7 @@ describe('synchronizeContacts function', () => {
       }
     })
 
-    expect(fakeCozyClient.save).toHaveBeenCalledTimes(6)
+    expect(fakeCozyClient.save).toHaveBeenCalledTimes(7)
     expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot(
       'kayleighYundtInCozy'
     )
@@ -303,13 +360,18 @@ describe('synchronizeContacts function', () => {
     expect(fakeCozyClient.save.mock.calls[2]).toMatchSnapshot(
       'scarlettKundeInCozy'
     )
+
     expect(fakeCozyClient.save.mock.calls[3]).toMatchSnapshot(
+      'clemensRomagueraInCozy'
+    )
+
+    expect(fakeCozyClient.save.mock.calls[4]).toMatchSnapshot(
       'reinholdJenkinsInCozy'
     )
-    expect(fakeCozyClient.save.mock.calls[4]).toMatchSnapshot(
+    expect(fakeCozyClient.save.mock.calls[5]).toMatchSnapshot(
       'larueCreminInCozy'
     )
-    expect(fakeCozyClient.save.mock.calls[5]).toMatchSnapshot('johnDoeInCozy')
+    expect(fakeCozyClient.save.mock.calls[6]).toMatchSnapshot('johnDoeInCozy')
 
     expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(2)
 
@@ -364,7 +426,6 @@ describe('synchronizeContacts function', () => {
   })
 
   it('should fail nicely on google error', async () => {
-    const googleContacts = []
     googleUtils.createContact.mockRejectedValue(
       'Unable to create google contact'
     )
@@ -385,7 +446,6 @@ describe('synchronizeContacts function', () => {
   })
 
   it('should fail nicely on cozy client error', async () => {
-    const googleContacts = []
     fakeCozyClient.save.mockRejectedValue(
       new Error('Unable to save contact in cozy')
     )
