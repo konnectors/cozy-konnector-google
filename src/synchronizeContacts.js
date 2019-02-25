@@ -1,5 +1,6 @@
 const get = require('lodash/get')
 const uniqBy = require('lodash/uniqBy')
+const without = require('lodash/without')
 
 const {
   DOCTYPE_CONTACTS,
@@ -222,6 +223,17 @@ const synchronizeContacts = async (
           await cozyUtils.client.save(mergedContact)
           result.cozy.created++
         } else if (action === SHOULD_UPDATE) {
+          const cozyRemoteRev = get(cozyContact, [
+            'cozyMetadata',
+            'sync',
+            contactAccountId,
+            'remoteRev'
+          ])
+          if (googleContact.etag !== cozyRemoteRev) {
+            // conflict: remove the contact from cozyContacts
+            cozyContacts = without(cozyContacts, cozyContact)
+          }
+
           mergedContact = updateCozyMetadata(
             mergedContact,
             googleContact.etag,

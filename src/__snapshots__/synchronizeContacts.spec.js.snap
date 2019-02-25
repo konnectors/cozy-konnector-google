@@ -58,6 +58,75 @@ Array [
 ]
 `;
 
+exports[`synchronizeContacts function should synchronize contacts: clemensRomagueraInCozy 1`] = `
+Array [
+  Object {
+    "_rev": "9a045a8e-8db7-49eb-a0b3-8388566f8a9c",
+    "_type": "io.cozy.contacts",
+    "address": Array [],
+    "birthday": null,
+    "company": "Cozy cloud",
+    "cozyMetadata": Object {
+      "createdAt": "2017-11-20T19:33:00.123Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2017-11-20T19:33:00.123Z",
+      "importedFrom": "konnector-google",
+      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+          "id": "people/56863",
+          "konnector": "konnector-google",
+          "lastSync": "2018-05-05T09:09:00.115Z",
+          "remoteRev": "da455898-cffa-4ba5-988f-606243226509",
+        },
+      },
+      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "email": Array [
+      Object {
+        "address": "clemens@cozycloud.cc",
+        "label": "Personal",
+        "primary": true,
+        "type": "personal",
+      },
+    ],
+    "id": "clemens-romaguera-edit-conflicts",
+    "metadata": Object {
+      "google": Object {
+        "metadata": Object {
+          "deleted": false,
+        },
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Romaguera",
+      "givenName": "Clemens",
+    },
+    "note": null,
+    "phone": Array [],
+    "relationships": Object {
+      "accounts": Object {
+        "data": Array [
+          Object {
+            "_id": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+            "_type": "io.cozy.contacts.accounts",
+          },
+        ],
+      },
+    },
+    "vendorId": "people/56863",
+  },
+]
+`;
+
 exports[`synchronizeContacts function should synchronize contacts: destroyAureliaHayesInCozy 1`] = `
 Array [
   Object {
