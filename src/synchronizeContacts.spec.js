@@ -174,39 +174,29 @@ describe('synchronizeContacts function', () => {
   beforeEach(() => {
     googleUtils.createContact.mockName('googleCreateContact')
     googleUtils.createContact.mockResolvedValueOnce({
-      data: {
-        etag: '963fd240-d568-4b24-9f26-6e658d4e4958',
-        resourceName: 'people/96508'
-      }
+      etag: '963fd240-d568-4b24-9f26-6e658d4e4958',
+      resourceName: 'people/96508'
     })
     googleUtils.createContact.mockResolvedValueOnce({
-      data: {
-        etag: '6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd',
-        resourceName: 'people/78485'
-      }
+      etag: '6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd',
+      resourceName: 'people/78485'
     })
     googleUtils.updateContact.mockResolvedValueOnce({
-      data: {
-        etag: '6020dd2f-c9b8-4865-bdbd-078faad65204',
-        resourceName: 'people/229876' // john-doe-edited
-      }
+      etag: '6020dd2f-c9b8-4865-bdbd-078faad65204',
+      resourceName: 'people/229876' // john-doe-edited
     })
     googleUtils.deleteContact.mockResolvedValueOnce({
-      data: {
-        etag: '440922abef-c9b8-4865-bdbd-85561aa7b',
-        resourceName: 'people/924609' // fabiola-grozdana-deleted-in-cozy
-      }
+      etag: '440922abef-c9b8-4865-bdbd-85561aa7b',
+      resourceName: 'people/924609' // fabiola-grozdana-deleted-in-cozy
     })
     googleUtils.findContact = jest.fn(resourceName => {
       if (resourceName === 'people/229876') {
         // john-doe-edited
         return {
-          data: {
-            etag: '9659474d-f3ce-47a5-a9f1-01b55e6b0987',
-            resourceName: 'people/229876',
-            metadata: {
-              deleted: false
-            }
+          etag: '9659474d-f3ce-47a5-a9f1-01b55e6b0987',
+          resourceName: 'people/229876',
+          metadata: {
+            deleted: false
           }
         }
       } else {

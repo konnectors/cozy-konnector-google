@@ -32,7 +32,7 @@ const findGoogleContactForAccount = async (
     return contact
   } else {
     const remoteContact = await googleUtils.findContact(resourceName)
-    return remoteContact ? remoteContact.data : undefined
+    return remoteContact
   }
 }
 
@@ -204,10 +204,10 @@ const synchronizeContacts = async (
         const action = determineActionOnGoogle(cozyContact, contactAccountId)
 
         if (action === SHOULD_CREATE) {
-          const googleResp = await googleUtils.createContact(
+          const createdContact = await googleUtils.createContact(
             transpiler.toGoogle(mergedContact)
           )
-          const { etag, resourceName } = googleResp.data
+          const { etag, resourceName } = createdContact
           mergedContact = updateCozyMetadata(
             mergedContact,
             etag,
@@ -229,12 +229,12 @@ const synchronizeContacts = async (
             remoteRev: etag,
             id: resourceName
           } = cozyContact.cozyMetadata.sync[contactAccountId]
-          const googleResp = await googleUtils.updateContact(
+          const updatedContact = await googleUtils.updateContact(
             transpiler.toGoogle(mergedContact),
             resourceName,
             etag
           )
-          const { etag: updatedEtag } = googleResp.data
+          const { etag: updatedEtag } = updatedContact
           mergedContact = updateCozyMetadata(
             mergedContact,
             updatedEtag,

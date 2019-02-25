@@ -111,24 +111,25 @@ module.exports = (() => ({
       throw new Error(`Unable to get all contacts: ${err.message}`)
     }
   },
-  createContact: function(person) {
+  createContact: async function(person) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
     })
 
-    return peopleAPI.people.createContact({
+    const response = await peopleAPI.people.createContact({
       parent: 'people/me',
       requestBody: person
     })
+    return response.data
   },
-  updateContact: function(person, resourceName, etag) {
+  updateContact: async function(person, resourceName, etag) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
     })
 
-    return peopleAPI.people.updateContact({
+    const response = await peopleAPI.people.updateContact({
       resourceName,
       requestBody: {
         ...person,
@@ -136,26 +137,34 @@ module.exports = (() => ({
       },
       updatePersonFields: Object.keys(person).join(',')
     })
+    return response.data
   },
-  deleteContact: function(resourceName) {
+  deleteContact: async function(resourceName) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
     })
 
-    return peopleAPI.people.deleteContact({
+    const response = await peopleAPI.people.deleteContact({
       resourceName
     })
+    return response.data
   },
-  findContact: function(resourceName) {
+  findContact: async function(resourceName) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
     })
 
-    return peopleAPI.people.get({
-      resourceName,
-      personFields: FIELDS.join(',')
-    })
+    try {
+      const response = await peopleAPI.people.get({
+        resourceName,
+        personFields: FIELDS.join(',')
+      })
+      return response.data
+    } catch (err) {
+      if (err.code === 404) return undefined
+      else throw err
+    }
   }
 }))()

@@ -1,7 +1,11 @@
 const googleapis = jest.genMockFromModule('googleapis')
 
-const createContact = jest.fn(() => Promise.resolve('The contact was created'))
-const updateContact = jest.fn(() => Promise.resolve('The contact was updated'))
+const createContact = jest.fn(() =>
+  Promise.resolve({ data: 'The contact was created' })
+)
+const updateContact = jest.fn(() =>
+  Promise.resolve({ data: 'The contact was updated' })
+)
 
 class FakeOAuth2 {}
 
