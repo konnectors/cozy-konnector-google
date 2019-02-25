@@ -146,5 +146,16 @@ module.exports = (() => ({
     return peopleAPI.people.deleteContact({
       resourceName
     })
+  },
+  findContact: function(resourceName) {
+    const peopleAPI = google.people({
+      version: 'v1',
+      auth: this.oAuth2Client
+    })
+
+    return peopleAPI.people.get({
+      resourceName,
+      personFields: FIELDS.join(',')
+    })
   }
 }))()
