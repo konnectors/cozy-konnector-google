@@ -256,9 +256,7 @@ Array [
     "id": "john-doe-edited",
     "metadata": Object {
       "google": Object {
-        "metadata": Object {
-          "deleted": false,
-        },
+        "metadata": null,
       },
       "version": 1,
     },

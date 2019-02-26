@@ -284,20 +284,6 @@ describe('synchronizeContacts function', () => {
       etag: '440922abef-c9b8-4865-bdbd-85561aa7b',
       resourceName: 'people/924609' // fabiola-grozdana-deleted-in-cozy
     })
-    googleUtils.findContact = jest.fn(resourceName => {
-      if (resourceName === 'people/229876') {
-        // john-doe-edited
-        return {
-          etag: '9659474d-f3ce-47a5-a9f1-01b55e6b0987',
-          resourceName: 'people/229876',
-          metadata: {
-            deleted: false
-          }
-        }
-      } else {
-        return undefined
-      }
-    })
 
     fakeCozyClient.save = jest
       .fn(contact =>
