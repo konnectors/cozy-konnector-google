@@ -205,6 +205,41 @@ Array [
 ]
 `;
 
+exports[`synchronizeContacts function should synchronize contacts: destroyJohannaMoenInCozy 1`] = `
+Array [
+  Object {
+    "_rev": "fda8d01b-ff6d-4ce9-b6ea-749a4e3da3e1",
+    "_type": "io.cozy.contacts",
+    "cozyMetadata": Object {
+      "createdAt": "2018-04-22T17:33:00.123Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "importedAt": "2018-04-22T17:33:00.123Z",
+      "importedFrom": "konnector-google",
+      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "id": "people/106666",
+          "remoteRev": "bce9d37f-e0f9-44e6-8aa6-51fa8f8781cc",
+        },
+      },
+      "updatedAt": "2018-12-22T15:18:00.222Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "id": "johanna-moen-deleted-on-google-conflict",
+    "name": Object {
+      "familyName": "Moen",
+      "givenName": "Johanna",
+    },
+    "trashed": false,
+  },
+]
+`;
+
 exports[`synchronizeContacts function should synchronize contacts: fabiolaGrozdanaInGoogle 1`] = `
 Array [
   "people/924609",

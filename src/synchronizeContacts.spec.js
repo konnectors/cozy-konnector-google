@@ -139,6 +139,30 @@ const cozyContacts = [
         }
       }
     }
+  },
+  {
+    id: 'johanna-moen-deleted-on-google-conflict',
+    _type: 'io.cozy.contacts',
+    _rev: 'fda8d01b-ff6d-4ce9-b6ea-749a4e3da3e1',
+    trashed: false,
+    name: { givenName: 'Johanna', familyName: 'Moen' },
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2018-04-22T17:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2018-12-22T15:18:00.222Z',
+      updatedByApps: ['Contacts', 'konnector-google'],
+      importedAt: '2018-04-22T17:33:00.123Z',
+      importedFrom: 'konnector-google',
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/106666',
+          remoteRev: 'bce9d37f-e0f9-44e6-8aa6-51fa8f8781cc'
+        }
+      }
+    }
   }
 ]
 
@@ -252,6 +276,13 @@ const googleContacts = [
     etag: '14a0de52-d1b2-4ab7-a39f-c686143b2fbd',
     names: [{ givenName: 'The invisible', familyName: 'Man' }],
     metadata: { deleted: true }
+  },
+  {
+    // contact that has been deleted on Google AND edited on Cozy (conflict)
+    resourceName: 'people/106666', // johanna-moen
+    etag: 'bce9d37f-e0f9-44e6-8aa6-51fa8f8781cc',
+    names: [{ givenName: 'Johanna', familyName: 'Moen' }],
+    metadata: { deleted: true }
   }
 ]
 
@@ -325,7 +356,7 @@ describe('synchronizeContacts function', () => {
     expect(result).toEqual({
       cozy: {
         created: 2,
-        deleted: 2,
+        deleted: 3,
         updated: 2
       },
       google: {
@@ -359,12 +390,17 @@ describe('synchronizeContacts function', () => {
     )
     expect(fakeCozyClient.save.mock.calls[6]).toMatchSnapshot('johnDoeInCozy')
 
-    expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(2)
+    expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(3)
 
     expect(fakeCozyClient.destroy.mock.calls[0]).toMatchSnapshot(
       'destroyAureliaHayesInCozy'
     )
+
     expect(fakeCozyClient.destroy.mock.calls[1]).toMatchSnapshot(
+      'destroyJohannaMoenInCozy'
+    )
+
+    expect(fakeCozyClient.destroy.mock.calls[2]).toMatchSnapshot(
       'destroyFabiolaGrozdanaInCozy'
     )
 

@@ -217,11 +217,6 @@ const synchronizeContacts = async (
           await cozyUtils.client.save(mergedContact)
           result.cozy.created++
         } else if (action === SHOULD_UPDATE) {
-          if (googleContact) {
-            // conflict: remove the contact from cozyContacts
-            cozyContacts = without(cozyContacts, cozyContact)
-          }
-
           mergedContact = updateCozyMetadata(
             mergedContact,
             googleContact.etag,
@@ -238,6 +233,9 @@ const synchronizeContacts = async (
           await cozyUtils.client.destroy(cozyContact)
           result.cozy.deleted++
         }
+
+        // avoid conflicts: remove the contact from cozyContacts
+        cozyContacts = without(cozyContacts, cozyContact)
       })
     )
 
