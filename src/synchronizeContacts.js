@@ -217,13 +217,7 @@ const synchronizeContacts = async (
           await cozyUtils.client.save(mergedContact)
           result.cozy.created++
         } else if (action === SHOULD_UPDATE) {
-          const cozyRemoteRev = get(cozyContact, [
-            'cozyMetadata',
-            'sync',
-            contactAccountId,
-            'remoteRev'
-          ])
-          if (googleContact.etag !== cozyRemoteRev) {
+          if (googleContact) {
             // conflict: remove the contact from cozyContacts
             cozyContacts = without(cozyContacts, cozyContact)
           }
