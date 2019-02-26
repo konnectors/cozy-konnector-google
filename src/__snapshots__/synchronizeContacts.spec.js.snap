@@ -172,7 +172,7 @@ Array [
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
       "importedAt": "2016-11-25T19:33:00.123Z",
-      "importedFrom": "Contacts",
+      "importedFrom": "konnector-google",
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {

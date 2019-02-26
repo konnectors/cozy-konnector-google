@@ -130,7 +130,7 @@ const cozyContacts = [
       updatedAt: '2018-11-12T18:18:00.222Z',
       updatedByApps: ['Contacts', 'konnector-google'],
       importedAt: '2016-11-25T19:33:00.123Z',
-      importedFrom: 'Contacts',
+      importedFrom: 'konnector-google',
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
