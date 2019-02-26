@@ -14,8 +14,7 @@ const transpiler = require('./transpiler')
 const findGoogleContactForAccount = async (
   cozyContact,
   googleContacts,
-  contactAccountId,
-  googleUtils
+  contactAccountId
 ) => {
   const resourceName = get(
     cozyContact,
@@ -29,12 +28,7 @@ const findGoogleContactForAccount = async (
     googleContact => googleContact.resourceName === resourceName
   )
 
-  if (contact) {
-    return contact
-  } else {
-    const remoteContact = await googleUtils.findContact(resourceName)
-    return remoteContact
-  }
+  return contact
 }
 
 const findCozyContactForAccount = async (
@@ -258,8 +252,7 @@ const synchronizeContacts = async (
         const googleContact = await findGoogleContactForAccount(
           cozyContact,
           googleContacts,
-          contactAccountId,
-          googleUtils
+          contactAccountId
         )
 
         let mergedContact = mergeContact(cozyContact, googleContact, {

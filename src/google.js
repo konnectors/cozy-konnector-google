@@ -149,22 +149,5 @@ module.exports = (() => ({
       resourceName
     })
     return response.data
-  },
-  findContact: async function(resourceName) {
-    const peopleAPI = google.people({
-      version: 'v1',
-      auth: this.oAuth2Client
-    })
-
-    try {
-      const response = await peopleAPI.people.get({
-        resourceName,
-        personFields: FIELDS.join(',')
-      })
-      return response.data
-    } catch (err) {
-      if (err.code === 404) return undefined
-      else throw err
-    }
   }
 }))()
