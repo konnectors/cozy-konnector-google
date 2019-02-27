@@ -92,8 +92,8 @@ function initCozyClient(schema = null) {
   }
 }
 
-module.exports = accountID => ({
-  client: this.client || initCozyClient(getSchema(accountID)),
+module.exports = accountId => ({
+  client: this.client || initCozyClient(getSchema(accountId)),
 
   prepareIndex: function(contactAccountId) {
     return this.client
@@ -142,10 +142,10 @@ module.exports = accountID => ({
     return get(resp, 'data.0')
   },
 
-  findOrCreateContactAccount: async function(accountID, accountEmail) {
+  findOrCreateContactAccount: async function(accountId, accountEmail) {
     const accountsCollection = this.client.collection(DOCTYPE_CONTACTS_ACCOUNT)
     const result = await accountsCollection.find({
-      sourceAccount: accountID
+      sourceAccount: accountId
     })
 
     let contactAccount = null
@@ -160,7 +160,7 @@ module.exports = accountID => ({
         name: accountEmail,
         _type: DOCTYPE_CONTACTS_ACCOUNT,
         type: APP_NAME,
-        sourceAccount: accountID,
+        sourceAccount: accountId,
         version: 1
       })
       contactAccount = resp.data
