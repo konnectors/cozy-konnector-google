@@ -22,8 +22,6 @@ const cozyContacts = [
       createdByAppVersion: '3.3.0',
       updatedAt: '2018-11-11T09:09:00.222Z',
       updatedByApps: ['Contacts'],
-      importedAt: undefined,
-      importedFrom: undefined,
       sourceAccount: undefined
     }
   },
@@ -37,8 +35,6 @@ const cozyContacts = [
       createdByAppVersion: '2.0.0',
       updatedAt: '2018-03-22T12:09:00.222Z',
       updatedByApps: ['Contacts'],
-      importedAt: '2014-02-22T09:55:00.222Z',
-      importedFrom: 'konnector-google',
       sourceAccount: OTHER_SOURCE_ACCOUNT_ID,
       sync: {
         [OTHER_SOURCE_ACCOUNT_ID]: {
@@ -73,8 +69,6 @@ const cozyContacts = [
       createdByAppVersion: '2.0.0',
       updatedAt: '2019-01-22T18:18:00.222Z',
       updatedByApps: ['Contacts'],
-      importedAt: '2016-06-30T09:33:00.123Z',
-      importedFrom: 'konnector-google',
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -105,8 +99,6 @@ const cozyContacts = [
       createdByAppVersion: '2.0.0',
       updatedAt: '2019-02-12T12:18:00.222Z',
       updatedByApps: ['Contacts'],
-      importedAt: '2017-11-20T19:33:00.123Z',
-      importedFrom: 'konnector-google',
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -129,8 +121,6 @@ const cozyContacts = [
       createdByAppVersion: '2.0.0',
       updatedAt: '2018-11-12T18:18:00.222Z',
       updatedByApps: ['Contacts', 'konnector-google'],
-      importedAt: '2016-11-25T19:33:00.123Z',
-      importedFrom: 'konnector-google',
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -153,8 +143,6 @@ const cozyContacts = [
       createdByAppVersion: '2.0.0',
       updatedAt: '2018-12-22T15:18:00.222Z',
       updatedByApps: ['Contacts', 'konnector-google'],
-      importedAt: '2018-04-22T17:33:00.123Z',
-      importedFrom: 'konnector-google',
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -179,8 +167,6 @@ const scarlettGutkowski = {
     createdByAppVersion: '2.0.0',
     updatedAt: '2018-11-12T18:18:00.222Z',
     updatedByApps: ['Contacts'],
-    importedAt: '2016-11-25T19:33:00.123Z',
-    importedFrom: 'konnector-google',
     sourceAccount: SOURCE_ACCOUNT_ID,
     sync: {
       [SOURCE_ACCOUNT_ID]: {
@@ -204,8 +190,6 @@ const aureliaHayesDeletedOnGoogle = {
     createdByAppVersion: '2.0.0',
     updatedAt: '2018-11-12T18:18:00.222Z',
     updatedByApps: ['Contacts'],
-    importedAt: '2016-11-25T19:33:00.123Z',
-    importedFrom: 'konnector-google',
     sourceAccount: SOURCE_ACCOUNT_ID,
     sync: {
       [SOURCE_ACCOUNT_ID]: {
