@@ -54,7 +54,7 @@ async function start(fields, doRetry = true) {
 
     log('info', 'Getting all the contacts')
     const [
-      { contacts: googleContacts, nextSyncToken },
+      { contacts: googleContacts, nextSyncToken: syncTokenBefore },
       cozyContacts
     ] = await Promise.all([
       googleUtils.getAllContacts({
@@ -62,7 +62,6 @@ async function start(fields, doRetry = true) {
       }),
       cozyUtils.getUpdatedContacts(contactAccount.lastLocalSync)
     ])
-    const lastGoogleSync = new Date().toISOString()
 
     log(
       'info',
@@ -79,6 +78,25 @@ async function start(fields, doRetry = true) {
       googleUtils
     )
 
+    // update the contact account
+    const lastLocalSync = new Date().toISOString()
+    let nextSyncToken = syncTokenBefore
+    // if we changed something on google, we have to ask for a new sync token
+    if (Object.values(result.google).some(v => v !== 0)) {
+      const response = await googleUtils.getAllContacts({
+        syncToken: syncTokenBefore
+      })
+      nextSyncToken = response.nextSyncToken
+    }
+    const lastGoogleSync = new Date().toISOString()
+
+    await cozyUtils.save({
+      ...contactAccount,
+      lastSync: lastGoogleSync,
+      lastLocalSync: lastLocalSync,
+      syncToken: nextSyncToken
+    })
+
     log(
       'info',
       `${result.cozy.created} created / ${result.cozy.updated} updated / ${
@@ -91,15 +109,6 @@ async function start(fields, doRetry = true) {
         result.google.deleted
       } deleted contacts on Google for ${accountEmail}`
     )
-
-    // update the contact account
-    const lastLocalSync = new Date().toISOString()
-    await cozyUtils.save({
-      ...contactAccount,
-      lastSync: lastGoogleSync,
-      lastLocalSync: lastLocalSync,
-      syncToken: nextSyncToken
-    })
     log('info', 'Sync has completed successfully')
   } catch (err) {
     if (err.code === 401 || err.code === 403) {
