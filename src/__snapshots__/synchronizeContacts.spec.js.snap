@@ -70,8 +70,6 @@ Array [
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
-      "importedAt": "2017-11-20T19:33:00.123Z",
-      "importedFrom": "konnector-google",
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
@@ -135,8 +133,6 @@ Array [
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
-      "importedAt": "2016-11-25T19:33:00.123Z",
-      "importedFrom": "konnector-google",
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
@@ -171,8 +167,6 @@ Array [
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
-      "importedAt": "2016-11-25T19:33:00.123Z",
-      "importedFrom": "konnector-google",
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
@@ -215,8 +209,6 @@ Array [
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
-      "importedAt": "2018-04-22T17:33:00.123Z",
-      "importedFrom": "konnector-google",
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
@@ -259,8 +251,6 @@ Array [
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
-      "importedAt": "2016-06-30T09:33:00.123Z",
-      "importedFrom": "konnector-google",
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
@@ -424,8 +414,6 @@ Array [
       "createdByApp": "konnector-google",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
-      "importedAt": "2014-02-22T09:55:00.222Z",
-      "importedFrom": "konnector-google",
       "sourceAccount": "cb31eb3e-989e-4818-8b45-afed904237da",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
@@ -490,8 +478,6 @@ Array [
       "createdByApp": "Contacts",
       "createdByAppVersion": "3.3.0",
       "doctypeVersion": 2,
-      "importedAt": null,
-      "importedFrom": null,
       "sourceAccount": null,
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
@@ -558,8 +544,6 @@ Array [
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
-      "importedAt": "2016-11-25T19:33:00.123Z",
-      "importedFrom": "konnector-google",
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
