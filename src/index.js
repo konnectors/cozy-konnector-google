@@ -13,6 +13,16 @@ const getCozyUtils = require('./cozy')
 const googleUtils = require('./google')
 const synchronizeContacts = require('./synchronizeContacts')
 
+function getAccountId() {
+  try {
+    return process.env.NODE_ENV === 'development'
+      ? 'fakeAccountId'
+      : JSON.parse(process.env.COZY_FIELDS).account
+  } catch (err) {
+    throw new Error(`You must provide 'account' in COZY_FIELDS: ${err.message}`)
+  }
+}
+
 module.exports = new BaseKonnector(start)
 
 /**
@@ -22,13 +32,10 @@ module.exports = new BaseKonnector(start)
  */
 async function start(fields, doRetry = true) {
   log('info', 'Starting the google connector')
-  const accountID =
-    process.env.NODE_ENV === 'development'
-      ? 'fakeAccountId'
-      : JSON.parse(process.env.COZY_FIELDS).account
 
+  const accountId = getAccountId()
   try {
-    const cozyUtils = getCozyUtils(accountID)
+    const cozyUtils = getCozyUtils(accountId)
     googleUtils.oAuth2Client.setCredentials({
       access_token: fields.access_token
     })
@@ -41,7 +48,7 @@ async function start(fields, doRetry = true) {
 
     log('info', 'Getting cozy contact account')
     const contactAccount = await cozyUtils.findOrCreateContactAccount(
-      accountID,
+      accountId,
       accountEmail
     )
 
@@ -111,7 +118,7 @@ async function start(fields, doRetry = true) {
         try {
           body = await cozyClient.fetchJSON(
             'POST',
-            `/accounts/google/${accountID}/refresh`
+            `/accounts/google/${accountId}/refresh`
           )
         } catch (err) {
           log('info', `Error during refresh ${err.message}`)
