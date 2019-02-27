@@ -1,5 +1,5 @@
 const synchronizeContacts = require('./synchronizeContacts')
-const cozyUtils = require('./cozy')
+const getCozyUtils = require('./cozy')
 const googleUtils = require('./google')
 const { mockDate, restoreDate } = require('../jestHelpers/mockDate')
 
@@ -293,6 +293,8 @@ beforeAll(() => {
 afterAll(() => {
   restoreDate()
 })
+
+const cozyUtils = getCozyUtils('fakeAccountID')
 
 describe('synchronizeContacts function', () => {
   const fakeCozyClient = {}

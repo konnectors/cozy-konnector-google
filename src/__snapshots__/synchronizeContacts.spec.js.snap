@@ -8,12 +8,6 @@ Array [
     "birthday": null,
     "company": null,
     "cozyMetadata": Object {
-      "createdAt": "2018-05-05T09:09:00.115Z",
-      "createdByApp": "konnector-google",
-      "createdByAppVersion": "2.0.0",
-      "doctypeVersion": 2,
-      "importedAt": "2018-05-05T09:09:00.115Z",
-      "importedFrom": "konnector-google",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
@@ -23,10 +17,6 @@ Array [
           "remoteRev": "6092c3ca-c9f8-4abb-a27b-3add4158bfc2",
         },
       },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
-      "updatedByApps": Array [
-        "konnector-google",
-      ],
     },
     "email": Array [],
     "metadata": Object {
@@ -82,10 +72,9 @@ Array [
           "remoteRev": "da455898-cffa-4ba5-988f-606243226509",
         },
       },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedAt": "2019-02-12T12:18:00.222Z",
       "updatedByApps": Array [
         "Contacts",
-        "konnector-google",
       ],
     },
     "email": Array [
@@ -271,10 +260,9 @@ Array [
           "remoteRev": "6020dd2f-c9b8-4865-bdbd-078faad65204",
         },
       },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedAt": "2019-01-22T18:18:00.222Z",
       "updatedByApps": Array [
         "Contacts",
-        "konnector-google",
       ],
     },
     "email": Array [
@@ -364,12 +352,6 @@ Array [
     "birthday": null,
     "company": null,
     "cozyMetadata": Object {
-      "createdAt": "2018-05-05T09:09:00.115Z",
-      "createdByApp": "konnector-google",
-      "createdByAppVersion": "2.0.0",
-      "doctypeVersion": 2,
-      "importedAt": "2018-05-05T09:09:00.115Z",
-      "importedFrom": "konnector-google",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
@@ -379,10 +361,6 @@ Array [
           "remoteRev": "958e26de-80d2-4051-8ba9-ae954dffd9f6",
         },
       },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
-      "updatedByApps": Array [
-        "konnector-google",
-      ],
     },
     "email": Array [],
     "metadata": Object {
@@ -436,10 +414,9 @@ Array [
           "remoteRev": "6deab8dd-5a0f-451d-bcfe-fd81dd57bdcd",
         },
       },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedAt": "2018-03-22T12:09:00.222Z",
       "updatedByApps": Array [
         "Contacts",
-        "konnector-google",
       ],
     },
     "email": Array [],
@@ -502,10 +479,9 @@ Array [
           "remoteRev": "963fd240-d568-4b24-9f26-6e658d4e4958",
         },
       },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedAt": "2018-11-11T09:09:00.222Z",
       "updatedByApps": Array [
         "Contacts",
-        "konnector-google",
       ],
     },
     "email": Array [],
@@ -570,10 +546,9 @@ Array [
           "remoteRev": "209006ac-a425-426a-906e-3002d56597fa",
         },
       },
-      "updatedAt": "2018-05-05T09:09:00.115Z",
+      "updatedAt": "2018-11-12T18:18:00.222Z",
       "updatedByApps": Array [
         "Contacts",
-        "konnector-google",
       ],
     },
     "email": Array [],

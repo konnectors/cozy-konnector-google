@@ -4,6 +4,7 @@ const CozyClient = require('cozy-client').default
 
 const {
   APP_NAME,
+  APP_VERSION,
   DOCTYPE_CONTACTS,
   DOCTYPE_CONTACTS_ACCOUNT
 } = require('./constants')
@@ -37,21 +38,62 @@ function getCozyUrl() {
   }
 }
 
-function initCozyClient() {
+function getSchema(accountId) {
+  return {
+    contacts: {
+      doctype: DOCTYPE_CONTACTS,
+      cozyMetadata: {
+        createdByApp: {
+          trigger: 'creation',
+          value: APP_NAME
+        },
+        updatedByApps: {
+          trigger: 'update',
+          value: [APP_NAME]
+        },
+        createdAt: {
+          trigger: 'creation',
+          useCurrentDate: true
+        },
+        updatedAt: {
+          trigger: 'update',
+          useCurrentDate: true
+        },
+        doctypeVersion: {
+          trigger: 'update',
+          value: 2
+        },
+        createdByAppVersion: {
+          trigger: 'update',
+          value: APP_VERSION
+        },
+        sourceAccount: {
+          trigger: 'creation',
+          value: accountId
+        }
+      }
+    },
+    contactsAccounts: {
+      doctype: DOCTYPE_CONTACTS_ACCOUNT
+    }
+  }
+}
+
+function initCozyClient(schema = null) {
   const environment =
     process.env.NODE_ENV === 'none' ? 'production' : process.env.NODE_ENV
   try {
     const uri = getCozyUrl(environment)
     const token = getAccessToken(environment)
-    return new CozyClient({ uri, token })
+    return new CozyClient({ uri, token, schema })
   } catch (err) {
     log('error', 'Unable to initialize cozy client')
     throw err
   }
 }
 
-module.exports = (() => ({
-  client: this.client || initCozyClient(),
+module.exports = accountID => ({
+  client: this.client || initCozyClient(getSchema(accountID)),
 
   prepareIndex: function(contactAccountId) {
     return this.client
@@ -130,4 +172,4 @@ module.exports = (() => ({
   save: function(params) {
     return this.client.save(params)
   }
-}))()
+})
