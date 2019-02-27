@@ -7,7 +7,6 @@ const {
   DOCTYPE_CONTACTS_ACCOUNT,
   APP_NAME
 } = require('./constants')
-const getInitialMetadata = require('./getInitialMetadata')
 const mergeContact = require('./mergeContact')
 const transpiler = require('./transpiler')
 
@@ -61,17 +60,10 @@ const updateCozyMetadata = (
   contactAccountId
 ) => {
   const now = new Date().toISOString()
-  const updatedByApps = uniqBy([
-    ...get(cozyContact, 'cozyMetadata.updatedByApps', []),
-    APP_NAME
-  ])
-
   return {
     ...cozyContact,
     cozyMetadata: {
       ...cozyContact.cozyMetadata,
-      updatedAt: now,
-      updatedByApps,
       sync: {
         [contactAccountId]: {
           konnector: APP_NAME,
@@ -204,11 +196,17 @@ const synchronizeContacts = async (
           mergedContact = {
             ...mergedContact,
             _type: DOCTYPE_CONTACTS,
-            ...getInitialMetadata(
-              googleContact.etag,
-              googleContact.resourceName,
-              contactAccountId
-            )
+            cozyMetadata: {
+              sync: {
+                [contactAccountId]: {
+                  konnector: APP_NAME,
+                  lastSync: new Date().toISOString(),
+                  remoteRev: googleContact.etag,
+                  id: googleContact.resourceName,
+                  contactsAccountsId: contactAccountId
+                }
+              }
+            }
           }
           mergedContact = updateAccountsRelationship(
             mergedContact,
