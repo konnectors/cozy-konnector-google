@@ -92,16 +92,18 @@ function initCozyClient(schema = null) {
   }
 }
 
-module.exports = accountId => ({
-  client: this.client || initCozyClient(getSchema(accountId)),
+class CozyUtils {
+  constructor(accountId) {
+    this.client = initCozyClient(getSchema(accountId))
+  }
 
-  prepareIndex: function(contactAccountId) {
+  prepareIndex(contactAccountId) {
     return this.client
       .collection(DOCTYPE_CONTACTS)
       .createIndex([`cozyMetadata.sync.${contactAccountId}.id`])
-  },
+  }
 
-  getUpdatedContacts: async function(lastSync) {
+  async getUpdatedContacts(lastSync) {
     let allContacts = []
     const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
     let hasMore = true
@@ -122,9 +124,9 @@ module.exports = accountId => ({
     }
 
     return allContacts
-  },
+  }
 
-  findContact: async function(accountId, resourceName) {
+  async findContact(accountId, resourceName) {
     const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
     const resp = await contactsCollection.find(
       {
@@ -140,9 +142,9 @@ module.exports = accountId => ({
     )
 
     return get(resp, 'data.0')
-  },
+  }
 
-  findOrCreateContactAccount: async function(accountId, accountEmail) {
+  async findOrCreateContactAccount(accountId, accountEmail) {
     const accountsCollection = this.client.collection(DOCTYPE_CONTACTS_ACCOUNT)
     const result = await accountsCollection.find({
       sourceAccount: accountId
@@ -167,9 +169,11 @@ module.exports = accountId => ({
     }
 
     return contactAccount
-  },
+  }
 
-  save: function(params) {
+  save(params) {
     return this.client.save(params)
   }
-})
+}
+
+module.exports = CozyUtils
