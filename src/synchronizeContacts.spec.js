@@ -1,9 +1,9 @@
 const synchronizeContacts = require('./synchronizeContacts')
 const CozyUtils = require('./CozyUtils')
-const googleUtils = require('./google')
+const GoogleUtils = require('./GoogleUtils')
 const { mockDate, restoreDate } = require('../jestHelpers/mockDate')
 
-jest.mock('./google')
+jest.mock('./GoogleUtils')
 
 const SOURCE_ACCOUNT_ID = '45c49c15-4b00-48e8-8bfd-29f8177b89ff'
 const OTHER_SOURCE_ACCOUNT_ID = 'cb31eb3e-989e-4818-8b45-afed904237da'
@@ -279,6 +279,7 @@ afterAll(() => {
 })
 
 const cozyUtils = new CozyUtils('fakeAccountID')
+const googleUtils = new GoogleUtils()
 
 describe('synchronizeContacts function', () => {
   const fakeCozyClient = {}

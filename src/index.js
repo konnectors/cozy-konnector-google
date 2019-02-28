@@ -10,7 +10,7 @@ const {
 } = require('cozy-konnector-libs')
 
 const CozyUtils = require('./CozyUtils')
-const googleUtils = require('./google')
+const GoogleUtils = require('./GoogleUtils')
 const synchronizeContacts = require('./synchronizeContacts')
 
 function getAccountId() {
@@ -36,6 +36,7 @@ async function start(fields, doRetry = true) {
   const accountId = getAccountId()
   try {
     const cozyUtils = new CozyUtils(accountId)
+    const googleUtils = new GoogleUtils()
     googleUtils.oAuth2Client.setCredentials({
       access_token: fields.access_token
     })

@@ -1,9 +1,10 @@
 const googleapis = require('./__mocks__/googleapis')
-const google = require('./google')
+const GoogleUtils = require('./GoogleUtils')
 
 jest.mock('googleapis')
 
-describe('google API helpers', () => {
+describe('GoogleUtils', () => {
+  const googleUtils = new GoogleUtils()
   const peopleAPIMock = googleapis.google.people()
   const googleCreateContactSpy = peopleAPIMock.people.createContact
   const googleUpdateContactSpy = peopleAPIMock.people.updateContact
@@ -34,7 +35,7 @@ describe('google API helpers', () => {
         names: [{ familyName: 'Doe', givenName: 'John' }]
       }
 
-      const result = await google.createContact(googlePerson)
+      const result = await googleUtils.createContact(googlePerson)
       expect(result).toEqual('The contact was created')
       expect(googleapis.google.people).toHaveBeenCalledWith({
         auth: new googleapis.spies.FakeOAuth2(),
@@ -85,7 +86,7 @@ describe('google API helpers', () => {
         etag: '44add609-2261-49c8-bf92-a1776a5d8b09',
         names: [{ familyName: 'Doe', givenName: 'John' }]
       }
-      const result = await google.updateContact(
+      const result = await googleUtils.updateContact(
         googlePerson,
         'people/622740',
         '44add609-2261-49c8-bf92-a1776a5d8b09'
