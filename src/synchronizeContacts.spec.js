@@ -3,6 +3,7 @@ const CozyUtils = require('./CozyUtils')
 const GoogleUtils = require('./GoogleUtils')
 const { mockDate, restoreDate } = require('../jestHelpers/mockDate')
 
+jest.mock('./CozyUtils')
 jest.mock('./GoogleUtils')
 
 const SOURCE_ACCOUNT_ID = '45c49c15-4b00-48e8-8bfd-29f8177b89ff'
