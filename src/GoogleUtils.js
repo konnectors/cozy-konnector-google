@@ -33,9 +33,12 @@ const FIELDS = [
   'urls'
 ]
 
-module.exports = (() => ({
-  oAuth2Client: this.oAuth2Client || new OAuth2Client(),
-  getAccountInfo: function({ personFields = ['names'] }) {
+class GoogleUtils {
+  constructor() {
+    this.oAuth2Client = new OAuth2Client()
+  }
+
+  getAccountInfo({ personFields = ['names'] }) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
@@ -56,8 +59,9 @@ module.exports = (() => ({
         }
       )
     })
-  },
-  getConnectionsList: function(options) {
+  }
+
+  getConnectionsList(options) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
@@ -78,8 +82,9 @@ module.exports = (() => ({
         }
       )
     })
-  },
-  getAllContacts: async function({ pageToken = null, syncToken = null }) {
+  }
+
+  async getAllContacts({ pageToken = null, syncToken = null }) {
     try {
       const call = await this.getConnectionsList({
         pageToken,
@@ -110,8 +115,9 @@ module.exports = (() => ({
     } catch (err) {
       throw new Error(`Unable to get all contacts: ${err.message}`)
     }
-  },
-  createContact: async function(person) {
+  }
+
+  async createContact(person) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
@@ -122,8 +128,9 @@ module.exports = (() => ({
       requestBody: person
     })
     return response.data
-  },
-  updateContact: async function(person, resourceName, etag) {
+  }
+
+  async updateContact(person, resourceName, etag) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
@@ -138,8 +145,9 @@ module.exports = (() => ({
       updatePersonFields: Object.keys(person).join(',')
     })
     return response.data
-  },
-  deleteContact: async function(resourceName) {
+  }
+
+  async deleteContact(resourceName) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
@@ -150,4 +158,6 @@ module.exports = (() => ({
     })
     return response.data
   }
-}))()
+}
+
+module.exports = GoogleUtils
