@@ -88,6 +88,14 @@ async function start(fields, doRetry = true) {
         syncToken: syncTokenBefore
       })
       nextSyncToken = response.nextSyncToken
+      const contactsWeUpdated = result.google.created + result.google.updated
+      if (response.contacts.length !== contactsWeUpdated) {
+        log(
+          'warn',
+          'User has created/updated contacts on google during the synchronization ' +
+            '(some cozy changes may be lost next time).'
+        )
+      }
     }
     const lastGoogleSync = new Date().toISOString()
 
