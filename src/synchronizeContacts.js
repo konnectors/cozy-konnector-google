@@ -129,10 +129,10 @@ const determineActionOnGoogle = (cozyContact, contactAccountId) => {
   const syncInfo = get(cozyContact, `cozyMetadata.sync.${contactAccountId}`)
   const isTrashedOnCozy = cozyContact.trashed
 
-  if (!syncInfo) {
-    return SHOULD_CREATE
-  } else if (isTrashedOnCozy) {
+  if (isTrashedOnCozy) {
     return SHOULD_DELETE
+  } else if (!syncInfo) {
+    return SHOULD_CREATE
   } else {
     return SHOULD_UPDATE
   }
