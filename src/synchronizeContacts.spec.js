@@ -152,6 +152,22 @@ const cozyContacts = [
         }
       }
     }
+  },
+  {
+    id: 'deleted-on-cozy-no-resource-name',
+    _type: 'io.cozy.contacts',
+    _rev: 'af1cd883-216b-42eb-9766-d54ebed38658',
+    trashed: true,
+    name: { givenName: 'Rod', familyName: 'Tromp' },
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2018-04-22T17:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2018-12-22T15:18:00.222Z',
+      updatedByApps: ['Contacts', 'konnector-google'],
+      sourceAccount: SOURCE_ACCOUNT_ID
+    }
   }
 ]
 
@@ -344,7 +360,7 @@ describe('synchronizeContacts function', () => {
     expect(result).toEqual({
       cozy: {
         created: 2,
-        deleted: 3,
+        deleted: 4,
         updated: 2
       },
       google: {
@@ -378,7 +394,7 @@ describe('synchronizeContacts function', () => {
     )
     expect(fakeCozyClient.save.mock.calls[6]).toMatchSnapshot('johnDoeInCozy')
 
-    expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(3)
+    expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(4)
 
     expect(fakeCozyClient.destroy.mock.calls[0]).toMatchSnapshot(
       'destroyAureliaHayesInCozy'
@@ -389,6 +405,10 @@ describe('synchronizeContacts function', () => {
     )
 
     expect(fakeCozyClient.destroy.mock.calls[2]).toMatchSnapshot(
+      'destroyRodTrompInCozy'
+    )
+
+    expect(fakeCozyClient.destroy.mock.calls[3]).toMatchSnapshot(
       'destroyFabiolaGrozdanaInCozy'
     )
 
