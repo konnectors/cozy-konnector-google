@@ -263,17 +263,24 @@ const synchronizeContacts = async (
           )
           result.google.created++
         } else if (action === SHOULD_DELETE) {
-          const { id: resourceName } = cozyContact.cozyMetadata.sync[
-            contactAccountId
-          ]
-          try {
-            await googleUtils.deleteContact(resourceName)
-            result.google.deleted++
-          } catch (err) {
-            if (err.code !== 404) {
-              throw err
+          const resourceName = get(cozyContact, [
+            'cozyMetadata',
+            'sync',
+            contactAccountId,
+            'id'
+          ])
+
+          if (resourceName) {
+            try {
+              await googleUtils.deleteContact(resourceName)
+              result.google.deleted++
+            } catch (err) {
+              if (err.code !== 404) {
+                throw err
+              }
             }
           }
+
           await cozyUtils.client.destroy(mergedContact)
           result.cozy.deleted++
         } else {
