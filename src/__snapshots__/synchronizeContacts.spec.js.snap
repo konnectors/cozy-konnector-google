@@ -221,6 +221,45 @@ Array [
 ]
 `;
 
+exports[`synchronizeContacts function should synchronize contacts: destroyRodTrompInCozy 1`] = `
+Array [
+  Object {
+    "_rev": "af1cd883-216b-42eb-9766-d54ebed38658",
+    "_type": "io.cozy.contacts",
+    "address": Array [],
+    "birthday": null,
+    "company": null,
+    "cozyMetadata": Object {
+      "createdAt": "2018-04-22T17:33:00.123Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+      "updatedAt": "2018-12-22T15:18:00.222Z",
+      "updatedByApps": Array [
+        "Contacts",
+        "konnector-google",
+      ],
+    },
+    "email": Array [],
+    "id": "deleted-on-cozy-no-resource-name",
+    "metadata": Object {
+      "google": Object {
+        "metadata": null,
+      },
+      "version": 1,
+    },
+    "name": Object {
+      "familyName": "Tromp",
+      "givenName": "Rod",
+    },
+    "note": null,
+    "phone": Array [],
+    "trashed": true,
+  },
+]
+`;
+
 exports[`synchronizeContacts function should synchronize contacts: fabiolaGrozdanaInGoogle 1`] = `
 Array [
   "people/924609",
