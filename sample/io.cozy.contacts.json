@@ -87,7 +87,9 @@
           { "address": "isabelle.milligan@cirpria.name", "primary": true }
         ],
         "name": { "familyName": "Milligan", "givenName": "Isabelle" },
-        "phone": [{ "number": "+33 (0)7 56 74 51 43", "primary": true }]
+        "phone": [{ "number": "+33 (0)7 56 74 51 43", "primary": true }],
+        "company": "",
+        "note": ""
       }
     }
   ]

@@ -326,7 +326,7 @@ exports[`synchronizeContacts function should synchronize contacts: johnDoeInGoog
 Array [
   Object {
     "addresses": Array [],
-    "biographies": null,
+    "biographies": Array [],
     "birthdays": Array [
       Object {
         "date": Object {
@@ -468,7 +468,7 @@ exports[`synchronizeContacts function should synchronize contacts: larueCreminIn
 Array [
   Object {
     "addresses": Array [],
-    "biographies": null,
+    "biographies": Array [],
     "birthdays": Array [],
     "emailAddresses": Array [],
     "names": Array [
@@ -477,7 +477,7 @@ Array [
         "givenName": "Larue",
       },
     ],
-    "organizations": null,
+    "organizations": Array [],
     "phoneNumbers": Array [],
   },
 ]
@@ -531,7 +531,7 @@ exports[`synchronizeContacts function should synchronize contacts: reinholdJenki
 Array [
   Object {
     "addresses": Array [],
-    "biographies": null,
+    "biographies": Array [],
     "birthdays": Array [],
     "emailAddresses": Array [],
     "names": Array [
@@ -540,7 +540,7 @@ Array [
         "givenName": "Reinhold",
       },
     ],
-    "organizations": null,
+    "organizations": Array [],
     "phoneNumbers": Array [],
   },
 ]
