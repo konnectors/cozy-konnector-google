@@ -168,22 +168,22 @@ function getBirthdays({ birthday = null }) {
 }
 
 function getOrganizations({ company = undefined }) {
-  return (
-    company && [
-      {
-        name: company
-      }
-    ]
-  )
+  return company
+    ? [
+        {
+          name: company
+        }
+      ]
+    : []
 }
 
 function getBiographies({ note = undefined }) {
-  return (
-    note && [
-      {
-        contentType: 'TEXT_PLAIN',
-        value: note
-      }
-    ]
-  )
+  return note
+    ? [
+        {
+          contentType: 'TEXT_PLAIN',
+          value: note
+        }
+      ]
+    : []
 }

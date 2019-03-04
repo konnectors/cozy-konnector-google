@@ -170,4 +170,40 @@ describe('Transpile from io.cozy.contacts to google-contacts', () => {
     const actual = transpile.toGoogle(johnDoeContact)
     expect(actual).toEqual(expected)
   })
+
+  it('should transpile a cozy contact with empty values to a valid google person', () => {
+    const cozyContact = {
+      name: {
+        givenName: 'Keyon',
+        familyName: 'Lemke'
+      },
+      fullname: 'Keyon Lemke',
+      address: [],
+      cozy: [],
+      email: [],
+      phone: [],
+      company: '',
+      note: '',
+      metadata: {
+        cozy: true,
+        version: 1
+      }
+    }
+    const expected = {
+      addresses: [],
+      biographies: [],
+      birthdays: [],
+      emailAddresses: [],
+      names: [
+        {
+          givenName: 'Keyon',
+          familyName: 'Lemke'
+        }
+      ],
+      organizations: [],
+      phoneNumbers: []
+    }
+    const actual = transpile.toGoogle(cozyContact)
+    expect(actual).toEqual(expected)
+  })
 })
