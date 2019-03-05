@@ -80,6 +80,7 @@ const updateCozyMetadata = (
 const updateAccountsRelationship = (contact, contactAccountId) => ({
   ...contact,
   relationships: {
+    ...contact.relationships,
     accounts: {
       data: uniqBy(
         [
