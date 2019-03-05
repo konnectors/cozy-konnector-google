@@ -107,6 +107,12 @@ Array [
           },
         ],
       },
+      "groups": Object {
+        "data": Object {
+          "_id": "ba36efdf-f09b-41cf-ba6b-eb137214d676",
+          "_type": "io.cozy.contacts.groups",
+        },
+      },
     },
   },
 ]

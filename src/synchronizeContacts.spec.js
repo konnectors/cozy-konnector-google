@@ -107,6 +107,14 @@ const cozyContacts = [
           remoteRev: '5c3435d9-86cb-413f-b38a-fd941fa3ec8d'
         }
       }
+    },
+    relationships: {
+      groups: {
+        data: {
+          _id: 'ba36efdf-f09b-41cf-ba6b-eb137214d676',
+          _type: 'io.cozy.contacts.groups'
+        }
+      }
     }
   },
   {
