@@ -1,7 +1,8 @@
+const MockDate = require('mockdate')
+
 const synchronizeContacts = require('./synchronizeContacts')
 const CozyUtils = require('./CozyUtils')
 const GoogleUtils = require('./GoogleUtils')
-const { mockDate, restoreDate } = require('../jestHelpers/mockDate')
 
 jest.mock('./CozyUtils')
 jest.mock('./GoogleUtils')
@@ -296,11 +297,11 @@ const googleContacts = [
 ]
 
 beforeAll(() => {
-  mockDate(MOCKED_DATE)
+  MockDate.set(MOCKED_DATE)
 })
 
 afterAll(() => {
-  restoreDate()
+  MockDate.reset()
 })
 
 const cozyUtils = new CozyUtils('fakeAccountID')
