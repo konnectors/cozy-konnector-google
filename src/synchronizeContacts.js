@@ -262,6 +262,10 @@ const synchronizeContacts = async (
             resourceName,
             contactAccountId
           )
+          mergedContact = updateAccountsRelationship(
+            mergedContact,
+            contactAccountId
+          )
           result.google.created++
         } else if (action === SHOULD_DELETE) {
           const resourceName = get(cozyContact, [

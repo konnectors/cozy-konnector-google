@@ -466,6 +466,16 @@ Array [
     },
     "note": null,
     "phone": Array [],
+    "relationships": Object {
+      "accounts": Object {
+        "data": Array [
+          Object {
+            "_id": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+            "_type": "io.cozy.contacts.accounts",
+          },
+        ],
+      },
+    },
   },
 ]
 `;
@@ -529,6 +539,22 @@ Array [
     },
     "note": null,
     "phone": Array [],
+    "relationships": Object {
+      "accounts": Object {
+        "data": Array [
+          Object {
+            "_id": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+            "_type": "io.cozy.contacts.accounts",
+          },
+        ],
+      },
+      "groups": Object {
+        "data": Object {
+          "_id": "ba36efdf-f09b-41cf-ba6b-eb137214d676",
+          "_type": "io.cozy.contacts.groups",
+        },
+      },
+    },
   },
 ]
 `;
