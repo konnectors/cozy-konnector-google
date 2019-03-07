@@ -25,6 +25,14 @@ const cozyContacts = [
       updatedAt: '2018-11-11T09:09:00.222Z',
       updatedByApps: ['Contacts'],
       sourceAccount: undefined
+    },
+    relationships: {
+      groups: {
+        data: {
+          _id: 'ba36efdf-f09b-41cf-ba6b-eb137214d676',
+          _type: 'io.cozy.contacts.groups'
+        }
+      }
     }
   },
   {
