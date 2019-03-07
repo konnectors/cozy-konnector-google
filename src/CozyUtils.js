@@ -150,15 +150,14 @@ class CozyUtils {
 
   async findOrCreateContactAccount(accountId, accountEmail) {
     const accountsCollection = this.client.collection(DOCTYPE_CONTACTS_ACCOUNT)
-    const result = await accountsCollection.find({
+    const accountsWithSourceAccount = await accountsCollection.find({
       sourceAccount: accountId
     })
 
-    let contactAccount = null
-    if (result.data.length > 0) {
-      contactAccount = result.data[0]
+    if (accountsWithSourceAccount.data.length > 0) {
+      return accountsWithSourceAccount.data[0]
     } else {
-      const resp = await this.client.save({
+      let accountDoc = {
         canLinkContacts: true,
         shouldSyncOrphan: SHOULD_SYNC_ORPHAN_DEFAULT_VALUE,
         lastSync: null,
@@ -168,11 +167,27 @@ class CozyUtils {
         type: APP_NAME,
         sourceAccount: accountId,
         version: 1
-      })
-      contactAccount = resp.data
-    }
+      }
 
-    return contactAccount
+      // maybe the connector has been run with the same google account in the past, but had been disconnected and is now reconnected. In that case we want to avoid duplicates, so we look for previous references to this google email.
+      const accountsWithEmail = await accountsCollection.find({
+        name: accountEmail
+      })
+
+      if (accountsWithEmail.data.length > 0) {
+        if (accountsWithEmail.data.length > 1) {
+          log(
+            'info',
+            `Found more than one io.cozy.contacts.accounts with the email ${accountEmail} — using the first one.`
+          )
+        }
+        accountDoc._id = accountsWithEmail.data[0]._id
+        accountDoc._rev = accountsWithEmail.data[0]._rev
+      }
+
+      const resp = await this.client.save(accountDoc)
+      return resp.data
+    }
   }
 
   save(params) {

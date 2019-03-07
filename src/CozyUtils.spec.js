@@ -241,6 +241,59 @@ describe('CozyUtils', () => {
       expect(result).toEqual(fakeAccount)
     })
 
+    it('should update an existing account with the same email', async () => {
+      const previousAccount = {
+        _id: '123',
+        _rev: 'abc',
+        canLinkContacts: true,
+        shouldSyncOrphan: true,
+        lastSync: null,
+        lastLocalSync: null,
+        name: 'john.doe@gmail.com',
+        _type: DOCTYPE_CONTACTS_ACCOUNT,
+        type: APP_NAME,
+        sourceAccount: 'previousAccountId',
+        version: 1
+      }
+      // the first call looks for accounts with the same sourceAccount, but there are none
+      const findSpy = jest.fn().mockResolvedValueOnce({
+        data: []
+      })
+      // the second call looks for sources with the same email, regardless of the sourceAccount
+      findSpy.mockResolvedValueOnce({
+        data: [previousAccount]
+      })
+      cozyUtils.client.collection = jest.fn(() => ({
+        find: findSpy
+      }))
+      cozyUtils.client.save = jest.fn().mockResolvedValue({
+        data: {
+          id: '123'
+        }
+      })
+
+      const result = await cozyUtils.findOrCreateContactAccount(
+        'fakeAccountId',
+        'john.doe@gmail.com'
+      )
+      expect(cozyUtils.client.save).toHaveBeenCalledWith({
+        _id: '123',
+        _rev: 'abc',
+        canLinkContacts: true,
+        shouldSyncOrphan: true,
+        lastSync: null,
+        lastLocalSync: null,
+        name: 'john.doe@gmail.com',
+        _type: DOCTYPE_CONTACTS_ACCOUNT,
+        type: APP_NAME,
+        sourceAccount: 'fakeAccountId',
+        version: 1
+      })
+      expect(result).toEqual({
+        id: '123'
+      })
+    })
+
     it('should create a contact account if none is found', async () => {
       const findSpy = jest.fn().mockResolvedValue({
         data: []
