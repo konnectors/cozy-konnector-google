@@ -8,7 +8,8 @@ const {
   DOCTYPE_CONTACTS,
   DOCTYPE_CONTACTS_ACCOUNT,
   DOCTYPE_CONTACTS_VERSION,
-  DOCTYPE_CONTACTS_ACCOUNT_VERSION
+  DOCTYPE_CONTACTS_ACCOUNT_VERSION,
+  SHOULD_SYNC_ORPHAN_DEFAULT_VALUE
 } = require('./constants')
 
 function getAccessToken(environment) {
@@ -136,7 +137,7 @@ class CozyUtils {
     } else {
       const resp = await this.client.save({
         canLinkContacts: true,
-        shouldSyncOrphan: true,
+        shouldSyncOrphan: SHOULD_SYNC_ORPHAN_DEFAULT_VALUE,
         lastSync: null,
         lastLocalSync: null,
         name: accountEmail,
