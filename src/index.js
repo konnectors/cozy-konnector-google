@@ -61,7 +61,7 @@ async function start(fields, doRetry = true) {
       googleUtils.getAllContacts({
         syncToken: contactAccount.syncToken // only contacts that have been modified since last sync
       }),
-      cozyUtils.getUpdatedContacts(contactAccount.lastLocalSync)
+      cozyUtils.getUpdatedContacts(contactAccount)
     ])
 
     log(
