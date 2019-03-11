@@ -6,7 +6,9 @@ const {
   APP_NAME,
   APP_VERSION,
   DOCTYPE_CONTACTS,
-  DOCTYPE_CONTACTS_ACCOUNT
+  DOCTYPE_CONTACTS_ACCOUNT,
+  DOCTYPE_CONTACTS_VERSION,
+  DOCTYPE_CONTACTS_ACCOUNT_VERSION
 } = require('./constants')
 
 function getAccessToken(environment) {
@@ -38,54 +40,32 @@ function getCozyUrl() {
   }
 }
 
-function getSchema(accountId) {
+function getSchema() {
   return {
     contacts: {
       doctype: DOCTYPE_CONTACTS,
-      cozyMetadata: {
-        createdByApp: {
-          trigger: 'creation',
-          value: APP_NAME
-        },
-        updatedByApps: {
-          trigger: 'update',
-          value: [APP_NAME]
-        },
-        createdAt: {
-          trigger: 'creation',
-          useCurrentDate: true
-        },
-        updatedAt: {
-          trigger: 'update',
-          useCurrentDate: true
-        },
-        doctypeVersion: {
-          trigger: 'update',
-          value: 2
-        },
-        createdByAppVersion: {
-          trigger: 'update',
-          value: APP_VERSION
-        },
-        sourceAccount: {
-          trigger: 'creation',
-          value: accountId
-        }
-      }
+      doctypeVersion: DOCTYPE_CONTACTS_VERSION
     },
     contactsAccounts: {
-      doctype: DOCTYPE_CONTACTS_ACCOUNT
+      doctype: DOCTYPE_CONTACTS_ACCOUNT,
+      doctypeVersion: DOCTYPE_CONTACTS_ACCOUNT_VERSION
     }
   }
 }
 
-function initCozyClient(schema = null) {
+function initCozyClient(accountId) {
   const environment =
     process.env.NODE_ENV === 'none' ? 'production' : process.env.NODE_ENV
   try {
     const uri = getCozyUrl(environment)
     const token = getAccessToken(environment)
-    return new CozyClient({ uri, token, schema })
+    const appMetadata = {
+      slug: APP_NAME,
+      sourceAccount: accountId,
+      version: APP_VERSION
+    }
+    const schema = getSchema()
+    return new CozyClient({ uri, token, appMetadata, schema })
   } catch (err) {
     log('error', 'Unable to initialize cozy client')
     throw err
@@ -94,7 +74,7 @@ function initCozyClient(schema = null) {
 
 class CozyUtils {
   constructor(accountId) {
-    this.client = initCozyClient(getSchema(accountId))
+    this.client = initCozyClient(accountId)
   }
 
   prepareIndex(contactAccountId) {
