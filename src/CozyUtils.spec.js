@@ -3,6 +3,7 @@ const CozyUtils = require('./CozyUtils')
 
 const {
   APP_NAME,
+  APP_VERSION,
   DOCTYPE_CONTACTS,
   DOCTYPE_CONTACTS_ACCOUNT
 } = require('./constants')
@@ -18,20 +19,20 @@ describe('CozyUtils', () => {
 
   it('should initialize a cozy client', () => {
     expect(CozyClient).toHaveBeenCalledWith({
+      appMetadata: {
+        slug: APP_NAME,
+        sourceAccount: 'fakeAccountId',
+        version: APP_VERSION
+      },
       schema: {
         contacts: {
-          cozyMetadata: {
-            createdAt: { trigger: 'creation', useCurrentDate: true },
-            createdByApp: { trigger: 'creation', value: 'konnector-google' },
-            createdByAppVersion: { trigger: 'update', value: '2.0.0' },
-            doctypeVersion: { trigger: 'update', value: 2 },
-            sourceAccount: { trigger: 'creation', value: 'fakeAccountId' },
-            updatedAt: { trigger: 'update', useCurrentDate: true },
-            updatedByApps: { trigger: 'update', value: ['konnector-google'] }
-          },
-          doctype: 'io.cozy.contacts'
+          doctype: 'io.cozy.contacts',
+          doctypeVersion: 2
         },
-        contactsAccounts: { doctype: 'io.cozy.contacts.accounts' }
+        contactsAccounts: {
+          doctype: 'io.cozy.contacts.accounts',
+          doctypeVersion: 1
+        }
       },
       token: '{"token":{"accessToken":"0230b4b0-f833-4e4a-b70a-ffb1e48e2c01"}}',
       uri: 'https://rosellalabadie.mycozy.cloud'
