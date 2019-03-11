@@ -84,22 +84,45 @@ class CozyUtils {
       .createIndex([`cozyMetadata.sync.${contactAccountId}.id`])
   }
 
-  async getUpdatedContacts(lastSync) {
+  async getUpdatedContacts(contactAccount) {
+    const { id: contactAccountId, lastSync, shouldSyncOrphan } = contactAccount
     let allContacts = []
     const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
     let hasMore = true
     while (hasMore) {
-      const resp = await contactsCollection.find(
-        {
-          cozyMetadata: {
-            updatedAt: {
-              $gt: lastSync
-            }
-            //TODO: filter by contact account id / email -> only the second time, otherwise no contacts come up
+      const query = {
+        cozyMetadata: {
+          updatedAt: {
+            $gt: lastSync
           }
-        },
-        { indexedFields: ['cozyMetadata.updatedAt'] }
-      )
+        }
+      }
+      if (shouldSyncOrphan) {
+        // TODO: also retrieve orphans
+        query.relationships = {
+          accounts: {
+            data: {
+              $elemMatch: {
+                _id: contactAccountId
+              }
+            }
+          }
+        }
+      } else {
+        query.relationships = {
+          accounts: {
+            data: {
+              $elemMatch: {
+                _id: contactAccountId
+              }
+            }
+          }
+        }
+      }
+
+      const resp = await contactsCollection.find(query, {
+        indexedFields: ['cozyMetadata.updatedAt']
+      })
       allContacts = [...allContacts, ...resp.data]
       hasMore = resp.next
     }

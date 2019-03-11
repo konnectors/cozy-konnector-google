@@ -85,9 +85,12 @@ describe('CozyUtils', () => {
       cozyUtils.client.collection = jest.fn(() => ({
         find: findSpy
       }))
-      const result = await cozyUtils.getUpdatedContacts(
-        '2018-04-03T15:16:02.276Z'
-      )
+      const contactAccount = {
+        id: 'fakeAccountId',
+        lastSync: '2018-04-03T15:16:02.276Z',
+        shouldSyncOrphan: false
+      }
+      const result = await cozyUtils.getUpdatedContacts(contactAccount)
       expect(result).toEqual([
         {
           id: 'john-doe'
@@ -108,9 +111,73 @@ describe('CozyUtils', () => {
             updatedAt: {
               $gt: '2018-04-03T15:16:02.276Z'
             }
+          },
+          relationships: {
+            accounts: {
+              data: {
+                $elemMatch: {
+                  _id: 'fakeAccountId'
+                }
+              }
+            }
           }
         },
-        { indexedFields: ['cozyMetadata.updatedAt'] }
+        {
+          indexedFields: ['cozyMetadata.updatedAt']
+        }
+      )
+    })
+
+    it('should get all updated contacts including orphans', async () => {
+      const findSpy = jest.fn()
+      findSpy.mockResolvedValueOnce({
+        data: [
+          {
+            id: 'john-doe'
+          },
+          {
+            id: 'jane-doe'
+          }
+        ],
+        next: false
+      })
+      cozyUtils.client.collection = jest.fn(() => ({
+        find: findSpy
+      }))
+      const contactAccount = {
+        id: 'fakeAccountId',
+        lastSync: '2018-04-03T15:16:02.276Z',
+        shouldSyncOrphan: true
+      }
+      const result = await cozyUtils.getUpdatedContacts(contactAccount)
+      expect(result).toEqual([
+        {
+          id: 'john-doe'
+        },
+        {
+          id: 'jane-doe'
+        }
+      ])
+      expect(findSpy).toHaveBeenCalledWith(
+        {
+          cozyMetadata: {
+            updatedAt: {
+              $gt: '2018-04-03T15:16:02.276Z'
+            }
+          },
+          relationships: {
+            accounts: {
+              data: {
+                $elemMatch: {
+                  _id: 'fakeAccountId'
+                }
+              }
+            }
+          }
+        },
+        {
+          indexedFields: ['cozyMetadata.updatedAt']
+        }
       )
     })
   })
