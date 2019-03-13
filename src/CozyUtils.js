@@ -148,6 +148,15 @@ class CozyUtils {
     return get(resp, 'data.0')
   }
 
+  async findContactAccount(accountId) {
+    const accountsCollection = this.client.collection(DOCTYPE_CONTACTS_ACCOUNT)
+    const result = await accountsCollection.find({
+      sourceAccount: accountId
+    })
+
+    return get(result.data, 0, null)
+  }
+
   async findOrCreateContactAccount(accountId, accountEmail) {
     const accountsCollection = this.client.collection(DOCTYPE_CONTACTS_ACCOUNT)
     const accountsWithSourceAccount = await accountsCollection.find({

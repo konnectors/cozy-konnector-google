@@ -3,7 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const fs = require('fs')
 const SvgoInstance = require('svgo')
 
-const entry = require('./package.json').main
+const index = require('./package.json').main
 
 const svgo = new SvgoInstance()
 
@@ -18,12 +18,15 @@ try {
 const appIconRX = iconName && new RegExp(`[^/]*/${iconName}`)
 
 module.exports = {
-  entry,
+  entry: {
+    index,
+    onDeleteAccount: './src/onDeleteAccount.js'
+  },
   target: 'node',
   mode: 'none',
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'index.js'
+    filename: '[name].js'
   },
   plugins: [
     new CopyPlugin([
