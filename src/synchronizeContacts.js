@@ -330,6 +330,7 @@ const synchronizeContacts = async (
 
     return result
   } catch (err) {
+    log('error', `Error during sync: ${err.message}`)
     throw new Error(`Unable to synchronize contacts: ${err.message}`)
   }
 }
