@@ -1,6 +1,7 @@
 const get = require('lodash/get')
 const uniqBy = require('lodash/uniqBy')
 const without = require('lodash/without')
+const { log } = require('cozy-konnector-libs')
 
 const {
   DOCTYPE_CONTACTS,
@@ -282,6 +283,8 @@ const synchronizeContacts = async (
             } catch (err) {
               if (err.code !== 404) {
                 throw err
+              } else {
+                log('info', `Entity not found on google: ${resourceName}`)
               }
             }
           }
@@ -294,19 +297,28 @@ const synchronizeContacts = async (
             remoteRev: etag,
             id: resourceName
           } = cozyContact.cozyMetadata.sync[contactAccountId]
-          const updatedContact = await googleUtils.updateContact(
-            transpiler.toGoogle(mergedContact),
-            resourceName,
-            etag
-          )
-          const { etag: updatedEtag } = updatedContact
-          mergedContact = updateCozyMetadata(
-            mergedContact,
-            updatedEtag,
-            resourceName,
-            contactAccountId
-          )
-          result.google.updated++
+          try {
+            const updatedContact = await googleUtils.updateContact(
+              transpiler.toGoogle(mergedContact),
+              resourceName,
+              etag
+            )
+
+            const { etag: updatedEtag } = updatedContact
+            mergedContact = updateCozyMetadata(
+              mergedContact,
+              updatedEtag,
+              resourceName,
+              contactAccountId
+            )
+            result.google.updated++
+          } catch (err) {
+            if (err.code !== 404) {
+              throw err
+            } else {
+              log('info', `Entity not found on google: ${resourceName}`)
+            }
+          }
         }
 
         if (hasRevChanged(mergedContact, cozyContact, contactAccountId)) {
