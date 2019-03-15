@@ -138,6 +138,9 @@ async function start(fields, doRetry = true) {
         log('info', JSON.stringify(body))
         fields.access_token = body.attributes.oauth.access_token
         return start(fields, false)
+      } else {
+        log('info', `Error during authentication ${err.message}`)
+        throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
       }
     } else {
       log('error', 'caught an unexpected error')
