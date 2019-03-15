@@ -118,29 +118,34 @@ async function start(fields, doRetry = true) {
       ) {
         log('info', 'insufficient scopes')
         throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
-      } else if (!fields.refresh_token) {
-        log('info', 'no refresh token found')
-        throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
-      } else if (doRetry) {
-        log('info', 'asking refresh from the stack')
-        let body
-        try {
-          body = await cozyClient.fetchJSON(
-            'POST',
-            `/accounts/google/${accountId}/refresh`
-          )
-        } catch (err) {
-          log('info', `Error during refresh ${err.message}`)
+      } else if (
+        err.message === 'No refresh token is set.' ||
+        err.message === 'Invalid Credentials'
+      ) {
+        if (!fields.refresh_token) {
+          log('info', 'no refresh token found')
           throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
-        }
+        } else if (doRetry) {
+          log('info', 'asking refresh from the stack')
+          let body
+          try {
+            body = await cozyClient.fetchJSON(
+              'POST',
+              `/accounts/google/${accountId}/refresh`
+            )
+          } catch (err) {
+            log('info', `Error during refresh ${err.message}`)
+            throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
+          }
 
-        log('info', 'refresh response')
-        log('info', JSON.stringify(body))
-        fields.access_token = body.attributes.oauth.access_token
-        return start(fields, false)
+          log('info', 'refresh response')
+          log('info', JSON.stringify(body))
+          fields.access_token = body.attributes.oauth.access_token
+          return start(fields, false)
+        }
       } else {
-        log('info', `Error during authentication ${err.message}`)
-        throw errors.USER_ACTION_NEEDED_OAUTH_OUTDATED
+        log('error', `Error during authentication ${err.message}`)
+        throw errors.VENDOR_DOWN
       }
     } else {
       log('error', 'caught an unexpected error')
