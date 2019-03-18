@@ -1,3 +1,4 @@
+const { log } = require('cozy-konnector-libs')
 const CozyClient = require('cozy-client').default
 const CozyUtils = require('./CozyUtils')
 
@@ -9,6 +10,7 @@ const {
 } = require('./constants')
 
 jest.mock('cozy-client')
+jest.mock('cozy-konnector-libs')
 
 describe('CozyUtils', () => {
   const cozyUtils = new CozyUtils('fakeAccountId')
@@ -25,6 +27,10 @@ describe('CozyUtils', () => {
         version: APP_VERSION
       },
       schema: {
+        accounts: {
+          doctype: 'io.cozy.accounts',
+          doctypeVersion: 1
+        },
         contacts: {
           doctype: 'io.cozy.contacts',
           doctypeVersion: 2
@@ -325,6 +331,55 @@ describe('CozyUtils', () => {
       expect(result).toEqual({
         id: 'saved-contact-account'
       })
+    })
+  })
+
+  describe('updateAccountName', () => {
+    it('should search an account and update its name', async () => {
+      const ACCOUNT_ID = '9b56d5ac-28d7-40fa-aba5-f9e79b0f3629'
+      const getSpy = jest.fn().mockResolvedValue({
+        data: {
+          _id: ACCOUNT_ID,
+          _rev: 'a2cca53d-819b-45c6-8f38-403c7972ab03',
+          name: '',
+          auth: {
+            access_token: 'whatever',
+            accountName: ''
+          }
+        }
+      })
+      cozyUtils.client.collection = jest.fn(() => ({
+        get: getSpy
+      }))
+      cozyUtils.client.save = jest.fn()
+      await cozyUtils.updateAccountName(ACCOUNT_ID, 'john.doe@gmail.com')
+      expect(getSpy).toHaveBeenCalledWith(ACCOUNT_ID)
+      expect(cozyUtils.client.save).toHaveBeenCalledWith({
+        _id: ACCOUNT_ID,
+        _rev: 'a2cca53d-819b-45c6-8f38-403c7972ab03',
+        name: '',
+        auth: {
+          access_token: 'whatever',
+          accountName: 'john.doe@gmail.com'
+        }
+      })
+    })
+
+    it('should only display a log if something goes wrong', async () => {
+      const ACCOUNT_ID = '44a2bcf2-5f9c-4f3e-a238-feb4efb1731d'
+      const getSpy = jest.fn()
+      getSpy.mockRejectedValue(new Error('Cannot retrieve account'))
+      cozyUtils.client.collection = jest.fn(() => ({
+        get: getSpy
+      }))
+      cozyUtils.client.save = jest.fn()
+      await cozyUtils.updateAccountName(ACCOUNT_ID, 'john.doe@gmail.com')
+      expect(getSpy).toHaveBeenCalledWith(ACCOUNT_ID)
+      expect(cozyUtils.client.save).not.toHaveBeenCalled()
+      expect(log).toHaveBeenCalledWith(
+        'warn',
+        'Error while trying to update accountName (for 44a2bcf2-5f9c-4f3e-a238-feb4efb1731d): Cannot retrieve account'
+      )
     })
   })
 })
