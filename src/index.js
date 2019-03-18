@@ -38,6 +38,8 @@ async function start(fields, doRetry = true) {
     })
     const accountEmail = accountInfo.emailAddresses[0].value
 
+    cozyUtils.updateAccountName(accountId, accountEmail)
+
     log('info', 'Getting cozy contact account')
     const contactAccount = await cozyUtils.findOrCreateContactAccount(
       accountId,

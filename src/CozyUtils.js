@@ -5,6 +5,8 @@ const CozyClient = require('cozy-client').default
 const {
   APP_NAME,
   APP_VERSION,
+  DOCTYPE_ACCOUNTS,
+  DOCTYPE_ACCOUNTS_VERSION,
   DOCTYPE_CONTACTS,
   DOCTYPE_CONTACTS_ACCOUNT,
   DOCTYPE_CONTACTS_VERSION,
@@ -43,6 +45,10 @@ function getCozyUrl() {
 
 function getSchema() {
   return {
+    accounts: {
+      doctype: DOCTYPE_ACCOUNTS,
+      doctypeVersion: DOCTYPE_ACCOUNTS_VERSION
+    },
     contacts: {
       doctype: DOCTYPE_CONTACTS,
       doctypeVersion: DOCTYPE_CONTACTS_VERSION
@@ -128,6 +134,32 @@ class CozyUtils {
     }
 
     return allContacts
+  }
+
+  /*
+    Update io.cozy.accounts auth.accountName field
+  */
+  async updateAccountName(accountId, email) {
+    const accountsCollection = this.client.collection(DOCTYPE_ACCOUNTS)
+    try {
+      const resp = await accountsCollection.get(accountId)
+      const account = resp.data
+      await this.save({
+        ...account,
+        auth: {
+          ...account.auth,
+          accountName: email
+        }
+      })
+    } catch (err) {
+      // don't crash if account email can't be set
+      log(
+        'warn',
+        `Error while trying to update accountName (for ${accountId}): ${
+          err.message
+        }`
+      )
+    }
   }
 
   async findContact(accountId, resourceName) {
