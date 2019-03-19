@@ -143,10 +143,10 @@ async function start(fields, doRetry = true) {
           fields.access_token = body.attributes.oauth.access_token
           return start(fields, false)
         }
-      } else {
-        log('error', `Error during authentication ${err.message}`)
-        throw errors.VENDOR_DOWN
       }
+
+      log('error', `Error during authentication: ${err.message}`)
+      throw errors.VENDOR_DOWN
     } else {
       log('error', 'caught an unexpected error')
       log('error', err.message)
