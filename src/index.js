@@ -17,11 +17,13 @@ const synchronizeContacts = require('./synchronizeContacts')
 module.exports = new BaseKonnector(start)
 
 /**
- * @param  {} fields:
- * @param {} fields.access_token: a google access token
- * @param {} fields.refresh_token: a google refresh token
+ * @param {Object}  fields
+ * @param {string}  fields.access_token - a google access token
+ * @param {string}  fields.refresh_token - a google refresh token
+ * @param {Object}  cozyParameters - cozy parameters
+ * @param {boolean} cozyParameters.doRetry - whether we should use the refresh token or not
  */
-async function start(fields, doRetry = true) {
+async function start(fields, { doRetry = true }) {
   log('info', 'Starting the google connector')
 
   const accountId = getAccountId()
