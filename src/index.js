@@ -22,7 +22,7 @@ module.exports = new BaseKonnector(start)
  * @param {} fields.refresh_token: a google refresh token
  */
 async function start(fields, doRetry = true) {
-  log('info', 'Starting the google connector')
+  log('info', 'v2: Starting the google connector')
 
   const accountId = getAccountId()
   try {
@@ -32,19 +32,20 @@ async function start(fields, doRetry = true) {
       access_token: fields.access_token
     })
 
-    log('info', 'Getting account infos')
+    log('info', 'v2: Getting account infos')
     const accountInfo = await googleUtils.getAccountInfo({
       personFields: 'emailAddresses'
     })
     const accountEmail = accountInfo.emailAddresses[0].value
+    log('info', 'email found: ' + accountEmail)
 
-    log('info', 'Getting cozy contact account')
+    log('info', 'v2: Getting cozy contact account')
     const contactAccount = await cozyUtils.findOrCreateContactAccount(
       accountId,
       accountEmail
     )
 
-    log('info', 'Getting all the contacts')
+    log('info', 'v2: Getting all the contacts')
     const [
       { contacts: googleContacts, nextSyncToken: syncTokenBefore },
       cozyContacts
@@ -111,6 +112,7 @@ async function start(fields, doRetry = true) {
     )
     log('info', 'Sync has completed successfully')
   } catch (err) {
+    log('warn', 'Error catched' + JSON.stringify(err))
     if (err.code === 401 || err.code === 403) {
       if (
         err.message === 'Request had insufficient authentication scopes.' ||

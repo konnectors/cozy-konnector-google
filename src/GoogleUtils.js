@@ -1,3 +1,4 @@
+const { log } = require('cozy-konnector-libs')
 const { google } = require('googleapis')
 const OAuth2Client = google.auth.OAuth2
 
@@ -51,6 +52,9 @@ class GoogleUtils {
           personFields
         },
         (err, res) => {
+          log('info', 'getAccountInfo / err: ' + JSON.stringify(err))
+          log('info', 'getAccountInfo / res: ' + JSON.stringify(res))
+
           if (err) {
             reject(err)
           } else {
