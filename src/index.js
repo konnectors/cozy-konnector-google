@@ -21,9 +21,9 @@ module.exports = new BaseKonnector(start)
  * @param {string}  fields.access_token - a google access token
  * @param {string}  fields.refresh_token - a google refresh token
  * @param {Object}  cozyParameters - cozy parameters
- * @param {boolean} cozyParameters.doRetry - whether we should use the refresh token or not
+ * @param {boolean} doRetry - whether we should use the refresh token or not
  */
-async function start(fields, { doRetry = true }) {
+async function start(fields, cozyParameters, doRetry = true) {
   log('info', 'Starting the google connector')
 
   const accountId = getAccountId()
@@ -145,7 +145,7 @@ async function start(fields, { doRetry = true }) {
           log('info', 'refresh response')
           log('info', JSON.stringify(body))
           fields.access_token = body.attributes.oauth.access_token
-          return start(fields, false)
+          return start(fields, cozyParameters, false)
         }
       }
 
