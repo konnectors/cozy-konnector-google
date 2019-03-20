@@ -30,8 +30,7 @@
       "type": "io.cozy.contacts"
     },
     "accounts": {
-      "type": "io.cozy.accounts",
-      "verbs": ["GET", "POST"]
+      "type": "io.cozy.accounts"
     },
     "contactsAccounts": {
       "type": "io.cozy.contacts.accounts"
