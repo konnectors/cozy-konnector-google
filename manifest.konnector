@@ -5,7 +5,7 @@
   "language": "node",
   "icon": "google.svg",
   "slug": "google",
-  "source": "git://github.com/konnectors/cozy-konnector-google.git",
+  "source": "git@github.com:konnectors/cozy-konnector-google.git",
   "editor": "Cozy",
   "vendor_link": "https://google.com",
   "categories": ["online_services"],
