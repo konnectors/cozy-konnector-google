@@ -31,7 +31,7 @@
     },
     "accounts": {
       "type": "io.cozy.accounts",
-      "verbs": ["GET", "POST"]
+      "verbs": ["GET", "PATCH"]
     },
     "contactsAccounts": {
       "type": "io.cozy.contacts.accounts"
