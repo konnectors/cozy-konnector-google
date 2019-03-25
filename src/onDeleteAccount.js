@@ -8,8 +8,10 @@ async function onDeleteAccount() {
   const accountId = getAccountId()
   const cozyUtils = new CozyUtils(accountId)
   const contactAccount = await cozyUtils.findContactAccount(accountId)
-  contactAccount.sourceAccount = null
-  await cozyUtils.client.save(contactAccount)
+  if (contactAccount) {
+    contactAccount.sourceAccount = null
+    await cozyUtils.client.save(contactAccount)
+  }
 }
 
 onDeleteAccount().then(
