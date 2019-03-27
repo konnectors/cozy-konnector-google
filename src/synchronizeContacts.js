@@ -181,159 +181,174 @@ const synchronizeContacts = async (
   try {
     await cozyUtils.prepareIndex(contactAccountId)
 
-    await Promise.all(
-      googleContacts
-        .map(async googleContact => {
-          let cozyContact = await findCozyContactForAccount(
-            googleContact,
-            cozyContacts,
-            contactAccountId,
-            cozyUtils
-          )
+    const googleToCozyPromises = googleContacts.map(
+      googleContact => async () => {
+        log(
+          'info',
+          `Synchronize google contact to cozy: ${
+            googleContact.resourceName
+          } (active: ${limit.activeCount}, pending: ${limit.pendingCount})`
+        )
+        let cozyContact = await findCozyContactForAccount(
+          googleContact,
+          cozyContacts,
+          contactAccountId,
+          cozyUtils
+        )
 
-          let mergedContact = mergeContact(cozyContact, googleContact)
-          const action = determineActionOnCozy(
-            cozyContact,
-            googleContact,
-            contactAccountId
-          )
+        let mergedContact = mergeContact(cozyContact, googleContact)
+        const action = determineActionOnCozy(
+          cozyContact,
+          googleContact,
+          contactAccountId
+        )
 
-          if (action === SHOULD_CREATE) {
-            mergedContact = {
-              ...mergedContact,
-              _type: DOCTYPE_CONTACTS,
-              cozyMetadata: {
-                sync: {
-                  [contactAccountId]: {
-                    konnector: APP_NAME,
-                    lastSync: new Date().toISOString(),
-                    remoteRev: googleContact.etag,
-                    id: googleContact.resourceName,
-                    contactsAccountsId: contactAccountId
-                  }
+        if (action === SHOULD_CREATE) {
+          mergedContact = {
+            ...mergedContact,
+            _type: DOCTYPE_CONTACTS,
+            cozyMetadata: {
+              sync: {
+                [contactAccountId]: {
+                  konnector: APP_NAME,
+                  lastSync: new Date().toISOString(),
+                  remoteRev: googleContact.etag,
+                  id: googleContact.resourceName,
+                  contactsAccountsId: contactAccountId
                 }
               }
             }
-            mergedContact = updateAccountsRelationship(
-              mergedContact,
-              contactAccountId
-            )
-            await cozyUtils.client.save(mergedContact)
-            result.cozy.created++
-          } else if (action === SHOULD_UPDATE) {
-            mergedContact = updateCozyMetadata(
-              mergedContact,
-              googleContact.etag,
-              googleContact.resourceName,
-              contactAccountId
-            )
-            mergedContact = updateAccountsRelationship(
-              mergedContact,
-              contactAccountId
-            )
-            await cozyUtils.client.save(mergedContact)
-            result.cozy.updated++
-          } else if (action === SHOULD_DELETE) {
-            await cozyUtils.client.destroy(cozyContact)
-            result.cozy.deleted++
           }
+          mergedContact = updateAccountsRelationship(
+            mergedContact,
+            contactAccountId
+          )
+          await cozyUtils.client.save(mergedContact)
+          result.cozy.created++
+        } else if (action === SHOULD_UPDATE) {
+          mergedContact = updateCozyMetadata(
+            mergedContact,
+            googleContact.etag,
+            googleContact.resourceName,
+            contactAccountId
+          )
+          mergedContact = updateAccountsRelationship(
+            mergedContact,
+            contactAccountId
+          )
+          await cozyUtils.client.save(mergedContact)
+          result.cozy.updated++
+        } else if (action === SHOULD_DELETE) {
+          await cozyUtils.client.destroy(cozyContact)
+          result.cozy.deleted++
+        }
 
-          // avoid conflicts: remove the contact from cozyContacts
-          cozyContacts = without(cozyContacts, cozyContact)
-        })
-        .map(synchronizeContact => limit(() => synchronizeContact))
+        // avoid conflicts: remove the contact from cozyContacts
+        cozyContacts = without(cozyContacts, cozyContact)
+      }
     )
 
-    await Promise.all(
-      cozyContacts
-        .map(async cozyContact => {
-          const googleContact = await findGoogleContactForAccount(
-            cozyContact,
-            googleContacts,
-            contactAccountId
+    log('info', '[start] Synchronize Google contacts to Cozy')
+    await Promise.all(googleToCozyPromises.map(limit))
+    log('info', '[end] Synchronize Google contacts to Cozy')
+
+    const cozyToGooglePromises = cozyContacts.map(cozyContact => async () => {
+      log(
+        'info',
+        `Synchronize cozy contact to google: ${cozyContact.id} (active: ${
+          limit.activeCount
+        }, pending: ${limit.pendingCount})`
+      )
+
+      const googleContact = await findGoogleContactForAccount(
+        cozyContact,
+        googleContacts,
+        contactAccountId
+      )
+
+      let mergedContact = mergeContact(cozyContact, googleContact, {
+        preferGoogle: false
+      })
+      const action = determineActionOnGoogle(cozyContact, contactAccountId)
+
+      if (action === SHOULD_CREATE) {
+        const createdContact = await googleUtils.createContact(
+          transpiler.toGoogle(mergedContact)
+        )
+        const { etag, resourceName } = createdContact
+        mergedContact = updateCozyMetadata(
+          mergedContact,
+          etag,
+          resourceName,
+          contactAccountId
+        )
+        mergedContact = updateAccountsRelationship(
+          mergedContact,
+          contactAccountId
+        )
+        result.google.created++
+      } else if (action === SHOULD_DELETE) {
+        const resourceName = get(cozyContact, [
+          'cozyMetadata',
+          'sync',
+          contactAccountId,
+          'id'
+        ])
+
+        if (resourceName) {
+          try {
+            await googleUtils.deleteContact(resourceName)
+            result.google.deleted++
+          } catch (err) {
+            if (err.code !== 404) {
+              throw err
+            } else {
+              log('info', `Entity not found on google: ${resourceName}`)
+            }
+          }
+        }
+
+        await cozyUtils.client.destroy(mergedContact)
+        result.cozy.deleted++
+      } else {
+        // as we only get contacts that have changed, if it's not a creation or deletion, it's an update
+        const {
+          remoteRev: etag,
+          id: resourceName
+        } = cozyContact.cozyMetadata.sync[contactAccountId]
+        try {
+          const updatedContact = await googleUtils.updateContact(
+            transpiler.toGoogle(mergedContact),
+            resourceName,
+            etag
           )
 
-          let mergedContact = mergeContact(cozyContact, googleContact, {
-            preferGoogle: false
-          })
-          const action = determineActionOnGoogle(cozyContact, contactAccountId)
-
-          if (action === SHOULD_CREATE) {
-            const createdContact = await googleUtils.createContact(
-              transpiler.toGoogle(mergedContact)
-            )
-            const { etag, resourceName } = createdContact
-            mergedContact = updateCozyMetadata(
-              mergedContact,
-              etag,
-              resourceName,
-              contactAccountId
-            )
-            mergedContact = updateAccountsRelationship(
-              mergedContact,
-              contactAccountId
-            )
-            result.google.created++
-          } else if (action === SHOULD_DELETE) {
-            const resourceName = get(cozyContact, [
-              'cozyMetadata',
-              'sync',
-              contactAccountId,
-              'id'
-            ])
-
-            if (resourceName) {
-              try {
-                await googleUtils.deleteContact(resourceName)
-                result.google.deleted++
-              } catch (err) {
-                if (err.code !== 404) {
-                  throw err
-                } else {
-                  log('info', `Entity not found on google: ${resourceName}`)
-                }
-              }
-            }
-
-            await cozyUtils.client.destroy(mergedContact)
-            result.cozy.deleted++
+          const { etag: updatedEtag } = updatedContact
+          mergedContact = updateCozyMetadata(
+            mergedContact,
+            updatedEtag,
+            resourceName,
+            contactAccountId
+          )
+          result.google.updated++
+        } catch (err) {
+          if (err.code !== 404) {
+            throw err
           } else {
-            // as we only get contacts that have changed, if it's not a creation or deletion, it's an update
-            const {
-              remoteRev: etag,
-              id: resourceName
-            } = cozyContact.cozyMetadata.sync[contactAccountId]
-            try {
-              const updatedContact = await googleUtils.updateContact(
-                transpiler.toGoogle(mergedContact),
-                resourceName,
-                etag
-              )
-
-              const { etag: updatedEtag } = updatedContact
-              mergedContact = updateCozyMetadata(
-                mergedContact,
-                updatedEtag,
-                resourceName,
-                contactAccountId
-              )
-              result.google.updated++
-            } catch (err) {
-              if (err.code !== 404) {
-                throw err
-              } else {
-                log('info', `Entity not found on google: ${resourceName}`)
-              }
-            }
+            log('info', `Entity not found on google: ${resourceName}`)
           }
+        }
+      }
 
-          if (hasRevChanged(mergedContact, cozyContact, contactAccountId)) {
-            // we only update the sync metadata here so we don't count it as created/updated
-            await cozyUtils.client.save(mergedContact)
-          }
-        })
-        .map(synchronizeContact => limit(() => synchronizeContact))
-    )
+      if (hasRevChanged(mergedContact, cozyContact, contactAccountId)) {
+        // we only update the sync metadata here so we don't count it as created/updated
+        await cozyUtils.client.save(mergedContact)
+      }
+    })
+
+    log('info', '[start] Synchronize Cozy contacts to Google')
+    await Promise.all(cozyToGooglePromises.map(limit))
+    log('info', '[end] Synchronize Cozy contacts to Google')
 
     return result
   } catch (err) {
