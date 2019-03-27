@@ -96,6 +96,8 @@ class CozyUtils {
     log('info', 'Get updated Cozy contacts: start')
     const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
     let hasMore = true
+    const LIMIT = 100
+    let skip = 0
     while (hasMore) {
       const query = {
         cozyMetadata: {
@@ -128,11 +130,16 @@ class CozyUtils {
       }
 
       log('info', 'Get updated Cozy contacts: ask for more contacts')
+
       const resp = await contactsCollection.find(query, {
-        indexedFields: ['cozyMetadata.updatedAt']
+        indexedFields: ['cozyMetadata.updatedAt'],
+        skip: skip,
+        limit: LIMIT
       })
+
       allContacts = [...allContacts, ...resp.data]
       hasMore = resp.next
+      skip += LIMIT
     }
 
     log('info', 'Get updated Cozy contacts: done')
