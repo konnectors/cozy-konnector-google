@@ -177,7 +177,7 @@ const synchronizeContacts = async (
       deleted: 0
     }
   }
-  const limit = pLimit(10)
+  const limit = pLimit(50)
   try {
     await cozyUtils.prepareIndex(contactAccountId)
 
