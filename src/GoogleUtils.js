@@ -1,4 +1,5 @@
 const { google } = require('googleapis')
+const { log } = require('cozy-konnector-libs')
 const OAuth2Client = google.auth.OAuth2
 
 // see https://developers.google.com/apis-explorer/#search/people/people/v1/people.people.connections.list
@@ -91,12 +92,15 @@ class GoogleUtils {
         requestSyncToken: true,
         syncToken
       })
-      if (call.connections == null || call.connections.length === 0)
+      if (call.connections == null || call.connections.length === 0) {
+        log('info', 'Get all google contacts: empty')
         return {
           contacts: [],
           nextSyncToken: call.nextSyncToken
         }
+      }
       if (call.nextPageToken) {
+        log('info', 'Get all google contacts: ask for a next page')
         const nextPageResult = await this.getAllContacts({
           pageToken: call.nextPageToken,
           requestSyncToken: true,
@@ -107,6 +111,7 @@ class GoogleUtils {
           nextSyncToken: nextPageResult.nextSyncToken
         }
       } else {
+        log('info', 'Get all google contacts: last page')
         return {
           contacts: call.connections,
           nextSyncToken: call.nextSyncToken
