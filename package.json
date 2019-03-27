@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "cozy-client": "6.19.0",
-    "cozy-konnector-libs": "4.15.1",
+    "cozy-konnector-libs": "4.14.13",
     "googleapis": "36.0.0",
     "json-loader": "0.5.7"
   },
@@ -47,7 +47,7 @@
     "configstore": "4.0.0",
     "copy-webpack-plugin": "4.6.0",
     "cozy-app-publish": "0.15.0",
-    "cozy-jobs-cli": "1.8.1",
+    "cozy-jobs-cli": "1.7.15",
     "eslint": "5.15.1",
     "eslint-config-cozy-app": "1.1.12",
     "figlet": "1.2.1",
