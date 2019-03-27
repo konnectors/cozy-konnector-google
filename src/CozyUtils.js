@@ -90,13 +90,12 @@ class CozyUtils {
       .createIndex([`cozyMetadata.sync.${contactAccountId}.id`])
   }
 
-  async getUpdatedContacts(contactAccount) {
+  async getUpdatedContacts(contactAccount, limit = 100) {
     const { id: contactAccountId, lastSync, shouldSyncOrphan } = contactAccount
     let allContacts = []
     log('info', 'Get updated Cozy contacts: start')
     const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
     let hasMore = true
-    const LIMIT = 100
     let skip = 0
     while (hasMore) {
       const query = {
@@ -134,12 +133,12 @@ class CozyUtils {
       const resp = await contactsCollection.find(query, {
         indexedFields: ['cozyMetadata.updatedAt'],
         skip: skip,
-        limit: LIMIT
+        limit: limit
       })
 
       allContacts = [...allContacts, ...resp.data]
       hasMore = resp.next
-      skip += LIMIT
+      skip += limit
     }
 
     log('info', 'Get updated Cozy contacts: done')
