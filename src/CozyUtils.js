@@ -93,6 +93,7 @@ class CozyUtils {
   async getUpdatedContacts(contactAccount) {
     const { id: contactAccountId, lastSync, shouldSyncOrphan } = contactAccount
     let allContacts = []
+    log('info', 'Get updated Cozy contacts: start')
     const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
     let hasMore = true
     while (hasMore) {
@@ -126,6 +127,7 @@ class CozyUtils {
         }
       }
 
+      log('info', 'Get updated Cozy contacts: ask for more contacts')
       const resp = await contactsCollection.find(query, {
         indexedFields: ['cozyMetadata.updatedAt']
       })
@@ -133,6 +135,7 @@ class CozyUtils {
       hasMore = resp.next
     }
 
+    log('info', 'Get updated Cozy contacts: done')
     return allContacts
   }
 
