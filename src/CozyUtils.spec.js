@@ -136,6 +136,46 @@ describe('CozyUtils', () => {
       )
     })
 
+    it('should get all updated contacts even with pagination', async () => {
+      const findSpy = jest.fn()
+      // first page
+      findSpy.mockResolvedValueOnce({
+        data: [
+          {
+            id: 'john-doe'
+          }
+        ],
+        next: true
+      })
+      // second page
+      findSpy.mockResolvedValueOnce({
+        data: [
+          {
+            id: 'pierre-durand'
+          }
+        ],
+        next: false
+      })
+      cozyUtils.client.collection = jest.fn(() => ({
+        find: findSpy
+      }))
+      const contactAccount = {
+        id: 'fakeAccountId',
+        lastSync: '2018-04-03T15:16:02.276Z',
+        shouldSyncOrphan: false
+      }
+      const result = await cozyUtils.getUpdatedContacts(contactAccount, 1)
+      expect(result).toEqual([
+        {
+          id: 'john-doe'
+        },
+        {
+          id: 'pierre-durand'
+        }
+      ])
+      expect(findSpy).toHaveBeenCalledTimes(2)
+    })
+
     it('should get all updated contacts including orphans', async () => {
       const findSpy = jest.fn()
       findSpy.mockResolvedValueOnce({
