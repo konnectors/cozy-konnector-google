@@ -129,7 +129,9 @@ describe('CozyUtils', () => {
           }
         },
         {
-          indexedFields: ['cozyMetadata.updatedAt']
+          indexedFields: ['cozyMetadata.updatedAt'],
+          limit: 100,
+          skip: 0
         }
       )
     })
@@ -182,7 +184,9 @@ describe('CozyUtils', () => {
           }
         },
         {
-          indexedFields: ['cozyMetadata.updatedAt']
+          indexedFields: ['cozyMetadata.updatedAt'],
+          limit: 100,
+          skip: 0
         }
       )
     })
