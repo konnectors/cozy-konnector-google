@@ -118,6 +118,27 @@ Array [
 ]
 `;
 
+exports[`synchronizeContacts function should synchronize contacts: colemanHintzInGoogle 1`] = `
+Array [
+  Object {
+    "addresses": Array [],
+    "biographies": Array [],
+    "birthdays": Array [],
+    "emailAddresses": Array [],
+    "names": Array [
+      Object {
+        "familyName": "Hintz",
+        "givenName": "Coleman",
+      },
+    ],
+    "organizations": Array [],
+    "phoneNumbers": Array [],
+  },
+  "people/1655899",
+  "f673b03e-a077-4a58-8437-465eab2d8283",
+]
+`;
+
 exports[`synchronizeContacts function should synchronize contacts: destroyAureliaHayesInCozy 1`] = `
 Array [
   Object {
