@@ -40,6 +40,7 @@
     "cozy-konnector-libs": "4.14.13",
     "googleapis": "36.0.0",
     "json-loader": "0.5.7",
+    "lodash": "4.17.11",
     "p-limit": "2.2.0"
   },
   "devDependencies": {
