@@ -352,7 +352,11 @@
           "primary": true,
           "source": { "type": "CONTACT", "id": "257de03988942c82" }
         },
-        "text": "01/01/263"
+        "date": {
+          "month": 3,
+          "day": 11
+        },
+        "text": "03/11"
       }
     ],
     "emailAddresses": [

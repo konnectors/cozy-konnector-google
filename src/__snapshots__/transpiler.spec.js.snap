@@ -258,7 +258,7 @@ Array [
   Object {
     "doc": Object {
       "address": Array [],
-      "birthday": undefined,
+      "birthday": "03-11",
       "company": "Winterfell",
       "email": Array [
         Object {

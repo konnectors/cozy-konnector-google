@@ -1,3 +1,5 @@
+const padStart = require('lodash/padStart')
+
 const SCHEMA_VERSION = 1
 
 const transpiler = {
@@ -55,8 +57,12 @@ function getBirthday({ birthdays = [] }) {
     birthdays.find(b => b.metadata && b.metadata.primary) || birthdays[0]
   if (birthday && birthday.date) {
     const { year, month, day } = birthday.date
-    const isoDate = new Date(Date.UTC(year, month - 1, day)).toISOString()
-    return isoDate.split(DATE_AND_TIME_SEPARATOR)[0]
+    if (year) {
+      const isoDate = new Date(Date.UTC(year, month - 1, day)).toISOString()
+      return isoDate.split(DATE_AND_TIME_SEPARATOR)[0]
+    } else {
+      return `${padStart(month, 2, '0')}-${padStart(day, 2, '0')}`
+    }
   }
 }
 
