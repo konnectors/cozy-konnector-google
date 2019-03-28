@@ -312,31 +312,42 @@ const synchronizeContacts = async (
         result.cozy.deleted++
       } else {
         // as we only get contacts that have changed, if it's not a creation or deletion, it's an update
-        const {
-          remoteRev: etag,
-          id: resourceName
-        } = cozyContact.cozyMetadata.sync[contactAccountId]
-        try {
-          const updatedContact = await googleUtils.updateContact(
-            transpiler.toGoogle(mergedContact),
-            resourceName,
-            etag
-          )
-
-          const { etag: updatedEtag } = updatedContact
-          mergedContact = updateCozyMetadata(
-            mergedContact,
-            updatedEtag,
-            resourceName,
-            contactAccountId
-          )
-          result.google.updated++
-        } catch (err) {
-          if (err.code !== 404) {
-            throw err
-          } else {
-            log('info', `Entity not found on google: ${resourceName}`)
+        const { remoteRev, id: resourceName } = cozyContact.cozyMetadata.sync[
+          contactAccountId
+        ]
+        // fallback when remoteRev is undefined after migration
+        const etag = remoteRev
+          ? remoteRev
+          : get(mergedContact, 'metadata.google.metadata.sources.0.etag')
+        if (etag) {
+          try {
+            const updatedContact = await googleUtils.updateContact(
+              transpiler.toGoogle(mergedContact),
+              resourceName,
+              etag
+            )
+            const { etag: updatedEtag } = updatedContact
+            mergedContact = updateCozyMetadata(
+              mergedContact,
+              updatedEtag,
+              resourceName,
+              contactAccountId
+            )
+            result.google.updated++
+          } catch (err) {
+            if (err.code !== 404) {
+              throw err
+            } else {
+              log('info', `Entity not found on google: ${resourceName}`)
+            }
           }
+        } else {
+          log(
+            'error',
+            `Unable to update contact, no etag: ${JSON.stringify(
+              mergedContact
+            )}`
+          )
         }
       }
 

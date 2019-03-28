@@ -185,6 +185,39 @@ const cozyContacts = [
       updatedByApps: ['Contacts', 'konnector-google'],
       sourceAccount: SOURCE_ACCOUNT_ID
     }
+  },
+  // no etag in remoteRev field, search it in metadata.google
+  {
+    id: 'coleman-hintz-noetag',
+    _type: 'io.cozy.contacts',
+    _rev: '4805f2e4-4db8-4f02-bc52-298a4fbf8f11',
+    name: { givenName: 'Coleman', familyName: 'Hintz' },
+    email: [],
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2016-06-30T09:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2019-01-22T18:18:00.222Z',
+      updatedByApps: ['Contacts'],
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/1655899'
+        }
+      }
+    },
+    metadata: {
+      google: {
+        metadata: {
+          sources: [
+            {
+              etag: 'f673b03e-a077-4a58-8437-465eab2d8283'
+            }
+          ]
+        }
+      }
+    }
   }
 ]
 
@@ -332,6 +365,10 @@ describe('synchronizeContacts function', () => {
       etag: '6020dd2f-c9b8-4865-bdbd-078faad65204',
       resourceName: 'people/229876' // john-doe-edited
     })
+    googleUtils.updateContact.mockResolvedValueOnce({
+      etag: '7087f1a4-d4b9-4771-86a8-86a04713712d',
+      resourceName: 'people/1655899' // coleman-hintz-noetag
+    }) // no etag
     googleUtils.deleteContact.mockResolvedValueOnce({
       etag: '440922abef-c9b8-4865-bdbd-85561aa7b',
       resourceName: 'people/924609' // fabiola-grozdana-deleted-in-cozy
@@ -383,11 +420,11 @@ describe('synchronizeContacts function', () => {
       google: {
         created: 2,
         deleted: 1,
-        updated: 1
+        updated: 2
       }
     })
 
-    expect(fakeCozyClient.save).toHaveBeenCalledTimes(7)
+    expect(fakeCozyClient.save).toHaveBeenCalledTimes(8)
     expect(fakeCozyClient.save.mock.calls[0]).toMatchSnapshot(
       'kayleighYundtInCozy'
     )
@@ -437,9 +474,12 @@ describe('synchronizeContacts function', () => {
       'larueCreminInGoogle'
     )
 
-    expect(googleUtils.updateContact).toHaveBeenCalledTimes(1)
+    expect(googleUtils.updateContact).toHaveBeenCalledTimes(2)
     expect(googleUtils.updateContact.mock.calls[0]).toMatchSnapshot(
       'johnDoeInGoogle'
+    )
+    expect(googleUtils.updateContact.mock.calls[1]).toMatchSnapshot(
+      'colemanHintzInGoogle'
     )
 
     expect(googleUtils.deleteContact).toHaveBeenCalledTimes(1)
