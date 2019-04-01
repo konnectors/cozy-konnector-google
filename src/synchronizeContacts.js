@@ -1,6 +1,5 @@
 const get = require('lodash/get')
 const uniqBy = require('lodash/uniqBy')
-const without = require('lodash/without')
 const pLimit = require('p-limit')
 const { log } = require('cozy-konnector-libs')
 
@@ -242,15 +241,28 @@ const synchronizeContacts = async (
           await cozyUtils.client.destroy(cozyContact)
           result.cozy.deleted++
         }
-
-        // avoid conflicts: remove the contact from cozyContacts
-        cozyContacts = without(cozyContacts, cozyContact)
       }
     )
 
     log('info', '[start] Synchronize Google contacts to Cozy')
     await Promise.all(googleToCozyPromises.map(limit))
     log('info', '[end] Synchronize Google contacts to Cozy')
+
+    // remove from cozy contacts the contacts that have been updated by previous loop
+    const countBefore = cozyContacts.length
+    cozyContacts = cozyContacts.filter(
+      cozyContact =>
+        !googleContacts.some(
+          googleContact =>
+            googleContact.resourceName ===
+            get(cozyContact, `cozyMetadata.sync.${contactAccountId}.id`, '')
+        )
+    )
+    const removedCount = countBefore - cozyContacts.length
+    log(
+      'info',
+      `Removed ${removedCount} contacts from cozyContacts to avoid conflicts`
+    )
 
     const cozyToGooglePromises = cozyContacts.map(cozyContact => async () => {
       log(
