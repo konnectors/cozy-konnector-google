@@ -8,6 +8,7 @@ describe('GoogleUtils', () => {
   const peopleAPIMock = googleapis.google.people()
   const googleCreateContactSpy = peopleAPIMock.people.createContact
   const googleUpdateContactSpy = peopleAPIMock.people.updateContact
+  const googleGetSpy = peopleAPIMock.people.get
 
   afterEach(() => {
     jest.clearAllMocks()
@@ -100,6 +101,44 @@ describe('GoogleUtils', () => {
         resourceName: 'people/622740',
         requestBody: expectedRequestBody,
         updatePersonFields: 'emailAddresses,names'
+      })
+    })
+
+    it('should ask for a new etag and retry if etag is too old', async () => {
+      const googlePerson = {
+        names: [{ familyName: 'Doe', givenName: 'Jane' }]
+      }
+      googleUpdateContactSpy.mockRejectedValueOnce({
+        code: 400,
+        message:
+          'Request person.etag is different than the current person.etag. Clear local cache and get the latest person.'
+      })
+      googleGetSpy.mockResolvedValue({
+        data: {
+          etag: '66a4721f-523f-436b-8482-8f161259170d'
+        }
+      })
+      await googleUtils.updateContact(
+        googlePerson,
+        'people/648558',
+        'an-invalid-etag'
+      )
+      expect(googleUpdateContactSpy).toHaveBeenNthCalledWith(1, {
+        resourceName: 'people/648558',
+        requestBody: {
+          etag: 'an-invalid-etag',
+          names: [{ familyName: 'Doe', givenName: 'Jane' }]
+        },
+        updatePersonFields: 'names'
+      })
+
+      expect(googleUpdateContactSpy).toHaveBeenNthCalledWith(2, {
+        resourceName: 'people/648558',
+        requestBody: {
+          etag: '66a4721f-523f-436b-8482-8f161259170d',
+          names: [{ familyName: 'Doe', givenName: 'Jane' }]
+        },
+        updatePersonFields: 'names'
       })
     })
   })

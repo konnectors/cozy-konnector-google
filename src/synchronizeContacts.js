@@ -319,35 +319,26 @@ const synchronizeContacts = async (
         const etag = remoteRev
           ? remoteRev
           : get(mergedContact, 'metadata.google.metadata.sources.0.etag')
-        if (etag) {
-          try {
-            const updatedContact = await googleUtils.updateContact(
-              transpiler.toGoogle(mergedContact),
-              resourceName,
-              etag
-            )
-            const { etag: updatedEtag } = updatedContact
-            mergedContact = updateCozyMetadata(
-              mergedContact,
-              updatedEtag,
-              resourceName,
-              contactAccountId
-            )
-            result.google.updated++
-          } catch (err) {
-            if (err.code !== 404) {
-              throw err
-            } else {
-              log('info', `Entity not found on google: ${resourceName}`)
-            }
-          }
-        } else {
-          log(
-            'error',
-            `Unable to update contact, no etag: ${JSON.stringify(
-              mergedContact
-            )}`
+        try {
+          const updatedContact = await googleUtils.updateContact(
+            transpiler.toGoogle(mergedContact),
+            resourceName,
+            etag
           )
+          const { etag: updatedEtag } = updatedContact
+          mergedContact = updateCozyMetadata(
+            mergedContact,
+            updatedEtag,
+            resourceName,
+            contactAccountId
+          )
+          result.google.updated++
+        } catch (err) {
+          if (err.code !== 404) {
+            throw err
+          } else {
+            log('info', `Entity not found on google: ${resourceName}`)
+          }
         }
       }
 

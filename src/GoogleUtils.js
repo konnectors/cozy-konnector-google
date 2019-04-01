@@ -1,3 +1,4 @@
+const get = require('lodash/get')
 const { google } = require('googleapis')
 const { log } = require('cozy-konnector-libs')
 const OAuth2Client = google.auth.OAuth2
@@ -141,15 +142,43 @@ class GoogleUtils {
       auth: this.oAuth2Client
     })
 
-    const response = await peopleAPI.people.updateContact({
-      resourceName,
-      requestBody: {
-        ...person,
-        etag
-      },
-      updatePersonFields: Object.keys(person).join(',')
-    })
-    return response.data
+    try {
+      const response = await peopleAPI.people.updateContact({
+        resourceName,
+        requestBody: {
+          ...person,
+          etag
+        },
+        updatePersonFields: Object.keys(person).join(',')
+      })
+
+      return response.data
+    } catch (err) {
+      if (
+        err.code === 400 &&
+        err.message.includes(
+          'Request person.etag is different than the current person.etag'
+        )
+      ) {
+        // ask for the new etag and retry
+        const response = await peopleAPI.people.get({
+          resourceName,
+          personFields: 'names'
+        })
+        const newEtag = get(response, 'data.etag')
+        const newResponse = await peopleAPI.people.updateContact({
+          resourceName,
+          requestBody: {
+            ...person,
+            etag: newEtag
+          },
+          updatePersonFields: Object.keys(person).join(',')
+        })
+
+        return newResponse.data
+      }
+      throw err
+    }
   }
 
   async deleteContact(resourceName) {
