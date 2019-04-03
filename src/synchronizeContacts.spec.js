@@ -218,6 +218,39 @@ const cozyContacts = [
         }
       }
     }
+  },
+  // contact that has been hidden on Google before first sync after migration
+  {
+    id: 'howell-towne-hidden',
+    _type: 'io.cozy.contacts',
+    _rev: '83152550-fe2b-42a4-a098-5d17c586d2bf',
+    name: { givenName: 'Howell', familyName: 'Towne' },
+    email: [],
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2013-02-20T19:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2017-01-12T12:12:01.222Z',
+      updatedByApps: ['konnector-google'],
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/1655899'
+        }
+      }
+    },
+    metadata: {
+      google: {
+        metadata: {
+          sources: [
+            {
+              etag: '67465901-d316-4dcd-b866-977ff95b056e'
+            }
+          ]
+        }
+      }
+    }
   }
 ]
 
@@ -369,9 +402,18 @@ describe('synchronizeContacts function', () => {
       etag: '7087f1a4-d4b9-4771-86a8-86a04713712d',
       resourceName: 'people/1655899' // coleman-hintz-noetag
     }) // no etag
+    googleUtils.updateContact.mockRejectedValueOnce({
+      code: 400,
+      message:
+        'Request person.etag is different than the current person.etag. Clear local cache and get the latest person.' // howell-towne-hidden
+    }) // hidden contact
     googleUtils.deleteContact.mockResolvedValueOnce({
       etag: '440922abef-c9b8-4865-bdbd-85561aa7b',
       resourceName: 'people/924609' // fabiola-grozdana-deleted-in-cozy
+    })
+    googleUtils.getContact.mockRejectedValue({
+      code: 404,
+      message: 'Entity not found'
     })
 
     fakeCozyClient.save = jest
@@ -414,7 +456,7 @@ describe('synchronizeContacts function', () => {
     expect(result).toEqual({
       cozy: {
         created: 2,
-        deleted: 4,
+        deleted: 5,
         updated: 2
       },
       google: {
@@ -448,7 +490,7 @@ describe('synchronizeContacts function', () => {
     )
     expect(fakeCozyClient.save.mock.calls[6]).toMatchSnapshot('johnDoeInCozy')
 
-    expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(4)
+    expect(fakeCozyClient.destroy).toHaveBeenCalledTimes(5)
 
     expect(fakeCozyClient.destroy.mock.calls[0]).toMatchSnapshot(
       'destroyAureliaHayesInCozy'
@@ -466,6 +508,10 @@ describe('synchronizeContacts function', () => {
       'destroyFabiolaGrozdanaInCozy'
     )
 
+    expect(fakeCozyClient.destroy.mock.calls[4]).toMatchSnapshot(
+      'destroyHowellTowne'
+    )
+
     expect(googleUtils.createContact).toHaveBeenCalledTimes(2)
     expect(googleUtils.createContact.mock.calls[0]).toMatchSnapshot(
       'reinholdJenkinsInGoogle'
@@ -474,7 +520,7 @@ describe('synchronizeContacts function', () => {
       'larueCreminInGoogle'
     )
 
-    expect(googleUtils.updateContact).toHaveBeenCalledTimes(2)
+    expect(googleUtils.updateContact).toHaveBeenCalledTimes(3)
     expect(googleUtils.updateContact.mock.calls[0]).toMatchSnapshot(
       'johnDoeInGoogle'
     )

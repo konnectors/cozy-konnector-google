@@ -8,6 +8,7 @@ describe('GoogleUtils', () => {
   const peopleAPIMock = googleapis.google.people()
   const googleCreateContactSpy = peopleAPIMock.people.createContact
   const googleUpdateContactSpy = peopleAPIMock.people.updateContact
+  const googleGetContactSpy = peopleAPIMock.people.get
 
   afterEach(() => {
     jest.clearAllMocks()
@@ -100,6 +101,20 @@ describe('GoogleUtils', () => {
         resourceName: 'people/622740',
         requestBody: expectedRequestBody,
         updatePersonFields: 'emailAddresses,names'
+      })
+    })
+  })
+
+  describe('getContact', () => {
+    it('should retrieve a contact on Google', async () => {
+      const result = await googleUtils.getContact('people/69042')
+      expect(result).toEqual({
+        resourceName: 'people/123456',
+        etag: '6f5f3948-375c-4b7f-8d6b-241ccb0fba8f'
+      })
+      expect(googleGetContactSpy).toHaveBeenCalledWith({
+        resourceName: 'people/69042',
+        personFields: ['names']
       })
     })
   })
