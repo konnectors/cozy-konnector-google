@@ -215,6 +215,48 @@ Array [
 ]
 `;
 
+exports[`synchronizeContacts function should synchronize contacts: destroyHowellTowne 1`] = `
+Array [
+  Object {
+    "_rev": "83152550-fe2b-42a4-a098-5d17c586d2bf",
+    "_type": "io.cozy.contacts",
+    "cozyMetadata": Object {
+      "createdAt": "2013-02-20T19:33:00.123Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
+      "sync": Object {
+        "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
+          "id": "people/1655899",
+        },
+      },
+      "updatedAt": "2017-01-12T12:12:01.222Z",
+      "updatedByApps": Array [
+        "konnector-google",
+      ],
+    },
+    "email": Array [],
+    "id": "howell-towne-hidden",
+    "metadata": Object {
+      "google": Object {
+        "metadata": Object {
+          "sources": Array [
+            Object {
+              "etag": "67465901-d316-4dcd-b866-977ff95b056e",
+            },
+          ],
+        },
+      },
+    },
+    "name": Object {
+      "familyName": "Towne",
+      "givenName": "Howell",
+    },
+  },
+]
+`;
+
 exports[`synchronizeContacts function should synchronize contacts: destroyJohannaMoenInCozy 1`] = `
 Array [
   Object {

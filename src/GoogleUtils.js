@@ -163,6 +163,20 @@ class GoogleUtils {
     })
     return response.data
   }
+
+  async getContact(resourceName, personFields = ['names']) {
+    const peopleAPI = google.people({
+      version: 'v1',
+      auth: this.oAuth2Client
+    })
+
+    const response = await peopleAPI.people.get({
+      resourceName,
+      personFields
+    })
+
+    return response.data
+  }
 }
 
 module.exports = GoogleUtils

@@ -347,10 +347,49 @@ const synchronizeContacts = async (
             )
             result.google.updated++
           } catch (err) {
-            if (err.code !== 404) {
-              throw err
-            } else {
+            if (err.code === 404) {
               log('info', `Entity not found on google: ${resourceName}`)
+            } else if (
+              err.message.includes(
+                'Request person.etag is different than the current person.etag'
+              )
+            ) {
+              try {
+                // verify if the contact has not been deleted or hidden on Google
+                const googleContact = await googleUtils.getContact(resourceName)
+                const debugInfos = {
+                  id: cozyContact.id,
+                  resourceName: get(googleContact, 'resourceName'),
+                  etag,
+                  googleMetadata: get(googleContact, 'metadata'),
+                  oldGoogleMetadata: get(
+                    mergedContact,
+                    'metadata.google.metadata'
+                  ),
+                  cozyMetadata: get(mergedContact, 'cozyMetadata')
+                }
+                log(
+                  'error',
+                  'Google contact exists but etag is not valid: ' +
+                    JSON.stringify(debugInfos)
+                )
+                throw new Error(
+                  'Contact exists on Google but etag is not valid anymore!'
+                )
+              } catch (err) {
+                if (err.code === 404) {
+                  log(
+                    'info',
+                    'Contact does not exist anymore on Google, remove it from cozy'
+                  )
+                  await cozyUtils.client.destroy(cozyContact)
+                  result.cozy.deleted++
+                } else {
+                  throw err
+                }
+              }
+            } else {
+              throw err
             }
           }
         } else {
