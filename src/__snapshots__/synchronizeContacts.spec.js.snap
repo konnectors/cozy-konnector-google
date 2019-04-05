@@ -1,5 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`synchronizeContacts function should skip existing contacts after a disconnect/reconnect: betsy-brady 1`] = `
+Array [
+  Object {
+    "addresses": Array [],
+    "biographies": Array [],
+    "birthdays": Array [],
+    "emailAddresses": Array [],
+    "names": Array [
+      Object {
+        "familyName": "Brady",
+        "givenName": "Betsy",
+      },
+    ],
+    "organizations": Array [],
+    "phoneNumbers": Array [],
+  },
+  "people/1753908",
+  "992765-d316-4dcd-b866-098982ab65",
+]
+`;
+
+exports[`synchronizeContacts function should skip existing contacts after a disconnect/reconnect: norma-allison 1`] = `
+Array [
+  Object {
+    "addresses": Array [],
+    "biographies": Array [],
+    "birthdays": Array [],
+    "emailAddresses": Array [],
+    "names": Array [
+      Object {
+        "familyName": "Allison",
+        "givenName": "Norma",
+      },
+    ],
+    "organizations": Array [],
+    "phoneNumbers": Array [],
+  },
+  "people/19804826",
+  "992765-d316-4dcd-b866-098982ab65",
+]
+`;
+
 exports[`synchronizeContacts function should synchronize contacts: adanMuellerInCozy 1`] = `
 Array [
   Object {
@@ -243,7 +285,7 @@ Array [
       "updatedAt": "2017-01-12T12:12:01.222Z",
       "updatedByApps": Array [
         Object {
-          "date": "2017-01-12T12:12:01.222Z",
+          "date": "2019-01-12T12:12:01.222Z",
           "slug": "Contacts",
         },
         Object {

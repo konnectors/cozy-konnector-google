@@ -271,6 +271,148 @@ const cozyContacts = [
   }
 ]
 
+const cozyContactsAfterReboot = [
+  {
+    id: 'larry-finn-skipped',
+    _type: 'io.cozy.contacts',
+    _rev: '172bddd78-fe2b-42a4-a098-785bd546',
+    name: { givenName: 'Larry', familyName: 'Finn' },
+    email: [],
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2013-02-20T19:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2017-01-12T12:12:01.222Z',
+      updatedByApps: [
+        { slug: 'konnector-google', date: '2017-01-12T12:12:01.222Z' }
+      ],
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/1739820'
+        }
+      }
+    },
+    metadata: {
+      google: {
+        metadata: {
+          sources: [
+            {
+              etag: '992765-d316-4dcd-b866-098982ab65'
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'betsy-brady-updated',
+    _type: 'io.cozy.contacts',
+    _rev: '172bddd78-fe2b-42a4-a098-785bd546',
+    name: { givenName: 'Betsy', familyName: 'Brady' },
+    email: [],
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2013-02-20T19:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2017-01-12T12:12:01.222Z',
+      updatedByApps: [
+        { slug: 'konnector-google', date: '2017-01-12T12:12:01.222Z' },
+        { slug: 'contacts', date: '2019-03-22T12:12:01.222Z' }
+      ],
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/1753908'
+        }
+      }
+    },
+    metadata: {
+      google: {
+        metadata: {
+          sources: [
+            {
+              etag: '992765-d316-4dcd-b866-098982ab65'
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'gretchen-avery-updated-but-not-last',
+    _type: 'io.cozy.contacts',
+    _rev: '172bddd78-fe2b-42a4-a098-785bd546',
+    name: { givenName: 'Gretchen', familyName: 'Avery' },
+    email: [],
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2013-02-20T19:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2017-01-12T12:12:01.222Z',
+      updatedByApps: [
+        { slug: 'konnector-google', date: '2018-01-12T12:12:01.222Z' },
+        { slug: 'contacts', date: '2017-01-12T12:12:01.222Z' }
+      ],
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/661839'
+        }
+      }
+    },
+    metadata: {
+      google: {
+        metadata: {
+          sources: [
+            {
+              etag: '992765-d316-4dcd-b866-098982ab65'
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'norma-allison-updated-with-no-date',
+    _type: 'io.cozy.contacts',
+    _rev: '172bddd78-fe2b-42a4-a098-785bd546',
+    name: { givenName: 'Norma', familyName: 'Allison' },
+    email: [],
+    cozyMetadata: {
+      doctypeVersion: 2,
+      createdAt: '2013-02-20T19:33:00.123Z',
+      createdByApp: 'Contacts',
+      createdByAppVersion: '2.0.0',
+      updatedAt: '2017-01-12T12:12:01.222Z',
+      updatedByApps: [
+        'Contacts',
+        { slug: 'konnector-google', date: '2017-01-12T12:12:01.222Z' }
+      ],
+      sourceAccount: SOURCE_ACCOUNT_ID,
+      sync: {
+        [SOURCE_ACCOUNT_ID]: {
+          id: 'people/19804826'
+        }
+      }
+    },
+    metadata: {
+      google: {
+        metadata: {
+          sources: [
+            {
+              etag: '992765-d316-4dcd-b866-098982ab65'
+            }
+          ]
+        }
+      }
+    }
+  }
+]
+
 // this data comes from cozy.findContact
 const scarlettGutkowski = {
   id: 'scarlett-gutkowski-edited-on-google',
@@ -575,6 +717,38 @@ describe('synchronizeContacts function', () => {
         skipped: 0
       }
     })
+  })
+
+  it('should skip existing contacts after a disconnect/reconnect', async () => {
+    const googleContacts = []
+    const result = await synchronizeContacts(
+      SOURCE_ACCOUNT_ID,
+      cozyContactsAfterReboot,
+      googleContacts,
+      cozyUtils,
+      googleUtils
+    )
+    expect(result).toEqual({
+      cozy: {
+        created: 0,
+        deleted: 0,
+        updated: 0
+      },
+      google: {
+        created: 0,
+        deleted: 0,
+        updated: 2,
+        skipped: 2
+      }
+    })
+
+    expect(googleUtils.updateContact).toHaveBeenCalledTimes(2)
+    expect(googleUtils.updateContact.mock.calls[0]).toMatchSnapshot(
+      'betsy-brady'
+    )
+    expect(googleUtils.updateContact.mock.calls[1]).toMatchSnapshot(
+      'norma-allison'
+    )
   })
 
   it('should fail nicely on google error', async () => {
