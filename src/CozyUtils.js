@@ -90,6 +90,39 @@ class CozyUtils {
       .createIndex([`cozyMetadata.sync.${contactAccountId}.id`])
   }
 
+  async getTrashedContacts(contactAccountId, limit = 100) {
+    let trashed = []
+    const contactsCollection = this.client.collection(DOCTYPE_CONTACTS)
+    const query = {
+      trashed: true,
+      relationships: {
+        accounts: {
+          data: {
+            $elemMatch: {
+              _id: contactAccountId
+            }
+          }
+        }
+      }
+    }
+
+    let hasMore = true
+    let skip = 0
+    while (hasMore) {
+      const options = {
+        indexedFields: ['trashed'],
+        limit: limit,
+        skip
+      }
+      const response = await contactsCollection.find(query, options)
+      trashed = [...trashed, ...response.data]
+      hasMore = response.next
+      skip += limit
+    }
+
+    return trashed
+  }
+
   async getUpdatedContacts(contactAccount, limit = 100) {
     const { id: contactAccountId, lastSync, shouldSyncOrphan } = contactAccount
     let allContacts = []

@@ -61,6 +61,81 @@ describe('CozyUtils', () => {
     })
   })
 
+  describe('getTrashedContacts', () => {
+    it('should get all trashed contacts', async () => {
+      const findSpy = jest.fn()
+      // first page
+      findSpy.mockResolvedValueOnce({
+        data: [
+          {
+            id: 'john-doe',
+            trashed: true
+          },
+          {
+            id: 'jane-doe',
+            trashed: true
+          }
+        ],
+        next: true
+      })
+      // second page
+      findSpy.mockResolvedValueOnce({
+        data: [
+          {
+            id: 'pierre-durand',
+            trashed: true
+          },
+          {
+            id: 'isabelle-durand',
+            trashed: true
+          }
+        ],
+        next: false
+      })
+      cozyUtils.client.collection = jest.fn(() => ({
+        find: findSpy
+      }))
+      const result = await cozyUtils.getTrashedContacts('fakeAccountId', 2)
+      expect(result).toEqual([
+        {
+          id: 'john-doe',
+          trashed: true
+        },
+        {
+          id: 'jane-doe',
+          trashed: true
+        },
+        {
+          id: 'pierre-durand',
+          trashed: true
+        },
+        {
+          id: 'isabelle-durand',
+          trashed: true
+        }
+      ])
+      expect(findSpy).toHaveBeenCalledWith(
+        {
+          trashed: true,
+          relationships: {
+            accounts: {
+              data: {
+                $elemMatch: {
+                  _id: 'fakeAccountId'
+                }
+              }
+            }
+          }
+        },
+        {
+          indexedFields: ['trashed'],
+          limit: 2,
+          skip: 0
+        }
+      )
+    })
+  })
+
   describe('getUpdatedContacts', () => {
     it('should get all updated contacts', async () => {
       const findSpy = jest.fn()
