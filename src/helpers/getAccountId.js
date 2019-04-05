@@ -1,6 +1,7 @@
 function getAccountId() {
   try {
-    return process.env.NODE_ENV === 'development'
+    return process.env.NODE_ENV === 'development' ||
+      process.env.NODE_ENV === 'test'
       ? 'fakeAccountId'
       : JSON.parse(process.env.COZY_FIELDS).account
   } catch (err) {
