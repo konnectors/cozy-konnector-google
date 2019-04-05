@@ -59,7 +59,7 @@
     "konitor": "0.10.2",
     "minimist": "1.2.0",
     "mockdate": "2.0.2",
-    "svgo": "1.2.0",
+    "svgo": "1.2.1",
     "webpack": "4.29.6",
     "webpack-cli": "3.3.0"
   }
