@@ -130,13 +130,18 @@ const determineActionOnCozy = (
 const determineActionOnGoogle = (cozyContact, contactAccountId) => {
   const syncInfo = get(cozyContact, `cozyMetadata.sync.${contactAccountId}`)
   const isTrashedOnCozy = cozyContact.trashed
+  const lastUpdatedBy = get(cozyContact, 'cozyMetadata.updatedByApps[0].slug')
 
   if (isTrashedOnCozy) {
     return SHOULD_DELETE
   } else if (!syncInfo) {
     return SHOULD_CREATE
-  } else {
+  } else if (lastUpdatedBy !== APP_NAME) {
+    // If the last update is from us, we don't need to push the contact to google again.
+    // We can only do this as long as a same contact is not synced with 2 google accounts.
     return SHOULD_UPDATE
+  } else {
+    return null
   }
 }
 
@@ -168,7 +173,8 @@ const synchronizeContacts = async (
     google: {
       created: 0,
       updated: 0,
-      deleted: 0
+      deleted: 0,
+      skipped: 0
     },
     cozy: {
       created: 0,
@@ -322,8 +328,7 @@ const synchronizeContacts = async (
 
         await cozyUtils.client.destroy(mergedContact)
         result.cozy.deleted++
-      } else {
-        // as we only get contacts that have changed, if it's not a creation or deletion, it's an update
+      } else if (action === SHOULD_UPDATE) {
         const { remoteRev, id: resourceName } = cozyContact.cozyMetadata.sync[
           contactAccountId
         ]
@@ -400,6 +405,8 @@ const synchronizeContacts = async (
             )}`
           )
         }
+      } else {
+        result.google.skipped++
       }
 
       if (hasRevChanged(mergedContact, cozyContact, contactAccountId)) {
@@ -415,6 +422,17 @@ const synchronizeContacts = async (
     return result
   } catch (err) {
     log('error', `Error during sync: ${err.message}`)
+    if (/Quota exceeded/.test(err.message)) {
+      log('info', 'Shutting down because the Google request quota was reached.')
+      log(
+        'info',
+        `Contacts processed before reaching the quota this run: ${
+          result.google.skipped
+        } skipped | ${result.google.created} created | ${
+          result.google.updated
+        } updated | ${result.google.deleted} deleted`
+      )
+    }
     throw new Error(`Unable to synchronize contacts: ${err.message}`)
   }
 }
