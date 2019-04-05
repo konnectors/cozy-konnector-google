@@ -1,5 +1,6 @@
 const get = require('lodash/get')
 const uniqBy = require('lodash/uniqBy')
+const sortBy = require('lodash/sortBy')
 const pLimit = require('p-limit')
 const { log } = require('cozy-konnector-libs')
 
@@ -130,7 +131,11 @@ const determineActionOnCozy = (
 const determineActionOnGoogle = (cozyContact, contactAccountId) => {
   const syncInfo = get(cozyContact, `cozyMetadata.sync.${contactAccountId}`)
   const isTrashedOnCozy = cozyContact.trashed
-  const lastUpdatedBy = get(cozyContact, 'cozyMetadata.updatedByApps[0].slug')
+  const sortedLastUpdates = sortBy(
+    get(cozyContact, 'cozyMetadata.updatedByApps', []),
+    'date'
+  ).reverse()
+  const lastUpdatedBy = get(sortedLastUpdates, '[0].slug')
 
   if (isTrashedOnCozy) {
     return SHOULD_DELETE
