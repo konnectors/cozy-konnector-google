@@ -22,6 +22,7 @@
     "start": "node ./src/index.js",
     "token": "node ./googleHelper.js",
     "dev": "cozy-konnector-dev",
+    "onDeleteAccount": "cozy-konnector-dev src/onDeleteAccount.js",
     "standalone": "cozy-run-standalone",
     "pretest": "npm run clean",
     "test": "konitor testit .",
