@@ -23,7 +23,12 @@ const cozyContacts = [
       createdByApp: 'Contacts',
       createdByAppVersion: '3.3.0',
       updatedAt: '2018-11-11T09:09:00.222Z',
-      updatedByApps: ['Contacts'],
+      updatedByApps: [
+        {
+          slug: 'Contacts',
+          date: '2018-11-11T09:09:00.222Z'
+        }
+      ],
       sourceAccount: undefined
     },
     relationships: {
@@ -44,7 +49,7 @@ const cozyContacts = [
       createdByApp: 'konnector-google',
       createdByAppVersion: '2.0.0',
       updatedAt: '2018-03-22T12:09:00.222Z',
-      updatedByApps: ['Contacts'],
+      updatedByApps: [{ slug: 'Contacts', date: '2018-03-22T12:09:00.222Z' }],
       sourceAccount: OTHER_SOURCE_ACCOUNT_ID,
       sync: {
         [OTHER_SOURCE_ACCOUNT_ID]: {
@@ -78,7 +83,7 @@ const cozyContacts = [
       createdByApp: 'Contacts',
       createdByAppVersion: '2.0.0',
       updatedAt: '2019-01-22T18:18:00.222Z',
-      updatedByApps: ['Contacts'],
+      updatedByApps: [{ slug: 'Contacts', date: '2019-01-22T18:18:00.222Z' }],
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -108,7 +113,7 @@ const cozyContacts = [
       createdByApp: 'Contacts',
       createdByAppVersion: '2.0.0',
       updatedAt: '2019-02-12T12:18:00.222Z',
-      updatedByApps: ['Contacts'],
+      updatedByApps: [{ slug: 'Contacts', date: '2019-02-12T12:18:00.222Z' }],
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -138,7 +143,10 @@ const cozyContacts = [
       createdByApp: 'Contacts',
       createdByAppVersion: '2.0.0',
       updatedAt: '2018-11-12T18:18:00.222Z',
-      updatedByApps: ['Contacts', 'konnector-google'],
+      updatedByApps: [
+        { slug: 'Contacts', date: '2018-11-12T18:18:00.222Z' },
+        { slug: 'konnector-google', date: '2017-03-22T07:33:00.123Z' }
+      ],
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -160,7 +168,10 @@ const cozyContacts = [
       createdByApp: 'Contacts',
       createdByAppVersion: '2.0.0',
       updatedAt: '2018-12-22T15:18:00.222Z',
-      updatedByApps: ['Contacts', 'konnector-google'],
+      updatedByApps: [
+        { slug: 'Contacts', date: '2018-12-22T15:18:00.222Z' },
+        { slug: 'konnector-google', date: '2018-04-22T17:33:00.123Z' }
+      ],
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -182,7 +193,10 @@ const cozyContacts = [
       createdByApp: 'Contacts',
       createdByAppVersion: '2.0.0',
       updatedAt: '2018-12-22T15:18:00.222Z',
-      updatedByApps: ['Contacts', 'konnector-google'],
+      updatedByApps: [
+        { slug: 'Contacts', date: '2018-12-22T15:18:00.222Z' },
+        { slug: 'konnector-google', date: '2018-04-22T17:33:00.123Z' }
+      ],
       sourceAccount: SOURCE_ACCOUNT_ID
     }
   },
@@ -199,7 +213,7 @@ const cozyContacts = [
       createdByApp: 'Contacts',
       createdByAppVersion: '2.0.0',
       updatedAt: '2019-01-22T18:18:00.222Z',
-      updatedByApps: ['Contacts'],
+      updatedByApps: [{ slug: 'Contacts', date: '2019-01-22T18:18:00.222Z' }],
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -232,7 +246,10 @@ const cozyContacts = [
       createdByApp: 'Contacts',
       createdByAppVersion: '2.0.0',
       updatedAt: '2017-01-12T12:12:01.222Z',
-      updatedByApps: ['konnector-google'],
+      updatedByApps: [
+        { slug: 'Contacts', date: '2019-01-12T12:12:01.222Z' },
+        { slug: 'konnector-google', date: '2017-01-12T12:12:01.222Z' }
+      ],
       sourceAccount: SOURCE_ACCOUNT_ID,
       sync: {
         [SOURCE_ACCOUNT_ID]: {
@@ -462,7 +479,8 @@ describe('synchronizeContacts function', () => {
       google: {
         created: 2,
         deleted: 1,
-        updated: 2
+        updated: 2,
+        skipped: 0
       }
     })
 
@@ -553,7 +571,8 @@ describe('synchronizeContacts function', () => {
       google: {
         created: 0,
         deleted: 0,
-        updated: 0
+        updated: 0,
+        skipped: 0
       }
     })
   })

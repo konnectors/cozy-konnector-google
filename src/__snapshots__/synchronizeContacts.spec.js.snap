@@ -72,7 +72,10 @@ Array [
       },
       "updatedAt": "2019-02-12T12:18:00.222Z",
       "updatedByApps": Array [
-        "Contacts",
+        Object {
+          "date": "2019-02-12T12:18:00.222Z",
+          "slug": "Contacts",
+        },
       ],
     },
     "email": Array [
@@ -192,8 +195,14 @@ Array [
       },
       "updatedAt": "2018-11-12T18:18:00.222Z",
       "updatedByApps": Array [
-        "Contacts",
-        "konnector-google",
+        Object {
+          "date": "2018-11-12T18:18:00.222Z",
+          "slug": "Contacts",
+        },
+        Object {
+          "date": "2017-03-22T07:33:00.123Z",
+          "slug": "konnector-google",
+        },
       ],
     },
     "email": Array [],
@@ -233,7 +242,14 @@ Array [
       },
       "updatedAt": "2017-01-12T12:12:01.222Z",
       "updatedByApps": Array [
-        "konnector-google",
+        Object {
+          "date": "2017-01-12T12:12:01.222Z",
+          "slug": "Contacts",
+        },
+        Object {
+          "date": "2017-01-12T12:12:01.222Z",
+          "slug": "konnector-google",
+        },
       ],
     },
     "email": Array [],
@@ -276,8 +292,14 @@ Array [
       },
       "updatedAt": "2018-12-22T15:18:00.222Z",
       "updatedByApps": Array [
-        "Contacts",
-        "konnector-google",
+        Object {
+          "date": "2018-12-22T15:18:00.222Z",
+          "slug": "Contacts",
+        },
+        Object {
+          "date": "2018-04-22T17:33:00.123Z",
+          "slug": "konnector-google",
+        },
       ],
     },
     "id": "johanna-moen-deleted-on-google-conflict",
@@ -306,8 +328,14 @@ Array [
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "updatedAt": "2018-12-22T15:18:00.222Z",
       "updatedByApps": Array [
-        "Contacts",
-        "konnector-google",
+        Object {
+          "date": "2018-12-22T15:18:00.222Z",
+          "slug": "Contacts",
+        },
+        Object {
+          "date": "2018-04-22T17:33:00.123Z",
+          "slug": "konnector-google",
+        },
       ],
     },
     "email": Array [],
@@ -360,7 +388,10 @@ Array [
       },
       "updatedAt": "2019-01-22T18:18:00.222Z",
       "updatedByApps": Array [
-        "Contacts",
+        Object {
+          "date": "2019-01-22T18:18:00.222Z",
+          "slug": "Contacts",
+        },
       ],
     },
     "email": Array [
@@ -512,7 +543,10 @@ Array [
       },
       "updatedAt": "2018-03-22T12:09:00.222Z",
       "updatedByApps": Array [
-        "Contacts",
+        Object {
+          "date": "2018-03-22T12:09:00.222Z",
+          "slug": "Contacts",
+        },
       ],
     },
     "email": Array [],
@@ -585,7 +619,10 @@ Array [
       },
       "updatedAt": "2018-11-11T09:09:00.222Z",
       "updatedByApps": Array [
-        "Contacts",
+        Object {
+          "date": "2018-11-11T09:09:00.222Z",
+          "slug": "Contacts",
+        },
       ],
     },
     "email": Array [],
