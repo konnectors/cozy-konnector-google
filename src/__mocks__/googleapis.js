@@ -15,6 +15,15 @@ const get = jest.fn(() =>
   })
 )
 
+const listContacts = jest.fn(() =>
+  Promise.resolve({
+    data: {
+      connections: [],
+      nextSyncToken: 'new-sync-token'
+    }
+  })
+)
+
 class FakeOAuth2 {}
 
 googleapis.google.auth = {
@@ -25,7 +34,10 @@ googleapis.google.people = jest.fn(() => ({
   people: {
     createContact: createContact,
     updateContact: updateContact,
-    get: get
+    get: get,
+    connections: {
+      list: listContacts
+    }
   }
 }))
 
@@ -33,7 +45,8 @@ googleapis.spies = {
   FakeOAuth2,
   createContact,
   updateContact,
-  get
+  get,
+  listContacts
 }
 
 module.exports = googleapis

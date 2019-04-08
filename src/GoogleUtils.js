@@ -62,36 +62,47 @@ class GoogleUtils {
     })
   }
 
-  getConnectionsList(options) {
+  async getConnectionsList(options) {
     const peopleAPI = google.people({
       version: 'v1',
       auth: this.oAuth2Client
     })
-    return new Promise((resolve, reject) => {
-      peopleAPI.people.connections.list(
-        {
-          resourceName: 'people/me',
-          personFields: FIELDS.join(','),
-          ...options
-        },
-        (err, res) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve(res.data)
-          }
-        }
-      )
+    const response = await peopleAPI.people.connections.list({
+      resourceName: 'people/me',
+      personFields: FIELDS.join(','),
+      ...options
     })
+
+    return response.data
   }
 
   async getAllContacts({ pageToken = null, syncToken = null }) {
     try {
-      const call = await this.getConnectionsList({
-        pageToken,
-        requestSyncToken: true,
-        syncToken
-      })
+      let call
+      try {
+        call = await this.getConnectionsList({
+          pageToken,
+          requestSyncToken: true,
+          syncToken
+        })
+      } catch (err) {
+        if (
+          err.code === 400 &&
+          err.message.includes(
+            'Sync token is expired. Clear local cache and retry call without the sync token'
+          )
+        ) {
+          log('info', "Sync token expired, don't use sync token this time.")
+          call = await this.getConnectionsList({
+            pageToken,
+            requestSyncToken: true,
+            syncToken: null
+          })
+        } else {
+          throw err
+        }
+      }
+
       if (call.connections == null || call.connections.length === 0) {
         log('info', 'Get all google contacts: empty')
         return {
