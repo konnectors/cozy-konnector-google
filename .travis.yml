@@ -18,6 +18,7 @@ branches:
   - build-debug
 script:
 - yarn lint
+- yarn jest
 - yarn build
 # - yarn run check
 deploy:
