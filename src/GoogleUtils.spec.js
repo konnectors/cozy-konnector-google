@@ -6,12 +6,256 @@ jest.mock('googleapis')
 describe('GoogleUtils', () => {
   const googleUtils = new GoogleUtils()
   const peopleAPIMock = googleapis.google.people()
+  const listSpy = peopleAPIMock.people.connections.list
   const googleCreateContactSpy = peopleAPIMock.people.createContact
   const googleUpdateContactSpy = peopleAPIMock.people.updateContact
   const googleGetContactSpy = peopleAPIMock.people.get
 
   afterEach(() => {
     jest.clearAllMocks()
+  })
+
+  describe('getAllContacts', () => {
+    const personFields =
+      'addresses,ageRanges,biographies,birthdays,braggingRights,coverPhotos,emailAddresses,events,genders,imClients,interests,locales,memberships,metadata,names,nicknames,occupations,organizations,phoneNumbers,photos,relations,relationshipInterests,relationshipStatuses,residences,skills,taglines,urls'
+    it('should retrieve all contacts using syncToken', async () => {
+      listSpy.mockResolvedValueOnce({
+        data: {
+          connections: [
+            {
+              resourceName: 'people/142434',
+              names: [
+                {
+                  givenName: 'John',
+                  familyName: 'Doe'
+                }
+              ]
+            },
+            {
+              resourceName: 'people/333222',
+              names: [
+                {
+                  givenName: 'Jane',
+                  familyName: 'Doe'
+                }
+              ]
+            }
+          ],
+          nextSyncToken: 'my-sync-token'
+        }
+      })
+      const result = await googleUtils.getAllContacts({
+        syncToken: 'my-sync-token'
+      })
+      expect(listSpy).toHaveBeenCalledWith({
+        pageToken: null,
+        personFields,
+
+        requestSyncToken: true,
+        resourceName: 'people/me',
+        syncToken: 'my-sync-token'
+      })
+      expect(result).toEqual({
+        contacts: [
+          {
+            resourceName: 'people/142434',
+            names: [
+              {
+                givenName: 'John',
+                familyName: 'Doe'
+              }
+            ]
+          },
+          {
+            resourceName: 'people/333222',
+            names: [
+              {
+                givenName: 'Jane',
+                familyName: 'Doe'
+              }
+            ]
+          }
+        ],
+        nextSyncToken: 'my-sync-token'
+      })
+    })
+
+    it('should retrieve contacts with pagination', async () => {
+      listSpy.mockResolvedValueOnce({
+        data: {
+          connections: [
+            {
+              resourceName: 'people/142434',
+              names: [
+                {
+                  givenName: 'John',
+                  familyName: 'Doe'
+                }
+              ]
+            },
+            {
+              resourceName: 'people/333222',
+              names: [
+                {
+                  givenName: 'Jane',
+                  familyName: 'Doe'
+                }
+              ]
+            }
+          ],
+          nextPageToken: 'page-token-1'
+        }
+      })
+      listSpy.mockResolvedValueOnce({
+        data: {
+          connections: [
+            {
+              resourceName: 'people/142434',
+              names: [
+                {
+                  givenName: 'Amira',
+                  familyName: 'Hane'
+                }
+              ]
+            },
+            {
+              resourceName: 'people/4502',
+              names: [
+                {
+                  givenName: 'Justus',
+                  familyName: 'Rutherford'
+                }
+              ]
+            }
+          ],
+          nextPageToken: 'page-token-2'
+        }
+      })
+      listSpy.mockResolvedValueOnce({
+        data: {
+          connections: [
+            {
+              resourceName: 'people/27368',
+              names: [
+                {
+                  givenName: 'Nelle',
+                  familyName: 'Emard'
+                }
+              ]
+            }
+          ],
+          nextSyncToken: 'new-sync-token'
+        }
+      })
+      const result = await googleUtils.getAllContacts({
+        syncToken: 'my-sync-token'
+      })
+      expect(listSpy).toHaveBeenCalledWith({
+        pageToken: null,
+        personFields,
+        requestSyncToken: true,
+        resourceName: 'people/me',
+        syncToken: 'my-sync-token'
+      })
+      expect(result).toEqual({
+        contacts: [
+          {
+            resourceName: 'people/142434',
+            names: [
+              {
+                givenName: 'John',
+                familyName: 'Doe'
+              }
+            ]
+          },
+          {
+            resourceName: 'people/333222',
+            names: [
+              {
+                givenName: 'Jane',
+                familyName: 'Doe'
+              }
+            ]
+          },
+          {
+            resourceName: 'people/142434',
+            names: [
+              {
+                givenName: 'Amira',
+                familyName: 'Hane'
+              }
+            ]
+          },
+          {
+            resourceName: 'people/4502',
+            names: [
+              {
+                givenName: 'Justus',
+                familyName: 'Rutherford'
+              }
+            ]
+          },
+          {
+            resourceName: 'people/27368',
+            names: [
+              {
+                givenName: 'Nelle',
+                familyName: 'Emard'
+              }
+            ]
+          }
+        ],
+        nextSyncToken: 'new-sync-token'
+      })
+    })
+
+    it('should call Google API without syncToken if ours is expired', async () => {
+      listSpy.mockRejectedValueOnce({
+        code: 400,
+        message:
+          'Sync token is expired. Clear local cache and retry call without the sync token'
+      })
+      listSpy.mockResolvedValueOnce({
+        data: {
+          connections: [
+            {
+              resourceName: 'people/936912',
+              names: [
+                {
+                  givenName: 'Dina',
+                  familyName: 'Dickinson'
+                }
+              ]
+            }
+          ],
+          nextSyncToken: 'new-sync-token'
+        }
+      })
+      const result = await googleUtils.getAllContacts({
+        syncToken: 'expired-token'
+      })
+      expect(result).toEqual({
+        contacts: [
+          {
+            resourceName: 'people/936912',
+            names: [
+              {
+                givenName: 'Dina',
+                familyName: 'Dickinson'
+              }
+            ]
+          }
+        ],
+        nextSyncToken: 'new-sync-token'
+      })
+      expect(listSpy).toHaveBeenLastCalledWith({
+        pageToken: null,
+        personFields,
+        requestSyncToken: true,
+        resourceName: 'people/me',
+        syncToken: null
+      })
+    })
   })
 
   describe('createContact', () => {
