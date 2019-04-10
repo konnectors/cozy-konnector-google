@@ -125,6 +125,14 @@ const determineActionOnCozy = (
     return SHOULD_UPDATE
   } else if (cozyContact && isGoogleContactDeleted) {
     return SHOULD_DELETE
+  } else {
+    log(
+      'info',
+      'Cannot determine action on Cozy.\ncozyContact: ' +
+        JSON.stringify(cozyContact) +
+        '\ngoogleContact: ' +
+        JSON.stringify(googleContact)
+    )
   }
 }
 
@@ -146,6 +154,10 @@ const determineActionOnGoogle = (cozyContact, contactAccountId) => {
     // We can only do this as long as a same contact is not synced with 2 google accounts.
     return SHOULD_UPDATE
   } else {
+    log(
+      'info',
+      `No action on Google.\ncozyContact: ${JSON.stringify(cozyContact)}`
+    )
     return null
   }
 }
@@ -213,6 +225,7 @@ const synchronizeContacts = async (
           contactAccountId
         )
 
+        log('info', `Action on ${googleContact.resourceName}: ${action}`)
         if (action === SHOULD_CREATE) {
           mergedContact = {
             ...mergedContact,
@@ -293,7 +306,7 @@ const synchronizeContacts = async (
         preferGoogle: false
       })
       const action = determineActionOnGoogle(cozyContact, contactAccountId)
-
+      log('info', `Action on ${cozyContact.id}: ${action}`)
       if (action === SHOULD_CREATE) {
         const createdContact = await googleUtils.createContact(
           transpiler.toGoogle(mergedContact)
