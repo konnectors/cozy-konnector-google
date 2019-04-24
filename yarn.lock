@@ -1557,14 +1557,15 @@ cozy-client-js@0.15.1:
     pouchdb-browser "7.0.0"
     pouchdb-find "7.0.0"
 
-cozy-client@6.21.0:
-  version "6.21.0"
-  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.21.0.tgz#b411260c75f2fca7b88d8084ab779cdd5b8d34f5"
-  integrity sha512-NbWvEGZqqIZkwXX9nVk4XvnOwblvvBAJMW52oqMfvHs+4unsfDofEWb1CkYPfMtR4pQaHJwH96/4JWMqSX4G4A==
+cozy-client@6.22.0:
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.22.0.tgz#5d2e7ce74a92a8981385677e0f95277340dce69b"
+  integrity sha512-tyeamB8rF0mNfuKpW9LZYFs2/MQRfYP7IijIwajaQK64v7DiwJKUZ4T3QfogvuVPe6uNMLPCe4F6r/KSvOtBuA==
   dependencies:
     cozy-device-helper "1.6.3"
     cozy-stack-client "^6.21.0"
     lodash "4.17.11"
+    microee "0.0.6"
     prop-types "15.6.2"
     react "16.7.0"
     react-redux "5.0.7"
@@ -4765,6 +4766,11 @@ merge@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/merge/-/merge-1.2.1.tgz#38bebf80c3220a8a487b6fcfb3941bb11720c145"
   integrity sha512-VjFo4P5Whtj4vsLzsYBu5ayHhoHJ0UqNm7ibvShmbmoz7tGi0vXaoJbGdB+GmDMLUdg8DpQXEIeVDAe8MaABvQ==
+
+microee@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/microee/-/microee-0.0.6.tgz#a12bdb0103681e8b126a9b071eba4c467c78fffe"
+  integrity sha1-oSvbAQNoHosSapsHHrpMRnx4//4=
 
 micromatch@^2.3.11:
   version "2.3.11"
