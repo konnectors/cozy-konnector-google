@@ -1571,10 +1571,10 @@ cozy-client-js@0.15.1:
     pouchdb-browser "7.0.0"
     pouchdb-find "7.0.0"
 
-cozy-client@6.31.1:
-  version "6.31.1"
-  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.31.1.tgz#d6d953e7ca573bfe16456686e483cfebfa290762"
-  integrity sha512-TmvdkJZGVjKvnumOHSj9cp3y0NFzS8ygdFjNuGGI9rZgBjU5DyqdB7hdQXkIn/ImiN9dQhPwj89BR8qH1RnmLg==
+cozy-client@6.32.0:
+  version "6.32.0"
+  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.32.0.tgz#f7511c3e33dba08a60932dfd71aae21850b1919b"
+  integrity sha512-onAIUBxzxxIxC7LbJcZmsawE4Os6g+Ea1Dbv36Tq/8gigfcwh5Qwpc5PunbjpAFXlexs9aZBmAi4C68+p1JTEA==
   dependencies:
     cozy-device-helper "1.6.3"
     cozy-stack-client "^6.25.0"
