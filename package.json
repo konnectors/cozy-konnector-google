@@ -37,7 +37,7 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-client": "6.31.1",
+    "cozy-client": "6.32.0",
     "cozy-konnector-libs": "4.15.11",
     "googleapis": "36.0.0",
     "json-loader": "0.5.7",
@@ -50,7 +50,7 @@
     "configstore": "4.0.0",
     "copy-webpack-plugin": "4.6.0",
     "cozy-app-publish": "0.15.0",
-    "cozy-jobs-cli": "1.8.12",
+    "cozy-jobs-cli": "1.8.13",
     "eslint": "5.15.1",
     "eslint-config-cozy-app": "1.1.12",
     "figlet": "1.2.1",
@@ -61,7 +61,7 @@
     "minimist": "1.2.0",
     "mockdate": "2.0.2",
     "svgo": "1.2.2",
-    "webpack": "4.31.0",
+    "webpack": "4.32.0",
     "webpack-cli": "3.3.2"
   }
 }
