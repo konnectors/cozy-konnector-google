@@ -1571,10 +1571,10 @@ cozy-client-js@0.15.1:
     pouchdb-browser "7.0.0"
     pouchdb-find "7.0.0"
 
-cozy-client@6.33.0:
-  version "6.33.0"
-  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.33.0.tgz#9415c3616225e81884d911bf4bfe8bf770236d0b"
-  integrity sha512-khkOL9v5HoQzdNnCm3TVMhsXti3ubZCrcIh1twoFYaG7dYEwUsW6XHE4Mgzv8gw7J/KCTDaEYiu5+P568tN4Eg==
+cozy-client@6.34.0:
+  version "6.34.0"
+  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.34.0.tgz#fcaac796f9689757c5b1f540e9d3b013f4c60f71"
+  integrity sha512-PmE4xeg9mtCWTlJjnTNO3NYzDbnuZADFA26KuMsihZEjgQZ/AQaVi0z+6julEEo10fTrRqQ+rWjYFMHUox2c0Q==
   dependencies:
     cozy-device-helper "1.6.3"
     cozy-stack-client "^6.33.0"
@@ -1586,6 +1586,7 @@ cozy-client@6.33.0:
     redux "3.7.2"
     redux-thunk "2.3.0"
     sift "6.0.0"
+    url-search-params-polyfill "^6.0.0"
 
 cozy-device-helper@1.6.3:
   version "1.6.3"
@@ -7382,6 +7383,11 @@ urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
+
+url-search-params-polyfill@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/url-search-params-polyfill/-/url-search-params-polyfill-6.0.0.tgz#f5e5fc230d56125f5b0ba67d9cbcd6555fa347e3"
+  integrity sha512-69Bl5s3SiEgcHe8SMpzLGOyag27BQeTeSaP/CfVHkKc/VdUHtNjaP2PnhshFVC021221ItueOzuMMGofZ/HDmQ==
 
 url-template@^2.0.8:
   version "2.0.8"
