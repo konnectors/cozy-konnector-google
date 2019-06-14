@@ -59,7 +59,7 @@
     "jest": "23.6.0",
     "konitor": "0.10.2",
     "minimist": "1.2.0",
-    "mockdate": "2.0.2",
+    "mockdate": "2.0.3",
     "svgo": "1.2.2",
     "webpack": "4.34.0",
     "webpack-cli": "3.3.4"
