@@ -61,7 +61,7 @@
     "minimist": "1.2.0",
     "mockdate": "2.0.3",
     "svgo": "1.2.2",
-    "webpack": "4.34.0",
+    "webpack": "4.35.0",
     "webpack-cli": "3.3.4"
   }
 }
