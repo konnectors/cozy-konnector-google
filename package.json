@@ -49,7 +49,7 @@
     "clear": "0.1.0",
     "configstore": "4.0.0",
     "copy-webpack-plugin": "4.6.0",
-    "cozy-app-publish": "0.16.1",
+    "cozy-app-publish": "0.16.2",
     "cozy-jobs-cli": "1.8.20",
     "eslint": "5.15.1",
     "eslint-config-cozy-app": "1.1.12",
