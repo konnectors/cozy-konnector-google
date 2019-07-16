@@ -1,7 +1,7 @@
 exports.ids = [2];
 exports.modules = {
 
-/***/ 2306:
+/***/ 2304:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
