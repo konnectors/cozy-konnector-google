@@ -1588,6 +1588,22 @@ cozy-client@6.55.0:
     sift "6.0.0"
     url-search-params-polyfill "^6.0.0"
 
+cozy-client@6.55.1:
+  version "6.55.1"
+  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.55.1.tgz#4f07d1bc71de086e7c6761c27be31bf093dbc939"
+  integrity sha512-wjJQGQ+ZMDrXeY366+EH5UY2VbW/24DODEYovg6MjSlwXJQduZOfWNjvITH+29g7IQiN6CXhZ/q61Vuph60WEg==
+  dependencies:
+    cozy-device-helper "1.7.3"
+    cozy-stack-client "^6.55.0"
+    lodash "4.17.14"
+    microee "0.0.6"
+    prop-types "15.6.2"
+    react-redux "5.0.7"
+    redux "3.7.2"
+    redux-thunk "2.3.0"
+    sift "6.0.0"
+    url-search-params-polyfill "^6.0.0"
+
 cozy-device-helper@1.7.3:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/cozy-device-helper/-/cozy-device-helper-1.7.3.tgz#9952004454e73ba2c340ca58717af065c6326984"
