@@ -12,12 +12,17 @@
   "main": "./src/index.js",
   "eslintConfig": {
     "extends": [
-      "eslint-config-cozy-app"
+      "cozy-app"
     ]
   },
   "eslintIgnore": [
     "build"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "scripts": {
     "start": "node ./src/index.js",
     "token": "node ./googleHelper.js",
