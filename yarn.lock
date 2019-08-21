@@ -1576,13 +1576,13 @@ cozy-client@6.57.0:
     sift "6.0.0"
     url-search-params-polyfill "^6.0.0"
 
-cozy-client@6.58.0:
-  version "6.58.0"
-  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.58.0.tgz#9988d0e86ead77fd9c3742b87c218170447fb488"
-  integrity sha512-eUvX1jHF0lJqZYCKPQBgVk7WD+/RKua4FdEaLMgafqrhhB5UOrdaWnvSZdI1LnTKx5hlJk2Pv3lFiV4qi1y0nA==
+cozy-client@6.58.1:
+  version "6.58.1"
+  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-6.58.1.tgz#8e0d4e2de5c3ead222ef48a7cd4bfb4c6cbca700"
+  integrity sha512-lpvkowxb7Xeu5k00awn0KzGJbShF9MWM40rcW+pqvyNftJDB8Qd8x5qAR3J8rnO3HLR2IsdsRsWgw2zZOqtVqw==
   dependencies:
     cozy-device-helper "1.7.3"
-    cozy-stack-client "^6.57.0"
+    cozy-stack-client "^6.58.1"
     lodash "4.17.14"
     microee "0.0.6"
     prop-types "15.6.2"
