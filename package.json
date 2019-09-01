@@ -61,7 +61,7 @@
     "figlet": "1.2.3",
     "git-directory-deploy": "1.5.1",
     "husky": "4.0.0-beta.1",
-    "jest": "23.6.0",
+    "jest": "24.9.0",
     "konitor": "0.10.3",
     "minimist": "1.2.0",
     "mockdate": "2.0.5",
