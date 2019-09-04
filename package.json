@@ -46,16 +46,16 @@
     "googleapis": "36.0.0",
     "json-loader": "0.5.7",
     "lodash": "4.17.15",
-    "p-limit": "2.2.0"
+    "p-limit": "2.2.1"
   },
   "devDependencies": {
     "chalk": "2.4.2",
     "clear": "0.1.0",
-    "configstore": "4.0.0",
+    "configstore": "5.0.0",
     "copy-webpack-plugin": "5.0.4",
     "cozy-app-publish": "0.18.3",
     "cozy-jobs-cli": "1.9.19",
-    "eslint-config-cozy-app": "1.2.2",
+    "eslint-config-cozy-app": "1.2.3",
     "figlet": "1.2.4",
     "git-directory-deploy": "1.5.1",
     "husky": "4.0.0-beta.1",
