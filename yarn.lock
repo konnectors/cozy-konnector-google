@@ -3376,10 +3376,10 @@ https-proxy-agent@^2.2.1:
     agent-base "^4.3.0"
     debug "^3.1.0"
 
-husky@4.0.0-beta.1:
-  version "4.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-4.0.0-beta.1.tgz#dfdf523d2b70b21dfa2b9461e1f28d9ce0f7cae3"
-  integrity sha512-99iRexe+UrYmc10uu3/E1U5KaDD8eQkqaPOLTC8pSe0u/Qc223sdCl8rwabtnHY6ER7BKtQunaN9etHXq/I0sg==
+husky@4.0.0-beta.2:
+  version "4.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-4.0.0-beta.2.tgz#d28c06e38f6fb0bc4a5c9bc2a5c9a28b4e7fc5a0"
+  integrity sha512-fGY1FBHdsUf2Cooje4RoJUF6Zs2NTQN+u0L2GzGtE17rZEb501AzY4mwWZ5Rfzl3EajC813Vx2YyVYujE7r7Ng==
   dependencies:
     chalk "^2.4.2"
     cosmiconfig "^5.2.1"
