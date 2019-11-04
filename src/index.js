@@ -61,9 +61,7 @@ async function start(fields, cozyParameters, doRetry = true) {
 
     log(
       'info',
-      `Try to synchronize ${cozyContacts.length} cozy contacts and ${
-        googleContacts.length
-      } google contacts`
+      `Try to synchronize ${cozyContacts.length} cozy contacts and ${googleContacts.length} google contacts`
     )
 
     const result = await synchronizeContacts(
@@ -103,15 +101,11 @@ async function start(fields, cozyParameters, doRetry = true) {
 
     log(
       'info',
-      `${result.cozy.created} created / ${result.cozy.updated} updated / ${
-        result.cozy.deleted
-      } deleted contacts on Cozy for ${accountEmail}`
+      `${result.cozy.created} created / ${result.cozy.updated} updated / ${result.cozy.deleted} deleted contacts on Cozy for ${accountEmail}`
     )
     log(
       'info',
-      `${result.google.created} created / ${result.google.updated} updated / ${
-        result.google.deleted
-      } deleted contacts on Google for ${accountEmail}`
+      `${result.google.created} created / ${result.google.updated} updated / ${result.google.deleted} deleted contacts on Google for ${accountEmail}`
     )
     log('info', 'Sync has completed successfully')
   } catch (err) {

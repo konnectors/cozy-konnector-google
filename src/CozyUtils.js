@@ -25,9 +25,7 @@ function getAccessToken(environment) {
   } catch (err) {
     log(
       'error',
-      `Please provide proper COZY_CREDENTIALS environment variable. ${
-        process.env.COZY_CREDENTIALS
-      } is not OK`
+      `Please provide proper COZY_CREDENTIALS environment variable. ${process.env.COZY_CREDENTIALS} is not OK`
     )
 
     throw err
@@ -197,9 +195,7 @@ class CozyUtils {
       // don't crash if account email can't be set
       log(
         'warn',
-        `Error while trying to update accountName (for ${accountId}): ${
-          err.message
-        }`
+        `Error while trying to update accountName (for ${accountId}): ${err.message}`
       )
     }
   }

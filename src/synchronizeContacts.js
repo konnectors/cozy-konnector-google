@@ -207,9 +207,7 @@ const synchronizeContacts = async (
       googleContact => async () => {
         log(
           'info',
-          `Synchronize google contact to cozy: ${
-            googleContact.resourceName
-          } (active: ${limit.activeCount}, pending: ${limit.pendingCount})`
+          `Synchronize google contact to cozy: ${googleContact.resourceName} (active: ${limit.activeCount}, pending: ${limit.pendingCount})`
         )
         let cozyContact = await findCozyContactForAccount(
           googleContact,
@@ -291,9 +289,7 @@ const synchronizeContacts = async (
     const cozyToGooglePromises = cozyContacts.map(cozyContact => async () => {
       log(
         'info',
-        `Synchronize cozy contact to google: ${cozyContact.id} (active: ${
-          limit.activeCount
-        }, pending: ${limit.pendingCount})`
+        `Synchronize cozy contact to google: ${cozyContact.id} (active: ${limit.activeCount}, pending: ${limit.pendingCount})`
       )
 
       const googleContact = await findGoogleContactForAccount(
@@ -444,11 +440,7 @@ const synchronizeContacts = async (
       log('info', 'Shutting down because the Google request quota was reached.')
       log(
         'info',
-        `Contacts processed before reaching the quota this run: ${
-          result.google.skipped
-        } skipped | ${result.google.created} created | ${
-          result.google.updated
-        } updated | ${result.google.deleted} deleted`
+        `Contacts processed before reaching the quota this run: ${result.google.skipped} skipped | ${result.google.created} created | ${result.google.updated} updated | ${result.google.deleted} deleted`
       )
     }
     throw new Error(`Unable to synchronize contacts: ${err.message}`)

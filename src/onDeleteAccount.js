@@ -51,9 +51,7 @@ onDeleteAccount(accountId, cozyUtils).then(
   err => {
     log(
       'error',
-      `onDeleteAccount: An error occured during onDeleteAccount script: ${
-        err.message
-      }`
+      `onDeleteAccount: An error occured during onDeleteAccount script: ${err.message}`
     )
   }
 )
