@@ -80,6 +80,7 @@ class GoogleUtils {
     try {
       let call
       try {
+        log('info', 'Get connections list')
         call = await this.getConnectionsList({
           requestSyncToken: true,
           syncToken,
@@ -94,7 +95,7 @@ class GoogleUtils {
         ) {
           log('info', "Sync token expired, don't use sync token this time.")
           call = await this.getConnectionsList({
-            pageToken,
+            ...{ pageToken },
             requestSyncToken: true,
             syncToken: null
           })
@@ -110,12 +111,13 @@ class GoogleUtils {
           nextSyncToken: call.nextSyncToken
         }
       }
-      if (call.nextPageToken) {
+      if (call.nextPageToken && call.nextPageToken.length > 0) {
         log('info', 'Get all google contacts: ask for a next page')
+        log('info', `length ${call.nextPageToken.length}`)
         const nextPageResult = await this.getAllContacts({
           pageToken: call.nextPageToken,
-          requestSyncToken: true,
-          syncToken
+          // requestSyncToken: true,
+          syncToken: call.syncToken
         })
         return {
           contacts: [...call.connections, ...nextPageResult.contacts],
