@@ -81,9 +81,9 @@ class GoogleUtils {
       let call
       try {
         call = await this.getConnectionsList({
-          pageToken,
           requestSyncToken: true,
-          syncToken
+          syncToken,
+          ...{ pageToken }
         })
       } catch (err) {
         if (
