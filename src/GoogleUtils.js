@@ -116,7 +116,7 @@ class GoogleUtils {
         log('info', `length ${call.nextPageToken.length}`)
         const nextPageResult = await this.getAllContacts({
           pageToken: call.nextPageToken,
-          // requestSyncToken: true,
+          requestSyncToken: true,
           syncToken: call.syncToken
         })
         return {
