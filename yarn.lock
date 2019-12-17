@@ -1681,13 +1681,13 @@ cozy-client-js@0.16.4, cozy-client-js@^0.16.4:
     pouchdb-browser "7.0.0"
     pouchdb-find "7.0.0"
 
-cozy-client@7.14.0:
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-7.14.0.tgz#ecf9c8d599595d4c4104254b5930814b3c48b47b"
-  integrity sha512-eOraWKoXBEkovddfJL/fDD7aUxphlaDD1gvgWLz0qAMY5PL28uQMsrtqDIdAtjQdCG0zqo8wOngzlSIxgvi6Uw==
+cozy-client@8.10.1:
+  version "8.10.1"
+  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-8.10.1.tgz#d1663c915141274f5cf413c12f31e2cc936a963f"
+  integrity sha512-VYEx4GGfcSpL3MKcFcxV//PsklFDB3azwDJIIBmPmamLVY+1Axgwc8uTeweIZSetbtPZHXMQyogQ4qf9vq80fg==
   dependencies:
     cozy-device-helper "^1.7.3"
-    cozy-stack-client "^7.12.0"
+    cozy-stack-client "^8.8.0"
     lodash "^4.17.13"
     microee "^0.0.6"
     prop-types "^15.6.2"
@@ -1783,19 +1783,19 @@ cozy-logger@1.6.0, cozy-logger@^1.6.0:
     chalk "^2.4.2"
     json-stringify-safe "5.0.1"
 
-cozy-stack-client@^7.12.0:
-  version "7.12.0"
-  resolved "https://registry.yarnpkg.com/cozy-stack-client/-/cozy-stack-client-7.12.0.tgz#9a5df9fa77730d04cf1a31c1e5db9c931c8db94d"
-  integrity sha512-ld0/Hm4F9HGjGESEg/QbO71cRFslprxo4EZ4bWKhm5gi1iMeUnOBeDHSTI36iI+xs4ouZTvf9KxTcnkchKG8Cw==
+cozy-stack-client@^8.7.1:
+  version "8.7.1"
+  resolved "https://registry.yarnpkg.com/cozy-stack-client/-/cozy-stack-client-8.7.1.tgz#c461c96281db5f2fa447fcd58c48e2163ffeb028"
+  integrity sha512-ANpE2DPp2x902VMbKdHRpnh3eOlnmMj/GqgG8acpL/Psn5RYWjxYp25MvoBUHXfA7BZPCQTOnqIXF8pu420yeQ==
   dependencies:
     detect-node "^2.0.4"
     mime "^2.4.0"
     qs "^6.7.0"
 
-cozy-stack-client@^8.7.1:
-  version "8.7.1"
-  resolved "https://registry.yarnpkg.com/cozy-stack-client/-/cozy-stack-client-8.7.1.tgz#c461c96281db5f2fa447fcd58c48e2163ffeb028"
-  integrity sha512-ANpE2DPp2x902VMbKdHRpnh3eOlnmMj/GqgG8acpL/Psn5RYWjxYp25MvoBUHXfA7BZPCQTOnqIXF8pu420yeQ==
+cozy-stack-client@^8.8.0:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/cozy-stack-client/-/cozy-stack-client-8.8.0.tgz#0bfbfcc3180c1eb6b1468a3d14b965b05c84c84d"
+  integrity sha512-Ltc/OjDN9EdlMioSsQM0zCw7lb+LZisjU0XeOaTK+1jH1AdWBdywdu1uUrxCSF/rStsqfBqleNFwPK5WySvPTw==
   dependencies:
     detect-node "^2.0.4"
     mime "^2.4.0"
