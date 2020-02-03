@@ -46,7 +46,7 @@
     "googleapis": "44.0.0",
     "json-loader": "0.5.7",
     "lodash": "4.17.15",
-    "p-limit": "2.2.1"
+    "p-limit": "2.2.2"
   },
   "devDependencies": {
     "chalk": "3.0.0",
