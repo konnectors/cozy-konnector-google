@@ -4,7 +4,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/konnectors/cozy-konnector-google.git"
+    "url": "git@github.com:konnectors/cozy-konnector-google.git"
   },
   "keywords": [],
   "author": "Cozy Cloud",
@@ -36,14 +36,14 @@
     "clean": "rm -rf ./data",
     "build": "webpack",
     "lint": "eslint --fix .",
-    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-git@github.com:konnectors/cozy-konnector-google.git}",
+    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-$npm_package_repository_url}",
     "cozyPublish": "cozy-app-publish --token $REGISTRY_TOKEN --build-commit $(git rev-parse ${DEPLOY_BRANCH:-build})",
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-client": "7.14.0",
+    "cozy-client": "10.7.1",
     "cozy-konnector-libs": "4.32.4",
-    "googleapis": "44.0.0",
+    "googleapis": "47.0.0",
     "json-loader": "0.5.7",
     "lodash": "4.17.15",
     "p-limit": "2.2.2"
@@ -58,8 +58,8 @@
     "eslint-config-cozy-app": "1.4.0",
     "figlet": "1.2.4",
     "git-directory-deploy": "1.5.1",
-    "husky": "3.1.0",
-    "jest": "24.9.0",
+    "husky": "4.2.1",
+    "jest": "25.1.0",
     "konitor": "0.10.3",
     "minimist": "1.2.0",
     "mockdate": "2.0.5",

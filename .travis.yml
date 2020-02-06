@@ -1,9 +1,8 @@
 language: node_js
 node_js:
-- '8'
+- '12'
 env:
   global:
-  - DEPLOY_REPOSITORY="git@github.com:konnectors/cozy-konnector-google.git"
   # REGISTRY_TOKEN(editor=cozy, app=google)
   - secure: S3PdlR02T7JuSdKxKwkUl2KAefyl/tGKFp8yunQrYn6HA6POqBwQZQ17Rguho3le21MXwG23NABVH31rZBsj2U7pivNfwPFKlOWPje1ehB2yMb7kBX7TRDS/iSHOg38UXo0yfkOwFeN02IIJKuKhFfuE+n0SQisWwGHiel8pMAdIZixmRuLQ5x26yTU2EYxvuM0SK8wF9tzp+hajeq4q7zz67OQDmNxsyfQw1htTsiZjFnY/bQq/3pBeGfA3JA1i7T+51DXnQU7w1hL86sbkGKzzB1q0rqvtsJaMaj+qzNICN2H4TyNwd6G0jyBBebGpcaBfcuKeLp6AgEMIgtOYRf16R1IIHI8o1VqQaTS1v/27KKI3PPeyhnEvQl/s6w/Tet0NnbT3B3WKPmbwwoQ4V046DWUrHYVke3vJmrNMLjMs6qitAFLRVYLFhr42ccsTBqyeAG3CzjrL2iElcsEPWFk9hAHhUqBnVqFOBsmSVZPolHeVc2ewNMKbPsWbsN6CQTr8G08ez+d5+fTD1UTdye88ezLpdc0G8HFkpNPJ6zQGuZTzZ7AOed7KWLByv+bSlX4hBkVXuKJsej+Vicd+bdI0YHhZXCaLmOcO28htoF8fw1NWFIzTm5JCKgCLIeTqTOZneiQO7PSpqgGh9HNceYAtvbaMNUNPM2vle9iDetY=
   # MATTERMOST_HOOK_URL
