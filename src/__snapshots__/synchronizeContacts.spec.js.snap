@@ -53,10 +53,10 @@ Array [
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
-          "id": "people/944070",
+          "id": "people/751021",
           "konnector": "konnector-google",
           "lastSync": "2018-05-05T09:09:00.115Z",
-          "remoteRev": "6092c3ca-c9f8-4abb-a27b-3add4158bfc2",
+          "remoteRev": "958e26de-80d2-4051-8ba9-ae954dffd9f6",
         },
       },
     },
@@ -70,8 +70,8 @@ Array [
       "version": 1,
     },
     "name": Object {
-      "familyName": "Mueller",
-      "givenName": "Adan",
+      "familyName": "Yundt",
+      "givenName": "Kayleigh",
     },
     "note": null,
     "phone": Array [],
@@ -92,13 +92,13 @@ Array [
 exports[`synchronizeContacts function should synchronize contacts: clemensRomagueraInCozy 1`] = `
 Array [
   Object {
-    "_rev": "9a045a8e-8db7-49eb-a0b3-8388566f8a9c",
+    "_rev": "36bd0782-bda3-4a3b-900a-0d571cc361b6",
     "_type": "io.cozy.contacts",
     "address": Array [],
     "birthday": null,
-    "company": "Cozy cloud",
+    "company": null,
     "cozyMetadata": Object {
-      "createdAt": "2017-11-20T19:33:00.123Z",
+      "createdAt": "2017-03-22T07:33:00.123Z",
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
@@ -106,29 +106,19 @@ Array [
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
-          "id": "people/56863",
+          "id": "people/364391",
           "konnector": "konnector-google",
           "lastSync": "2018-05-05T09:09:00.115Z",
-          "remoteRev": "da455898-cffa-4ba5-988f-606243226509",
+          "remoteRev": "209006ac-a425-426a-906e-3002d56597fa",
         },
       },
-      "updatedAt": "2019-02-12T12:18:00.222Z",
+      "updatedAt": "2018-11-12T18:18:00.222Z",
       "updatedByApps": Array [
-        Object {
-          "date": "2019-02-12T12:18:00.222Z",
-          "slug": "Contacts",
-        },
+        "Contacts",
       ],
     },
-    "email": Array [
-      Object {
-        "address": "clemens@cozycloud.cc",
-        "label": "Personal",
-        "primary": true,
-        "type": "personal",
-      },
-    ],
-    "id": "clemens-romaguera-edit-conflicts",
+    "email": Array [],
+    "id": "scarlett-gutkowski-edited-on-google",
     "metadata": Object {
       "google": Object {
         "metadata": Object {
@@ -138,8 +128,8 @@ Array [
       "version": 1,
     },
     "name": Object {
-      "familyName": "Romaguera",
-      "givenName": "Clemens",
+      "familyName": "Kunde",
+      "givenName": "Scarlett",
     },
     "note": null,
     "phone": Array [],
@@ -151,12 +141,6 @@ Array [
             "_type": "io.cozy.contacts.accounts",
           },
         ],
-      },
-      "groups": Object {
-        "data": Object {
-          "_id": "ba36efdf-f09b-41cf-ba6b-eb137214d676",
-          "_type": "io.cozy.contacts.groups",
-        },
       },
     },
   },
@@ -187,30 +171,38 @@ Array [
 exports[`synchronizeContacts function should synchronize contacts: destroyAureliaHayesInCozy 1`] = `
 Array [
   Object {
-    "_rev": "1f0eafe5-fa2b-482c-b9b9-ddb39792ae24",
+    "_rev": "fda8d01b-ff6d-4ce9-b6ea-749a4e3da3e1",
     "_type": "io.cozy.contacts",
     "cozyMetadata": Object {
-      "createdAt": "2017-03-22T07:33:00.123Z",
+      "createdAt": "2018-04-22T17:33:00.123Z",
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
-          "id": "people/672617",
-          "remoteRev": "ea79ad60-8c9f-4143-830f-07dfb260630b",
+          "id": "people/106666",
+          "remoteRev": "bce9d37f-e0f9-44e6-8aa6-51fa8f8781cc",
         },
       },
-      "updatedAt": "2018-11-12T18:18:00.222Z",
+      "updatedAt": "2018-12-22T15:18:00.222Z",
       "updatedByApps": Array [
-        "Contacts",
+        Object {
+          "date": "2018-12-22T15:18:00.222Z",
+          "slug": "Contacts",
+        },
+        Object {
+          "date": "2018-04-22T17:33:00.123Z",
+          "slug": "konnector-google",
+        },
       ],
     },
-    "id": "aurelia-hayes-deleted-on-google",
+    "id": "johanna-moen-deleted-on-google-conflict",
     "name": Object {
-      "familyName": "Hayes",
-      "givenName": "Aurelia",
+      "familyName": "Moen",
+      "givenName": "Johanna",
     },
+    "trashed": false,
   },
 ]
 `;
@@ -318,38 +310,30 @@ Array [
 exports[`synchronizeContacts function should synchronize contacts: destroyJohannaMoenInCozy 1`] = `
 Array [
   Object {
-    "_rev": "fda8d01b-ff6d-4ce9-b6ea-749a4e3da3e1",
+    "_rev": "1f0eafe5-fa2b-482c-b9b9-ddb39792ae24",
     "_type": "io.cozy.contacts",
     "cozyMetadata": Object {
-      "createdAt": "2018-04-22T17:33:00.123Z",
+      "createdAt": "2017-03-22T07:33:00.123Z",
       "createdByApp": "Contacts",
       "createdByAppVersion": "2.0.0",
       "doctypeVersion": 2,
       "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
-          "id": "people/106666",
-          "remoteRev": "bce9d37f-e0f9-44e6-8aa6-51fa8f8781cc",
+          "id": "people/672617",
+          "remoteRev": "ea79ad60-8c9f-4143-830f-07dfb260630b",
         },
       },
-      "updatedAt": "2018-12-22T15:18:00.222Z",
+      "updatedAt": "2018-11-12T18:18:00.222Z",
       "updatedByApps": Array [
-        Object {
-          "date": "2018-12-22T15:18:00.222Z",
-          "slug": "Contacts",
-        },
-        Object {
-          "date": "2018-04-22T17:33:00.123Z",
-          "slug": "konnector-google",
-        },
+        "Contacts",
       ],
     },
-    "id": "johanna-moen-deleted-on-google-conflict",
+    "id": "aurelia-hayes-deleted-on-google",
     "name": Object {
-      "familyName": "Moen",
-      "givenName": "Johanna",
+      "familyName": "Hayes",
+      "givenName": "Aurelia",
     },
-    "trashed": false,
   },
 ]
 `;
@@ -518,22 +502,43 @@ Array [
 exports[`synchronizeContacts function should synchronize contacts: kayleighYundtInCozy 1`] = `
 Array [
   Object {
+    "_rev": "9a045a8e-8db7-49eb-a0b3-8388566f8a9c",
     "_type": "io.cozy.contacts",
     "address": Array [],
     "birthday": null,
-    "company": null,
+    "company": "Cozy cloud",
     "cozyMetadata": Object {
+      "createdAt": "2017-11-20T19:33:00.123Z",
+      "createdByApp": "Contacts",
+      "createdByAppVersion": "2.0.0",
+      "doctypeVersion": 2,
+      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
-          "id": "people/751021",
+          "id": "people/56863",
           "konnector": "konnector-google",
           "lastSync": "2018-05-05T09:09:00.115Z",
-          "remoteRev": "958e26de-80d2-4051-8ba9-ae954dffd9f6",
+          "remoteRev": "da455898-cffa-4ba5-988f-606243226509",
         },
       },
+      "updatedAt": "2019-02-12T12:18:00.222Z",
+      "updatedByApps": Array [
+        Object {
+          "date": "2019-02-12T12:18:00.222Z",
+          "slug": "Contacts",
+        },
+      ],
     },
-    "email": Array [],
+    "email": Array [
+      Object {
+        "address": "clemens@cozycloud.cc",
+        "label": "Personal",
+        "primary": true,
+        "type": "personal",
+      },
+    ],
+    "id": "clemens-romaguera-edit-conflicts",
     "metadata": Object {
       "google": Object {
         "metadata": Object {
@@ -543,8 +548,8 @@ Array [
       "version": 1,
     },
     "name": Object {
-      "familyName": "Yundt",
-      "givenName": "Kayleigh",
+      "familyName": "Romaguera",
+      "givenName": "Clemens",
     },
     "note": null,
     "phone": Array [],
@@ -556,6 +561,12 @@ Array [
             "_type": "io.cozy.contacts.accounts",
           },
         ],
+      },
+      "groups": Object {
+        "data": Object {
+          "_id": "ba36efdf-f09b-41cf-ba6b-eb137214d676",
+          "_type": "io.cozy.contacts.groups",
+        },
       },
     },
   },
@@ -723,33 +734,22 @@ Array [
 exports[`synchronizeContacts function should synchronize contacts: scarlettKundeInCozy 1`] = `
 Array [
   Object {
-    "_rev": "36bd0782-bda3-4a3b-900a-0d571cc361b6",
     "_type": "io.cozy.contacts",
     "address": Array [],
     "birthday": null,
     "company": null,
     "cozyMetadata": Object {
-      "createdAt": "2017-03-22T07:33:00.123Z",
-      "createdByApp": "Contacts",
-      "createdByAppVersion": "2.0.0",
-      "doctypeVersion": 2,
-      "sourceAccount": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
       "sync": Object {
         "45c49c15-4b00-48e8-8bfd-29f8177b89ff": Object {
           "contactsAccountsId": "45c49c15-4b00-48e8-8bfd-29f8177b89ff",
-          "id": "people/364391",
+          "id": "people/944070",
           "konnector": "konnector-google",
           "lastSync": "2018-05-05T09:09:00.115Z",
-          "remoteRev": "209006ac-a425-426a-906e-3002d56597fa",
+          "remoteRev": "6092c3ca-c9f8-4abb-a27b-3add4158bfc2",
         },
       },
-      "updatedAt": "2018-11-12T18:18:00.222Z",
-      "updatedByApps": Array [
-        "Contacts",
-      ],
     },
     "email": Array [],
-    "id": "scarlett-gutkowski-edited-on-google",
     "metadata": Object {
       "google": Object {
         "metadata": Object {
@@ -759,8 +759,8 @@ Array [
       "version": 1,
     },
     "name": Object {
-      "familyName": "Kunde",
-      "givenName": "Scarlett",
+      "familyName": "Mueller",
+      "givenName": "Adan",
     },
     "note": null,
     "phone": Array [],
