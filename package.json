@@ -41,12 +41,12 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-client": "13.2.1",
+    "cozy-client": "13.8.1",
     "cozy-konnector-libs": "4.34.2",
     "googleapis": "48.0.0",
     "json-loader": "0.5.7",
     "lodash": "4.17.15",
-    "p-limit": "2.2.2"
+    "p-limit": "2.3.0"
   },
   "devDependencies": {
     "chalk": "3.0.0",
