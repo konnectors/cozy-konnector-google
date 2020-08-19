@@ -30,9 +30,7 @@
     "onDeleteAccount": "cozy-konnector-dev src/onDeleteAccount.js",
     "standalone": "cozy-konnector-standalone",
     "pretest": "npm run clean",
-    "test": "konitor testit .",
     "jest": "jest",
-    "check": "konitor check .",
     "clean": "rm -rf ./data",
     "build": "webpack",
     "lint": "eslint --fix .",
@@ -41,30 +39,29 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-client": "13.14.1",
+    "cozy-client": "13.20.2",
     "cozy-konnector-libs": "4.34.5",
     "googleapis": "48.0.0",
     "json-loader": "0.5.7",
-    "lodash": "4.17.19",
+    "lodash": "4.17.20",
     "p-limit": "2.3.0"
   },
   "devDependencies": {
-    "chalk": "4.0.0",
+    "chalk": "4.1.0",
     "clear": "0.1.0",
     "configstore": "5.0.1",
-    "copy-webpack-plugin": "5.1.1",
-    "cozy-app-publish": "0.24.0",
+    "copy-webpack-plugin": "6.0.3",
+    "cozy-app-publish": "0.25.0",
     "cozy-jobs-cli": "1.13.6",
     "eslint-config-cozy-app": "1.5.0",
     "figlet": "1.5.0",
     "git-directory-deploy": "1.5.1",
     "husky": "4.2.5",
-    "jest": "25.5.4",
-    "konitor": "0.10.3",
+    "jest": "26.4.0",
     "minimist": "1.2.5",
     "mockdate": "2.0.5",
     "svgo": "1.3.2",
-    "webpack": "4.43.0",
+    "webpack": "4.44.1",
     "webpack-cli": "3.3.12"
   }
 }
