@@ -1,11 +1,21 @@
 var path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 const fs = require('fs')
 const SvgoInstance = require('svgo')
 
 const index = require('./package.json').main
 
-const svgo = new SvgoInstance()
+const readManifest = () =>
+  JSON.parse(fs.readFileSync(path.join(__dirname, './manifest.konnector')))
+
+const svgo = new SvgoInstance({
+  plugins: [
+    {
+      inlineStyles: { onlyMatchedOnce: false }
+    }
+  ]
+})
 
 let iconName
 try {
@@ -29,14 +39,19 @@ module.exports = {
     filename: '[name].js'
   },
   plugins: [
-    new CopyPlugin([
-      { from: 'manifest.konnector' },
-      { from: 'package.json' },
-      { from: 'README.md' },
-      { from: 'assets', transform: optimizeSVGIcon },
-      { from: '.travis.yml' },
-      { from: 'LICENSE' }
-    ])
+    new CopyPlugin({
+      patterns: [
+        { from: 'manifest.konnector' },
+        { from: 'package.json' },
+        { from: 'README.md' },
+        { from: 'assets', transform: optimizeSVGIcon },
+        { from: '.travis.yml' },
+        { from: 'LICENSE' }
+      ]
+    }),
+    new webpack.DefinePlugin({
+      __WEBPACK_PROVIDED_MANIFEST__: JSON.stringify(readManifest())
+    })
   ],
   module: {
     // to ignore the warnings like :
