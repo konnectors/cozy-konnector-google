@@ -2080,7 +2080,29 @@ cozy-client@13.15.0:
     sift "^6.0.0"
     url-search-params-polyfill "^7.0.0"
 
-cozy-client@13.20.2, cozy-client@^13.13.0:
+cozy-client@14.2.0:
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-14.2.0.tgz#809f76a3a43ddf31b491e1fb1fd35d28d4805200"
+  integrity sha512-xSZCfU39WvRSJU7j4bfJPb7Z/xUo53WtxwCdH/2GXMOy5M22Ql1BLR8YFcQsDU5+3Kxanm7Q2V6FVvF/GHlIcA==
+  dependencies:
+    btoa "^1.2.1"
+    cozy-device-helper "^1.7.3"
+    cozy-logger "^1.6.0"
+    cozy-stack-client "^14.1.2"
+    isomorphic-fetch "^2.2.1"
+    lodash "^4.17.13"
+    microee "^0.0.6"
+    minilog "git+https://github.com/cozy/minilog.git#master"
+    open "^7.0.2"
+    prop-types "^15.6.2"
+    react-redux "^7.2.0"
+    redux "^3.7.2"
+    redux-thunk "^2.3.0"
+    server-destroy "^1.0.1"
+    sift "^6.0.0"
+    url-search-params-polyfill "^7.0.0"
+
+cozy-client@^13.13.0:
   version "13.20.2"
   resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-13.20.2.tgz#1fd1e813815450fda1eee757f7999f6b8d2ae00c"
   integrity sha512-FdrwNTykWnHuhfcwmgo7cQYRE4mWHJU0knrR18Wnvs3jRDbzw49FQURQJIPT6lNe+Y49+q8c2DEO6vCWnzQPCA==
@@ -2180,6 +2202,15 @@ cozy-stack-client@^13.12.1, cozy-stack-client@^13.20.2:
   version "13.20.2"
   resolved "https://registry.yarnpkg.com/cozy-stack-client/-/cozy-stack-client-13.20.2.tgz#2ff55f93dca809b7ec82ec0afc88a3bc041383c1"
   integrity sha512-9j52p+0/kw5CAO42hPCqjV1ESwU/My79bfjF96wZRrGMFAciL+gGQy4wVeTpPlYvWIGIIbchFrUl8rQVkMVWYA==
+  dependencies:
+    detect-node "^2.0.4"
+    mime "^2.4.0"
+    qs "^6.7.0"
+
+cozy-stack-client@^14.1.2:
+  version "14.1.2"
+  resolved "https://registry.yarnpkg.com/cozy-stack-client/-/cozy-stack-client-14.1.2.tgz#606ce89cabf4def2875cb8749b28b3ee8b96d18f"
+  integrity sha512-0IyYvBQu+vuwN9qe6PHA7khXBQT8TGSjVia7SVTGQ88tEFSLLGXjfZe3pkZQ1ihBdJvmeon12dm0BWeEb+9KZw==
   dependencies:
     detect-node "^2.0.4"
     mime "^2.4.0"
@@ -5200,6 +5231,13 @@ mimic-fn@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
+
+"minilog@git+https://github.com/cozy/minilog.git#master":
+  version "3.1.0"
+  uid f01f7d9dfe20981177dd34b9662c2f077d818f82
+  resolved "git+https://github.com/cozy/minilog.git#f01f7d9dfe20981177dd34b9662c2f077d818f82"
+  dependencies:
+    microee "0.0.6"
 
 "minilog@https://github.com/cozy/minilog.git#master":
   version "3.1.0"
