@@ -51,7 +51,7 @@
     "clear": "0.1.0",
     "configstore": "5.0.1",
     "copy-webpack-plugin": "6.2.1",
-    "cozy-app-publish": "0.25.1",
+    "cozy-app-publish": "0.25.2",
     "cozy-jobs-cli": "1.14.0",
     "eslint-config-cozy-app": "2.0.0",
     "figlet": "1.5.0",
