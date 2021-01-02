@@ -1890,28 +1890,6 @@ cozy-client@16.10.2, cozy-client@^16.10.2:
     sift "^6.0.0"
     url-search-params-polyfill "^7.0.0"
 
-cozy-client@16.8.0:
-  version "16.8.0"
-  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-16.8.0.tgz#44378ed226697a1d4000f8ac6b5f7ca1ba66bd01"
-  integrity sha512-FeCpbXAEl40WPYneIWo8S6F2FaJWGq1PE2XG2qyGZ/iyWrAtX5O5IUL9/oEG1B2C1ZVlNgXENDoqp6UIlHbLOQ==
-  dependencies:
-    "@cozy/minilog" "1.0.0"
-    btoa "^1.2.1"
-    cozy-device-helper "^1.7.3"
-    cozy-logger "^1.6.0"
-    cozy-stack-client "^16.8.0"
-    lodash "^4.17.13"
-    microee "^0.0.6"
-    node-fetch "^2.6.1"
-    open "^7.0.2"
-    prop-types "^15.6.2"
-    react-redux "^7.2.0"
-    redux "^3.7.2"
-    redux-thunk "^2.3.0"
-    server-destroy "^1.0.1"
-    sift "^6.0.0"
-    url-search-params-polyfill "^7.0.0"
-
 cozy-device-helper@^1.7.3:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/cozy-device-helper/-/cozy-device-helper-1.10.1.tgz#91ec60d67248489738b2daaafe83db8f6a6e1e9f"
