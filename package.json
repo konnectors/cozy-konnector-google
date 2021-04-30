@@ -47,7 +47,7 @@
     "p-limit": "2.3.0"
   },
   "devDependencies": {
-    "chalk": "4.1.0",
+    "chalk": "4.1.1",
     "clear": "0.1.0",
     "configstore": "5.0.1",
     "cozy-jobs-cli": "1.16.0",
