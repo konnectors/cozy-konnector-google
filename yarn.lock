@@ -1936,16 +1936,6 @@ cozy-app-publish@0.27.2:
     request "^2.88.0"
     tar "^4.4.13"
 
-cozy-client-js@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/cozy-client-js/-/cozy-client-js-0.19.0.tgz#ccfb0572d6c6f3aa7c187978c23dd89f04caf796"
-  integrity sha512-3EPLxLu7mg/GSmAHauW7rfdVMynCQb9Yj1vHvDO1Rpda/CV0xN04HRH1eq+3HhZiIx1g1L76zSh0jN1shgCknQ==
-  dependencies:
-    core-js "^3.6.5"
-    cross-fetch "^3.0.6"
-    pouchdb-browser "7.0.0"
-    pouchdb-find "7.0.0"
-
 cozy-client-js@^0.20.0:
   version "0.20.0"
   resolved "https://registry.yarnpkg.com/cozy-client-js/-/cozy-client-js-0.20.0.tgz#a507ef9ccbeb340aacd58ca1f1d0cdc9d000e853"
@@ -1956,7 +1946,7 @@ cozy-client-js@^0.20.0:
     pouchdb-browser "7.0.0"
     pouchdb-find "7.0.0"
 
-cozy-client@23.22.0, cozy-client@^23.18.0:
+cozy-client@23.22.0:
   version "23.22.0"
   resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-23.22.0.tgz#2cc3c256635dcbbaef160bf37df7480a1938967c"
   integrity sha512-zoKvEA83/4c0JU+T3ZoeLYoKnJsbz7V9nVJ89cAW0KJ8HESztZhumAjNJwo7lTJYh/lZkEhHF5QugP5NJTV0lg==
@@ -2043,17 +2033,6 @@ cozy-device-helper@^1.12.0:
   dependencies:
     lodash "^4.17.19"
 
-cozy-doctypes@^1.82.2:
-  version "1.82.2"
-  resolved "https://registry.yarnpkg.com/cozy-doctypes/-/cozy-doctypes-1.82.2.tgz#7c7d6f44e3aaee18ba51253468e84d2d1a70fde6"
-  integrity sha512-NWbQ6rKj2a+Rq19MX9uNa8GNlzwdlye9pxiC1V3jd+76T5fQMQN+tjHr9jK468V/NJvC/oQowAcWsRoMaB5A+Q==
-  dependencies:
-    cozy-logger "^1.7.0"
-    date-fns "^1.30.1"
-    es6-promise-pool "^2.5.0"
-    lodash "^4.17.19"
-    prop-types "^15.7.2"
-
 cozy-doctypes@^1.83.5:
   version "1.83.7"
   resolved "https://registry.yarnpkg.com/cozy-doctypes/-/cozy-doctypes-1.83.7.tgz#258448aa5fa8f76d557c7635c148d9bfe54bbe33"
@@ -2107,36 +2086,7 @@ cozy-konnector-build@1.2.3:
     webpack "5.59.1"
     webpack-cli "4.9.1"
 
-cozy-konnector-libs@4.45.0:
-  version "4.45.0"
-  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-4.45.0.tgz#ccee02726f8792790ce82ea06387c815611f18f7"
-  integrity sha512-7vIZ+Tzcua5P/SJk2f7tpOtYQJ6wGPxcUjraWdJjLELu+KnxHAi/HYOIc6OMXksMomZkEWul0njqazSVM2fpYA==
-  dependencies:
-    babel-runtime "^6.26.0"
-    bluebird "^3.7.2"
-    bluebird-retry "^0.11.0"
-    btoa "1.2.1"
-    cheerio "^1.0.0-rc.9"
-    classificator "^0.3.3"
-    cozy-client "^23.18.0"
-    cozy-client-js "^0.19.0"
-    cozy-doctypes "^1.82.2"
-    cozy-logger "^1.7.0"
-    date-fns "^2.22.1"
-    file-type "^16.5.0"
-    geco "^0.11.1"
-    lodash-id "^0.14.0"
-    lowdb "^1.0.0"
-    mime-types "^2.1.31"
-    node-fetch "^2.6.1"
-    raven "^2.6.4"
-    raw-body "^2.4.1"
-    request "^2.88.2"
-    request-debug "^0.2.0"
-    request-promise "^4.2.6"
-    strip-json-comments "^3.1.1"
-
-cozy-konnector-libs@^4.52.1:
+cozy-konnector-libs@4.52.1, cozy-konnector-libs@^4.52.1:
   version "4.52.1"
   resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-4.52.1.tgz#e2fd07977cfdf777a75674f384216c5130772a74"
   integrity sha512-yb/8zbKwwOGaXSPfuZgKvIwVozmXxwpsbR9Oecua/EFK7hA42Foq4HIMIH7/vMjH8XEMXdbkVCyDMyqRZHi+1Q==
@@ -2177,14 +2127,6 @@ cozy-logger@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/cozy-logger/-/cozy-logger-1.6.0.tgz#51675e081e0a40baae6c38c64718cfaee5ee66ff"
   integrity sha512-UkPR5lQDY6HldNv3N3c8HaxlfgcgAB/iRBFwJNFL2I17lhcM0u7w27vo1nuFeX6geMeFUjvedq/awawxZ1mTQg==
-  dependencies:
-    chalk "^2.4.2"
-    json-stringify-safe "5.0.1"
-
-cozy-logger@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/cozy-logger/-/cozy-logger-1.7.0.tgz#945ff84df66f7e7e9640db00f8c632d4ff776fc8"
-  integrity sha512-JBOAmfgujZZASE4TCRfeNvHoDnxPwFbLMO3G6UReByjR3Ix1/RSEtOL9b4hReuG2XX0BsPokfLWCZEWRgGN4TQ==
   dependencies:
     chalk "^2.4.2"
     json-stringify-safe "5.0.1"
@@ -3453,13 +3395,6 @@ gcp-metadata@^4.2.0:
   dependencies:
     gaxios "^4.0.0"
     json-bigint "^1.0.0"
-
-geco@^0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/geco/-/geco-0.11.1.tgz#2dec107202a37bbfbb480892446a94a6ffc41411"
-  integrity sha512-RuZ2QWImhVLwaSCuhS9+iPIEL/kemh2xOa4ovnWXaR86GWWZndMXerMUpAjPyR4WHwnWn8pjY0kmy2iX2a4rwg==
-  dependencies:
-    toni ">=0.6.2"
 
 "geco@git+https://github.com/konnectors/geco.git#0.11.2":
   version "0.11.2"
@@ -7188,13 +7123,6 @@ token-types@^2.0.0:
   dependencies:
     "@tokenizer/token" "^0.1.0"
     ieee754 "^1.1.13"
-
-toni@>=0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/toni/-/toni-0.6.2.tgz#a6af3bd70ae64de5ab1856e7036fb3b3e5e73cf8"
-  integrity sha1-pq871wrmTeWrGFbnA2+zs+XnPPg=
-  dependencies:
-    bolgia ">=2.7.4"
 
 "toni@git+https://github.com/konnectors/toni.git#0.6.3":
   version "0.6.3"
