@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "cozy-client": "23.22.0",
-    "cozy-konnector-libs": "4.45.0",
+    "cozy-konnector-libs": "4.52.1",
     "googleapis": "65.0.0",
     "json-loader": "0.5.7",
     "lodash": "4.17.21",
