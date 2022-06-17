@@ -50,7 +50,7 @@
     "chalk": "4.1.2",
     "clear": "0.1.0",
     "configstore": "6.0.0",
-    "cozy-jobs-cli": "1.17.6",
+    "cozy-jobs-cli": "1.18.1",
     "cozy-konnector-build": "1.2.3",
     "figlet": "1.5.2",
     "jest": "26.6.3",
