@@ -236,7 +236,7 @@ yarn lint
 
 You can reach the Cozy Community by:
 
-- Chatting with us on IRC [#cozycloud on Freenode][freenode]
+- Chatting with us on IRC [#cozycloud on Libera.Chat][libera]
 - Posting on our [Forum]
 - Posting issues on the [Github repos][github]
 - Say Hi! on [Twitter]
@@ -249,7 +249,7 @@ cozy-konnector-google is developed by Cozy Cloud and distributed under the [AGPL
 
 [cozy]: https://cozy.io "Cozy Cloud"
 [agpl-3.0]: https://www.gnu.org/licenses/agpl-3.0.html
-[freenode]: http://webchat.freenode.net/?randomnick=1&channels=%23cozycloud&uio=d4
+[libera]: https://web.libera.chat/#cozycloud
 [forum]: https://forum.cozy.io/
 [github]: https://github.com/cozy/
 [nodejs]: https://nodejs.org/
