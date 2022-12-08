@@ -46,6 +46,8 @@
     "p-limit": "2.3.0"
   },
   "devDependencies": {
+    "babel-jest": "26",
+    "babel-preset-cozy-app": "^2.0.4",
     "chalk": "4.1.2",
     "clear": "0.1.0",
     "configstore": "6.0.0",
