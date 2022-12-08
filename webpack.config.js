@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const fs = require('fs')
 const SvgoInstance = require('svgo')
 
-const index = require('./package.json').main
+
 
 const readManifest = () =>
   JSON.parse(fs.readFileSync(path.join(__dirname, './manifest.konnector')))
@@ -29,7 +29,7 @@ const appIconRX = iconName && new RegExp(`[^/]*/${iconName}`)
 
 module.exports = {
   entry: {
-    index,
+    index: './src/index.js',
     onDeleteAccount: './src/onDeleteAccount.js'
   },
   target: 'node',
