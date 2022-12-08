@@ -272,6 +272,7 @@ const synchronizeContacts = async (
 
     // remove from cozy contacts the contacts that have been updated by previous loop
     const countBefore = cozyContacts.length
+    // eslint-disable-next-line no-param-reassign
     cozyContacts = cozyContacts.filter(
       cozyContact =>
         !googleContacts.some(
