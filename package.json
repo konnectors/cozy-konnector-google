@@ -9,7 +9,6 @@
   "keywords": [],
   "author": "Cozy Cloud",
   "license": "AGPL-3.0",
-  "main": "./src/index.js",
   "eslintConfig": {
     "extends": [
       "cozy-app"
@@ -47,12 +46,14 @@
     "p-limit": "2.3.0"
   },
   "devDependencies": {
-    "chalk": "4.1.1",
+    "babel-jest": "26",
+    "babel-preset-cozy-app": "^2.0.4",
+    "chalk": "4.1.2",
     "clear": "0.1.0",
     "configstore": "6.0.0",
     "cozy-jobs-cli": "1.17.6",
     "cozy-konnector-build": "1.2.3",
-    "figlet": "1.5.0",
+    "figlet": "1.5.2",
     "jest": "26.6.3",
     "minimist": "1.2.6",
     "mockdate": "2.0.5"
