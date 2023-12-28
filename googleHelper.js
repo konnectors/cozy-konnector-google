@@ -1,4 +1,4 @@
-/*eslint no-console: 0 */
+/* eslint no-console: 0 */
 const ConfigStore = require('configstore')
 const pkg = require('./package.json')
 const http = require('http')
