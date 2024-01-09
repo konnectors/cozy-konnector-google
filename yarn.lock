@@ -2186,7 +2186,7 @@ babel-eslint@10.0.1:
     eslint-scope "3.7.1"
     eslint-visitor-keys "^1.0.0"
 
-babel-jest@26, babel-jest@^26.6.3:
+babel-jest@26.6.3, babel-jest@^26.6.3:
   version "26.6.3"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-26.6.3.tgz#d87d25cb0037577a0c89f82e5755c5d293c01056"
   integrity sha512-pl4Q+GAVOHwvjrck6jKjvmGhnO3jHX/xuB9d27f+EJZ/6k+6nMuPjorrYp7s++bKKdANwzElBWnLWaObvTnaZA==
@@ -2245,7 +2245,7 @@ babel-plugin-polyfill-regenerator@^0.4.1:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.3.3"
 
-babel-preset-cozy-app@^2.0.4:
+babel-preset-cozy-app@2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/babel-preset-cozy-app/-/babel-preset-cozy-app-2.0.4.tgz#95b39ba124c8938223f40d2357fff43f6e97c0b5"
   integrity sha512-X3XvvIvEt+x9xbGmERjdFJSrjOr7yXcMrb4Z8X42xES6YNyzM2ZourgnxZHczv/aFQMoPu5q9Bd/VGCNZAzSOw==
