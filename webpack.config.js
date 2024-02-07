@@ -4,7 +4,12 @@ const webpack = require('webpack')
 const fs = require('fs')
 const SvgoInstance = require('svgo')
 
-
+// Required to work from Node version 17+
+// More info: https://github.com/webpack/webpack/issues/13572#issuecomment-923736472
+const crypto = require('crypto')
+const crypto_orig_createHash = crypto.createHash
+crypto.createHash = algorithm =>
+  crypto_orig_createHash(algorithm == 'md4' ? 'sha256' : algorithm)
 
 const readManifest = () =>
   JSON.parse(fs.readFileSync(path.join(__dirname, './manifest.konnector')))
