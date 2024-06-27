@@ -1,5 +1,5 @@
 {
-  "version": "2.3.0",
+  "version": "2.4.0",
   "name": "Google",
   "type": "konnector",
   "language": "node",
@@ -9,7 +9,7 @@
   "editor": "Cozy",
   "vendor_link": "https://google.com",
   "categories": [
-    "online_services"
+    "clouds"
   ],
   "frequency": "daily",
   "fields": {
