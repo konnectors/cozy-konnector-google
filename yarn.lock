@@ -2245,10 +2245,10 @@ babel-plugin-polyfill-regenerator@^0.4.1:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.3.3"
 
-babel-preset-cozy-app@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/babel-preset-cozy-app/-/babel-preset-cozy-app-2.0.4.tgz#95b39ba124c8938223f40d2357fff43f6e97c0b5"
-  integrity sha512-X3XvvIvEt+x9xbGmERjdFJSrjOr7yXcMrb4Z8X42xES6YNyzM2ZourgnxZHczv/aFQMoPu5q9Bd/VGCNZAzSOw==
+babel-preset-cozy-app@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-cozy-app/-/babel-preset-cozy-app-2.2.1.tgz#59c068ca91e4807a4faa353bb043ec37cbf7da18"
+  integrity sha512-QF0Q35gYGXthZh8DHzBLpEuPhlE3c83eYPiNZxGRyr1ZWfcBFy+g+5DFWIju5BB2UJ/n3FT19BE/Rmp9TbDFcQ==
   dependencies:
     "@babel/core" "7.16.12"
     "@babel/eslint-parser" "^7.16.3"
@@ -2260,7 +2260,7 @@ babel-preset-cozy-app@2.0.4:
     "@babel/preset-react" "^7.16.0"
     "@babel/preset-typescript" "^7.16.0"
     "@babel/runtime" "^7.16.3"
-    browserslist-config-cozy "^0.4.1"
+    browserslist-config-cozy "^0.5.1"
     lodash "^4.17.21"
     typescript "^4.5.2"
 
@@ -2422,10 +2422,10 @@ browser-process-hrtime@^1.0.0:
   resolved "https://registry.yarnpkg.com/browser-process-hrtime/-/browser-process-hrtime-1.0.0.tgz#3c9b4b7d782c8121e56f10106d84c0d0ffc94626"
   integrity sha512-9o5UecI3GhkpM6DrXr69PblIuWxPKk9Y0jHBRhdocZ2y7YECBFCsHm79Pr3OyR2AvjhDkabFJaDJMYRazHgsow==
 
-browserslist-config-cozy@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/browserslist-config-cozy/-/browserslist-config-cozy-0.4.1.tgz#dae35324732f88b439cc4ff4ac2eff43a8291b47"
-  integrity sha512-VPuwME74kEWXml6Zadydm8SoKS0zdzZJ2DINKAScbE/xK9+9gPV+TljdPZA7FUTlVwmf9szcYMKGqqycD4I27w==
+browserslist-config-cozy@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/browserslist-config-cozy/-/browserslist-config-cozy-0.5.1.tgz#16f99e308183734fb5d634c9d761969c7fcd1021"
+  integrity sha512-ny0ztSq5oP8thLJv3MZxwrsrn+rdwPMIrlNyIgB74WFVqce0yi7WL4ySBE80RuxqNBzCjaeZLRYfTp6vqbVVbg==
 
 browserslist@^4.14.5:
   version "4.16.6"
