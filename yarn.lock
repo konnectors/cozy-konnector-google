@@ -2245,10 +2245,10 @@ babel-plugin-polyfill-regenerator@^0.4.1:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.3.3"
 
-babel-preset-cozy-app@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/babel-preset-cozy-app/-/babel-preset-cozy-app-2.0.4.tgz#95b39ba124c8938223f40d2357fff43f6e97c0b5"
-  integrity sha512-X3XvvIvEt+x9xbGmERjdFJSrjOr7yXcMrb4Z8X42xES6YNyzM2ZourgnxZHczv/aFQMoPu5q9Bd/VGCNZAzSOw==
+babel-preset-cozy-app@2.8.4:
+  version "2.8.4"
+  resolved "https://registry.yarnpkg.com/babel-preset-cozy-app/-/babel-preset-cozy-app-2.8.4.tgz#a2846ca0af9777904408c68252756732299e3cb4"
+  integrity sha512-vdlsmz6ZlwWVath9gXno2MxFBI6uO/LQTW6Bis8cepcV1KzhpBv05N7RNyenZsgYZwhVLY4AyW9w12geOJm1/g==
   dependencies:
     "@babel/core" "7.16.12"
     "@babel/eslint-parser" "^7.16.3"
@@ -2260,9 +2260,9 @@ babel-preset-cozy-app@2.0.4:
     "@babel/preset-react" "^7.16.0"
     "@babel/preset-typescript" "^7.16.0"
     "@babel/runtime" "^7.16.3"
-    browserslist-config-cozy "^0.4.1"
+    browserslist-config-cozy "^0.11.3"
     lodash "^4.17.21"
-    typescript "^4.5.2"
+    typescript "5.5.2"
 
 babel-preset-current-node-syntax@^1.0.0:
   version "1.0.0"
@@ -2422,10 +2422,10 @@ browser-process-hrtime@^1.0.0:
   resolved "https://registry.yarnpkg.com/browser-process-hrtime/-/browser-process-hrtime-1.0.0.tgz#3c9b4b7d782c8121e56f10106d84c0d0ffc94626"
   integrity sha512-9o5UecI3GhkpM6DrXr69PblIuWxPKk9Y0jHBRhdocZ2y7YECBFCsHm79Pr3OyR2AvjhDkabFJaDJMYRazHgsow==
 
-browserslist-config-cozy@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/browserslist-config-cozy/-/browserslist-config-cozy-0.4.1.tgz#dae35324732f88b439cc4ff4ac2eff43a8291b47"
-  integrity sha512-VPuwME74kEWXml6Zadydm8SoKS0zdzZJ2DINKAScbE/xK9+9gPV+TljdPZA7FUTlVwmf9szcYMKGqqycD4I27w==
+browserslist-config-cozy@^0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/browserslist-config-cozy/-/browserslist-config-cozy-0.11.3.tgz#1ed5ea2a0a1e5967c40f04369a22ce55ce0b718a"
+  integrity sha512-0qxEW/KoJmfy5knAzAOIFNgVEN5v4+urU9np96MeIsPPYqAtyoyCQS5gQ0rcy0imxF0PYtoAsm0rDAhP5JZV5w==
 
 browserslist@^4.14.5:
   version "4.16.6"
@@ -8355,10 +8355,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.5.2:
-  version "4.9.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.4.tgz#a2a3d2756c079abda241d75f149df9d561091e78"
-  integrity sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==
+typescript@5.5.2:
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.5.2.tgz#c26f023cb0054e657ce04f72583ea2d85f8d0507"
+  integrity sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"
